@@ -1,0 +1,69 @@
+###########################################
+# client-mentors
+# dependencies
+client-mentors/node_modules
+client-mentors/.pnp
+client-mentors/.pnp.js
+
+# testing
+client-mentors/coverage
+
+# production
+client-mentors/build
+
+# misc
+client-mentors/.DS_Store
+client-mentors/.env
+client-mentors/.env.local
+client-mentors/.env.development.local
+client-mentors/.env.test.local
+client-mentors/.env.production.local
+
+client-mentors/npm-debug.log*
+client-mentors/yarn-debug.log*
+client-mentors/yarn-error.log*
+
+###########################################
+# client-students
+# dependencies
+client-students/node_modules
+client-students/.pnp
+client-students/.pnp.js
+
+# testing
+client-students/coverage
+
+# production
+client-students/build
+
+# misc
+client-students/.DS_Store
+client-students/.env
+client-students/.env.local
+client-students/.env.development.local
+client-students/.env.test.local
+client-students/.env.production.local
+
+client-students/npm-debug.log*
+client-students/yarn-debug.log*
+client-students/yarn-error.log*
+
+###########################################
+# server-api-endpoint
+server-api-endpoint/node_modules/
+server-api-endpoint/.env
+
+###########################################
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+###########################################

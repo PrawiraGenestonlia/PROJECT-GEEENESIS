@@ -1,0 +1,32 @@
+{
+  "name": "project-geeenesis",
+  "version": "0.0.1",
+  "description": "A NTU EEE project to improve freshman transition into University life | Prawira Genestonlia | All rights reserved",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run start-client-mentors & npm run start-client-students & npm run server",
+    "start-client-mentors": "cd client-mentors && npm start",
+    "start-client-students": "cd client-students && npm start",
+    "build": "npm run build-client-mentors & npm run build-client-students",
+    "build-client-mentors": "cd client-mentors && npm run build",
+    "build-client-students": "cd client-students && npm run build",
+    "server": "cd server-api-endpoint && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pm2-start": "npm run pm2-start-server",
+    "pm2-start-server": "pm2 start server-api-endpoint/index.js --name geeenesis-server",
+    "git-fast-sync": "git add . && git commit -m \"Fast Sync\" && git push origin master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS.git"
+  },
+  "keywords": [
+    "geeenesis"
+  ],
+  "author": "Prawira Genestonlia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS/issues"
+  },
+  "homepage": "https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS#readme"
+}
