@@ -57,3 +57,7 @@ npm start
 ```console
 (to be added)
 ```
+
+## Project Timeline and Progress
+
+[Click here to view project timeline and progess](timeline.md)
