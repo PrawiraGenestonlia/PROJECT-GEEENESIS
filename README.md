@@ -1,10 +1,14 @@
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD041 -->
+<!-- markdownlint-disable MD026 -->
+<!-- markdownlint-disable MD033 -->
 <h1 align="center"><a href="https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS">PROJECT GEEENESIS</a></h1>
 <p align="center">
 <a href="https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS"><img alt="Lisence" src="https://img.shields.io/badge/license-MIT-blue.svg" height="20"/></a>
 <a href="https://www.npmjs.com/package/node"><img alt="Node Version" src="https://img.shields.io/npm/v/node.svg" height="20"/></a>
 <a href="https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/PrawiraGenestonlia/PROJECT-GEEENESIS.svg" height="20"/></a>
 <a href="https://github.com/PrawiraGenestonlia/graphs/commit-activity"><img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" height="20"/></a>
-	</p>
+</p>
 
 PROJECT GEEENESIS is an one-stop solution to better integrate Nanyang Technological University - School of Electrical and Electronic Engineering Freshmen into university life. This repository consists of:
 
@@ -53,4 +57,3 @@ npm start
 ```console
 (to be added)
 ```
-
