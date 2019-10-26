@@ -1,9 +1,56 @@
-# [PROJECT GEEENESIS](https://reactjs.org/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![node version](https://img.shields.io/npm/v/node.svg?style=flat)](https://www.npmjs.com/package/node)
+<h1 align="center"><a href="https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS">PROJECT GEEENESIS</a></h1>
+<p align="center">
+<a href="https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS"><img alt="Lisence" src="https://img.shields.io/badge/license-MIT-blue.svg" height="20"/></a>
+<a href="https://www.npmjs.com/package/node"><img alt="Node Version" src="https://img.shields.io/npm/v/node.svg" height="20"/></a>
+<a href="https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS/graphs/contributors"><img alt="Contributors" src="https://img.shields.io/github/contributors/PrawiraGenestonlia/PROJECT-GEEENESIS.svg" height="20"/></a>
+<a href="https://github.com/PrawiraGenestonlia/graphs/commit-activity"><img alt="Maintained" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" height="20"/></a>
+	</p>
 
 PROJECT GEEENESIS is an one-stop solution to better integrate Nanyang Technological University - School of Electrical and Electronic Engineering Freshmen into university life. This repository consists of:
 
+* **client-admins:** A desktop web-app (also known as HTML5 app), built using React, is used by admins to set authentification role, editting of information, and most importantly file management.
 * **client-mentors:** A progressive web-app (also known as HTML5 app), built using React, is used by mentors to interact and see the profile of their mentees.
-* **client-students:** A progressive web-app (also known as HTML5 app), built using React, is used by mentors to interact and see the profile of their mentees.
-* **server-api-endpoint:** We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code. React can also render on the server using Node and power mobile apps using [React Native](https://facebook.github.io/react-native/).
+* **client-students:** A progressive web-app (also known as HTML5 app), built using React, is used by students as the main platform to better integrate them into university life.
+* **server-api-endpoint:** A server that serves the three clients above, built using Express (Node.js) and MongoDB (NoSQL) and hosted on digitalocean (Ubuntu 18.04 LTS).
 
-[Learn how to use React in your own project](https://reactjs.org/docs/getting-started.html).
+## Installation
+
+### Prerequisite:
+
+* git
+  
+```console
+sudo apt install git-all
+```
+
+* node
+
+```console
+sudo apt-get install curl
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install nodejs
+```
+
+* nodemon
+
+```console
+npm install -g nodemon
+```
+
+### Project Geeenesis:
+
+(development)
+
+```console
+git clone https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS
+cd PROJECT-GEEENESIS
+npm run install
+npm start
+```
+
+(production)
+
+```console
+(to be added)
+```
+
