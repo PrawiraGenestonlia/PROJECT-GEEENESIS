@@ -61,3 +61,28 @@ npm start
 ## Project Timeline and Progress
 
 [Click here to view project timeline and progess](timeline.md)
+
+## Functionality
+
+### Pre-univeristy (information)
+
+* Information on EEE (Academics)
+* Information on Student Body
+
+### Student Bodies
+
+* Dynamic information (editable through web)
+* Add events (and external registration link)
+* Consolidated calendar of events
+
+### Mentoring System
+
+* Mentor information
+* Mentee information (events participated)
+* Chatting platform
+* Create calendar item
+* "Feedback" on their relationship
+
+### Buddy System (KIV)
+
+* Assignment of buddies (matching algorithm)
