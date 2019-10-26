@@ -1,4 +1,29 @@
 ###########################################
+# client-admins
+# dependencies
+client-admins/node_modules
+client-admins/.pnp
+client-admins/.pnp.js
+
+# testing
+client-admins/coverage
+
+# production
+client-admins/build
+
+# misc
+client-admins/.DS_Store
+client-admins/.env
+client-admins/.env.local
+client-admins/.env.development.local
+client-admins/.env.test.local
+client-admins/.env.production.local
+
+client-admins/npm-debug.log*
+client-admins/yarn-debug.log*
+client-admins/yarn-error.log*
+
+###########################################
 # client-mentors
 # dependencies
 client-mentors/node_modules
