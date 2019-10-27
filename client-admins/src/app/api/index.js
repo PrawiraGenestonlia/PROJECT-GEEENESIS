@@ -1,4 +1,4 @@
-import LoginToServer from './handleLogin';
+import LoginToServer from './loginToServer';
 
 export {
   LoginToServer,
