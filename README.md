@@ -64,18 +64,18 @@ npm start
 
 ## Functionality
 
-### Pre-univeristy (information)
+### _Pre-univeristy (information)_
 
 * Information on EEE (Academics)
 * Information on Student Body
 
-### Student Bodies
+### _Student Bodies_
 
 * Dynamic information (editable through web)
 * Add events (and external registration link)
 * Consolidated calendar of events
 
-### Mentoring System
+### _Mentoring System_
 
 * Mentor information
 * Mentee information (events participated)
@@ -83,6 +83,10 @@ npm start
 * Create calendar item
 * "Feedback" on their relationship
 
-### Buddy System (KIV)
+### _Buddy System (KIV)_
 
 * Assignment of buddies (matching algorithm)
+
+## References
+
+[Click here to view references](references.md)
