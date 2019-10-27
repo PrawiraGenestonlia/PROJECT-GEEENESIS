@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Redirect} from 'react-router-dom';
 
+
 function validateEmail(email) {
   var re = /^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(ntu.edu)\.sg$/;
   return re.test(String(email).toLowerCase());
@@ -15,7 +16,7 @@ function Login() {
     setIsNTUEmail(validateEmail(input));
   }
   const handleLogin = () => {
-    
+    Axios.post
   }
   return (
     <div class="flex flex-col items-center w-full h-screen mt-40">
