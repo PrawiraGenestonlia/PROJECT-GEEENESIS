@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { LoginToServer } from '../api';
+import { ADMIN_DASHBOARD_URL } from '../../constants';
 
 function validateEmail(email) {
   var re = /^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(ntu.edu)\.sg$/;
@@ -11,13 +12,18 @@ function Login() {
   const [inputEmailAddress, setInputEmailAddress] = useState('');
   const [isNTUEmail, setIsNTUEmail] = useState(false);
   const [inputPassword, setInputPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleEmailAddressInput = (input) => {
     setInputEmailAddress(input);
     setIsNTUEmail(validateEmail(input));
   }
   const handleLogin = async () => {
-    const res = await LoginToServer(inputEmailAddress, inputPassword);
-    console.log(res);
+    LoginToServer(inputEmailAddress, inputPassword).then(res => {
+      localStorage.setItem('auth-token', res.data);
+      setIsLoggedIn(true);
+    }).catch(err => {
+      alert(err.data);
+    })
   }
   return (
     <div class="flex flex-col items-center w-full h-screen mt-40">
@@ -44,6 +50,9 @@ function Login() {
           </div>
           : null}
       </form>
+      <div>
+        {isLoggedIn ? <Redirect to={ADMIN_DASHBOARD_URL} /> : null}
+      </div>
     </div>
   )
 }

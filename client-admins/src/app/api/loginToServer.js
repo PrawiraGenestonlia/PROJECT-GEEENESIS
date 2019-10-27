@@ -1,11 +1,16 @@
-import Axios from 'axios';
+import axios from 'axios';
 import { SERVERURL, LOGIN } from '../../constants';
 
 export default async (email, password) => {
   const url = `${SERVERURL}${LOGIN}`;
-  const res = await Axios.post(url, {
-    "email": email,
-    "password": password
+  return new Promise((resolve, reject) => {
+    axios.post(url, {
+      "email": email,
+      "password": password
+    }).then((res) => {
+      resolve(res);
+    }).catch((err) => {
+      reject(err.response);
+    })
   })
-  return res;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
-import { ADMIN_LOGIN_URL } from '../constants';
+import { ADMIN_LOGIN_URL, ADMIN_DASHBOARD_URL } from '../constants';
 import { LoginPage } from '../app/pages';
 
 function Display(props) {
@@ -28,8 +28,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 function Router() {
   return (
     <Switch>
-      <Route exact path="/" component={() => <Display page='Home' />} />
+      <Route exact path="/" component={() => <Redirect to={ADMIN_LOGIN_URL} />} />
       <Route exact path={ADMIN_LOGIN_URL} component={LoginPage} />
+      <PrivateRoute exact path={ADMIN_DASHBOARD_URL} component={() => <Display page='dashboard' />} />
       <PrivateRoute exact path={"/protected"} component={() => <Display page='Protected' />} />
       <Route component={() => <Display page='Not Found' />} />
     </Switch>
