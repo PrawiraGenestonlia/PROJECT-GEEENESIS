@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
 //import routes
@@ -14,6 +15,7 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTop
 }).catch(err => console.error("Could not connect to MongoDB...", err));
 
 //middleware
+app.use(cors());
 app.use(express.json());
 
 app.get('/', async (req, res) => {
