@@ -5,3 +5,4 @@
 |Date      |No of Hours |Description|
 |:--------:|:----------:|-----------|
 |26/10/2019|5           |Start the project, environment and repository setup|
+|27/10/2019|4           |Admin login page|
