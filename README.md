@@ -12,7 +12,7 @@
 
 PROJECT GEEENESIS is an one-stop solution to better integrate Nanyang Technological University - School of Electrical and Electronic Engineering Freshmen into university life. This repository consists of:
 
-* **client-admins:** A desktop web-app (also known as HTML5 app), built using React, is used by admins to set authentication role, editting of information, and most importantly file management.
+* **client-admins:** A desktop web-app, built using React, is used by admins to set authentication role, editting of information, and most importantly file management.
 * **client-mentors:** A progressive web-app (also known as HTML5 app), built using React, is used by mentors to interact and see the profile of their mentees.
 * **client-students:** A progressive web-app (also known as HTML5 app), built using React, is used by students as the main platform to better integrate them into university life.
 * **server-api-endpoint:** A server that serves the three clients above, built using Express (Node.js) and MongoDB (NoSQL) and hosted on digitalocean (Ubuntu 18.04 LTS).
