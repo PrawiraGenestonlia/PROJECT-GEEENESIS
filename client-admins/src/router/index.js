@@ -10,6 +10,21 @@ function Display(props) {
   )
 }
 
+const PublicRoute = ({ component: Component, ...rest }) => {
+  const isAuth = () => {
+    let authToken = localStorage.getItem('auth-token');
+    if (authToken) return true;
+    else return false;
+  }
+  return (
+    <Route {...rest} render={props => (
+      isAuth() ?
+        <Redirect to={ADMIN_DASHBOARD_URL} />
+        : <Component {...props} />
+    )} />
+  );
+};
+
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const isAuth = () => {
     let authToken = localStorage.getItem('auth-token');
@@ -29,7 +44,7 @@ function Router() {
   return (
     <Switch>
       <Route exact path="/" component={() => <Redirect to={ADMIN_LOGIN_URL} />} />
-      <Route exact path={ADMIN_LOGIN_URL} component={LoginPage} />
+      <PublicRoute exact path={ADMIN_LOGIN_URL} component={LoginPage} />
       <PrivateRoute exact path={ADMIN_DASHBOARD_URL} component={() => <Display page='dashboard' />} />
       <PrivateRoute exact path={"/protected"} component={() => <Display page='Protected' />} />
       <Route component={() => <Display page='Not Found' />} />
