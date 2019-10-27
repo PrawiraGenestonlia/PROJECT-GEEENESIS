@@ -1,7 +1,14 @@
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        divider: 'rgba(100,100,100,0.4)',
+      }
+    },
     fontFamily: {
+    },
+    minWidth: {
+      '2/12': '16.666667%'
     }
   },
   variants: {},

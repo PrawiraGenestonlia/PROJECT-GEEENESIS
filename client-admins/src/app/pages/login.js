@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import { LoginToServer } from '../api';
-import { ADMIN_DASHBOARD_URL } from '../../constants';
 
 function validateEmail(email) {
   var re = /^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(ntu.edu)\.sg$/;
@@ -12,7 +10,6 @@ function Login() {
   const [inputEmailAddress, setInputEmailAddress] = useState('');
   const [isNTUEmail, setIsNTUEmail] = useState(false);
   const [inputPassword, setInputPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleEmailAddressInput = (input) => {
     setInputEmailAddress(input);
     setIsNTUEmail(validateEmail(input));
@@ -20,7 +17,7 @@ function Login() {
   const handleLogin = async () => {
     LoginToServer(inputEmailAddress, inputPassword).then(res => {
       localStorage.setItem('auth-token', res.data);
-      setIsLoggedIn(true);
+      window.location.reload();
     }).catch(err => {
       alert(err.data);
     })
@@ -30,10 +27,11 @@ function Login() {
       <div class="text-2xl text-blue-600 mb-16">
         <font>Login to access geeenesis admin page</font>
       </div>
-      <form class="w-full max-w-sm">
+      <form class="w-full max-w-sm" autoComplete="on">
         <div class="flex items-center border-b border-b-2 border-blue-500 py-2">
           <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-            type="text" placeholder="NTU Email Address" aria-label="NTU Email Address" value={inputEmailAddress} onChange={(e) => handleEmailAddressInput(e.target.value)} />
+            type="text" placeholder="NTU Email Address" aria-label="NTU Email Address"
+            value={inputEmailAddress} onChange={(e) => handleEmailAddressInput(e.target.value)} autoComplete="on" />
           <button class="flex-shrink-0 border-transparent border-4 text-blue-500 hover:text-blue-800 text-sm py-1 px-2 rounded"
             type="button" onClick={() => { setInputEmailAddress(''); setIsNTUEmail(false); setInputPassword('') }}>
             Cancel
@@ -42,7 +40,8 @@ function Login() {
         {isNTUEmail ?
           <div class="flex items-center border-b border-b-2 border-blue-500 py-2">
             <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              type="password" placeholder="password" aria-label="password" value={inputPassword} onChange={e => setInputPassword(e.target.value)} />
+              type="password" placeholder="password" aria-label="password"
+              value={inputPassword} onChange={e => setInputPassword(e.target.value)} />
             <button class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded"
               type="button" onClick={() => handleLogin()}>
               Login
@@ -50,9 +49,6 @@ function Login() {
           </div>
           : null}
       </form>
-      <div>
-        {isLoggedIn ? <Redirect to={ADMIN_DASHBOARD_URL} /> : null}
-      </div>
     </div>
   )
 }
