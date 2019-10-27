@@ -82,6 +82,7 @@ router.post('/registerWithoutAuth', async (req, res) => {
   if (isEmailExist) return res.status(400).send('Email already exists');
 
   //hash passwords
+  const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
   //create new user object
