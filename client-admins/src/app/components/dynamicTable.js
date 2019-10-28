@@ -58,24 +58,24 @@ function DynamicTable(props) {
   }
 
   return (
-    <div class="text-gray-900">
-      <div class="px-3 py-4 flex justify-center select-auto">
-        <table class="w-full text-md bg-white shadow-md rounded mb-4">
+    <div className="text-gray-900">
+      <div className="px-3 py-4 flex justify-center select-auto">
+        <table className="w-full text-md bg-white shadow-md rounded mb-4">
           <tbody>
-            <tr class="border-b bg-blue-200" >
+            <tr className="border-b bg-blue-200" >
               {data.columns.map((column, index) => {
-                return <th key={index} class="text-left py-3 px-5" >{column}</th>
+                return <th key={index} className="text-left py-3 px-5" >{column}</th>
               })}
             </tr>
             {data.data.map((data, index) => {
               return (
-                <tr key={index} class={index % 2 ? "border-b hover:bg-orange-100 bg-gray-100" : "border-b hover:bg-orange-100 bg-white"}>
+                <tr key={index} className={index % 2 ? "border-b hover:bg-orange-100 bg-gray-100" : "border-b hover:bg-orange-100 bg-white"}>
                   {columns.map((column, j) => {
                     return (
-                      <td key={j} class="py-3 px-5" style={{ width: `${100 / columns.length}%` }}>
+                      <td key={j} className="py-3 px-5" style={{ width: `${100 / columns.length}%` }}>
                         {typeof data[column] === 'object' ?
                           <div style={{ pointerEvents: isReadOnly[index] ? 'none' : 'auto' }}>
-                            <select value={data[column].current} onChange={(e) => { handleChangeOptions(e.target.value, index, column) }} class="bg-transparent">
+                            <select value={data[column].current} onChange={(e) => { handleChangeOptions(e.target.value, index, column) }} className="bg-transparent">
                               {data[column].options.map((option, index) => {
                                 return <option key={index} value={option}>{option}</option>
                               })}
@@ -87,19 +87,19 @@ function DynamicTable(props) {
                                 isReadOnly[index] ?
                                   <div>
                                     <button type="button" onClick={() => { handleEditClick(index) }}
-                                      class="mr-3 text-sm bg-teal-500 hover:bg-teal-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+                                      className="mr-3 text-sm bg-teal-500 hover:bg-teal-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
                                       Edit
                                     </button>
                                   </div>
                                   :
                                   <div>
                                     <button type="button" onClick={() => { handleSaveClick(index) }}
-                                      class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+                                      className="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
                                       Save
                                     </button>
                                     <button
                                       type="button" onClick={() => { handleDeleteClick(index) }}
-                                      class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+                                      className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
                                       Delete
                                 </button>
                                   </div>
@@ -108,7 +108,7 @@ function DynamicTable(props) {
                             </div>
                             :
                             <div>
-                              <input readOnly={isReadOnly[index]} type="text" value={data[column]} onChange={(e) => { handleInputChange(e.target.value, index, column) }} class="bg-transparent" />
+                              <input readOnly={isReadOnly[index]} type="text" value={data[column]} onChange={(e) => { handleInputChange(e.target.value, index, column) }} className="bg-transparent" />
                             </div>
                           }</div>
                         }
