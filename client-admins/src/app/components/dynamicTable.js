@@ -1,32 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-const sampleData = {
-  columns: ["UID", "Name", "Email", "Role", "Action"],
-  data: [
-    {
-      UID: "12345",
-      Name: "Prawira 1",
-      Email: "praw0001@e.ntu.edu.sg",
-      Role: { options: ["superadmin", "mentor", "student"], current: 'superadmin' },
-      Action: "action"
-    },
-    {
-      UID: "12346",
-      Name: "Prawira 2",
-      Email: "praw0001@e.ntu.edu.sg",
-      Role: { options: ["superadmin", "mentor", "student"], current: 'superadmin' },
-      Action: "action"
-    },
-    {
-      UID: "12347",
-      Name: "Prawira 3",
-      Email: "praw0001@e.ntu.edu.sg",
-      Role: { options: ["superadmin", "mentor", "student"], current: 'superadmin' },
-      Action: "action"
-    }
-  ]
-}
-
 const createArr = (num) => {
   let arr = [];
   for (let i = 0; i < num; i++) {
@@ -36,7 +9,7 @@ const createArr = (num) => {
 }
 
 function DynamicTable(props) {
-  const [data, setData] = useState(sampleData);
+  const [data, setData] = useState(props.data ? props.data : { columns: [], data: [] });
   const [columns, setColumns] = useState(data.columns);
   const [isReadOnly, setIsReadOnly] = useState(createArr(data.data.length));
 
@@ -67,7 +40,7 @@ function DynamicTable(props) {
 
   const handleDeleteClick = (index) => {
     //todo confirmation
-    handleDelete(data.data[index].UID);
+    handleDelete(data.data[index]);
     let tempData = data;
     tempData.data.splice(index, 1);
     setData({ ...tempData });
@@ -77,31 +50,29 @@ function DynamicTable(props) {
   }
 
   const handleSave = (user) => {
-    console.log("save", user)
     if (props.handleSave) props.handleSave(user);
   }
 
   const handleDelete = (user) => {
-    console.log("delete", user)
     if (props.handleDelete) props.handleDelete(user);
   }
 
   return (
     <div class="text-gray-900">
-      <div class="px-3 py-4 flex justify-center">
+      <div class="px-3 py-4 flex justify-center select-auto">
         <table class="w-full text-md bg-white shadow-md rounded mb-4">
           <tbody>
-            <tr class="border-b">
+            <tr class="border-b bg-blue-200" >
               {data.columns.map(column => {
-                return <th class="text-left py-3 px-5">{column}</th>
+                return <th class="text-left py-3 px-5" >{column}</th>
               })}
             </tr>
             {data.data.map((data, index) => {
               return (
-                <tr class={index % 2 ? "border-b hover:bg-orange-100 bg-white" : "border-b hover:bg-orange-100 bg-gray-100"}>
+                <tr class={index % 2 ? "border-b hover:bg-orange-100 bg-gray-100" : "border-b hover:bg-orange-100 bg-white"}>
                   {columns.map(column => {
                     return (
-                      <td class="py-3 px-5">
+                      <td class="py-3 px-5" style={{ width: `${100 / columns.length}%` }}>
                         {typeof data[column] === 'object' ?
                           <div style={{ pointerEvents: isReadOnly[index] ? 'none' : 'auto' }}>
                             <select value={data[column].current} onChange={(e) => { handleChangeOptions(e.target.value, index, column) }} class="bg-transparent">
