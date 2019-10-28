@@ -25,6 +25,25 @@ const sampleDataUserManagement = {
   ]
 }
 
+const uploadCSV = {
+  columns: ["Name", "Email"],
+  data: [
+    {
+      Name: "Prawira 1",
+      Email: "praw0001@e.ntu.edu.sg",
+    },
+    {
+      Name: "Prawira 2",
+      Email: "praw0001@e.ntu.edu.sg",
+    },
+    {
+      Name: "Prawira 3",
+      Email: "praw0001@e.ntu.edu.sg",
+    }
+  ]
+}
+
 export {
-  sampleDataUserManagement
+  sampleDataUserManagement,
+  uploadCSV
 }

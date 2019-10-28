@@ -9,7 +9,7 @@ const createArr = (num) => {
 }
 
 function DynamicTable(props) {
-  const [data, setData] = useState(props.data ? props.data : { columns: [], data: [] });
+  const [data, setData] = useState(Object.keys(props.data).length ? props.data : { columns: [], data: [] });
   const [columns, setColumns] = useState(data.columns);
   const [isReadOnly, setIsReadOnly] = useState(createArr(data.data.length));
 
@@ -63,21 +63,21 @@ function DynamicTable(props) {
         <table class="w-full text-md bg-white shadow-md rounded mb-4">
           <tbody>
             <tr class="border-b bg-blue-200" >
-              {data.columns.map(column => {
-                return <th class="text-left py-3 px-5" >{column}</th>
+              {data.columns.map((column, index) => {
+                return <th key={index} class="text-left py-3 px-5" >{column}</th>
               })}
             </tr>
             {data.data.map((data, index) => {
               return (
-                <tr class={index % 2 ? "border-b hover:bg-orange-100 bg-gray-100" : "border-b hover:bg-orange-100 bg-white"}>
-                  {columns.map(column => {
+                <tr key={index} class={index % 2 ? "border-b hover:bg-orange-100 bg-gray-100" : "border-b hover:bg-orange-100 bg-white"}>
+                  {columns.map((column, j) => {
                     return (
-                      <td class="py-3 px-5" style={{ width: `${100 / columns.length}%` }}>
+                      <td key={j} class="py-3 px-5" style={{ width: `${100 / columns.length}%` }}>
                         {typeof data[column] === 'object' ?
                           <div style={{ pointerEvents: isReadOnly[index] ? 'none' : 'auto' }}>
                             <select value={data[column].current} onChange={(e) => { handleChangeOptions(e.target.value, index, column) }} class="bg-transparent">
-                              {data[column].options.map(option => {
-                                return <option value={option}>{option}</option>
+                              {data[column].options.map((option, index) => {
+                                return <option key={index} value={option}>{option}</option>
                               })}
                             </select>
                           </div> :
@@ -108,7 +108,7 @@ function DynamicTable(props) {
                             </div>
                             :
                             <div>
-                              <input readonly={isReadOnly[index]} type="text" value={data[column]} onChange={(e) => { handleInputChange(e.target.value, index, column) }} class="bg-transparent" />
+                              <input readOnly={isReadOnly[index]} type="text" value={data[column]} onChange={(e) => { handleInputChange(e.target.value, index, column) }} class="bg-transparent" />
                             </div>
                           }</div>
                         }
