@@ -13,6 +13,13 @@ const userSchema = new mongoose.Schema({
     max: 255,
     min: 6,
   },
+  role: {
+    type: String,
+    default: 'student',
+  },
+  networkname: {
+    type: String,
+  },
   password: {
     type: String,
     required: true,

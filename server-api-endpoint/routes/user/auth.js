@@ -31,6 +31,8 @@ router.post('/register', async (req, res) => {
   const responseBody = {
     "name": req.body.name,
     "email": req.body.email,
+    "role": req.body.role,
+    "networkname": req.body.email,
     "password": hashedPassword,
     "otpSecretToken": otpSecretToken.base32,
     "otpToken": otpToken,
@@ -51,11 +53,16 @@ router.post('/registerValidation', async (req, res) => {
       step: 60
     });
     if (tokenValidation) {
+      //extract email
+      let networkname = req.body.email.substring(0, req.body.email.lastIndexOf("@"));
+
       //create new user object
       const newUser = new user({
         "name": req.body.name,
         "email": req.body.email,
         "password": req.body.password,
+        "role": req.body.role,
+        "networkname": networkname,
       });
       try {
         const savedUser = await newUser.save();
@@ -85,11 +92,16 @@ router.post('/registerWithoutAuth', async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
+  //extract email
+  let networkname = req.body.email.substring(0, req.body.email.lastIndexOf("@"));
+
   //create new user object
   const newUser = new user({
     "name": req.body.name,
     "email": req.body.email,
     "password": hashedPassword,
+    "role": req.body.role,
+    "networkname": networkname,
   });
 
   try {
@@ -114,7 +126,7 @@ router.post('/login', async (req, res) => {
   if (!validPass) return res.status(400).send('Wrong password!');
 
   //jwt signing
-  const token = jwt.sign({ _id: currentUser._id }, process.env.JWT_TOKEN);
+  const token = jwt.sign({ _id: currentUser._id, email: currentUser.email, role: currentUser.role }, process.env.JWT_TOKEN);
 
   res.header('auth-token', token).send(token);
 })
@@ -145,13 +157,13 @@ router.post('/changepassword', verifyToken, async (req, res) => {
   res.header('auth-token', token).send(token);
 })
 
+//todo: wira
 router.post('/forgetpassword', async (req, res) => {
   //data validation
   const { error } = forgetPasswordValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   //
-
 })
 
 module.exports = router;

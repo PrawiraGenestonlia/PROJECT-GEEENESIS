@@ -7,3 +7,4 @@
 |26/10/2019|5           |Start the project, environment and repository setup|
 |27/10/2019|4           |Admin login page|
 |27/10/2019|2           |Admin router|
+|28/10/2019|0.5         |Server add role auth|

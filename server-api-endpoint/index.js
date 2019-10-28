@@ -5,7 +5,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 //import routes
-const { authRoute } = require('./routes/user');
+const { authRoute, getInfoRoute } = require('./routes/user');
 const { postRoute } = require('./routes/post');
 //todo more routes
 
@@ -23,6 +23,7 @@ app.get('/', async (req, res) => {
 })
 
 app.use('/user', authRoute);
+app.use('/get-user', getInfoRoute);
 app.use('/post', postRoute);
 
 app.listen(process.env.PORT || 5002, () => {
