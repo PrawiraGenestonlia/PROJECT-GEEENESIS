@@ -9,7 +9,7 @@ export default () => {
         </div>
       </div>
       <div className="bg-divider" style={{ height: '0.1rem' }} />
-      <div className="flex mt-4">
+      <div className="flex flex-col mt-4">
         <div>content</div>
       </div>
     </div>

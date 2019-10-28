@@ -3,7 +3,8 @@ import DynamicTable from '../components/dynamicTable';
 import { sampleDataUserManagement, } from '../sampleData';
 import Popup from "reactjs-popup";
 import Papa from 'papaparse';
-import { GroupUserSVG,ToolsSVG } from '../components/svgPath';
+import Swal from 'sweetalert2';
+import { GroupUserSVG, ToolsSVG } from '../components/svgPath';
 
 export default () => {
   const [uploadedObject, setUploadedObject] = useState({});
@@ -37,12 +38,39 @@ export default () => {
 
   }
 
-  const modalAdd = (uploadedObject) => {
+  const modalAdd = async (uploadedObject) => {
+    let confirmation = await Swal.fire({
+      title: 'Are you sure you want to add all users?',
+      text: '',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes, add them!'
+    });
+    if (!confirmation.value) {
+      setOpenModal(false);
+      setUploadedObject({});
+      return true
+    };
+
     //todo: create user into database
 
   }
 
-  const modalCancel = () => {
+  const modalCancel = async () => {
+    let confirmation = await Swal.fire({
+      title: 'Are you sure you want to cancel?',
+      text: '',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes, cancel it!'
+    });
+    if (!confirmation.value) return true;
     setOpenModal(false);
     setUploadedObject({});
   }
@@ -70,12 +98,12 @@ export default () => {
       <div className="w-full">
         <div className="flex flex-row justify-center px-5 pt-3">
           <button type="button" onClick={() => { modalAdd(uploadedObject) }}
-            className="w-20 mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+            className="w-20 mr-3 text-sm bg-blue-600 hover:bg-blue-400 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
             Add
           </button>
           <button
             type="button" onClick={() => { modalCancel() }}
-            className="w-20 text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+            className="w-20 text-sm bg-red-600 hover:bg-red-400 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
             Cancel
            </button>
         </div>
@@ -98,8 +126,8 @@ export default () => {
           {/* toolbar */}
           <div className="flex flex-row h-20 items-center bg-indigo-100 w-full text-md shadow-md rounded mb-4">
             <div className="pl-5">
-            <svg className="w-10 h-10 text-black" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1708 1708.7495">
-              <ToolsSVG/>
+              <svg className="w-10 h-10 text-black" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1708 1708.7495">
+                <ToolsSVG />
               </svg>
             </div>
             <RenderUploadButton className="px-5" onChange={(e) => { handleUploadFile(e.target.files[0]) }} />

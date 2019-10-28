@@ -1,4 +1,5 @@
 import React, { useState, } from 'react';
+import Swal from 'sweetalert2';
 
 const createArr = (num) => {
   let arr = [];
@@ -31,15 +32,37 @@ function DynamicTable(props) {
     setIsReadOnly([...tempData]);
   }
 
-  const handleSaveClick = (index) => {
+  const handleSaveClick = async (index) => {
+    //save confirmation
+    let confirmation = await Swal.fire({
+      title: 'Are you sure?',
+      text: `${data.data[index].Name} - ${data.data[index].Email} (${data.data[index].Role.current})`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, save it!'
+    });
+    if (!confirmation.value) return handleCancel(index);
     let tempData = isReadOnly;
     tempData[index] = "readonly";
     setIsReadOnly([...tempData]);
     handleSave(data.data[index]);
+    await Swal.fire('Saved!', 'User has been updated.', 'success');
   }
 
-  const handleDeleteClick = (index) => {
-    //todo confirmation
+  const handleDeleteClick = async (index) => {
+    //delete confirmation
+    let confirmation = await Swal.fire({
+      title: 'Are you sure?',
+      text: `${data.data[index].Name} - ${data.data[index].Email} (${data.data[index].Role.current})`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    });
+    if (!confirmation.value) return handleCancel(index);
     handleDelete(data.data[index]);
     let tempData = data;
     tempData.data.splice(index, 1);
@@ -47,6 +70,13 @@ function DynamicTable(props) {
     let tempReadOnly = isReadOnly;
     tempReadOnly.splice(index, 1);
     setIsReadOnly([...tempReadOnly]);
+    await Swal.fire('Deleted!', 'User has been deleted.', 'success');
+  }
+
+  const handleCancel = (index) => {
+    let tempData = isReadOnly;
+    tempData[index] = "readonly";
+    setIsReadOnly([...tempData]);
   }
 
   const handleSave = (user) => {
