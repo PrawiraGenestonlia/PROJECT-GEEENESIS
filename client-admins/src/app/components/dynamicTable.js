@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
 
 const createArr = (num) => {
   let arr = [];
@@ -10,7 +10,7 @@ const createArr = (num) => {
 
 function DynamicTable(props) {
   const [data, setData] = useState(Object.keys(props.data).length ? props.data : { columns: [], data: [] });
-  const [columns, setColumns] = useState(data.columns);
+  const [columns] = useState(data.columns); // setColumns omitted
   const [isReadOnly, setIsReadOnly] = useState(createArr(data.data.length));
 
   const handleInputChange = (value, index, column) => {
@@ -81,7 +81,7 @@ function DynamicTable(props) {
                               })}
                             </select>
                           </div> :
-                          <div>{data[column] == "action" ?
+                          <div>{data[column] === "action" ?
                             <div>
                               {
                                 isReadOnly[index] ?

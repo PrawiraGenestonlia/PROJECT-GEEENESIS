@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './navBar.css';
 import GetToken from './getToken';
 import {
-  ADMIN_LOGIN_URL,
   ADMIN_DASHBOARD_URL,
   ADMIN_USERMANAGEMENT_URL,
   ADMIN_MENTORING_URL,
