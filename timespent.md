@@ -10,3 +10,4 @@
 |28/10/2019|0.5         |Server add role auth|
 |28/10/2019|0.5         |Server get user information - decrypt token|
 |28/10/2019|3           |user management - front end|
+|29/10/2019|2           |upload file - front end|
