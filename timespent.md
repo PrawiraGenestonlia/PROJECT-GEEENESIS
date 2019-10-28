@@ -9,3 +9,4 @@
 |27/10/2019|2           |Admin router|
 |28/10/2019|0.5         |Server add role auth|
 |28/10/2019|0.5         |Server get user information - decrypt token|
+|28/10/2019|2           |user management - front end|

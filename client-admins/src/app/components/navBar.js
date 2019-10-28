@@ -5,7 +5,11 @@ import GetToken from './getToken';
 import {
   ADMIN_LOGIN_URL,
   ADMIN_DASHBOARD_URL,
-  ADMIN_USERMANAGEMENT_URL
+  ADMIN_USERMANAGEMENT_URL,
+  ADMIN_MENTORING_URL,
+  ADMIN_INFORMATION_URL,
+  ADMIN_EVENTS_URL,
+  ADMIN_PROFILE_URL
 } from '../../constants';
 
 function handleLogOut() {
@@ -38,6 +42,10 @@ export default () => {
       <div>
         <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
         <NavItem label="User Management" to={ADMIN_USERMANAGEMENT_URL} />
+        <NavItem label="Mentoring" to={ADMIN_MENTORING_URL} />
+        <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
+        <NavItem label="Events" to={ADMIN_EVENTS_URL} />
+        <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
       </div>
       <div class="flex items-center justify-center">
         {GetToken() ?
