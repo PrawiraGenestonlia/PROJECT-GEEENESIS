@@ -2,10 +2,11 @@ const router = require('express').Router();
 const user = require('../../models/user');
 const { verifyToken } = require('../../middlewares');
 
+
 router.get('/', verifyToken, async (req, res) => {
   if (req.user.role !== "superadmin") return res.status(401).send('Unauthorized Access!');
   res.status(200).send('Authorized!');
-})
+});
 
 router.get('/get-all-user', verifyToken, async (req, res) => {
   if (req.user.role !== "superadmin") return res.status(401).send('Unauthorized Access!');
@@ -17,11 +18,11 @@ router.get('/get-all-user', verifyToken, async (req, res) => {
     allUsersArr[i].role = { options: ['superadmin', 'clubadmin', 'student', 'mentor'], current: allUsersArr[i].role };
   }
   let response = {
-    columns: ['name', 'email', 'role', 'action'],
+    columns: ['name', 'email', 'matric', 'role', 'action'],
     data: allUsersArr
   }
   res.status(200).json(response);
-})
+});
 
 router.post('/delete-user', verifyToken, async (req, res) => {
   if (req.user.role !== "superadmin") return res.status(401).send('Unauthorized Access!');
@@ -31,7 +32,24 @@ router.post('/delete-user', verifyToken, async (req, res) => {
   } catch (err) {
     res.status(400).json(err);
   }
+});
 
-})
+router.post('/update-user', verifyToken, async (req, res) => {
+  if (req.user.role !== "superadmin") return res.status(401).send('Unauthorized Access!');
+  try {
+    //update user
+    const updatedUser = await user.findOneAndUpdate({
+      _id: req.body._id
+    }, {
+      "email": req.body.email,
+      "matric": req.body.matric,
+      "name": req.body.name,
+      "role": req.body.role
+    });
+    res.status(200).json('Successfully edited!');
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
 module.exports = router;

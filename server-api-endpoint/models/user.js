@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
     max: 255,
     min: 6,
   },
+  matric: {
+    type: String,
+    default: '-',
+  },
   role: {
     type: String,
     default: 'student',
