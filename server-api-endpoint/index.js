@@ -7,6 +7,7 @@ require('dotenv').config();
 //import routes
 const { authRoute, getInfoRoute } = require('./routes/user');
 const { postRoute } = require('./routes/post');
+const { adminUserRoute } = require('./routes/admin');
 //todo more routes
 
 //connect to db
@@ -25,6 +26,7 @@ app.get('/', async (req, res) => {
 app.use('/user', authRoute);
 app.use('/get-user', getInfoRoute);
 app.use('/post', postRoute);
+app.use('/admin-user', adminUserRoute);
 
 app.listen(process.env.PORT || 5002, () => {
   console.log('geeenesis-api server is running');
