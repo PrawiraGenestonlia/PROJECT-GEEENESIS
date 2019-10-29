@@ -55,11 +55,12 @@ function DynamicTable(props) {
       confirmButtonText: 'Yes, save it!'
     });
     if (!confirmation.value) return handleCancel(index);
-    let tempData = isReadOnly;
-    tempData[index] = "readonly";
-    setIsReadOnly([...tempData]);
     handleSave(data.data[index]);
-    await Swal.fire('Saved!', 'User has been updated.', 'success');
+    // let tempData = isReadOnly;
+    // tempData[index] = "readonly";
+    // setIsReadOnly([...tempData]);
+
+    // await Swal.fire('Saved!', 'User has been updated.', 'success');
   }
 
   const handleDeleteClick = async (index) => {
@@ -75,14 +76,6 @@ function DynamicTable(props) {
     });
     if (!confirmation.value) return handleCancel(index);
     handleDelete(data.data[index]);
-
-    // let tempData = data;
-    // tempData.data.splice(index, 1);
-    // setData({ ...tempData });
-    // let tempReadOnly = isReadOnly;
-    // tempReadOnly.splice(index, 1);
-    // setIsReadOnly([...tempReadOnly]);
-    // await Swal.fire('Deleted!', 'User has been deleted.', 'success');
   }
 
   const handleCancel = (index) => {

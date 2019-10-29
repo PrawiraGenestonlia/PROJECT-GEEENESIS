@@ -4,7 +4,7 @@ import DynamicTable from '../components/dynamicTable';
 import Popup from "reactjs-popup";
 import Papa from 'papaparse';
 import Swal from 'sweetalert2';
-import { AdminGetUser, AdminDeleteUser } from '../api';
+import { AdminGetUser, AdminDeleteUser, AdminUpdateUser } from '../api';
 import { GroupUserSVG, ToolsSVG } from '../components/svgPath';
 
 export default () => {
@@ -19,12 +19,18 @@ export default () => {
     // };
   }, []);
 
-  const handleSave = (user) => {
-    console.log("save", user);
+  const handleSave = async (user) => {
+    AdminUpdateUser(user).then(async (res) => {
+      if (res.status === 200) await Swal.fire('Updated!', 'User has been updated.', 'success');
+    }).catch(async (err) => {
+      let message = err.data;
+      await Swal.fire('Not updated!', message, 'error');
+    }).finally(() => {
+      getUser();
+    });
   }
 
   const handleDelete = async (user) => {
-    // console.log("delete", user);
     AdminDeleteUser(user._id).then(async (res) => {
       if (res.status === 200) await Swal.fire('Deleted!', 'User has been deleted.', 'success');
     }).catch(async (err) => {
@@ -32,7 +38,7 @@ export default () => {
       await Swal.fire('Not deleted!', message, 'error');
     }).finally(() => {
       getUser();
-    })
+    });
   }
 
   const handleUploadFile = (file) => {

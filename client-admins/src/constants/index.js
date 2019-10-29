@@ -13,3 +13,4 @@ export const SERVERURL = "https://server.thexdream.net/geeenesis-api";
 export const LOGIN = "/user/login";
 export const GETALLUSERS = "/admin-user/get-all-user";
 export const DELETEUSER = "/admin-user/delete-user";
+export const UPDATEUSER = "/admin-user/update-user";
