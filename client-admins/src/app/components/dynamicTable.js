@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 const createArr = (num) => {
@@ -11,8 +11,17 @@ const createArr = (num) => {
 
 function DynamicTable(props) {
   const [data, setData] = useState(Object.keys(props.data).length ? props.data : { columns: [], data: [] });
-  const [columns] = useState(data.columns); // setColumns omitted
+  const [columns, setColumns] = useState(data.columns);
   const [isReadOnly, setIsReadOnly] = useState(createArr(data.data.length));
+
+  useEffect(() => {
+    setData(Object.keys(props.data).length ? { ...props.data } : { columns: [], data: [] });
+  }, [props]);
+
+  useEffect(() => {
+    setColumns([...data.columns]);
+    setIsReadOnly([...createArr(data.data.length)])
+  }, [data]);
 
   const handleInputChange = (value, index, column) => {
     let tempData = data;
@@ -36,7 +45,7 @@ function DynamicTable(props) {
     //save confirmation
     let confirmation = await Swal.fire({
       title: 'Are you sure?',
-      text: `${data.data[index].Name} - ${data.data[index].Email} (${data.data[index].Role.current})`,
+      text: `${data.data[index].name} - ${data.data[index].email} (${data.data[index].role.current})`,
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -55,7 +64,7 @@ function DynamicTable(props) {
     //delete confirmation
     let confirmation = await Swal.fire({
       title: 'Are you sure?',
-      text: `${data.data[index].Name} - ${data.data[index].Email} (${data.data[index].Role.current})`,
+      text: `${data.data[index].name} - ${data.data[index].email} (${data.data[index].role.current})`,
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

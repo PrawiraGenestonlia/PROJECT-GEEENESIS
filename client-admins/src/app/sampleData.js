@@ -1,26 +1,26 @@
 const sampleDataUserManagement = {
-  columns: ["Name", "Email", "Role", "Action"],
+  columns: ["name", "email", "role", "action"],
   data: [
     {
-      UID: "12345",
-      Name: "Prawira 1",
-      Email: "praw0001@e.ntu.edu.sg",
-      Role: { options: ["superadmin", "mentor", "student"], current: 'superadmin' },
-      Action: "action"
+      _id: "12345",
+      name: "Prawira 1",
+      email: "praw0001@e.ntu.edu.sg",
+      role: { options: ["superadmin", "mentor", "student"], current: 'superadmin' },
+      action: "action"
     },
     {
-      UID: "12346",
-      Name: "Prawira 2",
-      Email: "praw0001@e.ntu.edu.sg",
-      Role: { options: ["superadmin", "mentor", "student"], current: 'superadmin' },
-      Action: "action"
+      _id: "12346",
+      name: "Prawira 2",
+      email: "praw0001@e.ntu.edu.sg",
+      role: { options: ["superadmin", "mentor", "student"], current: 'superadmin' },
+      action: "action"
     },
     {
-      UID: "12347",
-      Name: "Prawira 3",
-      Email: "praw0001@e.ntu.edu.sg",
-      Role: { options: ["superadmin", "mentor", "student"], current: 'superadmin' },
-      Action: "action"
+      _id: "12347",
+      name: "Prawira 3",
+      email: "praw0001@e.ntu.edu.sg",
+      role: { options: ["superadmin", "mentor", "student"], current: 'superadmin' },
+      action: "action"
     }
   ]
 }

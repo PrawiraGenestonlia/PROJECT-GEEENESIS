@@ -14,11 +14,10 @@ export default () => {
 
   useEffect(() => {
     AdminGetUser().then((res) => {
-      setLoaderUser(res);
+      setLoaderUser({ ...res.data });
     }).catch((err) => {
       alert(err);
     })
-
     // return () => {
     //   cleanup
     // };
@@ -37,7 +36,7 @@ export default () => {
       header: true,
       complete: (result) => {
         if (result.data.length) {
-          if (result.data[0]['Name'] && result.data[0]['Email']) {
+          if (result.data[0]['name'] && result.data[0]['email']) {
             let uploaded = {
               columns: Object.keys(result.data[0]),
               data: result.data
