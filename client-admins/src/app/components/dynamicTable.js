@@ -13,16 +13,13 @@ function DynamicTable(props) {
   const [data, setData] = useState(Object.keys(props.data).length ? props.data : { columns: [], data: [] });
   const [columns, setColumns] = useState(data.columns);
   const [isReadOnly, setIsReadOnly] = useState(createArr(data.data.length));
-  const [options] = useState(props.options ? props.options : []);
+  // const [options] = useState(props.options ? props.options : []);
 
   useEffect(() => {
     setData(Object.keys(props.data).length ? { ...props.data } : { columns: [], data: [] });
+    setIsReadOnly(Object.keys(props.data).length ? [...createArr(props.data.data.length)] : []);
+    setColumns(Object.keys(props.data).length ? [...props.data.columns] : []);
   }, [props]);
-
-  useEffect(() => {
-    setColumns([...data.columns]);
-    setIsReadOnly([...createArr(data.data.length)])
-  }, [data]);
 
   useEffect(() => {
     console.log('re-render');
@@ -101,13 +98,13 @@ function DynamicTable(props) {
     if (props.handleDelete) props.handleDelete(user);
   }
 
-  const OptionsComponent = () => (
-    <React.Fragment>
-      {options.map((option, index) => {
-        return <option key={index} value={option}>{option}</option>
-      })}
-    </React.Fragment>
-  )
+  // const OptionsComponent = () => (
+  //   <React.Fragment>
+  //     {options.map((option, index) => {
+  //       return <option key={index} value={option}>{option}</option>
+  //     })}
+  //   </React.Fragment>
+  // )
 
   return (
     <div className="text-gray-900">
