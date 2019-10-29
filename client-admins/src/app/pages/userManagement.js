@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DynamicTable from '../components/dynamicTable';
-import { sampleDataUserManagement, } from '../sampleData';
+// import { sampleDataUserManagement, } from '../sampleData';
 import Popup from "reactjs-popup";
 import Papa from 'papaparse';
 import Swal from 'sweetalert2';
+import { AdminGetUser } from '../api';
 import { GroupUserSVG, ToolsSVG } from '../components/svgPath';
 
 export default () => {
   const [uploadedObject, setUploadedObject] = useState({});
   const [openModal, setOpenModal] = useState(false);
+  const [loadedUser, setLoaderUser] = useState({});
+
+  useEffect(() => {
+    AdminGetUser().then((res) => {
+      setLoaderUser(res);
+    }).catch((err) => {
+      alert(err);
+    })
+
+    // return () => {
+    //   cleanup
+    // };
+  }, []);
 
   const handleSave = (user) => {
     console.log("save", user);
@@ -135,7 +149,7 @@ export default () => {
           </div>
         </div>
         <div>
-          <DynamicTable data={sampleDataUserManagement} handleSave={handleSave} handleDelete={handleDelete} />
+          <DynamicTable data={loadedUser} handleSave={handleSave} handleDelete={handleDelete} />
         </div>
       </div>
     </div >
