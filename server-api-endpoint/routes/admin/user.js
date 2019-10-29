@@ -9,12 +9,20 @@ router.get('/', verifyToken, async (req, res) => {
 
 router.get('/get-all-user', verifyToken, async (req, res) => {
   if (req.user.role !== "superadmin") return res.status(401).send('Unauthorized Access!');
-  const allUsers = await user.find({});
-  let response = {
-    columns: ['name', 'email', 'role'],
-    data: allUsers
+  let allUsers = await user.find({});
+  let allUsersArr = [];
+  allUsers.forEach((v) => allUsersArr.push({ ...v._doc }));
+  for (let i = 0; i < allUsers.length; i++) {
+    allUsersArr[i].action = 'action';
+    allUsersArr[i].role = { options: ['superadmin', 'clubadmin', 'student', 'mentor'], current: allUsersArr[i].role };
   }
-  res.status(200).send(response);
+
+  let response = {
+    columns: ['name', 'email', 'role', 'action'],
+    data: allUsersArr
+  }
+
+  res.status(200).json(response);
 })
 
 
