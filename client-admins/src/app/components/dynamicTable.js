@@ -13,6 +13,7 @@ function DynamicTable(props) {
   const [data, setData] = useState(Object.keys(props.data).length ? props.data : { columns: [], data: [] });
   const [columns, setColumns] = useState(data.columns);
   const [isReadOnly, setIsReadOnly] = useState(createArr(data.data.length));
+  const [options] = useState(props.options ? props.options : []);
 
   useEffect(() => {
     setData(Object.keys(props.data).length ? { ...props.data } : { columns: [], data: [] });
@@ -22,6 +23,10 @@ function DynamicTable(props) {
     setColumns([...data.columns]);
     setIsReadOnly([...createArr(data.data.length)])
   }, [data]);
+
+  useEffect(() => {
+    console.log('re-render');
+  });
 
   const handleInputChange = (value, index, column) => {
     let tempData = data;
@@ -96,6 +101,14 @@ function DynamicTable(props) {
     if (props.handleDelete) props.handleDelete(user);
   }
 
+  const OptionsComponent = () => (
+    <React.Fragment>
+      {options.map((option, index) => {
+        return <option key={index} value={option}>{option}</option>
+      })}
+    </React.Fragment>
+  )
+
   return (
     <div className="text-gray-900">
       <div className="px-3 py-4 flex justify-center select-auto">
@@ -113,13 +126,19 @@ function DynamicTable(props) {
                     return (
                       <td key={j} className="py-3 px-5" style={{ width: `${100 / columns.length}%` }}>
                         {typeof data[column] === 'object' ?
-                          <div style={{ pointerEvents: isReadOnly[index] ? 'none' : 'auto' }}>
-                            <select value={data[column].current} onChange={(e) => { handleChangeOptions(e.target.value, index, column) }} className="bg-transparent">
-                              {data[column].options.map((option, index) => {
-                                return <option key={index} value={option}>{option}</option>
-                              })}
-                            </select>
-                          </div> :
+                          <div>
+                            {isReadOnly[index] ? <div><span>{data[column].current}</span></div> :
+                              <div style={{ pointerEvents: isReadOnly[index] ? 'none' : 'auto' }}>
+                                <select value={data[column].current} onChange={(e) => { handleChangeOptions(e.target.value, index, column) }} className="bg-transparent">
+                                  {data[column].options.map((option, index) => {
+                                    return <option key={index} value={option}>{option}</option>
+                                  })}
+                                </select>
+                              </div>}
+
+                          </div>
+
+                          :
                           <div>{data[column] === "action" ?
                             <div>
                               {

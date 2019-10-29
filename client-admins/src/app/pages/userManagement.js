@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DynamicTable from '../components/dynamicTable';
-// import { sampleDataUserManagement, } from '../sampleData';
+// import { sampleDataUserManagement2, } from '../sampleData';
 import Popup from "reactjs-popup";
 import Papa from 'papaparse';
 import Swal from 'sweetalert2';
@@ -148,7 +148,8 @@ export default () => {
           </div>
         </div>
         <div>
-          <DynamicTable data={loadedUser} handleSave={handleSave} handleDelete={handleDelete} />
+          <DynamicTable data={loadedUser} options={['superadmin', 'clubadmin', 'student', 'mentor']} handleSave={handleSave} handleDelete={handleDelete} />
+          {/* <DynamicTable data={sampleDataUserManagement2} handleSave={handleSave} handleDelete={handleDelete} /> */}
         </div>
       </div>
     </div >
