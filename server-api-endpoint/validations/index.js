@@ -5,6 +5,18 @@ const registerValidation = (data) => {
     "name": Joi.string().min(4).required(),
     "email": Joi.string().min(6).required().email(),
     "password": Joi.string().min(6).required(),
+    "role": Joi.string(),
+    "matric": Joi.string(),
+  });
+  return registerValidationSchema.validate(data);
+}
+
+const registerValidationNoPassword = (data) => {
+  const registerValidationSchema = Joi.object({
+    "name": Joi.string().min(4).required(),
+    "email": Joi.string().min(6).required().email(),
+    "matric": Joi.string(),
+    // "password": Joi.string().min(6).required(),
     "role": Joi.string()
   });
   return registerValidationSchema.validate(data);
@@ -40,5 +52,6 @@ module.exports = {
   registerValidation,
   loginValidation,
   forgetPasswordValidation,
-  changePasswordValidation
+  changePasswordValidation,
+  registerValidationNoPassword
 }
