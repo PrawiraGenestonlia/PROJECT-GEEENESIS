@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 import { LoginToServer } from '../api';
 
 function validateEmail(email) {
   var re = /^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(ntu.edu)\.sg$/;
   return re.test(String(email).toLowerCase());
+  // return email;
 }
 
 function Login() {
@@ -18,8 +20,9 @@ function Login() {
     LoginToServer(inputEmailAddress, inputPassword).then(res => {
       localStorage.setItem('auth-token', res.data);
       window.location.reload();
-    }).catch(err => {
-      alert(err.data);
+    }).catch(async err => {
+      let message = err.data;
+      await Swal.fire('Failed to login!', message, 'error');
     })
   }
   return (

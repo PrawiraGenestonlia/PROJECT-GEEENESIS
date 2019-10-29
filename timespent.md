@@ -13,3 +13,4 @@
 |29/10/2019|2           |upload file - front end|
 |29/10/2019|1           |admin get users|
 |29/10/2019|0.5         |admin delete users|
+|30/10/2019|3           |add single user - front and back|

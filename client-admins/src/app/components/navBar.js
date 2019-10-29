@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './navBar.css';
 import GetToken from './getToken';
@@ -10,6 +10,9 @@ import {
   ADMIN_EVENTS_URL,
   ADMIN_PROFILE_URL
 } from '../../constants';
+import { GetRole } from '../api';
+
+
 
 function handleLogOut() {
   localStorage.removeItem('auth-token');
@@ -27,6 +30,46 @@ const NavItem = (props) => {
 }
 
 export default () => {
+  const [role, setRole] = useState('student');
+
+  useEffect(() => {
+    GetRole().then((res) => { setRole(res.data) });
+  }, []);
+
+  const NavList = () => {
+    if (role === 'superadmin') {
+      return (
+        <React.Fragment>
+          <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
+          <NavItem label="User Management" to={ADMIN_USERMANAGEMENT_URL} />
+          <NavItem label="Mentoring" to={ADMIN_MENTORING_URL} />
+          <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
+          <NavItem label="Events" to={ADMIN_EVENTS_URL} />
+          <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
+        </React.Fragment>
+      )
+    }
+    if (role === 'clubadmin') {
+      return (
+        <React.Fragment>
+          <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
+          <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
+          <NavItem label="Events" to={ADMIN_EVENTS_URL} />
+        </React.Fragment>
+      )
+    }
+    else {
+      return (
+        <React.Fragment>
+          <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
+          <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
+          <NavItem label="Events" to={ADMIN_EVENTS_URL} />
+          <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
+        </React.Fragment>
+      )
+    }
+  }
+
   return (
     <nav className="h-screen nav p-4">
       <div className="text-center">
@@ -39,12 +82,7 @@ export default () => {
       <div className="bg-divider" style={{ height: '0.1rem' }} />
       <div className="mt-4" />
       <div>
-        <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
-        <NavItem label="User Management" to={ADMIN_USERMANAGEMENT_URL} />
-        <NavItem label="Mentoring" to={ADMIN_MENTORING_URL} />
-        <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
-        <NavItem label="Events" to={ADMIN_EVENTS_URL} />
-        <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
+        <NavList />
       </div>
       <div className="flex items-center justify-center">
         {GetToken() ?

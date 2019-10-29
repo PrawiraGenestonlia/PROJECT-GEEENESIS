@@ -4,8 +4,8 @@ import DynamicTable from '../components/dynamicTable';
 import Popup from "reactjs-popup";
 import Papa from 'papaparse';
 import Swal from 'sweetalert2';
-import { AdminGetUser, AdminDeleteUser, AdminUpdateUser } from '../api';
-import { GroupUserSVG, ToolsSVG } from '../components/svgPath';
+import { AdminGetUser, AdminDeleteUser, AdminUpdateUser, AdminAddSingleUser } from '../api';
+import { SingleUserSVG, GroupUserSVG, ToolsSVG } from '../components/svgPath';
 
 export default () => {
   const [uploadedObject, setUploadedObject] = useState({});
@@ -101,9 +101,50 @@ export default () => {
   const getUser = () => {
     AdminGetUser().then((res) => {
       setLoaderUser({ ...res.data });
-    }).catch((err) => {
-      alert(err);
-    })
+    }).catch(async (err) => {
+      let message = err.data;
+      await Swal.fire('Unable to fetch users!', message, 'error');
+    });
+  }
+
+  const RenderAddSingleUser = (props) => {
+    return (
+      <div className={`flex bg-grey-lighter ${props.class} ${props.className}`} onClick={async () => {
+        const { value: formValues } = await Swal.fire({
+          title: 'Add single user',
+          html:
+            '<input id="swal-input1" class="swal2-input" placeholder="name"/>' +
+            '<input id="swal-input2" class="swal2-input" placeholder="email"/>' +
+            '<input id="swal-input3" class="swal2-input" placeholder="matric"/>' +
+            '<select id="swal-input4" class="swal2-input bg-transparent"><option key={1} value="superadmin">superadmin</option>' +
+            '<option key={2} value="clubadmin">clubadmin</option><option key={3} value="mentor">mentor</option><option key={4} value="student" selected>student</option></select>',
+          focusConfirm: false,
+          preConfirm: () => {
+            return {
+              "name": document.getElementById('swal-input1').value,
+              "email": document.getElementById('swal-input2').value,
+              "matric": document.getElementById('swal-input3').value,
+              "role": document.getElementById('swal-input4').value,
+            }
+          }
+        });
+        AdminAddSingleUser(formValues).then(async (res) => {
+          if (res.status === 200) await Swal.fire('Created!', 'User has been created.', 'success');
+        }).catch(async (err) => {
+          let message = err.data;
+          await Swal.fire('Not created!', message, 'error');
+        }).finally(() => {
+          getUser();
+        });
+      }}>
+        <div className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue hover:text-white">
+          <svg className="w-8 h-8 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 350">
+            <SingleUserSVG />
+          </svg>
+          <font className="ml-2 text-base leading-normal text-blue-500">Add single user</font>
+        </div>
+      </div>
+    )
   }
 
   const RenderUploadButton = (props) => {
@@ -162,7 +203,7 @@ export default () => {
               </svg>
             </div>
             <RenderUploadButton className="px-5" onChange={(e) => { handleUploadFile(e.target.files[0]) }} />
-            <RenderModal />
+            <RenderAddSingleUser />
           </div>
         </div>
         <div>
@@ -170,6 +211,7 @@ export default () => {
           {/* <DynamicTable data={sampleDataUserManagement2} handleSave={handleSave} handleDelete={handleDelete} /> */}
         </div>
       </div>
+      <RenderModal />
     </div >
   )
 }

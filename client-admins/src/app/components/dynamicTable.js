@@ -21,10 +21,6 @@ function DynamicTable(props) {
     setColumns(Object.keys(props.data).length ? [...props.data.columns] : []);
   }, [props]);
 
-  useEffect(() => {
-    console.log('re-render');
-  });
-
   const handleInputChange = (value, index, column) => {
     let tempData = data;
     tempData.data[index][column] = value;
