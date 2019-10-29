@@ -4,7 +4,7 @@ import DynamicTable from '../components/dynamicTable';
 import Popup from "reactjs-popup";
 import Papa from 'papaparse';
 import Swal from 'sweetalert2';
-import { AdminGetUser } from '../api';
+import { AdminGetUser, AdminDeleteUser } from '../api';
 import { GroupUserSVG, ToolsSVG } from '../components/svgPath';
 
 export default () => {
@@ -13,11 +13,7 @@ export default () => {
   const [loadedUser, setLoaderUser] = useState({});
 
   useEffect(() => {
-    AdminGetUser().then((res) => {
-      setLoaderUser({ ...res.data });
-    }).catch((err) => {
-      alert(err);
-    })
+    getUser();
     // return () => {
     //   cleanup
     // };
@@ -27,8 +23,16 @@ export default () => {
     console.log("save", user);
   }
 
-  const handleDelete = (user) => {
-    console.log("delete", user);
+  const handleDelete = async (user) => {
+    // console.log("delete", user);
+    AdminDeleteUser(user._id).then(async (res) => {
+      if (res.status === 200) await Swal.fire('Deleted!', 'User has been deleted.', 'success');
+    }).catch(async (err) => {
+      let message = err.data;
+      await Swal.fire('Not deleted!', message, 'error');
+    }).finally(() => {
+      getUser();
+    })
   }
 
   const handleUploadFile = (file) => {
@@ -86,6 +90,14 @@ export default () => {
     if (!confirmation.value) return true;
     setOpenModal(false);
     setUploadedObject({});
+  }
+
+  const getUser = () => {
+    AdminGetUser().then((res) => {
+      setLoaderUser({ ...res.data });
+    }).catch((err) => {
+      alert(err);
+    })
   }
 
   const RenderUploadButton = (props) => {

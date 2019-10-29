@@ -75,13 +75,14 @@ function DynamicTable(props) {
     });
     if (!confirmation.value) return handleCancel(index);
     handleDelete(data.data[index]);
-    let tempData = data;
-    tempData.data.splice(index, 1);
-    setData({ ...tempData });
-    let tempReadOnly = isReadOnly;
-    tempReadOnly.splice(index, 1);
-    setIsReadOnly([...tempReadOnly]);
-    await Swal.fire('Deleted!', 'User has been deleted.', 'success');
+
+    // let tempData = data;
+    // tempData.data.splice(index, 1);
+    // setData({ ...tempData });
+    // let tempReadOnly = isReadOnly;
+    // tempReadOnly.splice(index, 1);
+    // setIsReadOnly([...tempReadOnly]);
+    // await Swal.fire('Deleted!', 'User has been deleted.', 'success');
   }
 
   const handleCancel = (index) => {

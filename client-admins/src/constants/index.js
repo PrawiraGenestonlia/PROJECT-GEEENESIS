@@ -12,4 +12,4 @@ export const ADMIN_PROFILE_URL = "/profile/";
 export const SERVERURL = "https://server.thexdream.net/geeenesis-api";
 export const LOGIN = "/user/login";
 export const GETALLUSERS = "/admin-user/get-all-user";
-
+export const DELETEUSER = "/admin-user/delete-user";
