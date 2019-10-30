@@ -31,22 +31,16 @@ export default () => {
     });
   }
 
-  const testResolve = () => {
-    return new Promise((resolve) => { setTimeout(() => resolve(1), 1000) });
-  }
-
   const createMultipleUser = async (users) => {
     const failures = [];
-    Swal.enableLoading();
-    Swal.fire({ title: 'Creating', text: "", showSpinner: true, allowEscapeKey: false, allowOutsideClick: false, onRender: () => { Swal.showLoading() } });
+    Swal.fire({ title: 'Creating', text: "", allowEscapeKey: false, allowOutsideClick: false, onOpen: () => { Swal.showLoading() } });
     for (let i = 0; i < users.length; i++) {
-      Swal.update({ text: `${i + 1}/${users.length}`, onOpen: () => { Swal.showLoading() } });
-      await testResolve();
-      // await AdminAddSingleUser(users[i]).catch((err) => { failures.push({ err: err.data, user: users[i] }) });
+      Swal.disableLoading(); Swal.update({ text: `${i + 1}/${users.length}` }); Swal.enableLoading();
+      await AdminAddSingleUser(users[i]).catch((err) => { failures.push({ err: err.data, user: users[i] }) });
     }
     let constructTable = `<center>
     <br/><p><strong>The following users are not added!</strong></p><br/>
-    <table style="width:50rem;border-collapse: collapse;border: 1px solid black;">
+    <table style="width:50rem;border-collapse: collapse;border: 1px solid black;padding:5rem">
     <tr>
     <th style='text-align: left;border: 1px solid black; text-align:center;'>Type of error</th>
     <th style='text-align: left;border: 1px solid black; text-align:center;'>name</th>
@@ -63,7 +57,7 @@ export default () => {
 
     await Swal.fire({
       title: 'Created!',
-      width: '70%',
+      width: 'auto',
       html: failures.length ? constructTable : "<p>All users are successfully added</p>",
       type: 'success'
     });

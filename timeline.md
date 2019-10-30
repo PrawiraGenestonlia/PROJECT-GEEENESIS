@@ -5,7 +5,7 @@
 |Code|Task                                       |Status  |Oct |Nov |Dec |Jan |Feb |Mar |Apr |May |Jun |Jul |Aug |
 |:--:|-------------------------------------------|:------:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |    |Create repository                          |✅||||||||||||||
-|FM  |Upload list of new students                |⭕|🔵|🔵||||||||||||
+|FM  |Upload list of new students                |✅|🔵|🔵||||||||||||
 |FM  |Upload list of mentor-mentees              |⭕|🔵|🔵||||||||||||
 |S   |Create students account upon uploaded      |⭕|  |🔵||||||||||||
 |S   |User management                            |⭕|  |🔵|🔵|||||||||||
