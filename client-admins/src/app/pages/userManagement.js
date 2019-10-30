@@ -19,7 +19,59 @@ export default () => {
     // };
   }, []);
 
+  const createSingleUserWithConfirmation = (user) => {
+    Swal.fire({ title: 'Creating', allowEscapeKey: false, allowOutsideClick: false, onOpen: () => { Swal.showLoading() } });
+    AdminAddSingleUser(user).then(async (res) => {
+      if (res.status === 200) await Swal.fire('Created!', res.data, 'success');
+    }).catch(async (err) => {
+      let message = err.data;
+      await Swal.fire('Not created!', message, 'error');
+    }).finally(() => {
+      getUser();
+    });
+  }
+
+  const testResolve = () => {
+    return new Promise((resolve) => { setTimeout(() => resolve(1), 1000) });
+  }
+
+  const createMultipleUser = async (users) => {
+    const failures = [];
+    Swal.enableLoading();
+    Swal.fire({ title: 'Creating', text: "", showSpinner: true, allowEscapeKey: false, allowOutsideClick: false, onRender: () => { Swal.showLoading() } });
+    for (let i = 0; i < users.length; i++) {
+      Swal.update({ text: `${i + 1}/${users.length}`, onOpen: () => { Swal.showLoading() } });
+      await testResolve();
+      // await AdminAddSingleUser(users[i]).catch((err) => { failures.push({ err: err.data, user: users[i] }) });
+    }
+    let constructTable = `<center>
+    <br/><p><strong>The following users are not added!</strong></p><br/>
+    <table style="width:50rem;border-collapse: collapse;border: 1px solid black;">
+    <tr>
+    <th style='text-align: left;border: 1px solid black; text-align:center;'>Type of error</th>
+    <th style='text-align: left;border: 1px solid black; text-align:center;'>name</th>
+    <th style='text-align: left;border: 1px solid black; text-align:center;'>email</th>
+    </tr>`;
+    for (let i = 0; i < failures.length; i++) {
+      constructTable += `<tr>
+      <td style='border: 1px solid black; text-align:center;'>${failures[i].err}</td>
+      <td style='border: 1px solid black; text-align:center;'>${failures[i].user.name}</td>
+      <td style='border: 1px solid black; text-align:center;'>${failures[i].user.email}</td>
+      </tr>`
+    }
+    constructTable += "</table></center>";
+
+    await Swal.fire({
+      title: 'Created!',
+      width: '70%',
+      html: failures.length ? constructTable : "<p>All users are successfully added</p>",
+      type: 'success'
+    });
+    getUser();
+  }
+
   const handleSave = async (user) => {
+    Swal.fire({ title: 'Saving', allowEscapeKey: false, allowOutsideClick: false, onOpen: () => { Swal.showLoading() } });
     AdminUpdateUser(user).then(async (res) => {
       if (res.status === 200) await Swal.fire('Updated!', 'User has been updated.', 'success');
     }).catch(async (err) => {
@@ -31,6 +83,7 @@ export default () => {
   }
 
   const handleDelete = async (user) => {
+    Swal.fire({ title: 'Deleting', allowEscapeKey: false, allowOutsideClick: false, onOpen: () => { Swal.showLoading() } });
     AdminDeleteUser(user._id).then(async (res) => {
       if (res.status === 200) await Swal.fire('Deleted!', 'User has been deleted.', 'success');
     }).catch(async (err) => {
@@ -55,10 +108,8 @@ export default () => {
             setOpenModal(true);
           }
         }
-
       }
     });
-
   }
 
   const modalAdd = async (uploadedObject) => {
@@ -79,7 +130,9 @@ export default () => {
     };
 
     //todo: create user into database
-
+    createMultipleUser(uploadedObject.data);
+    setOpenModal(false);
+    setUploadedObject({});
   }
 
   const modalCancel = async () => {
@@ -123,19 +176,12 @@ export default () => {
             return {
               "name": document.getElementById('swal-input1').value,
               "email": document.getElementById('swal-input2').value,
-              "matric": document.getElementById('swal-input3').value,
+              "matric": document.getElementById('swal-input3').value ? document.getElementById('swal-input3').value : "-",
               "role": document.getElementById('swal-input4').value,
             }
           }
         });
-        AdminAddSingleUser(formValues).then(async (res) => {
-          if (res.status === 200) await Swal.fire('Created!', 'User has been created.', 'success');
-        }).catch(async (err) => {
-          let message = err.data;
-          await Swal.fire('Not created!', message, 'error');
-        }).finally(() => {
-          getUser();
-        });
+        createSingleUserWithConfirmation(formValues);
       }}>
         <div className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue hover:text-white">
           <svg className="w-8 h-8 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 350">
@@ -163,19 +209,19 @@ export default () => {
 
   const RenderModal = () => (
     <Popup
-      contentStyle={{ width: '50%', minWidth: '40rem', maxHeight: '80%', borderRadius: 25, overflow: 'auto' }}
+      contentStyle={{ width: '75%', minWidth: '60rem', maxHeight: '80%', borderRadius: 25, overflow: 'auto' }}
       open={openModal}
       modal
       closeOnDocumentClick={false}>
       <div className="w-full">
         <div className="flex flex-row justify-center px-5 pt-3">
           <button type="button" onClick={() => { modalAdd(uploadedObject) }}
-            className="w-20 mr-3 text-sm bg-blue-600 hover:bg-blue-400 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+            className="w-20 mr-3 text-lg bg-blue-600 hover:bg-blue-400 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
             Add
           </button>
           <button
             type="button" onClick={() => { modalCancel() }}
-            className="w-20 text-sm bg-red-600 hover:bg-red-400 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+            className="w-20 text-lg bg-red-600 hover:bg-red-400 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
             Cancel
            </button>
         </div>
