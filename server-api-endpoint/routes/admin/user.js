@@ -84,10 +84,13 @@ router.post('/add-user', verifyToken, async (req, res) => {
       "role": req.body.role,
       "networkname": networkname,
     });
-    const savedUser = await newUser.save();
-    EmailPassword(newUser, randomPassword);
+    await newUser.save();
     //send email
-    res.status(200).send('Register successfully!');
+    EmailPassword(newUser, randomPassword).then(() => {
+      res.status(200).send(`${req.body.name} has been registered successfully!`);
+    }).catch((err) => {
+      res.status(400).send(err);
+    });
   } catch (err) {
     console.log(err)
     res.status(400).json(err);

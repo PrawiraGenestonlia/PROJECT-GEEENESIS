@@ -45,6 +45,7 @@ function emailToken(responseBody) {
       console.log(err)
     else
       console.log(info);
+      transporter.close();
   });
 }
 

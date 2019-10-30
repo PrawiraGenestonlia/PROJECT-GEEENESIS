@@ -1,18 +1,7 @@
 const nodemailer = require('nodemailer');
 
-
-function emailPassword(user, password) {
+async function emailPassword(user, password) {
   const { name, email } = user;
-
-  // create reusable transporter object using the default SMTP transport
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USERNAME,
-      pass: process.env.GMAIL_PASSWORD
-    }
-  });
-
   const mailOptions = {
     from: process.env.GMAIL_USERNAME, // sender address
     to: email, // list of receivers
@@ -21,7 +10,7 @@ function emailPassword(user, password) {
     html: `
     <p>
       <p>Dear ${name},</p>
-      <p></p>
+      <p></p><p></p><p></p>
       <p>Welcome to NTU EEE!</p>
       <p>Geeenesis is a platform created by students for better integrate EEE/IEM students into University life. 
       As part of mentoring system, you are required to download the application at https://comingsoon/. We have also created an account on your behalf.</p>
@@ -35,12 +24,28 @@ function emailPassword(user, password) {
       <p>PROJECT GEENESIS</p>
     </p>`
   };
-
-  transporter.sendMail(mailOptions, function (err, info) {
-    if (err)
-      console.log(err)
-    else
-      console.log(info);
+  return new Promise((resolve, reject) => {
+    try {
+      //create transporter
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.GMAIL_USERNAME,
+          pass: process.env.GMAIL_PASSWORD
+        }
+      });
+      //send mail
+      transporter.sendMail(mailOptions, function (err, info) {
+        if (err)
+          console.log(err)
+        else
+          console.log(info);
+        transporter.close();
+        resolve(1);
+      });
+    } catch (err) {
+      reject(err);
+    }
   });
 }
 
