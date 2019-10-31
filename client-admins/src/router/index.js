@@ -7,7 +7,9 @@ import {
   ADMIN_MENTORING_URL,
   ADMIN_INFORMATION_URL,
   ADMIN_EVENTS_URL,
-  ADMIN_PROFILE_URL
+  ADMIN_PROFILE_URL,
+  CLUB_INFO_URL,
+  EDITOR_URL
 } from '../constants';
 import {
   LoginPage,
@@ -16,7 +18,9 @@ import {
   MentoringPage,
   InformationPage,
   EventPage,
-  ProfilePage
+  ProfilePage,
+  ClubInformationPage,
+  EditorPage
 } from '../app/pages';
 
 function Display(props) {
@@ -62,12 +66,16 @@ function Router() {
     <Switch>
       <Route exact path="/" component={() => <Redirect to={ADMIN_LOGIN_URL} />} />
       <PublicRoute exact path={ADMIN_LOGIN_URL} component={LoginPage} />
+
       <PrivateRoute exact path={ADMIN_DASHBOARD_URL} component={DashboardPage} />
       <PrivateRoute exact path={ADMIN_USERMANAGEMENT_URL} component={UserManagementPage} />
       <PrivateRoute exact path={ADMIN_MENTORING_URL} component={MentoringPage} />
       <PrivateRoute exact path={ADMIN_INFORMATION_URL} component={InformationPage} />
       <PrivateRoute exact path={ADMIN_EVENTS_URL} component={EventPage} />
       <PrivateRoute exact path={ADMIN_PROFILE_URL} component={ProfilePage} />
+
+      <PrivateRoute exact path={EDITOR_URL + ":subject/"} component={InformationPage} />
+      <Route exact path={CLUB_INFO_URL + ":club/"} component={EditorPage} />
       <Route component={() => <Display page='Not Found' />} />
     </Switch>
   )

@@ -5,6 +5,8 @@ import MentoringPage from './mentoring';
 import InformationPage from './information';
 import EventPage from './events';
 import ProfilePage from './profile';
+import ClubInformationPage from './clubInformation';
+import EditorPage from './editor';
 
 export {
   LoginPage,
@@ -13,5 +15,7 @@ export {
   MentoringPage,
   InformationPage,
   EventPage,
-  ProfilePage
+  ProfilePage,
+  ClubInformationPage,
+  EditorPage
 }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import DynamicTable from '../components/dynamicTable';
-// import { sampleDataUserManagement2, } from '../sampleData';
 import Popup from "reactjs-popup";
 import Papa from 'papaparse';
 import Swal from 'sweetalert2';
 import { AdminGetUser, AdminDeleteUser, AdminUpdateUser, AdminAddSingleUser } from '../api';
-import { SingleUserSVG, GroupUserSVG, ToolsSVG } from '../components/svgPath';
+import { SingleUserSVG, GroupUserSVG, } from '../components/svgPath';
+import Toolbar from '../components/toolbar';
 
 export default () => {
   const [uploadedObject, setUploadedObject] = useState({});
@@ -35,7 +35,9 @@ export default () => {
     const failures = [];
     Swal.fire({ title: 'Creating', text: "", allowEscapeKey: false, allowOutsideClick: false, onOpen: () => { Swal.showLoading() } });
     for (let i = 0; i < users.length; i++) {
-      Swal.disableLoading(); Swal.update({ text: `${i + 1}/${users.length}` }); Swal.enableLoading();
+      Swal.disableLoading();
+      Swal.update({ text: `${i + 1}/${users.length}` });
+      Swal.enableLoading();
       await AdminAddSingleUser(users[i]).catch((err) => { failures.push({ err: err.data, user: users[i] }) });
     }
     let constructTable = `<center>
@@ -154,7 +156,7 @@ export default () => {
     });
   }
 
-  const RenderAddSingleUser = (props) => {
+  const AddSingleUserComponent = (props) => {
     return (
       <div className={`flex bg-grey-lighter ${props.class} ${props.className}`} onClick={async () => {
         const { value: formValues } = await Swal.fire({
@@ -177,7 +179,7 @@ export default () => {
         });
         createSingleUserWithConfirmation(formValues);
       }}>
-        <div className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue hover:text-white">
+        <div className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-full shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue hover:text-white">
           <svg className="w-8 h-8 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 350">
             <SingleUserSVG />
           </svg>
@@ -187,21 +189,21 @@ export default () => {
     )
   }
 
-  const RenderUploadButton = (props) => {
+  const UploadButtonComponent = (props) => {
     return (
       <div className={`flex bg-grey-lighter ${props.class} ${props.className}`}>
-        <label htmlFor="file" className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-lg shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue hover:text-white">
+        <label htmlFor="file" className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-full shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue hover:text-white">
           <svg className="w-8 h-8 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.13 80.13">
             <GroupUserSVG />
           </svg>
-          <font className="ml-2 text-base leading-normal text-blue-500">Add user (from csv)</font>
+          <font className="ml-2 text-base leading-normal text-blue-500">Add users (from csv)</font>
         </label>
         <input type='file' id="file" name="file" className="hidden" accept=".csv" onChange={props.onChange} />
       </div>
     )
   }
 
-  const RenderModal = () => (
+  const ModalComponent = () => (
     <Popup
       contentStyle={{ width: '75%', minWidth: '60rem', maxHeight: '80%', borderRadius: 25, overflow: 'auto' }}
       open={openModal}
@@ -210,12 +212,12 @@ export default () => {
       <div className="w-full">
         <div className="flex flex-row justify-center px-5 pt-3">
           <button type="button" onClick={() => { modalAdd(uploadedObject) }}
-            className="w-20 mr-3 text-lg bg-blue-600 hover:bg-blue-400 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+            className="w-20 mr-3 text-lg bg-blue-600 hover:bg-blue-400 text-white py-1 px-2 rounded-full focus:outline-none focus:shadow-outline">
             Add
           </button>
           <button
             type="button" onClick={() => { modalCancel() }}
-            className="w-20 text-lg bg-red-600 hover:bg-red-400 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+            className="w-20 text-lg bg-red-600 hover:bg-red-400 text-white py-1 px-2 rounded-full focus:outline-none focus:shadow-outline">
             Cancel
            </button>
         </div>
@@ -235,23 +237,17 @@ export default () => {
       <div className="flex flex-col mt-4">
 
         <div className="px-3 py-4 flex justify-center select-auto">
-          {/* toolbar */}
-          <div className="flex flex-row h-20 items-center bg-indigo-100 w-full text-md shadow-md rounded mb-4">
-            <div className="pl-5">
-              <svg className="w-10 h-10 text-black" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1708 1708.7495">
-                <ToolsSVG />
-              </svg>
-            </div>
-            <RenderUploadButton className="px-5" onChange={(e) => { handleUploadFile(e.target.files[0]) }} />
-            <RenderAddSingleUser />
-          </div>
+          <Toolbar>
+            <AddSingleUserComponent className="px-2" />
+            <UploadButtonComponent className="px-2" onChange={(e) => { handleUploadFile(e.target.files[0]) }} />
+          </Toolbar>
         </div>
         <div>
           <DynamicTable data={loadedUser} options={['superadmin', 'clubadmin', 'student', 'mentor']} handleSave={handleSave} handleDelete={handleDelete} />
           {/* <DynamicTable data={sampleDataUserManagement2} handleSave={handleSave} handleDelete={handleDelete} /> */}
         </div>
       </div>
-      <RenderModal />
+      <ModalComponent />
     </div >
   )
 }

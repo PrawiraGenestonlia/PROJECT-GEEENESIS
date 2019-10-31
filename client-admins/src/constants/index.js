@@ -8,6 +8,11 @@ export const ADMIN_INFORMATION_URL = "/information/";
 export const ADMIN_EVENTS_URL = "/events/";
 export const ADMIN_PROFILE_URL = "/profile/";
 
+//
+export const CLUB_INFO_URL = "/club-information/";
+export const EDITOR_URL = "/editor/";
+
+
 //server
 export const SERVERURL = "https://server.thexdream.net/geeenesis-api";
 export const LOGIN = "/user/login";
