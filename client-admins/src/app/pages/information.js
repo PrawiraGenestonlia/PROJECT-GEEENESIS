@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ClubCard from '../components/clubCard';
 import Toolbar from '../components/toolbar';
 import { Link } from 'react-router-dom';
-import { sampleDataClubInfo } from '../sampleData';
 import { EDITOR_URL } from '../../constants';
 import { EditSVG } from '../components/svgPath';
+import { GetClubInfo } from '../api';
+import Swal from 'sweetalert2';
 
 export default () => {
-  const [clubsData, setClubsData] = useState(sampleDataClubInfo);
+  const [clubsData, setClubsData] = useState({ clubs: [] });
+
+  useEffect(() => {
+    GetClubInfo().then(async res => {
+      setClubsData({ clubs: res.data });
+    }).catch(async err => {
+      let message = err.data;
+      await Swal.fire('Failed to fetch information!', message, 'error');
+    });
+  }, []);
 
   const EditClubComponent = (props) => (
     <Link to={EDITOR_URL + props.server_unique_name + "/"}>
@@ -34,7 +44,7 @@ export default () => {
         <div className="px-3 py-4 flex justify-center select-auto">
           <Toolbar>
             {
-              clubsData.clubs.length && clubsData.clubs.map((club, index) => {
+              (clubsData.clubs.length > 0) && clubsData.clubs.map((club, index) => {
                 return (
                   <div className="px-2" key={index}>
                     <EditClubComponent
@@ -49,7 +59,7 @@ export default () => {
         </div>
         <div className="px-3 py-4 flex flex-col justify-center">
           {
-            clubsData.clubs.length && clubsData.clubs.map((club, index) => {
+            (clubsData.clubs.length > 0) && clubsData.clubs.map((club, index) => {
               return (
                 <div className="my-8" key={index}>
                   <ClubCard
@@ -63,7 +73,6 @@ export default () => {
               )
             })
           }
-
         </div>
       </div>
     </div>

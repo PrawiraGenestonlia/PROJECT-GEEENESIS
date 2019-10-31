@@ -4,6 +4,7 @@ import AdminDeleteUser from './adminDeleteUser';
 import AdminUpdateUser from './adminUpdateUser';
 import AdminAddSingleUser from './adminAddSingleUser';
 import GetRole from './getRole';
+import GetClubInfo from './getClubInfo';
 
 export {
   LoginToServer,
@@ -11,5 +12,6 @@ export {
   AdminDeleteUser,
   AdminUpdateUser,
   AdminAddSingleUser,
-  GetRole
+  GetRole,
+  GetClubInfo
 }
