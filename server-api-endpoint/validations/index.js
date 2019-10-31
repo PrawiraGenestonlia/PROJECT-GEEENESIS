@@ -47,11 +47,23 @@ const changePasswordValidation = (data) => {
   return changePasswordSchema.validate(data);
 }
 
+const clubInformationValidation = (data) => {
+  const clubInformationSchema = Joi.object({
+    "title": Joi.string().min(2).required(),
+    "bannerImgLink": Joi.string().min(2).required(),
+    "server_unique_name": Joi.string().min(2).required(),
+    "summary": Joi.string().allow(''),
+    "rawEditor": Joi.string().allow(''),
+  });
+  return clubInformationSchema.validate(data);
+}
+
 
 module.exports = {
   registerValidation,
   loginValidation,
   forgetPasswordValidation,
   changePasswordValidation,
-  registerValidationNoPassword
+  registerValidationNoPassword,
+  clubInformationValidation
 }
