@@ -7,7 +7,7 @@ const ClubCard = (props) => (
     <div className={`w-full ${props.class} ${props.className}`}>
       <div className="relative rounded-lg block md:flex items-center bg-gray-100 shadow-xl" style={{ minHeight: '19rem' }}>
         <div className="relative w-full md:w-2/5 h-full overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg" style={{ minHeight: '19rem' }}>
-          <img className="absolute inset-0 w-full h-full object-cover object-center" src={props.bannerImg} alt="" />
+          <img className="absolute inset-0 w-full h-full object-cover object-center" src={props.bannerImgLink} alt="" />
           <div className="absolute inset-0 w-full h-full bg-black" style={{ opacity: '0.60' }}></div>
           <div className="absolute inset-0 w-full h-full flex items-center justify-center fill-current text-white text-5xl text-center font-bold">
             <span className="w-full h-24">{props.title}</span>

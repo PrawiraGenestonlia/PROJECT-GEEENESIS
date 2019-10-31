@@ -2,24 +2,24 @@ const sampleDataClubInfo = {
   clubs: [
     {
       title: "NTU EEE",
-      bannerImg: "http://www.eee.ntu.edu.sg/aboutus/List%20Slider1/AboutEEE.jpg",
+      bannerImgLink: "http://www.eee.ntu.edu.sg/aboutus/List%20Slider1/AboutEEE.jpg",
       server_unique_name: "ntueee",
       summary: "insert summary here.",
-      html: "",
+      rawEditor: "{\"entityMap\":{},\"blocks\":[{\"key\":\"637gr\",\"text\":\"Initialized from content state.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}]}",
     },
     {
       title: "EEE LEAD",
-      bannerImg: "https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/39096424_221009255248150_9049993071927754752_o.png?_nc_cat=100&_nc_oc=AQnW4Q9WVRiTWwpGpjehnAtq2xKGz5p_fFRomCRtFMuRb4eLO__UcLRI1FUB11HWBVo&_nc_ht=scontent-sin2-2.xx&oh=0aaad6a8f0a9c13adddbfd6f2d0c77cd&oe=5E1D2E4C",
+      bannerImgLink: "https://scontent-sin2-2.xx.fbcdn.net/v/t1.0-9/39096424_221009255248150_9049993071927754752_o.png?_nc_cat=100&_nc_oc=AQnW4Q9WVRiTWwpGpjehnAtq2xKGz5p_fFRomCRtFMuRb4eLO__UcLRI1FUB11HWBVo&_nc_ht=scontent-sin2-2.xx&oh=0aaad6a8f0a9c13adddbfd6f2d0c77cd&oe=5E1D2E4C",
       server_unique_name: "eeelead",
       summary: "insert summary here.",
-      html: "",
+      rawEditor: "",
     },
     {
       title: "GARAGE@EEE",
-      bannerImg: "http://www.eee.ntu.edu.sg/programmes/Garage/newslider/GarageEEE-Banner-Main3.jpg",
+      bannerImgLink: "http://www.eee.ntu.edu.sg/programmes/Garage/newslider/GarageEEE-Banner-Main3.jpg",
       server_unique_name: "garageeee",
       summary: "insert summary here.",
-      html: "",
+      rawEditorhtml: "",
     }
   ]
 }

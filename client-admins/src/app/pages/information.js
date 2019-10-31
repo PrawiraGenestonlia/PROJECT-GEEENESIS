@@ -36,11 +36,10 @@ export default () => {
             {
               clubsData.clubs.length && clubsData.clubs.map((club, index) => {
                 return (
-                  <div className="my-8">
+                  <div className="px-2" key={index}>
                     <EditClubComponent
                       title={club.title}
                       server_unique_name={club.server_unique_name}
-                      key={index}
                     />
                   </div>
                 )
@@ -52,14 +51,13 @@ export default () => {
           {
             clubsData.clubs.length && clubsData.clubs.map((club, index) => {
               return (
-                <div className="my-8">
+                <div className="my-8" key={index}>
                   <ClubCard
                     title={club.title}
-                    bannerImg={club.bannerImg}
+                    bannerImgLink={club.bannerImgLink}
                     server_unique_name={club.server_unique_name}
                     summary={club.summary}
-                    html={club.html}
-                    key={index}
+                    rawEditor={club.rawEditor}
                   />
                 </div>
               )

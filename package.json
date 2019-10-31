@@ -35,5 +35,9 @@
   "bugs": {
     "url": "https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS/issues"
   },
-  "homepage": "https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS#readme"
+  "homepage": "https://github.com/PrawiraGenestonlia/PROJECT-GEEENESIS#readme",
+  "dependencies": {
+    "draft-js": "^0.11.1",
+    "draftjs-to-html": "^0.8.4"
+  }
 }

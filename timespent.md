@@ -16,3 +16,6 @@
 |30/10/2019|3           |add single user - front and back|
 |30/10/2019|3           |add multiple users - front and back|
 |31/10/2019|2           |club summary page|
+|31/10/2019|2           |editor page|
+|31/10/2019|2           |editor page|
+|01/11/2019|2           |editor page|

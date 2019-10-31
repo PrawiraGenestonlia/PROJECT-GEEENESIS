@@ -74,8 +74,8 @@ function Router() {
       <PrivateRoute exact path={ADMIN_EVENTS_URL} component={EventPage} />
       <PrivateRoute exact path={ADMIN_PROFILE_URL} component={ProfilePage} />
 
-      <PrivateRoute exact path={EDITOR_URL + ":subject/"} component={InformationPage} />
-      <Route exact path={CLUB_INFO_URL + ":club/"} component={EditorPage} />
+      <PrivateRoute exact path={EDITOR_URL + ":subject/"} component={EditorPage} />
+      <Route exact path={CLUB_INFO_URL + ":club/"} component={ClubInformationPage} />
       <Route component={() => <Display page='Not Found' />} />
     </Switch>
   )
