@@ -5,12 +5,12 @@ const path = require('path');
 
 app.disable('x-powered-by');
 
-app.use(express.static(path.join(__dirname, '../client-admins/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
-console.log(path.join(__dirname, '../client-admins/build'));
+console.log(path.join(__dirname, '../client/build'));
 
 app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname, '../client-admins/build', "/index.html"));
+  res.sendFile(path.join(__dirname, '../client/build', "/index.html"));
 });
 
 app.listen(
