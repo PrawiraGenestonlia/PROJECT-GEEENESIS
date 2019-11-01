@@ -2,6 +2,7 @@
   "name": "client-admins",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://server.thexdream.net/geeenesis-admin",
   "dependencies": {
     "autoprefixer": "^9.7.0",
     "axios": "^0.19.0",

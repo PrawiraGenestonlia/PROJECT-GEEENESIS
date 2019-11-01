@@ -4,6 +4,7 @@
 client-admins/node_modules
 client-admins/.pnp
 client-admins/.pnp.js
+host-client-admins/node_modules
 
 # testing
 client-admins/coverage
