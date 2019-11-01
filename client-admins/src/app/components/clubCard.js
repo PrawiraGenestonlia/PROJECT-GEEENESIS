@@ -21,7 +21,7 @@ const ClubCard = (props) => (
               <span className="text-xs ml-1">&#x279c;</span>
             </Link>
             <a className="flex items-baseline text-green-600 hover:text-green-900 focus:text-green-900"
-              href={props.contactLink} target="_blank">
+              href={props.contactLink} target="_blank" rel="noopener noreferrer">
               <span>Contact {props.title}</span>
               <span className="text-2xl ml-1">&#x2706;</span>
             </a>

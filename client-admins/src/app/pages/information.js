@@ -4,11 +4,16 @@ import Toolbar from '../components/toolbar';
 import { Link } from 'react-router-dom';
 import { EDITOR_URL } from '../../constants';
 import { EditSVG } from '../components/svgPath';
-import { GetClubInfo } from '../api';
+import { GetRole, GetClubInfo } from '../api';
 import Swal from 'sweetalert2';
 
 export default () => {
   const [clubsData, setClubsData] = useState({ clubs: [] });
+  const [role, setRole] = useState('student');
+
+  useEffect(() => {
+    GetRole().then((res) => { setRole(res.data) });
+  }, []);
 
   useEffect(() => {
     GetClubInfo().then(async res => {
@@ -42,7 +47,7 @@ export default () => {
       <div className="bg-divider" style={{ height: '0.1rem' }} />
       <div className="flex flex-col mt-4">
         <div className="px-3 py-4 flex justify-center select-auto">
-          <Toolbar>
+          {role === "superadmin" || role === "clubadmin" ? <Toolbar>
             {
               (clubsData.clubs.length > 0) && clubsData.clubs.map((club, index) => {
                 return (
@@ -55,13 +60,13 @@ export default () => {
                 )
               })
             }
-          </Toolbar>
+          </Toolbar> : <></>}
         </div>
         <div className="px-3 py-4 flex flex-col justify-center">
           {
             (clubsData.clubs.length > 0) && clubsData.clubs.map((club, index) => {
               return (
-                <div className="my-8" key={index}>
+                <div className="mb-8" key={index}>
                   <ClubCard
                     title={club.title}
                     bannerImgLink={club.bannerImgLink}

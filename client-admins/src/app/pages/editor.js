@@ -49,7 +49,7 @@ export default (props) => {
     EditClubInfo(clubNewInfo).then(async (res) => {
       if (res.status === 200) await Swal.fire('Saved!', res.data, 'success');
     }).catch(async (err) => {
-      let message = err.data ? err.data : JSON.stringfy(err);
+      let message = err.data ? err.data : JSON.stringify(err);
       await Swal.fire('Not saved!', message, 'error');
     }).finally(() => {
       props.history.push(ADMIN_INFORMATION_URL);
