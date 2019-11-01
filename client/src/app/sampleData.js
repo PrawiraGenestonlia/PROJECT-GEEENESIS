@@ -79,7 +79,7 @@ export const sampleDataEvents = [
     signUpLink: 'https://www.ntu.edu.sg/Pages/home.aspx',
     imageUrl: '',
     venue: '',
-    tags: [''],
+    tags: ['ntueee', 'technical'],
   },
   {
     _id: '1235',
@@ -92,7 +92,30 @@ export const sampleDataEvents = [
     startTime: '2019-11-04T20:15:00-04:00',
     endTime: '2019-11-11T21:45:00-04:00',
     borderColor: 'blue',
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
+    rawEditor: '',
+    signUpLink: 'https://www.ntu.edu.sg/Pages/home.aspx',
+    imageUrl: '',
+    venue: '',
+    tags: ['ntueee', 'technical'],
+  },
+  {
+    _id: '1236',
+    // id: '1236',
+    title: 'Test Event 3',
+    description: 'This is event 3.',
+    location: 'Singapore, SG',
+    start: '2019-11-06T20:15:00-04:00',
+    end: '2019-11-08T21:45:00-04:00',
+    startTime: '2019-11-06T20:15:00-04:00',
+    endTime: '2019-11-08T21:45:00-04:00',
+    borderColor: 'green',
+    backgroundColor: 'green',
+    rawEditor: '',
+    signUpLink: 'https://www.ntu.edu.sg/Pages/home.aspx',
+    imageUrl: '',
+    venue: '',
+    tags: [''],
   }
 ]
 

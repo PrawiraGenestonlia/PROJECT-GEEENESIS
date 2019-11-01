@@ -25,6 +25,7 @@ export default (props) => (
       events={props.events}
       dateClick={props.dataClick}
       eventClick={props.eventClick}
+      eventMouseEnter={props.eventMouseEnter}
     />
   </React.Fragment>
 )

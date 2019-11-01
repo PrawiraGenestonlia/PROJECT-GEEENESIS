@@ -22,11 +22,11 @@ export default (props) => {
   }, [props]);
 
   return (
-    <div className="p-5">
+    <div className="m-6">
       <Editor
         wrapperClassName=""
         editorClassName=""
-        editorStyle={{ height: '100%' }}
+        editorStyle={{ height: '100%', overflow: 'hidden' }}
         toolbarClassName=""
         toolbarHidden
         readOnly

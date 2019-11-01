@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { ADMIN_BASE_URL, } from '../constants';
+import { SERVER_BASE_URL, } from '../constants';
 import NavBar from './components/navBar';
 import Pages from '../router';
 import { CLUB_STANDALONE_URL } from '../constants';
@@ -19,13 +19,13 @@ const otherRoute = () => (
 
 export default () => {
   return (
-    <BrowserRouter basename={ADMIN_BASE_URL}>
-      <div className="flex h-screen w-screen">
-        <Switch>
-          <Route exact path={CLUB_STANDALONE_URL + ":club/"} component={ClubStandalonePage} />
+    <BrowserRouter basename={SERVER_BASE_URL}>
+      <Switch>
+        <Route exact path={CLUB_STANDALONE_URL + ":club/"} component={ClubStandalonePage} />
+        <div className="flex h-screen w-screen">
           <Route path component={otherRoute} />
-        </Switch>
-      </div>
+        </div>
+      </Switch>
     </BrowserRouter >
   )
 }

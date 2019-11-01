@@ -59,7 +59,7 @@ export default () => {
       <div className="bg-divider" style={{ height: '0.1rem' }} />
       <div className="flex flex-col mt-4">
         <div>
-          <CalendarOfEvents events={events} eventClick={handleEventClick} />
+          <CalendarOfEvents events={events} eventClick={handleEventClick} eventMouseEnter={''} />
         </div>
 
       </div>
