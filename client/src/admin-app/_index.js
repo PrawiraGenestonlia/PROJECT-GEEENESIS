@@ -23,8 +23,9 @@ export default () => {
       <Switch>
         <Route exact path={CLUB_STANDALONE_URL + ":club/"} component={ClubStandalonePage} />
         <div className="flex h-screen w-screen">
-          <Route path component={otherRoute} />
+          <Route path={"/admin"} component={otherRoute} />
         </div>
+        <Route path={"/student"} component={() => { return <div>student</div> }} />
       </Switch>
     </BrowserRouter >
   )

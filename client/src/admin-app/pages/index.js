@@ -4,7 +4,7 @@ import UserManagementPage from './userManagement';
 import EventManagementPage from './eventManagement';
 import MentoringPage from './mentoring';
 import InformationPage from './information';
-import CalendarOfEventsPage from '././calendarOfEvents';
+import CalendarOfEventsPage from './calendarOfEvents';
 import ProfilePage from './profile';
 import ClubInformationPage from './clubInformation';
 import EditorPage from './editor';
