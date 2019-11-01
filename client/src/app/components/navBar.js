@@ -5,9 +5,10 @@ import GetToken from './getToken';
 import {
   ADMIN_DASHBOARD_URL,
   ADMIN_USERMANAGEMENT_URL,
+  ADMIN_EVENTMANAGEMENT_URL,
   ADMIN_MENTORING_URL,
   ADMIN_INFORMATION_URL,
-  ADMIN_EVENTS_URL,
+  CALENDAR_OF_EVENTS,
   ADMIN_PROFILE_URL
 } from '../../constants';
 import { GetRole } from '../api';
@@ -42,9 +43,10 @@ export default () => {
         <React.Fragment>
           <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
           <NavItem label="User Management" to={ADMIN_USERMANAGEMENT_URL} />
+          <NavItem label="Event Management" to={ADMIN_EVENTMANAGEMENT_URL} />
           <NavItem label="Mentoring" to={ADMIN_MENTORING_URL} />
           <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
-          <NavItem label="Events" to={ADMIN_EVENTS_URL} />
+          <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
           <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
         </React.Fragment>
       )
@@ -54,7 +56,7 @@ export default () => {
         <React.Fragment>
           <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
           <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
-          <NavItem label="Events" to={ADMIN_EVENTS_URL} />
+          <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
         </React.Fragment>
       )
     }
@@ -63,7 +65,7 @@ export default () => {
         <React.Fragment>
           <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
           <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
-          <NavItem label="Events" to={ADMIN_EVENTS_URL} />
+          <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
           <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
         </React.Fragment>
       )

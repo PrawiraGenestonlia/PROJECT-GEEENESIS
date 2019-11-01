@@ -5,11 +5,11 @@ export default () => {
     <div>
       <div className="text-2xl">
         <div className="flex h-16 items-center ">
-          <span className="text-blue-800">Events</span>
+          <span className="text-blue-800">Event Management</span>
         </div>
       </div>
       <div className="bg-divider" style={{ height: '0.1rem' }} />
-      <div className="flex mt-4">
+      <div className="flex flex-col mt-4">
         <div>content</div>
       </div>
     </div>
