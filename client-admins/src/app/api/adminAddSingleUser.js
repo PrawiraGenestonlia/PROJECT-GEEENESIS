@@ -8,7 +8,7 @@ export default async (data) => {
   return new Promise((resolve, reject) => {
     axios.post(url, {
       "email": data.email.toLowerCase(),
-      "matric": data.matric.toLowerCase(),
+      "matric": data.matric.toUpperCase(),
       "name": data.name,
       "role": data.role.toLowerCase()
     }, {
