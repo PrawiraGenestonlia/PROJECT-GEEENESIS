@@ -53,6 +53,7 @@ const clubInformationValidation = (data) => {
     "bannerImgLink": Joi.string().min(2).required(),
     "server_unique_name": Joi.string().min(2).required(),
     "summary": Joi.string().allow(''),
+    "contactLink": Joi.string().allow(''),
     "rawEditor": Joi.string().allow(''),
   });
   return clubInformationSchema.validate(data);

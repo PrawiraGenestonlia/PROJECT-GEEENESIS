@@ -45,6 +45,7 @@ router.post('/create-club', verifyToken, async (req, res) => {
     bannerImgLink: req.body.bannerImgLink,
     server_unique_name: req.body.server_unique_name,
     summary: req.body.summary,
+    contactLink: req.body.contactLink,
     rawEditor: req.body.rawEditor,
   });
   try {
@@ -73,6 +74,7 @@ router.post('/edit-club', verifyToken, async (req, res) => {
       title: req.body.title,
       bannerImgLink: req.body.bannerImgLink,
       summary: req.body.summary,
+      contactLink: req.body.contactLink,
       rawEditor: req.body.rawEditor,
     });
     res.status(200).send(`${req.body.title} is updated successfuly`);

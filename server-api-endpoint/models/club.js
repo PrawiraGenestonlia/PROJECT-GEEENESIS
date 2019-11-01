@@ -23,6 +23,9 @@ const clubSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  contactLink: {
+    type: String,
+  },
   rawEditor: {
     type: String,
   }
