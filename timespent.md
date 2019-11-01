@@ -20,3 +20,4 @@
 |31/10/2019|2           |editor page - server|
 |01/11/2019|3           |editor page - edit |
 |01/11/2019|3           |editor page - completed + view info |
+|**TOTAL** |**36.5**    |*Temporary total productive hours spent*|
