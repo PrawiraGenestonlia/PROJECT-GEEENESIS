@@ -1,28 +1,28 @@
 ###########################################
-# client-admins
+# client
 # dependencies
-client-admins/node_modules
-client-admins/.pnp
-client-admins/.pnp.js
-host-client-admins/node_modules
+client/node_modules
+client/.pnp
+client/.pnp.js
+host-client/node_modules
 
 # testing
-client-admins/coverage
+client/coverage
 
 # production
-client-admins/build
+client/build
 
 # misc
-client-admins/.DS_Store
-client-admins/.env
-client-admins/.env.local
-client-admins/.env.development.local
-client-admins/.env.test.local
-client-admins/.env.production.local
+client/.DS_Store
+client/.env
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
 
-client-admins/npm-debug.log*
-client-admins/yarn-debug.log*
-client-admins/yarn-error.log*
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
 
 ###########################################
 # client-mentors
