@@ -14,7 +14,7 @@ app.get('*', function (req, res) {
 });
 
 app.listen(
-  process.env.PORT || 3840,
+  3840,
   function () {
     console.log(`geeenesis-admin-webapp start on http://localhost:3840`)
   }
