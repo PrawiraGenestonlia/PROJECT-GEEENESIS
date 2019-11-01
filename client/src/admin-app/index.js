@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
+import PublicRoute from "../router/publicRoute";
+import PrivateRoute from '../router/privateRoute';
 import {
   ADMIN_LOGIN_URL,
   ADMIN_DASHBOARD_URL,
@@ -26,36 +28,21 @@ import {
 } from './pages';
 import NavBar from './components/navBar';
 
-const PublicRoute = ({ component: Component, ...rest }) => {
-  const isAuth = () => {
-    let authToken = localStorage.getItem('auth-token');
-    if (authToken) return true;
-    else return false;
-  }
-  return (
-    <Route {...rest} render={props => (
-      isAuth() ?
-        <Redirect to={ADMIN_DASHBOARD_URL} />
-        : <Component {...props} />
-    )} />
-  );
-};
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isAuth = () => {
-    let authToken = localStorage.getItem('auth-token');
-    if (authToken) return true;
-    else return false;
-  }
+export default () => {
   return (
-    <Route {...rest} render={props => (
-      isAuth() ?
-        <Component {...props} />
-        : <Redirect to={ADMIN_LOGIN_URL} />
-    )} />
-  );
-};
-
+    <div className="flex h-screen w-screen">
+      <div className="static h-screen w-2/12 shadow-lg overflow-hidden" id="nav-container" style={{ minWidth: '12rem' }} >
+        <NavBar />
+      </div>
+      <div className="h-full w-10/12 overflow-y-auto overflow-x-auto" style={{ backgroundColor: 'F5F6F7', minWidth: '30rem' }} >
+        <div className="p-4">
+          <Pages />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const Pages = () => (
   <Switch>
@@ -72,18 +59,3 @@ const Pages = () => (
     <Route exact path={CLUB_INFO_URL + ":club/"} component={ClubInformationPage} />
   </Switch>
 )
-
-export default () => {
-  return (
-    <div className="flex h-screen w-screen">
-      <div className="static h-screen w-2/12 shadow-lg overflow-hidden" id="nav-container" style={{ minWidth: '12rem' }} >
-        <NavBar />
-      </div>
-      <div className="h-full w-10/12 overflow-y-auto overflow-x-auto" style={{ backgroundColor: 'F5F6F7', minWidth: '30rem' }} >
-        <div className="p-4">
-          <Pages />
-        </div>
-      </div>
-    </div>
-  )
-}

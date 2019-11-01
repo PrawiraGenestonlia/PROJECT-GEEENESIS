@@ -1,6 +1,6 @@
 import React from 'react';
 import AddToCalendar from 'react-add-to-calendar';
-import 'react-add-to-calendar/dist/react-add-to-calendar.css';
+import './node_modules/react-add-to-calendar/dist/react-add-to-calendar.css';
 
 export default (props) => (
   <div className={`${props.className} ${props.class}`}>

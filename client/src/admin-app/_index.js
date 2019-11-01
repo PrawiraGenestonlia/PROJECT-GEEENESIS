@@ -25,8 +25,8 @@ export default () => {
         <div className="flex h-screen w-screen">
           <Route path={"/admin"} component={otherRoute} />
         </div>
-        <Route path={"/student"} component={() => { return <div>student</div> }} />
+        <Route path={"/student"} render={() => { return <div>student</div> }} />
       </Switch>
-    </BrowserRouter >
+    </BrowserRouter>
   )
 }

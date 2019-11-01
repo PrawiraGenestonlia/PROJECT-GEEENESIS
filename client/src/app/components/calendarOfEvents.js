@@ -3,9 +3,9 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
-import '@fullcalendar/core/main.css';
-import '@fullcalendar/daygrid/main.css';
-import '@fullcalendar/timegrid/main.css';
+import './node_modules/@fullcalendar/core/main.css';
+import './node_modules/@fullcalendar/daygrid/main.css';
+import './node_modules/@fullcalendar/timegrid/main.css';
 
 
 

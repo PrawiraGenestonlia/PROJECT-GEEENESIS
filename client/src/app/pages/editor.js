@@ -4,7 +4,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import { GetClubInfo, EditClubInfo } from '../api';
 import { ADMIN_INFORMATION_URL } from '../../constants';
 import Swal from 'sweetalert2';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import './node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 export default (props) => {
   const [clubInfo, setClubInfo] = useState({});
