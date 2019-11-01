@@ -5,12 +5,14 @@ export const ADMIN_DASHBOARD_URL = "/dashboard/";
 export const ADMIN_USERMANAGEMENT_URL = "/user-management/";
 export const ADMIN_MENTORING_URL = "/mentoring/";
 export const ADMIN_INFORMATION_URL = "/information/";
-export const ADMIN_EVENTS_URL = "/events/";
+export const ADMIN_EVENTMANAGEMENT_URL = "/events/";
 export const ADMIN_PROFILE_URL = "/profile/";
 
 //
+export const CLUB_STANDALONE_URL = "/club/";
 export const CLUB_INFO_URL = "/club-information/";
 export const EDITOR_URL = "/editor/";
+export const CALENDAR_OF_EVENTS = "/calendar-of-events/";
 
 
 //server

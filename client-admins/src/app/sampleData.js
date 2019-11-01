@@ -1,4 +1,4 @@
-const sampleDataClubInfo = {
+export const sampleDataClubInfo = {
   clubs: [
     {
       title: "NTU EEE",
@@ -24,7 +24,7 @@ const sampleDataClubInfo = {
   ]
 }
 
-const uploadCSV = {
+export const uploadCSV = {
   columns: ["Name", "Email"],
   data: [
     {
@@ -42,7 +42,7 @@ const uploadCSV = {
   ]
 }
 
-const sampleDataUserManagement = {
+export const sampleDataUserManagement = {
   columns: ["name", "email", "role", "action"],
   data: [
     {
@@ -62,9 +62,37 @@ const sampleDataUserManagement = {
   ]
 }
 
-export {
-  sampleDataClubInfo,
-  sampleDataUserManagement,
-  uploadCSV
-}
+export const sampleDataEvents = [
+  {
+    _id: '1234',
+    // id: '1234',
+    title: 'Test Event 1',
+    description: 'This is event 1',
+    location: 'Singapore, SG',
+    start: '2019-11-01T20:15:00-04:00',
+    end: '2019-11-01T21:45:00-04:00',
+    startTime: '2019-11-01T20:15:00-04:00',
+    endTime: '2019-11-01T21:45:00-04:00',
+    borderColor: 'red',
+    backgroundColor: 'red',
+    rawEditor: '',
+    signUpLink: 'https://www.ntu.edu.sg/Pages/home.aspx',
+    imageUrl: '',
+    venue: '',
+    tags: [''],
+  },
+  {
+    _id: '1235',
+    // id: '1235',
+    title: 'Test Event 2',
+    description: 'This is event 2.',
+    location: 'Singapore, SG',
+    start: '2019-11-04T20:15:00-04:00',
+    end: '2019-11-11T21:45:00-04:00',
+    startTime: '2019-11-04T20:15:00-04:00',
+    endTime: '2019-11-11T21:45:00-04:00',
+    borderColor: 'blue',
+    backgroundColor: 'blue'
+  }
+]
 
