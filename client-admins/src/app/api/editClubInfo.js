@@ -11,7 +11,8 @@ export default async (clubInfo) => {
       "bannerImgLink": clubInfo.bannerImgLink,
       "server_unique_name": clubInfo.server_unique_name,
       "summary": clubInfo.summary,
-      "rawEditor": clubInfo.rawEditor
+      "rawEditor": clubInfo.rawEditor,
+      "contactLink": clubInfo.contactLink
     }, {
       headers: { "auth-token": token }
     }).then((res) => {

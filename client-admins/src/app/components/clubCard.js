@@ -20,6 +20,11 @@ const ClubCard = (props) => (
               <span>Learn more about {props.title}</span>
               <span className="text-xs ml-1">&#x279c;</span>
             </Link>
+            <a className="flex items-baseline text-green-600 hover:text-green-900 focus:text-green-900"
+              href={props.contactLink} target="_blank">
+              <span>Contact {props.title}</span>
+              <span className="text-2xl ml-1">&#x2706;</span>
+            </a>
           </div>
           <svg className="hidden md:block absolute inset-y-0 h-full w-24 fill-current text-gray-100 -ml-12" viewBox="0 0 100 100" preserveAspectRatio="none">
             <polygon points="50,0 100,0 50,100 0,100" />

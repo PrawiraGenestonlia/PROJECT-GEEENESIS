@@ -68,6 +68,7 @@ export default () => {
                     server_unique_name={club.server_unique_name}
                     summary={club.summary}
                     rawEditor={club.rawEditor}
+                    contactLink={club.contactLink}
                   />
                 </div>
               )

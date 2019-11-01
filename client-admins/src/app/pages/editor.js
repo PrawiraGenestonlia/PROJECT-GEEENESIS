@@ -59,7 +59,6 @@ export default (props) => {
 
   return (
     <div>
-      {/* {console.log(JSON.stringify(temp))} */}
       <div className="text-2xl">
         <div className="flex h-16 items-center ">
           <span className="text-blue-800">Editor ({clubInfo.title})</span>
@@ -85,6 +84,13 @@ export default (props) => {
             <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
               type="text" rows="1" placeholder="image url" value={clubInfo.bannerImgLink} onChange={(e) => {
                 setClubInfo({ ...clubInfo, bannerImgLink: e.target.value })
+              }} />
+          </div>
+          <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
+            <div className="w-32">Contact link</div>
+            <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+              type="text" rows="1" placeholder="image url" value={clubInfo.contactLink} onChange={(e) => {
+                setClubInfo({ ...clubInfo, contactLink: e.target.value })
               }} />
           </div>
           <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
