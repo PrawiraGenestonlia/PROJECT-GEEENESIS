@@ -29,4 +29,4 @@ export const GETROLE = "/get-user/role";
 //club
 export const GETCLUB = "/club-admin/get-clubs";
 export const CREATECLUB = "/club-admin/create-club";
-export const UPDATECLUB = "club-admin/edit-club";
+export const UPDATECLUB = "/club-admin/edit-club";

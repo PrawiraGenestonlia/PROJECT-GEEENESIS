@@ -11,7 +11,8 @@ export default async () => {
     }).then((res) => {
       if (res.status === 200) resolve(res);
     }).catch((err) => {
-      reject(err.response.data);
+      if (err.response) reject(err.response.data);
+      else reject(err);
     })
   })
 }

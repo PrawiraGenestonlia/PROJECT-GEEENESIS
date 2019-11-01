@@ -5,6 +5,7 @@ import AdminUpdateUser from './adminUpdateUser';
 import AdminAddSingleUser from './adminAddSingleUser';
 import GetRole from './getRole';
 import GetClubInfo from './getClubInfo';
+import EditClubInfo from './editClubInfo';
 
 export {
   LoginToServer,
@@ -13,5 +14,6 @@ export {
   AdminUpdateUser,
   AdminAddSingleUser,
   GetRole,
-  GetClubInfo
+  GetClubInfo,
+  EditClubInfo
 }

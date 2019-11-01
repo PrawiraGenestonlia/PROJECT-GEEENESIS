@@ -21,7 +21,7 @@ function Login() {
       localStorage.setItem('auth-token', res.data);
       window.location.reload();
     }).catch(async err => {
-      let message = err.data;
+      let message = err ? (err.data ? err.data : err) : err;
       await Swal.fire('Failed to login!', message, 'error');
     })
   }

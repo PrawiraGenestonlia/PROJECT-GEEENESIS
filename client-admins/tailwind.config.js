@@ -3,7 +3,10 @@ module.exports = {
     extend: {
       colors: {
         divider: 'rgba(100,100,100,0.4)',
-      }
+      },
+    },
+    maxHeight: {
+      '3/4': '75%'
     },
     fontFamily: {
     },
