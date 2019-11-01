@@ -5,7 +5,7 @@ export default async (email, password) => {
   const url = `${SERVERURL}${LOGIN}`;
   return new Promise((resolve, reject) => {
     axios.post(url, {
-      "email": email,
+      "email": email.toLowerCase(),
       "password": password
     }).then((res) => {
       resolve(res);

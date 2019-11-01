@@ -7,10 +7,10 @@ export default async (data) => {
   const token = getToken();
   return new Promise((resolve, reject) => {
     axios.post(url, {
-      "email": data.email,
-      "matric": data.matric,
+      "email": data.email.toLowerCase(),
+      "matric": data.matric.toLowerCase(),
       "name": data.name,
-      "role": data.role
+      "role": data.role.toLowerCase()
     }, {
       headers: { "auth-token": token }
     }).then((res) => {

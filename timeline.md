@@ -7,10 +7,10 @@
 |    |Create repository                          |✅||||||||||||||
 |FM  |Upload list of new students                |✅|🔵|🔵||||||||||||
 |FM  |Upload list of mentor-mentees              |⭕|🔵|🔵||||||||||||
-|S   |Create students account upon uploaded      |⭕|  |🔵||||||||||||
-|S   |User management                            |⭕|  |🔵|🔵|||||||||||
-|CA  |User management                            |⭕|  |🔵|🔵|||||||||||
-|CA  |Edit dynamic info on eee and clubs         |⭕|  |🔵|🔵|||||||||||
+|S   |Create students account upon uploaded      |✅|  |🔵||||||||||||
+|S   |User management                            |✅|  |🔵|🔵|||||||||||
+|CA  |User management                            |✅|  |🔵|🔵|||||||||||
+|CA  |Edit dynamic info on eee and clubs         |✅|  |🔵|🔵|||||||||||
 |CA  |Create events                              |⭕|  |🔵|🔵|||||||||||
 |CM  |View mentee                                |⭕|  |  |🔵|||||||||||
 |CM  |Chat with mentee                           |⭕|  |  |🔵|||||||||||

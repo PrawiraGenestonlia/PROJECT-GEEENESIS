@@ -19,4 +19,4 @@
 |31/10/2019|2           |editor page|
 |31/10/2019|2           |editor page - server|
 |01/11/2019|3           |editor page - edit |
-|01/11/2019|2           |editor page - completed |
+|01/11/2019|3           |editor page - completed + view info |
