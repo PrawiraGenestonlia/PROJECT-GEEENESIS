@@ -8,11 +8,11 @@ export default async (data) => {
   return new Promise((resolve, reject) => {
     axios.post(url, {
       "_id": data._id,
-      "email": data.email,
-      "matric": data.matric,
+      "email": data.email.toLowerCase(),
+      "matric": data.matric.toUpperCase(),
       "name": data.name,
       "password": data.password,
-      "role": data.role.current
+      "role": data.role.current.toLowerCase()
     }, {
       headers: { "auth-token": token }
     }).then((res) => {
