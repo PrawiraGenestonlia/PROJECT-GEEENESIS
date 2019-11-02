@@ -38,26 +38,28 @@ export default () => {
 
   return (
     <div className="flex h-screen w-screen login fixed overflow-hidden">
-      <div className="container-login100" style={{ backgroundImage: 'url(' + require('./bg-01.jpg') + ')' }}>
+      <div className="container-login100" style={{ backgroundImage: 'url(' + require('./bg-01.jp2') + ')' }}>
         <div className="wrap-login100 p-16">
           <form className="login100-form validate-form">
             <span className="login100-form-title p-b-49">
               Login
           </span>
             <div className="wrap-input100 validate-input m-b-23">
-              <span className="label-input100">NTU Email Address</span>
+              <label className="label-input100">NTU Email Address
               <input className="input100" type="text" name="email" placeholder="Type your email"
-                value={email} onChange={(e) => { handleEmailAddressInput(e.target.value) }}
-              />
-              <span className="focus-input100" data-symbol="&#xf206;"></span>
+                  value={email} onChange={(e) => { handleEmailAddressInput(e.target.value) }}
+                />
+                <span className="focus-input100" data-symbol="&#xf206;"></span>
+              </label>
             </div>
 
             <div className="wrap-input100 validate-input" data-validate="Password is required">
-              <span className="label-input100">Password</span>
+              <label className="label-input100">Password
               <input className="input100" type="password" name="pass" placeholder="Type your password"
-                value={password} onChange={e => setPassword(e.target.value)}
-              />
-              <span className="focus-input100" data-symbol="&#xf190;"></span>
+                  value={password} onChange={e => setPassword(e.target.value)}
+                />
+                <span className="focus-input100" data-symbol="&#xf190;"></span>
+              </label>
             </div>
 
             <div className="text-right p-t-8 p-b-31">
