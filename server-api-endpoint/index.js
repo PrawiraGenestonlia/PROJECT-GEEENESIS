@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const compression = require('compression');
+
 require('dotenv').config();
 
 //import routes
@@ -17,6 +19,7 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTop
 }).catch(err => console.error("Could not connect to MongoDB...", err));
 
 //middleware
+app.use(compression());
 app.use(cors());
 app.use(express.json());
 
