@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { ADMIN_DASHBOARD_URL } from '../constants';
+import { REDIRECT_URL } from '../constants';
 
 const PublicRoute = ({ component: Component, ...rest }) => {
   const isAuth = () => {
@@ -11,7 +11,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
   return (
     <Route {...rest} render={props => (
       isAuth() ?
-        <Redirect to={ADMIN_DASHBOARD_URL} />
+        <Redirect to={REDIRECT_URL} />
         : <Component {...props} />
     )} />
   );

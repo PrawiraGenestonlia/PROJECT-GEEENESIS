@@ -12,9 +12,11 @@ export const SERVER_BASE_URL = "/geeenesis/";
 
 //PUBLIC ROUTE
 export const LOGIN_URL = "/login/";
+export const REDIRECT_URL = "/load-role/";
 export const CLUB_STANDALONE_URL = "/club/";
 
 //ADMIN APP ROUTE
+export const ADMIN_EXTENDED_URL = "/admin/";
 export const ADMIN_LOGIN_URL = "/admin/login/";
 export const ADMIN_DASHBOARD_URL = "/admin/dashboard/";
 export const ADMIN_USERMANAGEMENT_URL = "/admin/user-management/";
@@ -27,7 +29,8 @@ export const CLUB_INFO_URL = "/admin/club-information/";
 export const CALENDAR_OF_EVENTS = "/admin/calendar-of-events/";
 
 //STUDENT PWA ROUTE
-
+export const STUDENT_EXTENDED_URL = "/student/";
+export const STUDENT_HOME_URL = "/student/home/";
 
 /*
 * ==========================================================

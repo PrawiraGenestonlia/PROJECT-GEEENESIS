@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { ADMIN_LOGIN_URL } from '../constants';
+import { LOGIN_URL } from '../constants';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const isAuth = () => {
@@ -12,7 +12,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route {...rest} render={props => (
       isAuth() ?
         <Component {...props} />
-        : <Redirect to={ADMIN_LOGIN_URL} />
+        : <Redirect to={LOGIN_URL} />
     )} />
   );
 };

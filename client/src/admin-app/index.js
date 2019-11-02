@@ -1,9 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
-import PublicRoute from "../router/publicRoute";
 import PrivateRoute from '../router/privateRoute';
 import {
-  ADMIN_LOGIN_URL,
   ADMIN_DASHBOARD_URL,
   ADMIN_USERMANAGEMENT_URL,
   ADMIN_EVENTMANAGEMENT_URL,
@@ -46,8 +44,7 @@ export default () => {
 
 const Pages = () => (
   <Switch>
-    <Route exact path="/" component={() => <Redirect to={ADMIN_LOGIN_URL} />} />
-    <PublicRoute exact path={ADMIN_LOGIN_URL} component={LoginPage} />
+    <PrivateRoute exact path="/" component={() => <Redirect to={ADMIN_DASHBOARD_URL} />} />
     <PrivateRoute exact path={ADMIN_DASHBOARD_URL} component={DashboardPage} />
     <PrivateRoute exact path={ADMIN_USERMANAGEMENT_URL} component={UserManagementPage} />
     <PrivateRoute exact path={ADMIN_EVENTMANAGEMENT_URL} component={EventManagementPage} />
@@ -57,5 +54,6 @@ const Pages = () => (
     <PrivateRoute exact path={CALENDAR_OF_EVENTS} component={CalendarOfEventsPage} />
     <PrivateRoute exact path={EDITOR_URL + ":subject/"} component={EditorPage} />
     <Route exact path={CLUB_INFO_URL + ":club/"} component={ClubInformationPage} />
+    <PrivateRoute path component={() => <Redirect to={ADMIN_DASHBOARD_URL} />} />
   </Switch>
 )

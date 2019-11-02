@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-// import { LoginToServer } from '../api';
+import { LoginToServer } from '../api';
 import './css/main.css';
 import './css/util.css';
 
@@ -20,8 +20,24 @@ export default () => {
 
   }, [email]);
 
+  const handleEmailAddressInput = (input) => {
+    setEmail(input);
+    setIsNTUEmail(validateEmail(input));
+  }
+
+  const handleLogin = async () => {
+    LoginToServer(email, password).then(res => {
+      localStorage.setItem('auth-token', res.data);
+      window.location.reload();
+    }).catch(async err => {
+      console.log(err);
+      let message = err ? (err.data ? err.data : err) : err;
+      await Swal.fire('Failed to login!', message, 'error');
+    })
+  }
+
   return (
-    <div className="flex h-screen w-screen">
+    <div className="flex h-screen w-screen login fixed overflow-hidden">
       <div className="container-login100" style={{ backgroundImage: 'url(' + require('./bg-01.jpg') + ')' }}>
         <div className="wrap-login100 p-16">
           <form className="login100-form validate-form">
@@ -30,13 +46,17 @@ export default () => {
           </span>
             <div className="wrap-input100 validate-input m-b-23">
               <span className="label-input100">NTU Email Address</span>
-              <input className="input100" type="text" name="email" placeholder="Type your email" />
+              <input className="input100" type="text" name="email" placeholder="Type your email"
+                value={email} onChange={(e) => { handleEmailAddressInput(e.target.value) }}
+              />
               <span className="focus-input100" data-symbol="&#xf206;"></span>
             </div>
 
             <div className="wrap-input100 validate-input" data-validate="Password is required">
               <span className="label-input100">Password</span>
-              <input className="input100" type="password" name="pass" placeholder="Type your password" />
+              <input className="input100" type="password" name="pass" placeholder="Type your password"
+                value={password} onChange={e => setPassword(e.target.value)}
+              />
               <span className="focus-input100" data-symbol="&#xf190;"></span>
             </div>
 
@@ -45,16 +65,15 @@ export default () => {
                 Forgot password?
             </a>
             </div>
-
-            <div className="container-login100-form-btn">
-              <div className="wrap-login100-form-btn">
-                <div className="login100-form-bgbtn"></div>
-                <button className="login100-form-btn">
-                  Login
-              </button>
-              </div>
-            </div>
           </form>
+          <div className="container-login100-form-btn">
+            <div className="wrap-login100-form-btn">
+              <div className="login100-form-bgbtn"></div>
+              <button className="login100-form-btn" onClick={() => { handleLogin() }}>
+                Login
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
