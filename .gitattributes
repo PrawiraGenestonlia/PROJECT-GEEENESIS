@@ -1,1 +1,2 @@
-client-admins/src/css/* linguist-vendored
+client/src/css/* linguist-vendored
+client/src/public-page/css/* linguist-vendored
