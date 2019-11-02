@@ -23,4 +23,5 @@
 |01/11/2019|2           |calendar page |
 |01/11/2019|2           |route migration to merge webapp and pwa |
 |02/11/2019|2           |route migration to merge webapp and pwa |
-|**TOTAL** |**43.5**    |*Temporary total productive hours spent*|
+|02/11/2019|2.5         |login migration and production optimization |
+|**TOTAL** |**46**    |*Temporary total productive hours spent*|
