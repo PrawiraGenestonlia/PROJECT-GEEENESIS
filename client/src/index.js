@@ -11,9 +11,23 @@ const showLoader = () => loader.classList.remove('loader--hide');
 const hideLoader = () => loader.classList.add('loader--hide');
 
 const ReactApp = ({ hideLoader }) => {
-  useEffect(() => hideLoader(), []);
+  useEffect(() => hideLoader(), [hideLoader]);
   return <App />;
 }
+
+const SessionControl = () => {
+  if (sessionStorage.getItem('active')) {
+    return true;
+  }
+  else {
+    if (localStorage.getItem('remember') === "false") {
+      localStorage.removeItem('auth-token');
+    }
+    return true;
+  }
+}
+
+SessionControl();
 
 
 ReactDOM.render(

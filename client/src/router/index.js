@@ -8,7 +8,7 @@ import PublicRoute from './publicRoute';
 import LoginPage from '../public-page/login';
 import RedirectPage from '../public-page/redirectPage';
 import AdminApp from '../admin-app';
-import StudentApp from '../student-pwa'
+import StudentApp from '../student-pwa';
 
 export default () => {
   return (
@@ -24,7 +24,7 @@ export default () => {
         <Route path={ADMIN_EXTENDED_URL} component={AdminApp} />
         {/* STUDENT */}
         <Route path={STUDENT_EXTENDED_URL} component={StudentApp} />
-        <Route path component={() => <Redirect to={LOGIN_URL} />} />
+        <Route path='' component={() => <Redirect to={LOGIN_URL} />} />
       </Switch>
     </BrowserRouter>
   )

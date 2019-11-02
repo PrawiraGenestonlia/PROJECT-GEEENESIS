@@ -4,16 +4,17 @@ import { LoginToServer } from '../api';
 import './css/main.css';
 import './css/util.css';
 
-function validateEmail(email) {
-  var re = /^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(ntu.edu)\.sg$/;
-  return re.test(String(email).toLowerCase());
-  // return email;
-}
+// function validateEmail(email) {
+//   var re = /^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(ntu.edu)\.sg$/;
+//   return re.test(String(email).toLowerCase());
+//   // return email;
+// }
 
 
 export default () => {
   const [email, setEmail] = useState('');
-  const [isNTUEmail, setIsNTUEmail] = useState(false);
+  // const [isNTUEmail, setIsNTUEmail] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [password, setPassword] = useState('');
 
   useEffect(() => {
@@ -22,11 +23,13 @@ export default () => {
 
   const handleEmailAddressInput = (input) => {
     setEmail(input);
-    setIsNTUEmail(validateEmail(input));
+    // setIsNTUEmail(validateEmail(input));
   }
 
   const handleLogin = async () => {
     LoginToServer(email, password).then(res => {
+      sessionStorage.setItem('active', 1);
+      localStorage.setItem('remember', rememberMe);
       localStorage.setItem('auth-token', res.data);
       window.location.reload();
     }).catch(async err => {
@@ -52,7 +55,6 @@ export default () => {
                 <span className="focus-input100" data-symbol="&#xf206;"></span>
               </label>
             </div>
-
             <div className="wrap-input100 validate-input" data-validate="Password is required">
               <label className="label-input100">Password
               <input className="input100" type="password" name="pass" placeholder="Type your password"
@@ -61,9 +63,16 @@ export default () => {
                 <span className="focus-input100" data-symbol="&#xf190;"></span>
               </label>
             </div>
-
+            <div className="mt-5 ml-3">
+              <label className="">
+                <input className="mr-2 leading-tight" type="checkbox" value={rememberMe} onChange={(e) => { setRememberMe(e.target.checked) }} />
+                <span className="label-input100">
+                  Remember me
+                </span>
+              </label>
+            </div>
             <div className="text-right p-t-8 p-b-31">
-              <a href="#">
+              <a href="/">
                 Forgot password?
             </a>
             </div>

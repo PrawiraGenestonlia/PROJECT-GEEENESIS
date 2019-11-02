@@ -13,7 +13,6 @@ import {
   CALENDAR_OF_EVENTS,
 } from '../constants';
 import {
-  LoginPage,
   DashboardPage,
   UserManagementPage,
   EventManagementPage,

@@ -15,7 +15,7 @@ export default (props) => {
         const loadedContentRaw = res.data[0].rawEditor.length > 10 ? convertFromRaw(JSON.parse(res.data[0].rawEditor)) : '';
         if (loadedContentRaw) setContentState(EditorState.createWithContent(loadedContentRaw));
       }).catch(async err => {
-        console.log(err);
+        // console.log(err);
         let message = err.data ? err.data : JSON.stringify(err);
         await Swal.fire('Failed to fetch information!', message, 'error');
       });
@@ -25,7 +25,6 @@ export default (props) => {
 
   return (
     <div>
-      {console.log(props.match.params.club, clubInfo)}
       <div className="text-2xl">
         <div className="flex h-16 items-center ">
           <span className="text-blue-800">{clubInfo.title}</span>

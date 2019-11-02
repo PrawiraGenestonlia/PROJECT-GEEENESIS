@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
 import { STUDENT_HOME_URL } from '../constants';
 import PrivateRoute from '../router/privateRoute';
 

@@ -83,7 +83,7 @@ export default () => {
       </div>
       <div className="bg-divider" style={{ height: '0.1rem' }} />
       <div className="mt-4" />
-      <a className="skip-link" />
+      {/* <a className="skip-link" /> */}
       <nav>
         <NavList />
       </nav>

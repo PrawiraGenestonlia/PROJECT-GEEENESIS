@@ -4,12 +4,11 @@ import CalendarOfEvents from '../components/calendarOfEvents';
 import { sampleDataEvents } from '../sampleData';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { Link } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal)
 
 export default () => {
-  const [events, setEvents] = useState(sampleDataEvents);
+  const [events,] = useState(sampleDataEvents);
 
   const handleEventClick = async (e) => {
     const clickedEvent = {
