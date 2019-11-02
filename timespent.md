@@ -21,5 +21,6 @@
 |01/11/2019|3           |editor page - edit |
 |01/11/2019|3           |editor page - completed + view info |
 |01/11/2019|2           |calendar page |
-|01/11/2019|4           |route migration to merge webapp and pwa |
-|**TOTAL** |**42.5**    |*Temporary total productive hours spent*|
+|01/11/2019|2           |route migration to merge webapp and pwa |
+|02/11/2019|2           |route migration to merge webapp and pwa |
+|**TOTAL** |**43.5**    |*Temporary total productive hours spent*|

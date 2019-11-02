@@ -10,7 +10,7 @@ export default () => {
     <BrowserRouter basename={SERVER_BASE_URL}>
       <Switch>
         <Route exact path={CLUB_STANDALONE_URL + ":club/"} component={ClubStandalonePage} />
-        <Route path={"/admin"} component={AdminApp} />
+        <Route path={''} component={AdminApp} />
         <Route path={"/student"} render={() => { return <div>student</div> }} />
         <Route path={"/"} render={() => { return <div>not found</div> }} />
       </Switch>
