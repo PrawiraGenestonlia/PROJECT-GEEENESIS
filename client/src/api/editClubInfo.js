@@ -1,6 +1,6 @@
 import axios from 'axios';
 import getToken from '../components/getToken';
-import { SERVERURL, UPDATECLUB } from '../../constants';
+import { SERVERURL, UPDATECLUB } from '../constants';
 
 export default async (clubInfo) => {
   const url = `${SERVERURL}${UPDATECLUB}`;

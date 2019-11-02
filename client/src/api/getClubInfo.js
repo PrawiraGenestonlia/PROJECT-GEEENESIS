@@ -1,6 +1,6 @@
 import axios from 'axios';
 import getToken from '../components/getToken';
-import { SERVERURL, GETCLUB } from '../../constants';
+import { SERVERURL, GETCLUB } from '../constants';
 
 export default async (clubname) => {
   const url = clubname ? `${SERVERURL}${GETCLUB}?club=${clubname}` : `${SERVERURL}${GETCLUB}`;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import { GetClubInfo, EditClubInfo } from '../api';
+import { GetClubInfo, EditClubInfo } from '../../api';
 import { ADMIN_INFORMATION_URL } from '../../constants';
 import Swal from 'sweetalert2';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';

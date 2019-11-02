@@ -1,6 +1,6 @@
 import axios from 'axios';
 import getToken from '../components/getToken';
-import { SERVERURL, UPDATEUSER } from '../../constants';
+import { SERVERURL, UPDATEUSER } from '../constants';
 
 export default async (data) => {
   const url = `${SERVERURL}${UPDATEUSER}`;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SERVERURL, LOGIN } from '../../constants';
+import { SERVERURL, LOGIN } from '../constants';
 
 export default async (email, password) => {
   const url = `${SERVERURL}${LOGIN}`;

@@ -4,7 +4,7 @@ import Toolbar from '../components/toolbar';
 import { Link } from 'react-router-dom';
 import { EDITOR_URL } from '../../constants';
 import { EditSVG } from '../components/svgPath';
-import { GetRole, GetClubInfo } from '../api';
+import { GetRole, GetClubInfo } from '../../api';
 import Swal from 'sweetalert2';
 
 export default () => {

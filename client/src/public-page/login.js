@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import { LoginToServer } from '../admin-app/api';
+// import { LoginToServer } from '../api';
 import './css/main.css';
 import './css/util.css';
 
@@ -16,9 +16,9 @@ export default () => {
   const [isNTUEmail, setIsNTUEmail] = useState(false);
   const [password, setPassword] = useState('');
 
-  useEffect(()=>{
+  useEffect(() => {
 
-  },[email]);
+  }, [email]);
 
   return (
     <div className="flex h-screen w-screen">

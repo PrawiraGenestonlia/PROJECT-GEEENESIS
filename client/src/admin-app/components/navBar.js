@@ -11,7 +11,7 @@ import {
   CALENDAR_OF_EVENTS,
   ADMIN_PROFILE_URL
 } from '../../constants';
-import { GetRole } from '../api';
+import { GetRole } from '../../api';
 
 
 

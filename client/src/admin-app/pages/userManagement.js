@@ -3,7 +3,7 @@ import DynamicTable from '../components/dynamicTable';
 import Popup from "reactjs-popup";
 import Papa from 'papaparse';
 import Swal from 'sweetalert2';
-import { AdminGetUser, AdminDeleteUser, AdminUpdateUser, AdminAddSingleUser } from '../api';
+import { AdminGetUser, AdminDeleteUser, AdminUpdateUser, AdminAddSingleUser } from '../../api';
 import { SingleUserSVG, GroupUserSVG, } from '../components/svgPath';
 import Toolbar from '../components/toolbar';
 

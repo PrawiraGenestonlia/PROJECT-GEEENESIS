@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GetClubInfo } from '../api';
+import { GetClubInfo } from '../../api';
 import { convertFromRaw, EditorState, } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import Swal from 'sweetalert2';

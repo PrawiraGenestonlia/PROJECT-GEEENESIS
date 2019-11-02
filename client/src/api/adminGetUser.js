@@ -1,6 +1,6 @@
 import axios from 'axios';
 import getToken from '../components/getToken';
-import { SERVERURL, GETALLUSERS } from '../../constants';
+import { SERVERURL, GETALLUSERS } from '../constants';
 
 export default async () => {
   const url = `${SERVERURL}${GETALLUSERS}`;
