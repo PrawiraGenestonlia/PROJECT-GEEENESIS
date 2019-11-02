@@ -45,7 +45,7 @@ export default () => {
         <div className="wrap-login100 p-16">
           <form className="login100-form validate-form">
             <span className="login100-form-title p-b-49">
-              Login v2
+              Login
           </span>
             <div className="wrap-input100 validate-input m-b-23">
               <label className="label-input100">NTU Email Address
@@ -72,7 +72,7 @@ export default () => {
               </label>
             </div>
             <div className="text-right p-t-8 p-b-31">
-              <a href="/">
+              <a href="/geeenesis/">
                 Forgot password?
             </a>
             </div>
