@@ -1,1 +1,2 @@
-client/src/css/* linguist-vendored
+client/src/css/* linguist-vendored=true
+client/src/public-page/css/* linguist-vendored=true
