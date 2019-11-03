@@ -26,4 +26,6 @@
 |02/11/2019|2.5         |login migration and production optimization |
 |02/11/2019|0.5         |login remember me |
 |03/11/2019|4           |layout change to responsive |
+|||
+|||
 |**TOTAL** |**50.5**    |*Temporary total productive hours spent*|
