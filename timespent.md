@@ -28,5 +28,6 @@
 |03/11/2019|4           |layout change to responsive |
 |04/11/2019|2           |added icon and splashscreen |
 |04/11/2019|1           |added reload bar |
+|04/11/2019|1           |service worker to fetch update |
 |||
-|**TOTAL** |**53.5**    |*Temporary total productive hours spent*|
+|**TOTAL** |**54.5**    |*Temporary total productive hours spent*|

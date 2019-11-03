@@ -1,13 +1,26 @@
 import React from 'react';
 
-export default () => (
-  <div id="reloadbar" className="show" onClick={async () => {
-    await navigator.serviceWorker.getRegistrations().then(registrations => {
-      for (let registration of registrations) {
-        registration.unregister();
+const unregisterServiceWorker = async () => {
+  navigator.serviceWorker.getRegistrations().then(async registrations => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = [];
+        for (let i = 0; i < registrations.length; i++) {
+          const j = await registrations[i].unregister();
+          console.log(j);
+          result.push(j);
+        }
+        resolve(result);
+      } catch (err) {
+        reject(err);
       }
     });
-    window.location.reload(true);
+  });
+}
+
+export default () => (
+  <div id="reloadbar" className="show" onClick={() => {
+    unregisterServiceWorker().then(() => { window.location.reload(true) })
   }}>
     A new version of this app is available. Click <span><strong>here</strong></span> to update.
   </div>
