@@ -241,6 +241,7 @@ export default () => {
             <UploadButtonComponent className="py-2 md:py-0 md:px-2 justify-center" onChange={(e) => { handleUploadFile(e.target.files[0]) }} />
           </Toolbar>
         </div>
+        {/* TODO loading indicator before loaded */}
         <div className="overflow-x-auto h-full">
           <DynamicTable data={loadedUser} options={['superadmin', 'clubadmin', 'student', 'mentor']} handleSave={handleSave} handleDelete={handleDelete} />
           {/* <DynamicTable data={sampleDataUserManagement2} handleSave={handleSave} handleDelete={handleDelete} /> */}
