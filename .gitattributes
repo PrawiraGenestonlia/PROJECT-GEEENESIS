@@ -1,5 +1,2 @@
-client/src/css/*.css linguist-vendored=false
-client/src/css/ linguist-vendored=false
-client/src/public-page/css/*.css linguist-vendored=false
-client/src/public-page/css/ linguist-vendored=false
-client/src/public-page/fonts/ linguist-vendored=false
+* linguist-vendored
+*.js linguist-vendored=false
