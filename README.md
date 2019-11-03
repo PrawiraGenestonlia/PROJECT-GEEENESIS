@@ -60,7 +60,8 @@ npm start
 
 ## Project Timeline and Progress
 
-[Click here to view project timeline and progess](timeline.md)
+[Click here to view project timeline and progess](timeline.md)  
+[Click here to view total productive time spent](timespent.md)
 
 ## Functionality
 
