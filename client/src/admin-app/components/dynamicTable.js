@@ -99,7 +99,7 @@ function DynamicTable(props) {
   return (
     <div className="text-gray-900">
       <div className="px-3 py-4 flex justify-center select-auto">
-        <table className="w-full text-md bg-white shadow-md rounded mb-4">
+        <table className="max-w-screen md:w-full text-md bg-white shadow-md rounded mb-4">
           <tbody>
             <tr className="border-b bg-blue-200" >
               {data.columns.map((column, index) => {

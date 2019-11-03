@@ -26,7 +26,7 @@ export default () => {
 
   const EditClubComponent = (props) => (
     <Link to={EDITOR_URL + props.server_unique_name + "/"}>
-      <div className={`flex bg-grey-lighter ${props.class} ${props.className}`}>
+      <div className={`flex justify-center bg-grey-lighter ${props.class} ${props.className}`}>
         <div className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-full shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue hover:text-white">
           <svg className="w-8 h-8 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 381.53417 381">
             <EditSVG />
@@ -51,7 +51,7 @@ export default () => {
             {
               (clubsData.clubs.length > 0) && clubsData.clubs.map((club, index) => {
                 return (
-                  <div className="px-2" key={index}>
+                  <div className="py-2 md:py-0 md:px-2 justify-center" key={index}>
                     <EditClubComponent
                       title={club.title}
                       server_unique_name={club.server_unique_name}

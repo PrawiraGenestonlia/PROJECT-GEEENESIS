@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,  } from 'react';
 import { Link } from 'react-router-dom';
 import './navBar.css';
 import GetToken from './getToken';
@@ -12,8 +12,7 @@ import {
   ADMIN_PROFILE_URL
 } from '../../constants';
 import { GetRole } from '../../api';
-
-
+import { useStateValue } from '../../context';
 
 function handleLogOut() {
   localStorage.removeItem('auth-token');
@@ -21,12 +20,23 @@ function handleLogOut() {
 }
 
 const NavItem = (props) => {
+  const [isNavHidden, dispatch] = useStateValue();
   return (
-    <div className="flex justify-center pt-2 pb-2 text-white text-lg">
-      <Link to={props.to}>
-        <span>{props.label}</span>
-      </Link>
+    <div>
+      <div className="flex justify-center pt-2 pb-2 text-white text-lg" onClick={() => {
+        if (isNavHidden !== "others") {
+          dispatch({
+            type: 'clickNav',
+            isNavHidden: true
+          })
+        }
+      }}>
+        <Link to={props.to}>
+          <span>{props.label}</span>
+        </Link>
+      </div>
     </div>
+
   )
 }
 
@@ -84,9 +94,10 @@ export default () => {
       <div className="bg-divider" style={{ height: '0.1rem' }} />
       <div className="mt-4" />
       {/* <a className="skip-link" /> */}
-      <nav>
+
+      <div className="">
         <NavList />
-      </nav>
+      </div>
       <div className="flex items-center justify-center">
         {GetToken() ?
           <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-10"
@@ -97,5 +108,4 @@ export default () => {
 
     </nav>
   )
-
 }

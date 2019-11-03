@@ -12,9 +12,15 @@ module.exports = {
     },
     minWidth: {
       '2/12': '16.666667%'
+    },
+    maxWidth: {
+      'screen': '100vw'
     }
   },
-  variants: {},
+  variants: {
+    flexDirection: ['responsive'],
+    flexWrap: ['responsive'],
+  },
   plugins: [
     require('autoprefixer')
   ]

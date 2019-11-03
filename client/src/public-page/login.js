@@ -40,7 +40,7 @@ export default () => {
   }
 
   return (
-    <div className="flex h-screen w-screen login fixed overflow-hidden">
+    <div className="login flex w-screen fixed sm:absolute md:fixed overflow-auto">
       <div className="container-login100" style={{ backgroundImage: 'url(' + require('./bg-01.jpg') + ')' }}>
         <div className="wrap-login100 p-16">
           <form className="login100-form validate-form">

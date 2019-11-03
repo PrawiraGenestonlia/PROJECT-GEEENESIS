@@ -12,7 +12,7 @@ import '@fullcalendar/timegrid/main.css';
 export default (props) => (
   <React.Fragment>
     <FullCalendar
-      className={`${props.className} ${props.class}`}
+      className={`${props.className} ${props.class} text-sm`}
       defaultView="dayGridMonth"
       header={{
         left: 'prev,next',

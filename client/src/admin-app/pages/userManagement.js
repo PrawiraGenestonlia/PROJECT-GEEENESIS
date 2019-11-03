@@ -235,11 +235,10 @@ export default () => {
       </div>
       <div className="bg-divider" style={{ height: '0.1rem' }} />
       <div className="flex flex-col mt-4">
-
-        <div className="px-3 py-4 flex justify-center select-auto">
+        <div className="px-3 py-4 flex justify-center select-auto ">
           <Toolbar>
-            <AddSingleUserComponent className="px-2" />
-            <UploadButtonComponent className="px-2" onChange={(e) => { handleUploadFile(e.target.files[0]) }} />
+            <AddSingleUserComponent className="py-2 md:py-0 md:px-2 justify-center" />
+            <UploadButtonComponent className="py-2 md:py-0 md:px-2 justify-center" onChange={(e) => { handleUploadFile(e.target.files[0]) }} />
           </Toolbar>
         </div>
         <div>

@@ -1,4 +1,6 @@
 @import 'css/tailwind.css';
+@import 'css/react-transition-group.css';
+/* @import 'css/nav-animation.css'; */
 
 body {
   margin: 0;
@@ -12,4 +14,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.fc-center{
+  font-size: .7em;
 }
