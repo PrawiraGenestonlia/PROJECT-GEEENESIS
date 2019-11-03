@@ -73,8 +73,6 @@ function registerValidSW(swUrl, config) {
                 'New content is available and will be used when all ' +
                 'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
               );
-              window.location.reload();
-
               // Execute callback
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
@@ -93,7 +91,19 @@ function registerValidSW(swUrl, config) {
           }
         };
       };
-    })
+      registration.onUpdate = () => {
+        const waitingServiceWorker = registration.waiting;
+        if (waitingServiceWorker) {
+          waitingServiceWorker.addEventListener("statechange", event => {
+            if (event.target.state === "activated") {
+              window.location.reload()
+            }
+          });
+          waitingServiceWorker.postMessage({ type: "SKIP_WAITING" });
+        }
+      }
+    }
+    )
     .catch(error => {
       console.error('Error during service worker registration:', error);
     });
