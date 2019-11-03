@@ -5,7 +5,7 @@ export default () => {
     <div>
       <div className="text-2xl">
         <div className="flex h-16 items-center ">
-          <span className="text-blue-800">Dashboard 2</span>
+          <span className="text-blue-800">Dashboard</span>
         </div>
       </div>
       <div className="bg-divider" style={{ height: '0.1rem' }} />
