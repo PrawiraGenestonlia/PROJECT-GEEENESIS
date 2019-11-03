@@ -91,19 +91,18 @@ function registerValidSW(swUrl, config) {
           }
         };
       };
-      registration.onUpdate = () => {
-        const waitingServiceWorker = registration.waiting;
-        if (waitingServiceWorker) {
-          waitingServiceWorker.addEventListener("statechange", event => {
-            if (event.target.state === "activated") {
-              window.location.reload()
-            }
-          });
-          waitingServiceWorker.postMessage({ type: "SKIP_WAITING" });
-        }
-      }
-    }
-    )
+      //   registration.onUpdate = () => {
+      //     const waitingServiceWorker = registration.waiting;
+      //     if (waitingServiceWorker) {
+      //       waitingServiceWorker.addEventListener("statechange", event => {
+      //         if (event.target.state === "activated") {
+      //           window.location.reload();
+      //         }
+      //       });
+      //       waitingServiceWorker.postMessage({ type: "SKIP_WAITING" });
+      //     }
+      //   };
+    })
     .catch(error => {
       console.error('Error during service worker registration:', error);
     });
