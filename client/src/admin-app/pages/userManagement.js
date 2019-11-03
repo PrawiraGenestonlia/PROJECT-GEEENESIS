@@ -229,7 +229,7 @@ export default () => {
   return (
     <div>
       <div className="text-2xl">
-        <div className="flex h-16 items-center ">
+        <div className="flex h-16 items-center overflow-x-hidden overflow-y-auto">
           <span className="text-blue-800">User Management</span>
         </div>
       </div>
@@ -241,12 +241,12 @@ export default () => {
             <UploadButtonComponent className="py-2 md:py-0 md:px-2 justify-center" onChange={(e) => { handleUploadFile(e.target.files[0]) }} />
           </Toolbar>
         </div>
-        <div>
+        <div className="overflow-x-auto h-full">
           <DynamicTable data={loadedUser} options={['superadmin', 'clubadmin', 'student', 'mentor']} handleSave={handleSave} handleDelete={handleDelete} />
           {/* <DynamicTable data={sampleDataUserManagement2} handleSave={handleSave} handleDelete={handleDelete} /> */}
         </div>
       </div>
       <ModalComponent />
-    </div >
+    </div>
   )
 }
