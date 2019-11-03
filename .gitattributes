@@ -1,3 +1,5 @@
-/client/src/css/** linguist-vendored=true
-/client/src/public-page/css/** linguist-vendored=true
-/client/src/public-page/font/** linguist-vendored=true
+client/src/css/*.css linguist-vendored
+client/src/css/** linguist-vendored
+client/src/public-page/css/* linguist-vendored
+client/src/public-page/css/** linguist-vendored
+client/src/public-page/fonts/** linguist-vendored
