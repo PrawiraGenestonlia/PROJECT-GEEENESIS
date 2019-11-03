@@ -27,5 +27,6 @@
 |02/11/2019|0.5         |login remember me |
 |03/11/2019|4           |layout change to responsive |
 |04/11/2019|2           |added icon and splashscreen |
+|04/11/2019|1           |added reload bar |
 |||
-|**TOTAL** |**52.5**    |*Temporary total productive hours spent*|
+|**TOTAL** |**53.5**    |*Temporary total productive hours spent*|
