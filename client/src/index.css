@@ -16,6 +16,52 @@ code {
     monospace;
 }
 
-.fc-center{
+.fc-center {
   font-size: .7em;
+}
+
+#reloadbar {
+  visibility: hidden;
+  width: 80%;
+  /* margin-left: -125px; */
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  margin-left: 10%;
+  margin-right: 10%;
+  bottom: 5%;
+}
+
+#reloadbar.show {
+  visibility: visible;
+  -webkit-animation: reloadfadein 0.5s;
+  animation: reloadfadein 0.5s;
+}
+
+@-webkit-keyframes reloadfadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes reloadfadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }

@@ -9,10 +9,12 @@ import LoginPage from '../public-page/login';
 import RedirectPage from '../public-page/redirectPage';
 import AdminApp from '../admin-app';
 import StudentApp from '../student-pwa';
+import ForceReloadBar from '../components/forceReloadBar';
 
 export default () => {
   return (
     <BrowserRouter basename={SERVER_BASE_URL}>
+      <ForceReloadBar />
       <Switch>
         {/* REDIRECTING FOR AUTH */}
         <Route exact path="/" component={() => <Redirect to={LOGIN_URL} />} />
