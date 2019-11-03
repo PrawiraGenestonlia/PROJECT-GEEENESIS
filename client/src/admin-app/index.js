@@ -1,4 +1,4 @@
-import React, { useState,  } from 'react';
+import React, { useState, } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 // import { CSSTransition } from 'react-transition-group';
 import PrivateRoute from '../router/privateRoute';
@@ -34,6 +34,8 @@ export default () => {
     setIsNavHidden(!isNavHidden);
   }
 
+
+  //action reducer
   const reducer = (state, action) => {
     switch (action.type) {
       case 'clickNav':
