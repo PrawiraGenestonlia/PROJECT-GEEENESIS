@@ -10,6 +10,7 @@ export default (props) => {
   useEffect(() => {
     const loadData = () => {
       GetClubInfo(props.match.params.club).then(async res => {
+        document.title = res.data[0].title;
         const loadedContentRaw = res.data[0].rawEditor.length > 10 ? convertFromRaw(JSON.parse(res.data[0].rawEditor)) : '';
         if (loadedContentRaw) setContentState(EditorState.createWithContent(loadedContentRaw));
       }).catch(async err => {

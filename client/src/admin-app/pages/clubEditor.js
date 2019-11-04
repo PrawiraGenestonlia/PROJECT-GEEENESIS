@@ -6,6 +6,8 @@ import { ADMIN_INFORMATION_URL } from '../../constants';
 import Swal from 'sweetalert2';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
+
+
 export default (props) => {
   const [clubInfo, setClubInfo] = useState({});
   const [contentState, setContentState] = useState(EditorState.createEmpty());
