@@ -7,7 +7,7 @@ import InformationPage from './information';
 import CalendarOfEventsPage from './calendarOfEvents';
 import ProfilePage from './profile';
 import ClubInformationPage from './clubInformation';
-import EditorPage from './editor';
+import EditorPage from './clubEditor';
 
 
 export {

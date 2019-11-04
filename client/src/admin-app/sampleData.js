@@ -67,6 +67,7 @@ export const sampleDataEvents = [
     _id: '1234',
     // id: '1234',
     title: 'Test Event 1',
+    uniqueName: '',
     description: 'This is event 1',
     location: 'Singapore, SG',
     start: '2019-11-01T20:15:00-04:00',
@@ -79,6 +80,7 @@ export const sampleDataEvents = [
     signUpLink: 'https://www.ntu.edu.sg/Pages/home.aspx',
     imageUrl: '',
     venue: '',
+    createdBy: '',
     tags: ['ntueee', 'technical'],
   },
   {

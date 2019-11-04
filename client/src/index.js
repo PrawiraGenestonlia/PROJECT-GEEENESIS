@@ -3,32 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './router';
 import * as serviceWorker from './serviceWorker';
+import SessionControl from './components/sessionControl';
 
-// ReactDOM.render(<App />, document.getElementById('root'));
+SessionControl();
 
 const loader = document.querySelector('.loader');
 const showLoader = () => loader.classList.remove('loader--hide');
 const hideLoader = () => loader.classList.add('loader--hide');
-
 const ReactApp = ({ hideLoader }) => {
   useEffect(() => hideLoader(), [hideLoader]);
   return <App />;
 }
-
-const SessionControl = () => {
-  if (sessionStorage.getItem('active')) {
-    return true;
-  }
-  else {
-    if (localStorage.getItem('remember') === "false") {
-      localStorage.removeItem('auth-token');
-    }
-    return true;
-  }
-}
-
-SessionControl();
-
 
 ReactDOM.render(
   <ReactApp
