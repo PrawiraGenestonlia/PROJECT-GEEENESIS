@@ -29,5 +29,6 @@
 |04/11/2019|2           |added icon and splashscreen |
 |04/11/2019|1           |added reload bar |
 |04/11/2019|1           |service worker to fetch update |
+|04/11/2019|1           |bug fixes |
 |||
-|**TOTAL** |**54.5**    |*Temporary total productive hours spent*|
+|**TOTAL** |**55.5**    |*Temporary total productive hours spent*|
