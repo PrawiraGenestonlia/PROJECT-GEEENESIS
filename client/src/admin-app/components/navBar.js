@@ -104,7 +104,7 @@ export default () => {
       <div className="flex flex-col items-center justify-center">
         {GetToken() ?
           <React.Fragment>
-            <ChangePassword buttonClassName="bg-transparent border-transparent hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border rounded shadow"/>
+            <ChangePassword buttonClassName="bg-transparent border-transparent hover:bg-gray-100 text-gray-800 font-semibold p-1 border rounded shadow"/>
             <button className="btn bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-10"
               onClick={() => { handleLogOut() }}>
               Log Out
