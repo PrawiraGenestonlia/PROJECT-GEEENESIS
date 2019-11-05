@@ -15,6 +15,9 @@ export const LOGIN_URL = "/login/";
 export const REDIRECT_URL = "/load-role/";
 export const CLUB_STANDALONE_URL = "/club/";
 
+//USER UTILITY ROUTE
+export const USER_CHANGEPASSWORD_URL = "/user/changepasswordwithoutemail";
+
 //ADMIN APP ROUTE
 export const ADMIN_EXTENDED_URL = "/admin/";
 export const ADMIN_LOGIN_URL = "/admin/login/";

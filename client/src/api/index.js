@@ -6,6 +6,7 @@ import AdminAddSingleUser from './adminAddSingleUser';
 import GetRole from './getRole';
 import GetClubInfo from './getClubInfo';
 import EditClubInfo from './editClubInfo';
+import UserChangePassword from './userChangePassword';
 
 export {
   LoginToServer,
@@ -15,5 +16,6 @@ export {
   AdminAddSingleUser,
   GetRole,
   GetClubInfo,
-  EditClubInfo
+  EditClubInfo,
+  UserChangePassword
 }

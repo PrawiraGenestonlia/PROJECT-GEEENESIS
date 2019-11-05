@@ -31,5 +31,6 @@
 |04/11/2019|1           |service worker to fetch update |
 |04/11/2019|1           |bug fixes |
 |05/11/2019|1.5         |event backend and change password backend |
+|05/11/2019|1           |change password front end |
 |||
-|**TOTAL** |**57.0**    |*Temporary total productive hours spent*|
+|**TOTAL** |**58.0**    |*Temporary total productive hours spent*|

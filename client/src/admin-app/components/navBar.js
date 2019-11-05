@@ -1,4 +1,4 @@
-import React, { useState, useEffect,  } from 'react';
+import React, { useState, useEffect, } from 'react';
 import { Link } from 'react-router-dom';
 import './navBar.css';
 import GetToken from './getToken';
@@ -12,7 +12,9 @@ import {
   ADMIN_PROFILE_URL
 } from '../../constants';
 import { GetRole } from '../../api';
+import ChangePassword from '../../components/changePassword';
 import { useStateValue } from '../../context';
+
 
 function handleLogOut() {
   localStorage.removeItem('auth-token');
@@ -53,9 +55,9 @@ export default () => {
         <React.Fragment>
           <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
           <NavItem label="User Management" to={ADMIN_USERMANAGEMENT_URL} />
-          <NavItem label="Event Management" to={ADMIN_EVENTMANAGEMENT_URL} />
           <NavItem label="Mentoring" to={ADMIN_MENTORING_URL} />
-          <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
+          <NavItem label="Club Information" to={ADMIN_INFORMATION_URL} />
+          <NavItem label="Event Management" to={ADMIN_EVENTMANAGEMENT_URL} />
           <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
           <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
         </React.Fragment>
@@ -65,7 +67,8 @@ export default () => {
       return (
         <React.Fragment>
           <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
-          <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
+          <NavItem label="Club Information" to={ADMIN_INFORMATION_URL} />
+          <NavItem label="Event Management" to={ADMIN_EVENTMANAGEMENT_URL} />
           <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
         </React.Fragment>
       )
@@ -74,7 +77,7 @@ export default () => {
       return (
         <React.Fragment>
           <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
-          <NavItem label="Information" to={ADMIN_INFORMATION_URL} />
+          <NavItem label="Club Information" to={ADMIN_INFORMATION_URL} />
           <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
           <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
         </React.Fragment>
@@ -98,12 +101,16 @@ export default () => {
       <div className="">
         <NavList />
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center">
         {GetToken() ?
-          <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-10"
-            onClick={() => { handleLogOut() }}>
-            Log Out
-        </button> : null}
+          <React.Fragment>
+            <ChangePassword buttonClassName="bg-transparent border-transparent hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border rounded shadow"/>
+            <button className="btn bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-10"
+              onClick={() => { handleLogOut() }}>
+              Log Out
+            </button>
+          </React.Fragment>
+          : null}
       </div>
 
     </nav>
