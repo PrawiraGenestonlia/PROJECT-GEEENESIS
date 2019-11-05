@@ -1,14 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AddToCalendar from '../components/addToCalendar';
 import CalendarOfEvents from '../components/calendarOfEvents';
-import { sampleDataEvents } from '../sampleData';
+// import { sampleDataEvents } from '../sampleData';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { GetEvent } from '../../api';
 
 const MySwal = withReactContent(Swal);
 
-export default () => {
-  const [events,] = useState(sampleDataEvents);
+export default (props) => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const loadData = () => {
+      GetEvent({}).then(async res => {
+        setEvents([...res.data]);
+      }).catch(async err => {
+        console.log(err);
+        let message = err.data ? err.data : JSON.stringify(err);
+        await Swal.fire('Failed to fetch information!', message, 'error');
+      });
+    };
+    loadData();
+  }, [props]);
+
+
 
   const handleEventClick = async (e) => {
     const clickedEvent = {

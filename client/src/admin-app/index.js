@@ -12,6 +12,7 @@ import {
   CLUB_INFO_URL,
   EDITOR_URL,
   CALENDAR_OF_EVENTS,
+  EVENT_EDITOR_URL,
 } from '../constants';
 import {
   DashboardPage,
@@ -22,7 +23,8 @@ import {
   CalendarOfEventsPage,
   ProfilePage,
   ClubInformationPage,
-  EditorPage
+  EditorPage,
+  EventEditorPage
 } from './pages';
 import NavBar from './components/navBar';
 import { StateProvider } from '../context';
@@ -100,6 +102,7 @@ const Pages = () => (
     <PrivateRoute exact path={ADMIN_PROFILE_URL} component={ProfilePage} />
     <PrivateRoute exact path={CALENDAR_OF_EVENTS} component={CalendarOfEventsPage} />
     <PrivateRoute exact path={EDITOR_URL + ":subject/"} component={EditorPage} />
+    <PrivateRoute exact path={EVENT_EDITOR_URL + ":subject/"} component={EventEditorPage} />
     <Route exact path={CLUB_INFO_URL + ":club/"} component={ClubInformationPage} />
     <PrivateRoute path component={() => <Redirect to={ADMIN_DASHBOARD_URL} />} />
   </Switch>

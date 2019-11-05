@@ -58,71 +58,73 @@ export default (props) => {
     });
   }
 
-
-  return (
-    <div>
-      <div className="text-2xl">
-        <div className="flex h-16 items-center ">
-          <span className="text-blue-800">Editor ({clubInfo.title})</span>
-        </div>
-      </div>
-      <div className="bg-divider" style={{ height: '0.1rem' }} />
-      <div className="flex flex-col mt-4">
-        <div>
-          <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
-            <div className="w-32">Title</div>
-            <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              type="text" rows="1" placeholder="title" value={clubInfo.title} onChange={(v) => {
-                setClubInfo({ ...clubInfo, title: v.target.value })
-              }} />
-          </div>
-          <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
-            <div className="w-32">Type</div>
-            <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              type="text" rows="1" placeholder="type" value={clubInfo.server_unique_name} readOnly />
-          </div>
-          <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
-            <div className="w-32">Image url</div>
-            <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              type="text" rows="1" placeholder="image url" value={clubInfo.bannerImgLink} onChange={(e) => {
-                setClubInfo({ ...clubInfo, bannerImgLink: e.target.value })
-              }} />
-          </div>
-          <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
-            <div className="w-32">Contact link</div>
-            <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              type="text" rows="1" placeholder="image url" value={clubInfo.contactLink} onChange={(e) => {
-                setClubInfo({ ...clubInfo, contactLink: e.target.value })
-              }} />
-          </div>
-          <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
-            <div className="w-32">Summary</div>
-            <textarea className="appearance-none bg-transparent h-48 border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              type="text" placeholder="summary" value={clubInfo.summary}
-              style={{ whiteSpace: 'normal', textAlign: 'justify', display: 'block', margin: 'auto' }}
-              onChange={(v) => {
-                setClubInfo({ ...clubInfo, summary: v.target.value })
-              }} />
+  if (clubInfo)
+    return (
+      <div>
+        <div className="text-2xl">
+          <div className="flex h-16 items-center ">
+            <span className="text-blue-800">Editor ({clubInfo.title})</span>
           </div>
         </div>
-        <div className="border-2 border-gray-400 p-3">
-          <Editor
-            wrapperClassName=""
-            editorClassName=""
-            editorStyle={{ height: '75vh' }}
-            toolbarClassName=""
-            editorState={contentState}
-            onEditorStateChange={(v) => { handleEditorChange(v) }}
-          />
-        </div>
-        <div className=" flex text-xl justify-center my-5">
-          <button type="button" onClick={() => { handleSave() }}
-            className="mr-3 bg-blue-600 hover:bg-blue-800 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
-            Save all the changes
+        <div className="bg-divider" style={{ height: '0.1rem' }} />
+        <div className="flex flex-col mt-4">
+          <div>
+            <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
+              <div className="w-32">Title</div>
+              <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="text" rows="1" placeholder="title" value={clubInfo.title} onChange={(v) => {
+                  setClubInfo({ ...clubInfo, title: v.target.value })
+                }} />
+            </div>
+            <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
+              <div className="w-32">Type</div>
+              <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="text" rows="1" placeholder="type" value={clubInfo.server_unique_name} readOnly />
+            </div>
+            <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
+              <div className="w-32">Image url</div>
+              <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="text" rows="1" placeholder="image url" value={clubInfo.bannerImgLink} onChange={(e) => {
+                  setClubInfo({ ...clubInfo, bannerImgLink: e.target.value })
+                }} />
+            </div>
+            <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
+              <div className="w-32">Contact link</div>
+              <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="text" rows="1" placeholder="image url" value={clubInfo.contactLink} onChange={(e) => {
+                  setClubInfo({ ...clubInfo, contactLink: e.target.value })
+                }} />
+            </div>
+            <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
+              <div className="w-32">Summary</div>
+              <textarea className="appearance-none bg-transparent h-48 border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="text" placeholder="summary" value={clubInfo.summary}
+                style={{ whiteSpace: 'normal', textAlign: 'justify', display: 'block', margin: 'auto' }}
+                onChange={(v) => {
+                  setClubInfo({ ...clubInfo, summary: v.target.value })
+                }} />
+            </div>
+          </div>
+          <div className="border-2 border-gray-400 p-3">
+            <Editor
+              wrapperClassName=""
+              editorClassName=""
+              editorStyle={{ height: '75vh' }}
+              toolbarClassName=""
+              editorState={contentState}
+              onEditorStateChange={(v) => { handleEditorChange(v) }}
+            />
+          </div>
+          <div className=" flex text-xl justify-center my-5">
+            <button type="button" onClick={() => { handleSave() }}
+              className="mr-3 bg-blue-600 hover:bg-blue-800 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">
+              Save all the changes
           </button>
+          </div>
         </div>
-      </div>
 
-    </div>
-  )
+      </div>
+    )
+
+  else return null;
 }

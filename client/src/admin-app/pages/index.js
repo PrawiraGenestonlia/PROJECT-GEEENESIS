@@ -8,6 +8,7 @@ import CalendarOfEventsPage from './calendarOfEvents';
 import ProfilePage from './profile';
 import ClubInformationPage from './clubInformation';
 import EditorPage from './clubEditor';
+import EventEditorPage from './eventEditor';
 
 
 export {
@@ -20,7 +21,8 @@ export {
   CalendarOfEventsPage,
   ProfilePage,
   ClubInformationPage,
-  EditorPage
+  EditorPage,
+  EventEditorPage
 }
 
 export { default as ClubStandalonePage } from './clubStandalonePage';
