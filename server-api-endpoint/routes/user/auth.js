@@ -157,6 +157,36 @@ router.post('/changepassword', verifyToken, async (req, res) => {
   res.header('auth-token', token).send(token);
 })
 
+router.post('/changepasswordwithoutemail', verifyToken, async (req, res) => {
+  //data validation
+  // const { error } = changePasswordValidation(req.body);
+  // if (error) return res.status(400).send(error.details[0].message);
+
+  //check if user exist
+  const currentUser = await user.findOne({ email: req.user.email });
+  if (!currentUser) return res.status(400).send('Account does not exist. Please sign up first!');
+
+  //check if password verified
+  if (req.body.newPassword !== req.body.newPasswordValidation) return res.status(400).send('New password does not match.');
+
+  //check password
+  const validPass = await bcrypt.compare(req.body.currentPassword, currentUser.password);
+  if (!validPass) return res.status(400).send('Wrong password!');
+
+  //hash passwords
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.newPassword, salt);
+
+  //update user
+  const updatedUser = await user.findOneAndUpdate({ email: req.user.email }, { password: hashedPassword });
+
+  //jwt signing
+  const token = jwt.sign({ _id: updatedUser._id }, process.env.JWT_TOKEN);
+
+  res.header('auth-token', token).send(token);
+})
+
+
 //todo: wira
 router.post('/forgetpassword', async (req, res) => {
   //data validation
