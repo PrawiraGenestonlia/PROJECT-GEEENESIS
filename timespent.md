@@ -30,6 +30,6 @@
 |04/11/2019|1           |added reload bar |
 |04/11/2019|1           |service worker to fetch update |
 |04/11/2019|1           |bug fixes |
-|05/11/2019|1           |event backend and change password backend |
+|05/11/2019|1.5         |event backend and change password backend |
 |||
-|**TOTAL** |**55.5**    |*Temporary total productive hours spent*|
+|**TOTAL** |**57.0**    |*Temporary total productive hours spent*|

@@ -7,9 +7,33 @@ router.get('/', verifyToken, async (req, res) => {
 });
 
 router.get('/get-events', async (req, res) => {
+  //params uniqueName
   if (req.query.event) {
     try {
       let eventInfo = await event.find({ uniqueName: req.query.event });
+      if (eventInfo) return res.status(200).send(eventInfo);
+      else return res.status(400).send("No results found");
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  }
+  //params year
+  else if (req.query.year) {
+    try {
+      let eventInfo = await event.find({
+        start: { $gte: new Date(req.query.year) },
+        end: { $lte: new Date(String(Number(req.query.year) + 1)) }
+      });
+      if (eventInfo) return res.status(200).send(eventInfo);
+      else return res.status(400).send("No results found");
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  }
+  //params createdBy
+  else if (req.query.createdBy) {
+    try {
+      let eventInfo = await event.find({ createdBy: req.query.createdBy });
       if (eventInfo) return res.status(200).send(eventInfo);
       else return res.status(400).send("No results found");
     } catch (err) {
