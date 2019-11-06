@@ -5,7 +5,7 @@ import CalendarOfEvents from '../components/calendarOfEvents';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { GetEvent } from '../../api';
-import { EVENT_STANDALONE_URL } from '../../constants';
+import { SERVER_BASE_URL_SHORT,EVENT_STANDALONE_URL } from '../../constants';
 
 const MySwal = withReactContent(Swal);
 
@@ -56,7 +56,7 @@ export default (props) => {
       <p>{props.event.description}</p>
       <div className="flex flex-col mt-2">
         <a className="mt-3 text-indigo-600 visited:text-indigo-600 hover:text-indigo-900 focus:text-indigo-900"
-          href={EVENT_STANDALONE_URL + props.event.uniqueName} target="_blank" rel="noopener noreferrer">
+          href={SERVER_BASE_URL_SHORT+EVENT_STANDALONE_URL + props.event.uniqueName} target="_blank" rel="noopener noreferrer">
           <span>Click here to visit event page<span className="text-ls ml-1">&#x279c;</span></span>
         </a>
       </div>
@@ -76,7 +76,6 @@ export default (props) => {
         <div>
           <CalendarOfEvents events={events} eventClick={handleEventClick} eventMouseEnter={''} />
         </div>
-
       </div>
     </div>
   )

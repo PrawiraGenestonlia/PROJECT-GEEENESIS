@@ -151,7 +151,7 @@ export default (props) => {
             <DeleteEventComponent className="py-2 md:py-0 md:px-2 justify-center" />
           </Toolbar>
         </div>
-        <div>content</div>
+        <div>Show all events</div>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
-import { CLUB_STANDALONE_URL } from '../../constants';
+import { SERVER_BASE_URL_SHORT,CLUB_STANDALONE_URL } from '../../constants';
 
 const ClubCard = (props) => (
   <React.Fragment>
@@ -16,7 +16,7 @@ const ClubCard = (props) => (
         <div className="w-full md:w-3/5 h-full flex items-center bg-gray-100 rounded-lg">
           <div className="p-12 md:pr-24 md:pl-16 md:py-12">
             <p className="text-gray-600"><span className="text-gray-900">{props.title}</span> {props.summary}</p>
-            <a className="flex items-baseline mt-3 text-indigo-600 hover:text-indigo-900 focus:text-indigo-900" href={`${CLUB_STANDALONE_URL}${props.server_unique_name}/`} target="_blank" rel="noopener noreferrer" >
+            <a className="flex items-baseline mt-3 text-indigo-600 hover:text-indigo-900 focus:text-indigo-900" href={`${SERVER_BASE_URL_SHORT}${CLUB_STANDALONE_URL}${props.server_unique_name}/`} target="_blank" rel="noopener noreferrer" >
               <span>Learn more about {props.title}</span>
               <span className="text-xs ml-1">&#x279c;</span>
             </a>
@@ -32,7 +32,7 @@ const ClubCard = (props) => (
         </div>
       </div>
     </div>
-  </React.Fragment >
+  </React.Fragment>
 )
 
 export default ClubCard;

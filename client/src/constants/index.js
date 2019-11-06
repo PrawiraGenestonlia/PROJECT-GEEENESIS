@@ -9,6 +9,7 @@
 
 //SERVER EXTENDED URL
 export const SERVER_BASE_URL = "/geeenesis/";
+export const SERVER_BASE_URL_SHORT = "/geeenesis";
 
 //PUBLIC ROUTE
 export const LOGIN_URL = "/login/";
