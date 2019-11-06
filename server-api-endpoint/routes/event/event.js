@@ -7,10 +7,12 @@ router.get('/', verifyToken, async (req, res) => {
 });
 
 router.get('/get-events', async (req, res) => {
+  let today = new Date();
+  today.setHours(0, 0, 0, 0);
   //params uniqueName
   if (req.query.event) {
     try {
-      let eventInfo = await event.find({ uniqueName: req.query.event });
+      let eventInfo = await event.find({ uniqueName: req.query.event, start: { $gte: today } }).sort({ start: 'ascending' });
       if (eventInfo) return res.status(200).send(eventInfo);
       else return res.status(400).send("No results found");
     } catch (err) {
@@ -23,7 +25,7 @@ router.get('/get-events', async (req, res) => {
       let eventInfo = await event.find({
         start: { $gte: new Date(req.query.year) },
         end: { $lte: new Date(String(Number(req.query.year) + 1)) }
-      });
+      }).sort({ start: 'ascending' });
       if (eventInfo) return res.status(200).send(eventInfo);
       else return res.status(400).send("No results found");
     } catch (err) {
@@ -33,7 +35,7 @@ router.get('/get-events', async (req, res) => {
   //params createdBy
   else if (req.query.createdBy) {
     try {
-      let eventInfo = await event.find({ createdBy: req.query.createdBy });
+      let eventInfo = await event.find({ createdBy: req.query.createdBy, start: { $gte: today } }).sort({ start: 'ascending' });
       if (eventInfo) return res.status(200).send(eventInfo);
       else return res.status(400).send("No results found");
     } catch (err) {
@@ -42,12 +44,21 @@ router.get('/get-events', async (req, res) => {
   }
   else {
     try {
-      let eventInfo = await event.find({});
+      let eventInfo = await event.find({ start: { $gte: today } }).sort({ start: 'ascending' });
       res.status(200).send(eventInfo);
     } catch (err) {
       res.status(400).send(err);
     }
   }
+});
+
+router.get('/get-all-events', async (req, res) => {
+    try {
+      let eventInfo = await event.find({}).sort({ start: 'ascending' });
+      res.status(200).send(eventInfo);
+    } catch (err) {
+      res.status(400).send(err);
+    }
 });
 
 router.post('/create-event', verifyToken, async (req, res) => {
