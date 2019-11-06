@@ -5,6 +5,7 @@ import CalendarOfEvents from '../components/calendarOfEvents';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { GetEvent } from '../../api';
+import { EVENT_STANDALONE_URL } from '../../constants';
 
 const MySwal = withReactContent(Swal);
 
@@ -31,7 +32,6 @@ export default (props) => {
       title: e.event._def.title,
       ...e.event._def.extendedProps
     }
-    console.log(clickedEvent);
     const confirmation = await MySwal.fire({
       title: `${e.event._def.title}`,
       width: 'auto',
@@ -56,7 +56,7 @@ export default (props) => {
       <p>{props.event.description}</p>
       <div className="flex flex-col mt-2">
         <a className="mt-3 text-indigo-600 visited:text-indigo-600 hover:text-indigo-900 focus:text-indigo-900"
-          href={props.contactLink} target="_blank" rel="noopener noreferrer">
+          href={EVENT_STANDALONE_URL + props.event.uniqueName} target="_blank" rel="noopener noreferrer">
           <span>Click here to visit event page<span className="text-ls ml-1">&#x279c;</span></span>
         </a>
       </div>

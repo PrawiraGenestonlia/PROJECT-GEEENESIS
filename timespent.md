@@ -32,5 +32,6 @@
 |04/11/2019|1           |bug fixes |
 |05/11/2019|1.5         |event backend and change password backend |
 |05/11/2019|3           |create event front-end |
+|06/11/2019|2           |edit event front-end |
 |||
-|**TOTAL** |**61.0**    |*Temporary total productive hours spent*|
+|**TOTAL** |**63.0**    |*Temporary total productive hours spent*|

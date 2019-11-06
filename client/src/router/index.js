@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { SERVER_BASE_URL, LOGIN_URL, REDIRECT_URL, ADMIN_EXTENDED_URL, STUDENT_EXTENDED_URL } from '../constants';
-import { CLUB_STANDALONE_URL } from '../constants';
-import { ClubStandalonePage } from '../admin-app/pages';
+import { CLUB_STANDALONE_URL, EVENT_STANDALONE_URL } from '../constants';
+import { ClubStandalonePage, EventStandalonePage } from '../admin-app/pages';
 import PrivateRoute from './privateRoute';
 import PublicRoute from './publicRoute';
 import LoginPage from '../public-page/login';
@@ -22,6 +22,7 @@ export default () => {
         <PrivateRoute exact path={REDIRECT_URL} component={RedirectPage} />
         {/* SERVING STANDALONE PAGE */}
         <Route exact path={CLUB_STANDALONE_URL + ":club/"} component={ClubStandalonePage} />
+        <Route exact path={EVENT_STANDALONE_URL + ":event/"} component={EventStandalonePage} />
         {/* ADMIN */}
         <Route path={ADMIN_EXTENDED_URL} component={AdminApp} />
         {/* STUDENT */}

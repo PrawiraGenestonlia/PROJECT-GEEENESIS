@@ -28,7 +28,7 @@ export default (props) => {
   }, [props]);
 
   const handleEditEventClick = async (e) => {
-    const confirmation = await MySwal.fire({
+    const { value: formValues } = await MySwal.fire({
       title: `Edit event`,
       width: 'auto',
       html: <ListOfEventsDropdownComponent />,
@@ -37,17 +37,32 @@ export default (props) => {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Edit',
-      cancelButtonText: 'Cancel'
+      cancelButtonText: 'Cancel',
+      focusConfirm: false,
+      preConfirm: () => {
+        return document.getElementById('selectedEventForEdit').value
+      }
     });
-    if (confirmation.value) {
+    if (formValues) {
       //
+      let url = EVENT_EDITOR_URL + formValues;
+      props.history.push(url);
     }
   }
 
   const ListOfEventsDropdownComponent = () => (
     <div>
-      {console.log(listOfMyEvents)}
-      {/* //TODO */}
+      {
+        listOfMyEvents.length > 1 ?
+          <div>
+            <select id="selectedEventForEdit">
+              <option key={-1} value=''>Select an event</option>
+              {listOfMyEvents.map((event, index) => {
+                return <option key={index} value={event.uniqueName}>{event.title}</option>
+              })}
+            </select>
+          </div> : null
+      }
     </div>
   )
 
@@ -68,12 +83,12 @@ export default (props) => {
 
   const EditEventComponent = (props) => {
     return (
-      <div className={`flex bg-grey-lighter ${props.class} ${props.className}`} onClick={() => { handleEditEventClick() }}>
-        <div className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-full shadow-lg tracking-wide border border-blue cursor-pointer hover:bg-blue hover:text-white">
+      <div className={`flex bg-grey-lighter cursor-pointer ${props.class} ${props.className}`} onClick={() => { handleEditEventClick() }}>
+        <div className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-full shadow-lg  border border-blue">
           <svg className="w-8 h-8 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 58">
             <EventSVG />
           </svg>
-          <font className="ml-2 text-base leading-normal text-blue-500">Edit event</font>
+          <div className="ml-2 text-blue-500">Edit event</div>
         </div>
       </div>
     )

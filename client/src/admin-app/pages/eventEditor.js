@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import { GetEmail, CreateEvent, GetEvent } from '../../api';
+import { GetEmail, CreateEvent, GetEvent, EditEvent } from '../../api';
 import { ADMIN_EVENTMANAGEMENT_URL } from '../../constants';
 import Swal from 'sweetalert2';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -41,7 +41,13 @@ export default (props) => {
     }
     const loadData = () => {
       GetEvent({ eventUniqueName: props.match.params.subject }).then(async res => {
-        setEventInfo(res.data[0]);
+        let pickedDate = {
+          start: new Date(res.data[0].start),
+          end: new Date(res.data[0].end),
+          startTime: new Date(res.data[0].start),
+          endTime: new Date(res.data[0].end),
+        }
+        setEventInfo({ ...res.data[0], ...pickedDate });
         const loadedContentRaw = res.data[0].rawEditor.length > 10 ? convertFromRaw(JSON.parse(res.data[0].rawEditor)) : '';
         if (loadedContentRaw) setContentState(EditorState.createWithContent(loadedContentRaw));
       }).catch(async err => {
@@ -78,24 +84,25 @@ export default (props) => {
     //save data
     Swal.fire({ title: 'Saving', allowEscapeKey: false, allowOutsideClick: false, onOpen: () => { Swal.showLoading() } });
     if (props.match.params.subject !== "new") {
-      //edit url
-      // EditeventInfo(clubNewInfo).then(async (res) => {
-      //   if (res.status === 200) await Swal.fire('Saved!', res.data, 'success');
-      // }).catch(async (err) => {
-      //   let message = err.data ? err.data : JSON.stringify(err);
-      //   await Swal.fire('Not saved!', message, 'error');
-      // }).finally(() => {
-      //   props.history.push(ADMIN_INFORMATION_URL);
-      // });
-    }
-    else {
-      CreateEvent(eventObj).then(async (res) => {
-        if (res.status === 200) await Swal.fire('Created!', res.data, 'success');
+      EditEvent(eventObj).then(async (res) => {
+        if (res.status === 200) await Swal.fire('Saved!', res.data, 'success');
+        props.history.push(ADMIN_EVENTMANAGEMENT_URL);
       }).catch(async (err) => {
         let message = err.data ? err.data : JSON.stringify(err);
         await Swal.fire('Not saved!', message, 'error');
       }).finally(() => {
+        // props.history.push(ADMIN_EVENTMANAGEMENT_URL);
+      });
+    }
+    else {
+      CreateEvent(eventObj).then(async (res) => {
+        if (res.status === 200) await Swal.fire('Created!', res.data, 'success');
         props.history.push(ADMIN_EVENTMANAGEMENT_URL);
+      }).catch(async (err) => {
+        let message = err.data ? err.data : JSON.stringify(err);
+        await Swal.fire('Not created!', message, 'error');
+      }).finally(() => {
+        // props.history.push(ADMIN_EVENTMANAGEMENT_URL);
       });
     }
 
@@ -108,7 +115,7 @@ export default (props) => {
       end: converted[1],
       startTime: converted[0],
       endTime: converted[1],
-      uniqueName: eventInfo.title.replace(' ', '') + "-" + converted[0].getFullYear()
+      uniqueName: props.match.params.subject !== "new" ? props.match.params.subject : eventInfo.title.replace(/ /g, '').toLowerCase() + "-" + converted[0].getFullYear()
     }
     setEventInfo({ ...eventInfo, ...pickedDate });
   }
@@ -128,7 +135,7 @@ export default (props) => {
               <div className="w-40">Title</div>
               <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 type="text" rows="1" placeholder="title" value={eventInfo.title} onChange={(v) => {
-                  setEventInfo({ ...eventInfo, title: v.target.value, uniqueName: v.target.value.replace(' ', '') + '-' + String(eventInfo.start.getFullYear()) })
+                  setEventInfo({ ...eventInfo, title: v.target.value, uniqueName: props.match.params.subject !== "new" ? props.match.params.subject : v.target.value.replace(/ /g, '').toLowerCase() + '-' + String(eventInfo.start.getFullYear()) })
                 }} />
             </div>
             <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">

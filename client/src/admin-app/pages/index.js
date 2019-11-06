@@ -26,3 +26,4 @@ export {
 }
 
 export { default as ClubStandalonePage } from './clubStandalonePage';
+export { default as EventStandalonePage } from './eventStandalonePage';

@@ -10,6 +10,7 @@ import EditClubInfo from './editClubInfo';
 import UserChangePassword from './userChangePassword';
 import CreateEvent from './createEvent';
 import GetEvent from './getEvents';
+import EditEvent from './editEvent';
 
 export {
   LoginToServer,
@@ -23,5 +24,6 @@ export {
   EditClubInfo,
   UserChangePassword,
   CreateEvent,
-  GetEvent
+  GetEvent,
+  EditEvent
 }

@@ -14,6 +14,7 @@ export const SERVER_BASE_URL = "/geeenesis/";
 export const LOGIN_URL = "/login/";
 export const REDIRECT_URL = "/load-role/";
 export const CLUB_STANDALONE_URL = "/club/";
+export const EVENT_STANDALONE_URL = "/event/";
 
 //USER UTILITY ROUTE
 export const USER_CHANGEPASSWORD_URL = "/user/changepasswordwithoutemail";
