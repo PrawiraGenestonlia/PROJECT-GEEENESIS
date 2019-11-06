@@ -71,4 +71,4 @@ export const UPDATECLUB = "/club-admin/edit-club";      //U
 export const CREATEEVENT = "/event/create-event";       //C
 export const GETEVENT = "/event/get-events";            //R
 export const UPDATEEVENT = "/event/edit-event";         //U
-export const DELETEEVENT = "/delete-event";             //D
+export const DELETEEVENT = "/event/delete-event";       //D

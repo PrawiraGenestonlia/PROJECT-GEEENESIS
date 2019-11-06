@@ -6,7 +6,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { EventSVG, } from '../components/svgPath';
 import { EVENT_EDITOR_URL } from '../../constants';
 // import ListOfEventsTag from '../../components/listOfEventsTag';
-import { GetEmail, GetEvent } from '../../api';
+import { GetEmail, GetEvent, DeleteEvent } from '../../api';
 
 const MySwal = withReactContent(Swal);
 
@@ -50,6 +50,33 @@ export default (props) => {
     }
   }
 
+  const handleDeleteEventClick = async (e) => {
+    const { value: formValues } = await MySwal.fire({
+      title: `Delete event`,
+      width: 'auto',
+      html: <ListOfEventsDropdownComponent />,
+      type: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+      focusConfirm: false,
+      preConfirm: () => {
+        return document.getElementById('selectedEventForEdit').value
+      }
+    });
+    if (formValues) {
+      Swal.fire({ title: 'Deleting', allowEscapeKey: false, allowOutsideClick: false, onOpen: () => { Swal.showLoading() } });
+      DeleteEvent(formValues).then(async (res) => {
+        if (res.status === 200) await Swal.fire('Deleted!', 'Event has been deleted.', 'success');
+      }).catch(async (err) => {
+        let message = err.data;
+        await Swal.fire('Not deleted!', message, 'error');
+      });
+    }
+  }
+
   const ListOfEventsDropdownComponent = () => (
     <div>
       {
@@ -61,7 +88,8 @@ export default (props) => {
                 return <option key={index} value={event.uniqueName}>{event.title}</option>
               })}
             </select>
-          </div> : null
+          </div> :
+          <div>You have no events</div>
       }
     </div>
   )
@@ -94,6 +122,19 @@ export default (props) => {
     )
   }
 
+  const DeleteEventComponent = (props) => {
+    return (
+      <div className={`flex bg-grey-lighter cursor-pointer ${props.class} ${props.className}`} onClick={() => { handleDeleteEventClick() }}>
+        <div className="w-auto px-4 flex flex-row items-center justify-center px-auto py-2 bg-white text-blue rounded-full shadow-lg  border border-blue">
+          <svg className="w-8 h-8 text-blue-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 58">
+            <EventSVG />
+          </svg>
+          <div className="ml-2 text-blue-500">Delete event</div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div>
       <div className="text-2xl">
@@ -107,6 +148,7 @@ export default (props) => {
           <Toolbar>
             <AddSingleEventComponent className="py-2 md:py-0 md:px-2 justify-center" />
             <EditEventComponent className="py-2 md:py-0 md:px-2 justify-center" />
+            <DeleteEventComponent className="py-2 md:py-0 md:px-2 justify-center" />
           </Toolbar>
         </div>
         <div>content</div>

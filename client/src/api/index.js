@@ -11,6 +11,7 @@ import UserChangePassword from './userChangePassword';
 import CreateEvent from './createEvent';
 import GetEvent from './getEvents';
 import EditEvent from './editEvent';
+import DeleteEvent from './deleteEvent';
 
 export {
   LoginToServer,
@@ -25,5 +26,6 @@ export {
   UserChangePassword,
   CreateEvent,
   GetEvent,
-  EditEvent
+  EditEvent,
+  DeleteEvent
 }
