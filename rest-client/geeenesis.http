@@ -1,0 +1,24 @@
+@serverUrl = https://server.thexdream.net/geeenesis-api
+@jsonType = application/json
+
+### USER ###
+
+###
+# @name loginUser
+POST https://server.thexdream.net/geeenesis-api/user/login
+content-type: {{jsonType}}
+
+{
+	"email": "praw0001@e.ntu.edu.sg",
+	"password": "xxx"
+}
+
+@authToken = {{loginUser.response.headers.auth-token}}
+
+###
+
+# @name getRole
+GET https://server.thexdream.net/geeenesis-api/get-user/role
+auth-token: {{authToken}}
+
+###
