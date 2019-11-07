@@ -11,7 +11,7 @@
 |S   |User management                            |✅|  |🔵|🔵|||||||||||
 |CA  |User management                            |✅|  |🔵|🔵|||||||||||
 |CA  |Edit dynamic info on eee and clubs         |✅|  |🔵|🔵|||||||||||
-|CA  |Create events                              |⭕|  |🔵|🔵|||||||||||
+|CA  |Create events                              |✅|  |🔵|🔵|||||||||||
 |CM  |View mentee                                |⭕|  |  |🔵|||||||||||
 |CM  |Chat with mentee                           |⭕|  |  |🔵|||||||||||
 |CM  |Create calendar action                     |⭕|  |  |🔵|🔵|🔵|||||||||
