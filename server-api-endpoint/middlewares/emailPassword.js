@@ -13,7 +13,7 @@ async function emailPassword(user, password) {
       <p></p><p></p><p></p>
       <p>Welcome to NTU EEE!</p>
       <p>Geeenesis is a platform created by students for better integrate EEE/IEM students into University life. 
-      As part of mentoring system, you are required to download the application at https://comingsoon/. We have also created an account on your behalf.</p>
+      As part of mentoring system, you are required to download the application at https://server.thexdream.net/geeenesis. We have also created an account on your behalf.</p>
       <p>Your password is <strong>${password}</strong>. </p>
       <p>As this is a randomly generated password, please login and change your password immediately</p>
       <p></p>

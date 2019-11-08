@@ -152,7 +152,7 @@ router.post('/changepassword', verifyToken, async (req, res) => {
   const updatedUser = await user.findOneAndUpdate({ email: req.body.email }, { password: hashedPassword });
 
   //jwt signing
-  const token = jwt.sign({ _id: updatedUser._id }, process.env.JWT_TOKEN);
+  const token = jwt.sign({ _id: currentUser._id, email: currentUser.email, role: currentUser.role }, process.env.JWT_TOKEN);
 
   res.header('auth-token', token).send(token);
 })
@@ -181,7 +181,7 @@ router.post('/changepasswordwithoutemail', verifyToken, async (req, res) => {
   const updatedUser = await user.findOneAndUpdate({ email: req.user.email }, { password: hashedPassword });
 
   //jwt signing
-  const token = jwt.sign({ _id: updatedUser._id }, process.env.JWT_TOKEN);
+  const token = jwt.sign({ _id: currentUser._id, email: currentUser.email, role: currentUser.role }, process.env.JWT_TOKEN);
 
   res.header('auth-token', token).send(token);
 })

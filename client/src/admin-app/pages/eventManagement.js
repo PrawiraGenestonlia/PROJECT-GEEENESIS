@@ -80,7 +80,7 @@ export default (props) => {
   const ListOfEventsDropdownComponent = () => (
     <div>
       {
-        listOfMyEvents.length > 1 ?
+        listOfMyEvents.length > 0 ?
           <div>
             <select id="selectedEventForEdit">
               <option key={-1} value=''>Select an event</option>
