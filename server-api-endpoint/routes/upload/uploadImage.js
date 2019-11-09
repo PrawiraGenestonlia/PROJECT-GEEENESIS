@@ -20,14 +20,14 @@ router.get('/', verifyToken, async (req, res) => {
 })
 
 router.post('/image', verifyToken, (req, res) => {
+  if (!(req.user.role === "superadmin" || req.user.role === "clubadmin")) return res.status(401).send('Unauthorized Access!');
   try {
     upload(req, res, function (err) {
       if (err) {
         return res.status(400).json(err.message);
       }
-      console.log(req);
-      const imagePath = "https://server.thexdream.net/geeenesis-api/uploads/images/" + req.file.filename;
-      return res.status(200).json(imagePath);
+      var imageUrl = 'https' + '://' + req.get('host') + "/geeenesis-api/uploads/images/" + req.file.filename;
+      return res.status(200).json(imageUrl);
     });
 
   } catch (err) {
