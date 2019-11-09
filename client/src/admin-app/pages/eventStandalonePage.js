@@ -9,7 +9,7 @@ export default (props) => {
 
   useEffect(() => {
     const loadData = () => {
-      GetEvent(props.match.params.event).then(async res => {
+      GetEvent({eventUniqueName:props.match.params.event}).then(async res => {
         document.title = res.data[0].title;
         const loadedContentRaw = res.data[0].rawEditor.length > 10 ? convertFromRaw(JSON.parse(res.data[0].rawEditor)) : '';
         if (loadedContentRaw) setContentState(EditorState.createWithContent(loadedContentRaw));

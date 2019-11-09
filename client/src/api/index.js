@@ -12,6 +12,7 @@ import CreateEvent from './createEvent';
 import GetEvent from './getEvents';
 import EditEvent from './editEvent';
 import DeleteEvent from './deleteEvent';
+import UploadImage from './uploadImage';
 
 export {
   LoginToServer,
@@ -27,5 +28,6 @@ export {
   CreateEvent,
   GetEvent,
   EditEvent,
-  DeleteEvent
+  DeleteEvent,
+  UploadImage
 }

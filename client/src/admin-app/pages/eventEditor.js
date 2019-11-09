@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DateTimeRangePicker from '@wojtekmaj/react-datetimerange-picker';
 import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import { GetEmail, CreateEvent, GetEvent, EditEvent } from '../../api';
+import { GetEmail, CreateEvent, GetEvent, EditEvent, UploadImage } from '../../api';
 import { ADMIN_EVENTMANAGEMENT_URL } from '../../constants';
 import Swal from 'sweetalert2';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -120,6 +120,19 @@ export default (props) => {
     setEventInfo({ ...eventInfo, ...pickedDate });
   }
 
+  const handleChooseImage = (file) => {
+    Swal.fire({ title: 'Uploading', allowEscapeKey: false, allowOutsideClick: false, onOpen: () => { Swal.showLoading() } });
+    UploadImage(file).then(async (res) => {
+      if (res.status === 200) {
+        setEventInfo({ ...eventInfo, imageUrl: res.data });
+        await Swal.fire('Uploaded!', 'Image has been uploaded.', 'success');
+      }
+    }).catch(async (err) => {
+      let message = err.data;
+      await Swal.fire('Not uploaded!', message, 'error');
+    });
+  }
+
   const formatDate = (date) => {
     var d = new Date(date),
       month = '' + (d.getMonth() + 1),
@@ -167,11 +180,18 @@ export default (props) => {
                 }} />
             </div>
             <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
-              <div className="w-40">Image url</div>
-              <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                type="text" rows="1" placeholder="image url" value={eventInfo.imageUrl} onChange={(e) => {
-                  setEventInfo({ ...eventInfo, imageUrl: e.target.value })
-                }} />
+              <div className="w-40">Image</div>
+              <label htmlFor="image-file" className="ml-4 w-32 bg-blue text-gray-800 rounded border-2 border-grey-900 hover:border-blue-600 hover:bg-blue-500 hover:text-white shadow-lg py-1 px-4 inline-flex items-center">Select file
+              <input className="hidden"
+                  id="image-file" type="file" accept="image/*" placeholder="image" value={''} onChange={(e) => {
+                    if(e.target.files) {
+                      const file = e.target.files[0];
+                      if (file.size < 1024*512) handleChooseImage(file);
+                      else Swal.fire('Not uploaded!', "File size must be less than 500 KB. You may compress your image at https://tinyjpg.com.", 'error');
+                      }
+                  }} /></label>
+              <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-5 leading-tight focus:outline-none"
+                type="text" rows="1" placeholder="image url" value={eventInfo.imageUrl} readOnly />
             </div>
             <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
               <div className="w-40">Sign up link</div>

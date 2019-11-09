@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { convertFromRaw, EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import { GetClubInfo, EditClubInfo } from '../../api';
+import { GetClubInfo, EditClubInfo, UploadImage } from '../../api';
 import { ADMIN_INFORMATION_URL } from '../../constants';
 import Swal from 'sweetalert2';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -59,6 +59,19 @@ export default (props) => {
     });
   }
 
+  const handleChooseImage = (file) => {
+    Swal.fire({ title: 'Uploading', allowEscapeKey: false, allowOutsideClick: false, onOpen: () => { Swal.showLoading() } });
+    UploadImage(file).then(async (res) => {
+      if (res.status === 200) {
+        setClubInfo({ ...clubInfo, bannerImgLink: res.data });
+        await Swal.fire('Uploaded!', 'Image has been uploaded.', 'success');
+      }
+    }).catch(async (err) => {
+      let message = err.data;
+      await Swal.fire('Not uploaded!', message, 'error');
+    });
+  }
+
   if (clubInfo)
     return (
       <div>
@@ -83,16 +96,23 @@ export default (props) => {
                 type="text" rows="1" placeholder="type" value={clubInfo.server_unique_name} readOnly />
             </div>
             <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
-              <div className="w-32">Image url</div>
-              <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                type="text" rows="1" placeholder="image url" value={clubInfo.bannerImgLink} onChange={(e) => {
-                  setClubInfo({ ...clubInfo, bannerImgLink: e.target.value })
-                }} />
+              <div className="w-32">Image</div>
+              <label htmlFor="image-file" className="ml-4 w-32 bg-blue text-gray-800 rounded border-2 border-grey-900 hover:border-blue-600 hover:bg-blue-500 hover:text-white shadow-lg py-1 px-4 inline-flex items-center">Select file
+              <input className="hidden"
+                  id="image-file" type="file" accept="image/*" placeholder="image" value={''} onChange={(e) => {
+                    if(e.target.files) {
+                      const file = e.target.files[0];
+                      if (file.size < 1024*512) handleChooseImage(file);
+                      else Swal.fire('Not uploaded!', "File size must be less than 500 KB. You may compress your image at https://tinyjpg.com.", 'error');
+                      }
+                  }} /></label>
+              <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-5 leading-tight focus:outline-none"
+                type="text" rows="1" placeholder="image url" value={clubInfo.bannerImgLink} readOnly />
             </div>
             <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">
               <div className="w-32">Contact link</div>
               <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                type="text" rows="1" placeholder="image url" value={clubInfo.contactLink} onChange={(e) => {
+                type="text" rows="1" placeholder="contact link" value={clubInfo.contactLink} onChange={(e) => {
                   setClubInfo({ ...clubInfo, contactLink: e.target.value })
                 }} />
             </div>
