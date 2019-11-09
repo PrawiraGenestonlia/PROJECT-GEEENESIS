@@ -115,9 +115,23 @@ export default (props) => {
       end: converted[1],
       startTime: converted[0],
       endTime: converted[1],
-      uniqueName: props.match.params.subject !== "new" ? props.match.params.subject : eventInfo.title.replace(/ /g, '').toLowerCase() + "-" + converted[0].getFullYear()
+      uniqueName: props.match.params.subject !== "new" ? props.match.params.subject : eventInfo.title.replace(/ /g, '').toLowerCase() + "-" + formatDate(converted[0])
     }
     setEventInfo({ ...eventInfo, ...pickedDate });
+  }
+
+  const formatDate = (date) => {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [year, month, day].join('');
   }
 
   if (eventInfo)
@@ -135,7 +149,7 @@ export default (props) => {
               <div className="w-40">Title</div>
               <textarea className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 type="text" rows="1" placeholder="title" value={eventInfo.title} onChange={(v) => {
-                  setEventInfo({ ...eventInfo, title: v.target.value, uniqueName: props.match.params.subject !== "new" ? props.match.params.subject : v.target.value.replace(/ /g, '').toLowerCase() + '-' + String(eventInfo.start.getFullYear()) })
+                  setEventInfo({ ...eventInfo, title: v.target.value, uniqueName: props.match.params.subject !== "new" ? props.match.params.subject : v.target.value.replace(/ /g, '').toLowerCase() + '-' + formatDate(eventInfo.start) })
                 }} />
             </div>
             <div className="flex items-center border-b border-b-2 border-teal-500 p-2 my-4">

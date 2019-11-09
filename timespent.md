@@ -34,5 +34,6 @@
 |05/11/2019|3           |create event front-end |
 |06/11/2019|2           |edit event front-end |
 |06/11/2019|2           |fixed bugs and upload image api |
+|06/11/2019|0.5           |fixed bugs  |
 |||
-|**TOTAL** |**63.0**    |*Temporary total productive hours spent*|
+|**TOTAL** |**65.5**    |*Temporary total productive hours spent*|
