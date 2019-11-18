@@ -4,6 +4,7 @@ import { STUDENT_HOME_URL } from '../constants';
 import PrivateRoute from '../router/privateRoute';
 import ChangePassword from '../components/changePassword';
 
+//
 function handleLogOut() {
   localStorage.removeItem('auth-token');
   window.location.reload();
