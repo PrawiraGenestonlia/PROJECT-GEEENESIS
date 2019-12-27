@@ -75,6 +75,22 @@ client-students/yarn-debug.log*
 client-students/yarn-error.log*
 
 ###########################################
+ntu-eee-geeenesis/node_modules/**/*
+ntu-eee-geeenesis/.expo/*
+ntu-eee-geeenesis/npm-debug.*
+ntu-eee-geeenesis/*.jks
+ntu-eee-geeenesis/*.p8
+ntu-eee-geeenesis/*.p12
+ntu-eee-geeenesis/*.key
+ntu-eee-geeenesis/*.mobileprovision
+ntu-eee-geeenesis/*.orig.*
+ntu-eee-geeenesis/web-build/
+ntu-eee-geeenesis/web-report/
+
+# macOS
+ntu-eee-geeenesis/.DS_Store
+
+###########################################
 # server-api-endpoint
 server-api-endpoint/node_modules/
 server-api-endpoint/.env
