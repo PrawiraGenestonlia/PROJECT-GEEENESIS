@@ -86,6 +86,7 @@ ntu-eee-geeenesis/*.mobileprovision
 ntu-eee-geeenesis/*.orig.*
 ntu-eee-geeenesis/web-build/
 ntu-eee-geeenesis/web-report/
+host-mobile-pwa/node_modules
 
 # macOS
 ntu-eee-geeenesis/.DS_Store
