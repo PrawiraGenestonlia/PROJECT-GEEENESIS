@@ -1,5 +1,5 @@
 {
-  "name": "host-client-admins",
+  "name": "host-mobile-pwa",
   "version": "1.0.0",
   "description": "express host static web",
   "main": "index.js",

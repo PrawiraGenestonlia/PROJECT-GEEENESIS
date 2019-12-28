@@ -15,6 +15,7 @@ if (Platform.OS === 'web' && document) {
   if (rnwStyleSheet) {
     rnwStyleSheet.sheet.insertRule(`html {
       overflow: hidden;
+      height:100%;
     }`, 0);
   }
 }
