@@ -36,5 +36,7 @@
 |06/11/2019|2           |fixed bugs and upload image api |
 |06/11/2019|0.5         |fixed bugs  |
 |06/11/2019|2           |upload image  |
+|28/12/2019|2           |set up environment for pwa  |
+|28/12/2019|2           |tab bar  |
 |||
-|**TOTAL** |**67.5**    |*Temporary total productive hours spent*|
+|**TOTAL** |**71.5**    |*Temporary total productive hours spent*|
