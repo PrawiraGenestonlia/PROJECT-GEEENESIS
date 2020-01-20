@@ -14,7 +14,10 @@ export default function ClubScreen(props) {
   }, []);
   return (
     <View style={styles.container}>
-      <ScrollView>
+      {/* <ScrollView> */}
+      <View>
+
+
         {
           Platform.OS === 'web' ?
             <View>
@@ -36,8 +39,8 @@ export default function ClubScreen(props) {
               />
             </View>
         }
-
-      </ScrollView>
+      </View>
+      {/* </ScrollView> */}
     </View>
   );
 }

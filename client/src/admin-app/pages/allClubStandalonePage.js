@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ClubCard from '../components/clubCard';
-import { GetRole, GetClubInfo } from '../../api';
+import { GetClubInfo } from '../../api';
 import Swal from 'sweetalert2';
 
 export default () => {
   const [clubsData, setClubsData] = useState({ clubs: [] });
   const [role, setRole] = useState('student');
-
-  useEffect(() => {
-    GetRole().then((res) => { setRole(res.data) });
-  }, []);
 
   useEffect(() => {
     GetClubInfo().then(async res => {
