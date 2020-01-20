@@ -11,9 +11,7 @@ const clubLink = CLUB_URL;
 
 
 export default function ClubScreen(props) {
-  this.navigationOptions = {
-    title: "clubs"
-  };
+
   useEffect(() => {
     checkAuth(props);
   }, []);
