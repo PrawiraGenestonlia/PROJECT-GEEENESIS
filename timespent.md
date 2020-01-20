@@ -38,5 +38,7 @@
 |06/11/2019|2           |upload image  |
 |28/12/2019|2           |set up environment for pwa  |
 |28/12/2019|2           |tab bar  |
+|19/01/2020|5           |expo  |
+|20/01/2020|5           |expo  |
 |||
-|**TOTAL** |**71.5**    |*Temporary total productive hours spent*|
+|**TOTAL** |**81.5**    |*Temporary total productive hours spent*|
