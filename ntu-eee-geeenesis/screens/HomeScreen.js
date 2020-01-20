@@ -8,10 +8,10 @@ import {
   Text,
   TouchableOpacity,
   View,
+  StatusBar
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
-import StatusBar from '../components/StatusBar';
 import checkAuth from '../utils/checkAuth';
 
 export default function HomeScreen(props) {
@@ -20,6 +20,7 @@ export default function HomeScreen(props) {
   }, []);
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" />
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}>

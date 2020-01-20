@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, AsyncStorage } from 'react-native';
 import { ExpoConfigView } from '@expo/samples';
 import Touchable from 'react-native-platform-touchable';
-
+import checkAuth from '../utils/checkAuth';
 export default function SettingsScreen(props) {
+  useEffect(() => {
+    checkAuth(props);
+  }, []);
   const onLogOut = async () => {
     await AsyncStorage.removeItem('userToken');
     props.navigation.navigate('AuthLoading')

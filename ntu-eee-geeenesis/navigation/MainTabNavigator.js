@@ -9,7 +9,7 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import CalendarScreen from '../screens/CalendarScreen';
 import ChatScreen from '../screens/ChatScreen';
-import LoginScreen from '../screens/LoginScreen';
+import ClubScreen from '../screens/ClubScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -103,9 +103,25 @@ ChatStack.navigationOptions = {
 
 ChatStack.path = '';
 
+const ClubStack = createStackNavigator(
+  {
+    Club: ClubScreen,
+  },
+  config
+);
+
+ClubStack.navigationOptions = {
+  tabBarLabel: 'Clubs',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-body' : 'md-body'} />
+  ),
+};
+
+ClubStack.path = '';
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
+  ClubStack,
   ChatStack,
   CalendarStack,
   SettingsStack,

@@ -15,6 +15,7 @@ export const SERVER_BASE_URL_SHORT = "/geeenesis";
 export const LOGIN_URL = "/login/";
 export const REDIRECT_URL = "/load-role/";
 export const CLUB_STANDALONE_URL = "/club/";
+export const CLUB_ALL_STANDALONE_URL = "/all-clubs/";
 export const EVENT_STANDALONE_URL = "/event/";
 
 //USER UTILITY ROUTE

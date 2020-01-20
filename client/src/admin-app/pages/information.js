@@ -6,6 +6,7 @@ import { EDITOR_URL } from '../../constants';
 import { EditSVG } from '../components/svgPath';
 import { GetRole, GetClubInfo } from '../../api';
 import Swal from 'sweetalert2';
+import AllClubStandalonePage from './allClubStandalonePage';
 
 export default () => {
   const [clubsData, setClubsData] = useState({ clubs: [] });
@@ -62,24 +63,7 @@ export default () => {
             }
           </Toolbar> : <></>}
         </div>
-        <div className="px-3 py-4 flex flex-col justify-center">
-          {
-            (clubsData.clubs.length > 0) && clubsData.clubs.map((club, index) => {
-              return (
-                <div className="mb-8" key={index}>
-                  <ClubCard
-                    title={club.title}
-                    bannerImgLink={club.bannerImgLink}
-                    server_unique_name={club.server_unique_name}
-                    summary={club.summary}
-                    rawEditor={club.rawEditor}
-                    contactLink={club.contactLink}
-                  />
-                </div>
-              )
-            })
-          }
-        </div>
+        <AllClubStandalonePage />
       </div>
     </div>
   )

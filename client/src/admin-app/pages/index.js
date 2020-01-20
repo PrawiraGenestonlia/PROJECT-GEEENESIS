@@ -10,7 +10,6 @@ import ClubInformationPage from './clubInformation';
 import EditorPage from './clubEditor';
 import EventEditorPage from './eventEditor';
 
-
 export {
   LoginPage,
   DashboardPage,
@@ -26,4 +25,5 @@ export {
 }
 
 export { default as ClubStandalonePage } from './clubStandalonePage';
+export { default as AllClubStandalonePage } from './allClubStandalonePage';
 export { default as EventStandalonePage } from './eventStandalonePage';
