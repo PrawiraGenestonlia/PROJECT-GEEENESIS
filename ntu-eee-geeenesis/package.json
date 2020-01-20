@@ -1,6 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "homepage": "https://server.thexdream.net/",
+  "homepage": "https://server.thexdream.net/geeenesis-mobile",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
