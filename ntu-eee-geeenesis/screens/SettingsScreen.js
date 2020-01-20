@@ -1,17 +1,21 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, AsyncStorage } from 'react-native';
 import { ExpoConfigView } from '@expo/samples';
+import Touchable from 'react-native-platform-touchable';
 
-function DefaultSettingsScreen() {
-  return <ExpoConfigView />;
-}
-
-export default function SettingsScreen() {
+export default function SettingsScreen(props) {
+  const onLogOut = async () => {
+    await AsyncStorage.removeItem('userToken');
+    props.navigation.navigate('AuthLoading')
+  };
   return (
     <View style={styles.container}>
-      <Text style={styles.optionsTitleText}>
-        Setting
+      <Touchable onPress={() => { onLogOut() }}>
+        <Text style={styles.optionsTitleText}>
+          Log Out
       </Text>
+      </Touchable>
+
     </View>
   );
 }

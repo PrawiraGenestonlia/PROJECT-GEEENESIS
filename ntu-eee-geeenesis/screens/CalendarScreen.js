@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, ScrollView, StyleSheet, Platform, Dimensions } from 'react-native';
 import { WebView } from 'react-native-webview';
+import checkAuth from '../utils/checkAuth';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 const calendarLink = "https://server.thexdream.net/geeenesis/";
 
-export default function CalendarScreen() {
-
+export default function CalendarScreen(props) {
+  useEffect(() => {
+    checkAuth(props);
+  }, []);
   return (
     <View style={styles.container}>
       <ScrollView

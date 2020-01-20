@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "NTU EEE",
+    "description": "NTU EEE APP",
     "slug": "ntu-eee-geeenesis",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -24,7 +25,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "userInterfaceStyle": "light"
+    },
+    "androidStatusBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#ffffff"
     }
   }
 }

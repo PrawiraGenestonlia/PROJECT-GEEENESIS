@@ -1,5 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Image,
   Platform,
@@ -11,8 +11,13 @@ import {
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
+import StatusBar from '../components/StatusBar';
+import checkAuth from '../utils/checkAuth';
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
+  useEffect(() => {
+    checkAuth(props);
+  }, []);
   return (
     <View style={styles.container}>
       <ScrollView

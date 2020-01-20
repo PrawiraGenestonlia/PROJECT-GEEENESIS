@@ -1,6 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "homepage": "https://server.thexdream.net/geeenesis-mobile",
+  "homepage": "https://server.thexdream.net/",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -15,6 +15,7 @@
   "dependencies": {
     "@expo/samples": "~36.0.0",
     "@expo/vector-icons": "~10.0.0",
+    "@react-native-community/async-storage": "^1.7.1",
     "@react-navigation/web": "~1.0.0-alpha.9",
     "expo": "~36.0.0",
     "expo-asset": "~8.0.0",
@@ -25,8 +26,9 @@
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-gesture-handler": "~1.5.0",
+    "react-native-gifted-chat": "^0.13.0",
     "react-native-reanimated": "~1.4.0",
-    "react-native-screens": "2.0.0-alpha.12",
+    "react-native-screens": "^2.0.0-alpha.12",
     "react-native-web": "~0.11.7",
     "react-native-webview": "^8.0.2",
     "react-navigation": "~4.0.10",
@@ -35,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "@expo/webpack-config": "^0.10.10",
     "babel-preset-expo": "~8.0.0",
     "jest-expo": "~36.0.1"
   },

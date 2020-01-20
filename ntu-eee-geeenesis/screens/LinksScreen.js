@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
-
-export default function LinksScreen() {
+import checkAuth from '../utils/checkAuth';
+export default function LinksScreen(props) {
+  useEffect(() => {
+    checkAuth(props);
+  }, []);
   return (
     <ScrollView style={styles.container}>
       {/**
