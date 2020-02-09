@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { NavBar, WingBlank } from 'antd-mobile';
 import { withRouter } from 'next/router';
 import Head from 'next/head';
+import isAuth from '../utils/isAuth';
 
 const mainRoute = ['/', '/clubs', '/chats', '/calendar', '/settings'];
 
@@ -13,26 +15,34 @@ const checkMainRoute = (href) => {
 }
 
 function Layout({ router, children, title }) {
+  useEffect(() => {
+    if (!isAuth()) {
+      router.push('/login');
+    }
+  }, []);
   return (
-    <div style={{ overflow: 'hidden' }}>
+    <div style={{ overflow: 'hidden', height: '100%' }}>
       <Head>
         <title>{title}</title>
       </Head>
-      {checkMainRoute(router.pathname) ?
-        <NavBar
-          mode="light"
-        >
-          {title}
-        </NavBar> :
-        <NavBar
-          mode="light"
-          icon={<div>back</div>}
-          onLeftClick={() => router.back()}
-        >
-          {title}
-        </NavBar>
-      }
-      <div style={{ padding: '15px' }}>{children}</div>
+      <div style={{ position: 'fixed', width: '100%', zIndex: 100, }}>
+        {checkMainRoute(router.pathname) ?
+          <NavBar
+            mode="light"
+          >
+            {title}
+          </NavBar> :
+          <NavBar
+            mode="light"
+            icon={<div>back</div>}
+            onLeftClick={() => router.back()}
+          >
+            {title}
+          </NavBar>
+        }
+      </div>
+
+      <div style={{ padding: '15px', marginTop: '45px' }}>{children}</div>
     </div>
   )
 }

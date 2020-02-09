@@ -1,9 +1,11 @@
 import Layout from '../components/Layout'
 import { Button } from 'antd-mobile'
-import Link from 'next/link'
+import logOut from '../utils/logOut';
+import router from 'next/router';
 
 export default () => (
   <Layout title="Settings">
-    <div>Settings</div>
+    <span>Settings</span>
+    <Button onClick={() => { logOut(); router.push('/login'); }}>Log Out</Button>
   </Layout>
 )

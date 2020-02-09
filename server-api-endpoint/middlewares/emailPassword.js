@@ -28,7 +28,10 @@ async function emailPassword(user, password) {
     try {
       //create transporter
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        // service: 'gmail',
         auth: {
           user: process.env.GMAIL_USERNAME,
           pass: process.env.GMAIL_PASSWORD

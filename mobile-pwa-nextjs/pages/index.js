@@ -4,8 +4,6 @@ import Link from 'next/link'
 
 export default () => (
   <Layout title="Home">
-    <Link href="/about">
-      <Button>Go to About</Button>
-    </Link>
+    <div>Home</div>
   </Layout>
 )

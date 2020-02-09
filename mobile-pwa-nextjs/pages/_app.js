@@ -1,16 +1,21 @@
 import React from 'react';
 import App from 'next/app';
 import TabBar from '../components/TabBar';
-
+import router from 'next/router';
 export default class CustomApp extends App {
+
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, router } = this.props;
     return (
       <>
         <Component {...pageProps} />
-        <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
-          <TabBar />
-        </div>
+        {
+          router.pathname != '/login' ?
+            <div style={{ position: 'fixed', width: '100%', bottom: 0 }}>
+              <TabBar />
+            </div>
+            : <></>
+        }
       </>
     )
   }

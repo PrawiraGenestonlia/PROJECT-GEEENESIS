@@ -57,12 +57,12 @@ class MyDocument extends Document {
             media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
             href="/apple/splash/icon_828x1792.png" />
           <style global jsx>{`
-          html {
-            overflow: hidden;
-            height: 100%;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-          }
+            html {
+              overflow: hidden;
+              height: 100%;
+              -webkit-overflow-scrolling: touch;
+              scroll-behavior: smooth;
+            }
             html,
             body {
               font-family: 'Helvetica Neue', 'Hiragino Sans GB', Helvetica,
