@@ -1,0 +1,22 @@
+html {
+  overflow: hidden;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family: 'Helvetica Neue', 'Hiragino Sans GB', Helvetica,
+    'Microsoft YaHei', Arial;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+  overscroll-behavior-y: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: scrollbar;
+}

@@ -20,6 +20,7 @@ class MyDocument extends Document {
           <meta name="apple-touch-fullscreen" content="yes" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
           <link rel="apple-touch-startup-image"
             media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
             href="/apple/splash/icon_1125x2436.png" />
@@ -57,26 +58,7 @@ class MyDocument extends Document {
             media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
             href="/apple/splash/icon_828x1792.png" />
           <style global jsx>{`
-            html {
-              overflow: hidden;
-              height: 100%;
-              -webkit-overflow-scrolling: touch;
-              scroll-behavior: smooth;
-            }
-            html,
-            body {
-              font-family: 'Helvetica Neue', 'Hiragino Sans GB', Helvetica,
-                'Microsoft YaHei', Arial;
-              margin: 0;
-            }
-            body {
-              height:100%;
-              overscroll-behavior-y: none;
-              text-rendering: optimizeLegibility;
-              -webkit-font-smoothing: antialiased;
-              -moz-osx-font-smoothing: grayscale;
-              -ms-overflow-style: scrollbar;
-            }
+
           `}</style>
         </Head>
 

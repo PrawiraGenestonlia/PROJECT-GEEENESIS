@@ -1,7 +1,8 @@
 const withCSS = require('@zeit/next-css');
 const withOffline = require('next-offline');
+const withPurgeCSS = require('next-purgecss');
 
-module.exports = withCSS(withOffline({
+module.exports = withCSS(withPurgeCSS(withOffline({
   webpack: (config, { isServer }) => {
     if (isServer) {
       const antStyles = /antd-mobile\/.*?\/style.*?/
@@ -52,4 +53,8 @@ module.exports = withCSS(withOffline({
       ]
     },
   },
-}));
+  purgeCss: {
+    purgeCssEnabled: ({ dev, isServer }) => !dev && !isServer, // Only enable PurgeCSS for client-side production builds
+    whitelistPatternsChildren: [/am/] //whitelist ant design
+  }
+})));

@@ -2,6 +2,8 @@ import React from 'react';
 import App from 'next/app';
 import TabBar from '../components/TabBar';
 import router from 'next/router';
+import '../css/index.css';
+import '../css/tailwind.css';
 export default class CustomApp extends App {
 
   render() {
