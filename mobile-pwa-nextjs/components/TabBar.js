@@ -6,7 +6,7 @@ function TabBarComponent(props) {
   return (
     <TabBar
       // hidden={this.state.hidden}
-      unselectedTintColor="#949494" tintColor="#33A3F4" barTintColor="white" >
+      unselectedTintColor="#949494" tintColor="#33A3F4" barTintColor="white" noRenderContent={true} >
 
       {/* **********     TAB 1     ********** */}
 

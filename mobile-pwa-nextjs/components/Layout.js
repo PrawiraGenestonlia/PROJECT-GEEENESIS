@@ -21,7 +21,7 @@ function Layout({ router, children, title }) {
     }
   }, []);
   return (
-    <div style={{ overflow: 'hidden', height: '100%' }}>
+    <div style={{ overflow: 'hidden', height: '100vh' }}>
       <Head>
         <title>{title}</title>
       </Head>
@@ -42,7 +42,7 @@ function Layout({ router, children, title }) {
         }
       </div>
 
-      <div style={{ padding: '15px', marginTop: '45px' }}>{children}</div>
+      <div style={{ padding: '15px', marginTop: '45px', overflow: 'auto', height: '85vh' }}>{children}</div>
     </div>
   )
 }
