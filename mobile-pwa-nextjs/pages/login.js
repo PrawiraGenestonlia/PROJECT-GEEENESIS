@@ -9,6 +9,23 @@ function LoginPage() {
     <>
       <div style={{ backgroundColor: '#add8e6', height: '100%' }}>
         <h1>Login Page</h1>
+        <label htmlFor="email" style={{ display: "block" }}>
+          Email
+            </label>
+        <input
+          aria-label="email"
+          id="email"
+          placeholder="Enter your email"
+          type="text"
+        // value={values.email}
+        // onChange={handleChange}
+        // onBlur={handleBlur}
+        // className={
+        //   errors.email && touched.email
+        //     ? "text-input error"
+        //     : "text-input"
+        // }
+        />
         <Button onClick={() => { logIn(); router.push('/'); }}>Login</Button>
       </div>
     </>
