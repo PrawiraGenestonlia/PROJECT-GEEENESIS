@@ -1,11 +1,12 @@
 const router = require('express').Router();
+const tabletojson = require('tabletojson');
 const { verifyToken } = require('../../middlewares');
 const { mentorPairValidation } = require('../../validations');
 const mentor = require('../../models/mentor');
 
 router.get('/get-all-mentor', verifyToken, async (req, res) => {
   if (req.user.role !== "superadmin") return res.status(401).send('Unauthorized Access!');
-  let allMentors = await mentor.find({});
+  let allMentors = await mentor.find({}).sort(['student', 1]);
   let allMentorsArr = [];
   allMentors.forEach((v) => allMentorsArr.push({ ...v._doc }));
   let response = {
@@ -60,6 +61,20 @@ router.get('/get-mentor', verifyToken, async (req, res) => {
   try {
     const foundMentor = await mentor.find({ student: req.body.student });
     res.status(200).send(foundMentor);
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err);
+  }
+});
+
+router.get('/mentor-profile', verifyToken, async (req, res) => {
+  try {
+    tabletojson.convertUrl(
+      `http://research.ntu.edu.sg/expertise/academicprofile/Pages/StaffProfile.aspx?ST_EMAILID=${req.body.mentor}`,
+      function (tablesAsJson) {
+        res.status(200).send(tablesAsJson);
+      }
+    );
   } catch (err) {
     console.log(err)
     res.status(400).json(err);
