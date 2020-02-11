@@ -73,7 +73,7 @@ router.get('/mentor-profile', verifyToken, async (req, res) => {
       `http://research.ntu.edu.sg/expertise/academicprofile/Pages/StaffProfile.aspx?ST_EMAILID=${req.body.mentor}`,
       function (tablesAsJson) {
         let temp = tablesAsJson[0][0]["1"].split('\n');
-        let results = temp.length > 1 ? { name: temp[0].trim(), position: temp[1].trim(), email: temp[2].trim().match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\\.[a-zA-Z0-9._-]+)/gi) } : { name: temp[0] };
+        let results = temp.length > 0 ? { name: temp[0].trim(), position: temp[1].trim(), email: `${req.body.mentor}@ntu.edu.sg` } : { name: temp };
         for (let i = 2; i < tablesAsJson[0].length; i = i + 2) {
           results[tablesAsJson[0][i - 1]["Academic Profile"]] = tablesAsJson[0][i]["Academic Profile"].split('\n');
         }
