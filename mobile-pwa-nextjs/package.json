@@ -24,7 +24,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start -p 3850",
-    "preserve": "npm i && echo building tailwindcss... && npm run tailwind:css",
+    "preserve": "echo building tailwindcss... && npm run tailwind:css",
     "serve": "cross-env NODE_ENV=production npm run build",
     "postserve": "cross-env NODE_ENV=production BASE_URL=/geeenesis-mobile PORT=3850 node server.js",
     "tailwind:css": "tailwind build ./css/tailwind.directives.css -o ./css/tailwind.css"
