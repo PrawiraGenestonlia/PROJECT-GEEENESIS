@@ -20,7 +20,7 @@ class MyDocument extends Document {
           <meta name="apple-touch-fullscreen" content="yes" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-          <base href="/geeenesis-mobile/" />
+          <base href="https://server.thexdream.net/geeenesis-mobile/" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
           <link rel="apple-touch-startup-image"
             media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
