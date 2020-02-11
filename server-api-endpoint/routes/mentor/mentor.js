@@ -6,7 +6,7 @@ const mentor = require('../../models/mentor');
 
 router.get('/get-all-mentor', verifyToken, async (req, res) => {
   if (req.user.role !== "superadmin") return res.status(401).send('Unauthorized Access!');
-  let allMentors = await mentor.find({}).sort(['student', 1]);
+  let allMentors = await mentor.find({}).sort([['student', 1]]);
   let allMentorsArr = [];
   allMentors.forEach((v) => allMentorsArr.push({ ...v._doc }));
   let response = {

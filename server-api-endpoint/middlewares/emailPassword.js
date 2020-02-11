@@ -39,8 +39,10 @@ async function emailPassword(user, password) {
       });
       //send mail
       transporter.sendMail(mailOptions, function (err, info) {
-        if (err)
-          console.log(err)
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
         else
           console.log(info);
         transporter.close();
