@@ -46,4 +46,24 @@ router.delete('/clear-mentor', verifyToken, async (req, res) => {
   }
 });
 
+router.get('/get-student', verifyToken, async (req, res) => {
+  try {
+    const foundStudent = await mentor.find({ mentor: req.body.mentor });
+    res.status(200).send(foundStudent);
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err);
+  }
+});
+
+router.get('/get-mentor', verifyToken, async (req, res) => {
+  try {
+    const foundMentor = await mentor.find({ student: req.body.student });
+    res.status(200).send(foundMentor);
+  } catch (err) {
+    console.log(err)
+    res.status(400).json(err);
+  }
+});
+
 module.exports = router;
