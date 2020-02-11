@@ -27,7 +27,6 @@ app.use(express.json());
 
 
 app.get('/', async (req, res) => { res.send('geeenesis API server is up') });
-
 app.use('/user', authRoute);
 app.use('/get-user', getInfoRoute);
 app.use('/post', postRoute);
