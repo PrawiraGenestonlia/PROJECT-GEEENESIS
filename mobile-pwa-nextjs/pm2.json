@@ -3,7 +3,10 @@
     {
       "name": "geeenesis-mobile-nextjs",
       "script": "npm",
-      "args": "run serve"
+      "args": "run serve",
+      "env": {
+        "BASE_PATH": "/geeenesis-mobile"
+      }
     }
   ]
 }
