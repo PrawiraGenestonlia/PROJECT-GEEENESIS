@@ -40,5 +40,9 @@
 |28/12/2019|2           |tab bar  |
 |19/01/2020|5           |expo  |
 |20/01/2020|5           |expo  |
+|08/02/2020|3           |mobile next js  |
+|09/02/2020|3           |mobile next js  |
+|10/02/2020|3           |mobile next js  |
+|11/02/2020|3           |backend - mentor  |
 |||
-|**TOTAL** |**81.5**    |*Temporary total productive hours spent*|
+|**TOTAL** |**93.5**    |*Temporary total productive hours spent*|

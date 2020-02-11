@@ -13,6 +13,9 @@ import GetEvent from './getEvents';
 import EditEvent from './editEvent';
 import DeleteEvent from './deleteEvent';
 import UploadImage from './uploadImage';
+import AddMentor from './mentorAddSingle';
+import DeleteMentor from './mentorDeleteAll';
+import GetMentors from './mentorGetAll';
 
 export {
   LoginToServer,
@@ -29,5 +32,8 @@ export {
   GetEvent,
   EditEvent,
   DeleteEvent,
-  UploadImage
+  UploadImage,
+  AddMentor,
+  DeleteMentor,
+  GetMentors
 }

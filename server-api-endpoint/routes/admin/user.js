@@ -12,7 +12,7 @@ router.get('/', verifyToken, async (req, res) => {
 
 router.get('/get-all-user', verifyToken, async (req, res) => {
   if (req.user.role !== "superadmin") return res.status(401).send('Unauthorized Access!');
-  let allUsers = await user.find({});
+  let allUsers = await user.find({}).sort([['role', 1], ['name', 1]]);
   let allUsersArr = [];
   allUsers.forEach((v) => allUsersArr.push({ ...v._doc }));
   for (let i = 0; i < allUsers.length; i++) {

@@ -77,3 +77,10 @@ export const DELETEEVENT = "/event/delete-event";       //D
 
 //UPLOAD API
 export const UPLOADIMAGE = "/upload-image/image";       //C
+
+//MENTORING API
+export const ADDMENTOR = "/mentor/add-mentor";          //C
+export const GETALLMENTORS = "/mentor/get-all-mentor";  //R
+export const GETSPECIFICMENTOR = "/mentor/get-mentor";  //R
+export const GETSPECIFICSTUDENT = "/mentor/get-student";//R
+export const DELETEALLMENTORS = "/mentor/clear-mentor"; //D

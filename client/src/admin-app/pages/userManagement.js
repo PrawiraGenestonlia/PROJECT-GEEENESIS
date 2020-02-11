@@ -96,6 +96,7 @@ export default () => {
       complete: (result) => {
         if (result.data.length) {
           if (result.data[0]['name'] && result.data[0]['email']) {
+            result.data.pop();
             let uploaded = {
               columns: Object.keys(result.data[0]),
               data: result.data
