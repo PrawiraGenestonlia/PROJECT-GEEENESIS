@@ -10,6 +10,7 @@
     "axios": "^0.19.2",
     "babel-plugin-import": "^1.13.0",
     "cross-env": "^7.0.0",
+    "express": "^4.17.1",
     "next": "latest",
     "next-offline": "^5.0.0",
     "next-purgecss": "^3.1.2",
@@ -25,7 +26,7 @@
     "start": "next start -p 3850",
     "preserve": "npm i && echo building tailwindcss... && npm run tailwind:css",
     "serve": "cross-env NODE_ENV=production npm run build",
-    "postserve": "cross-env NODE_ENV=production BASE_URL=/geeenesis-mobile  npm start",
+    "postserve": "cross-env NODE_ENV=production BASE_URL=/geeenesis-mobile  node server.js",
     "tailwind:css": "tailwind build ./css/tailwind.directives.css -o ./css/tailwind.css"
   }
 }
