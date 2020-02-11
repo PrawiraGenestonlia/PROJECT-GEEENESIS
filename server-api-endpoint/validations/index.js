@@ -59,6 +59,14 @@ const clubInformationValidation = (data) => {
   return clubInformationSchema.validate(data);
 }
 
+const mentorPairValidation = (data) => {
+  const mentorPairSchema = Joi.object({
+    "student": Joi.string().min(2).required(),
+    "mentor": Joi.string().min(2).required(),
+  });
+  return mentorPairSchema.validate(data);
+}
+
 
 module.exports = {
   registerValidation,
@@ -66,5 +74,6 @@ module.exports = {
   forgetPasswordValidation,
   changePasswordValidation,
   registerValidationNoPassword,
-  clubInformationValidation
+  clubInformationValidation,
+  mentorPairValidation
 }
