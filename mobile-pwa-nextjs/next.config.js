@@ -18,11 +18,12 @@ module.exports = withCSS(withPurgeCSS(withOffline({
         },
         ...(typeof origExternals[0] === 'function' ? [] : origExternals),
       ]
-
       config.module.rules.unshift({
         test: antStyles,
         use: 'null-loader',
-      })
+      });
+      const prefix = process.env.BASE_PATH || '';
+      config.output.publicPath = `${prefix}${config.output.publicPath}`;
     }
     return config
   },
