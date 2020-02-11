@@ -75,7 +75,7 @@ router.get('/mentor-profile', verifyToken, async (req, res) => {
         let temp = tablesAsJson[0][0]["1"].split('\n');
         let results = temp.length > 1 ? { name: temp[0], position: temp[1], email: temp[2] } : { name: temp[0] };
         for (let i = 2; i < tablesAsJson[0].length; i = i + 2) {
-          results[tablesAsJson[0][i - 1]["Academic Profile"]] = tablesAsJson[0][i]["Academic Profile"];
+          results[tablesAsJson[0][i - 1]["Academic Profile"]] = tablesAsJson[0][i]["Academic Profile"].split('\n');
         }
         res.status(200).send(results);
       }
