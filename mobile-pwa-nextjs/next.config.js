@@ -53,6 +53,10 @@ module.exports = withCSS(withPurgeCSS(withOffline({
       ]
     },
   },
+  assetPrefix: process.env.BASE_PATH || '',
+  publicRuntimeConfig: {
+    basePath: process.env.BASE_PATH || '',
+  },
   purgeCss: {
     purgeCssEnabled: ({ dev, isServer }) => !dev && !isServer, // Only enable PurgeCSS for client-side production builds
     whitelistPatternsChildren: [/am/] //whitelist ant design
