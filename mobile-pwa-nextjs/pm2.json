@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "geeenesis-mobile-nextjs",
+      "script": "npm",
+      "args": "run serve"
+    }
+  ]
+}
