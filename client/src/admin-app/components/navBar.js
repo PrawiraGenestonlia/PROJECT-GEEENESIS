@@ -34,9 +34,16 @@ const NavItem = (props) => {
           })
         }
       }}>
-        <Link to={props.to}>
-          <span>{props.label}</span>
-        </Link>
+        {
+          props.a ?
+            <a href={props.a}>
+              <span>{props.label}</span>
+            </a>
+            :
+            <Link to={props.to}>
+              <span>{props.label}</span>
+            </Link>
+        }
       </div>
     </div>
 
@@ -61,7 +68,8 @@ export default () => {
           <NavItem label="Event Management" to={ADMIN_EVENTMANAGEMENT_URL} />
           <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
           <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
-          <NavItem label="Go to user mode" to={STUDENT_EXTENDED_URL} />
+          {/* <NavItem label="Go to user mode" to={STUDENT_EXTENDED_URL} ></NavItem> */}
+          <NavItem label="Go to user mode" a={STUDENT_EXTENDED_URL} />
         </React.Fragment>
       )
     }

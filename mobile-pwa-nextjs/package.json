@@ -21,7 +21,7 @@
     "predev": "echo building tailwindcss... && npm run tailwind:css",
     "dev": "next",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3850",
     "preserve": "echo building tailwindcss... && npm run tailwind:css",
     "serve": "cross-env NODE_ENV=production npm run build",
     "postserve": "cross-env NODE_ENV=production  npm start",

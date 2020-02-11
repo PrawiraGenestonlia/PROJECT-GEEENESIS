@@ -36,7 +36,7 @@ export const CLUB_INFO_URL = "/admin/club-information/";
 export const CALENDAR_OF_EVENTS = "/admin/calendar-of-events/";
 
 //STUDENT PWA ROUTE
-export const STUDENT_EXTENDED_URL = "/student/";
+export const STUDENT_EXTENDED_URL = "https://server.thexdream.net/geeenesis-mobile/";
 export const STUDENT_HOME_URL = "/student/home/";
 
 /*
