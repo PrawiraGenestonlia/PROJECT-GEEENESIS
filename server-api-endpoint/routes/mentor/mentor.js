@@ -72,7 +72,12 @@ router.get('/mentor-profile', verifyToken, async (req, res) => {
     tabletojson.convertUrl(
       `http://research.ntu.edu.sg/expertise/academicprofile/Pages/StaffProfile.aspx?ST_EMAILID=${req.body.mentor}`,
       function (tablesAsJson) {
-        res.status(200).send(tablesAsJson);
+        let temp = tablesAsJson[0][0].split('\n');
+        let results = temp.length > 1 ? { name: temp[0], position: temp[1], email: temp[2] } : { name: temp[0] };
+        for (let i = 2; i < tablesAsJson[0].length; i = i + 2) {
+          results[tablesAsJson[0][i - 1]] = tablesAsJson[0][i];
+        }
+        res.status(200).send(results);
       }
     );
   } catch (err) {
