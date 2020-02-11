@@ -8,6 +8,8 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  server.use(`${process.env.BASE_URL}/.next`, express.static('./.next'));
+
   // server.get('/a', (req, res) => {
   //   return app.render(req, res, '/a', req.query)
   // })
@@ -21,12 +23,11 @@ app.prepare().then(() => {
   // })
 
   server.all('*', (req, res) => {
-    req.url = req.url.replace(`${process.env.BASE_URL}`, '');
     return handle(req, res)
   })
 
   server.listen(port, err => {
     if (err) throw err
-    console.log(`> Ready on http://localhost:${port}`)
+    console.log(`> Ready on http://localhost:${port} (base_url at ${process.env.BASE_URL})`)
   })
 })
