@@ -49,7 +49,7 @@ module.exports = withCSS(withPurgeCSS(withOffline({
       return [
         {
           source: '/service-worker.js',
-          destination: '/_next/static/service-worker.js',
+          destination: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/_next/static/service-worker.js`,
         },
       ]
     },
