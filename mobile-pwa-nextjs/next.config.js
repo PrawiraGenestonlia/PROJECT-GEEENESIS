@@ -27,7 +27,7 @@ module.exports = withCSS(withPurgeCSS(withOffline({
     }
     return config
   },
-  registerSwPrefix: `${process.env.BASE_PATH ? process.env.BASE_PATH + '/_next/static/' : ''}`,
+  registerSwPrefix: `${process.env.BASE_PATH ? process.env.BASE_PATH + '/_next/static' : ''}`,
   scope: process.env.BASE_PATH || '',
   workboxOpts: {
     swDest: process.env.NEXT_EXPORT
