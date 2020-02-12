@@ -28,7 +28,7 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${publicRuntimeConfig.basePath}/`}
+        selected={router.pathname == `/`}
         badge={0}
         onPress={() => {
           router.push(`${publicRuntimeConfig.basePath}/`);
@@ -52,7 +52,7 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${publicRuntimeConfig.basePath}/clubs`}
+        selected={router.pathname == `/clubs`}
         badge={0}
         onPress={() => {
           router.push(`${publicRuntimeConfig.basePath}/clubs`);
@@ -76,7 +76,7 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${publicRuntimeConfig.basePath}/chats`}
+        selected={router.pathname == `/chats`}
         badge={0}
         onPress={() => {
           router.push(`${publicRuntimeConfig.basePath}/chats`);
@@ -100,7 +100,7 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${publicRuntimeConfig.basePath}/calendar`}
+        selected={router.pathname == `/calendar`}
         badge={0}
         onPress={() => {
           router.push(`${publicRuntimeConfig.basePath}/calendar`);
@@ -124,7 +124,7 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${publicRuntimeConfig.basePath}/settings`}
+        selected={router.pathname == `/settings`}
         badge={0}
         onPress={() => {
           router.push(`${publicRuntimeConfig.basePath}/settings`);
