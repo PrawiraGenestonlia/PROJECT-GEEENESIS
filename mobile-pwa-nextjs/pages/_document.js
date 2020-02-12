@@ -13,7 +13,6 @@ class MyDocument extends Document {
     return (
       <Html lang={"en"}>
         <Head>
-          <title>NTU EEE Mobile App</title>
           <meta charSet="utf-8" />
           <link rel="shortcut icon" href={`${urlPrefix}/favicon.ico`} />
           <link rel="manifest" href={`${urlPrefix}/manifest.json`} />

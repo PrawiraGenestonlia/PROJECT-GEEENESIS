@@ -1,7 +1,7 @@
 import Layout from '../components/Layout';
 import { Button } from 'antd-mobile';
 import Link from 'next/link';
-import { CLUB_URL } from '../api';
+import { CLUB_URL } from '../tempApi';
 
 const clubLink = CLUB_URL;
 
