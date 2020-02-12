@@ -19,7 +19,7 @@ const checkMainRoute = (href) => {
 function Layout({ router, children, title }) {
   useEffect(() => {
     if (!isAuth()) {
-      router.push(`${publicRuntimeConfig.getConfig}/login`);
+      router.push(`${publicRuntimeConfig.basePath ? publicRuntimeConfig.basePath : ''}/login`);
     }
   }, []);
   return (
