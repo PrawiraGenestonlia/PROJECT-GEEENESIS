@@ -61,7 +61,7 @@ module.exports = withCSS(withPurgeCSS(withOffline({
     async rewrites() {
       return [
         {
-          source: `^/service-worker.js$`,
+          source: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/service-worker.js`,
           destination: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/_next/static/service-worker.js`,
         },
       ]
