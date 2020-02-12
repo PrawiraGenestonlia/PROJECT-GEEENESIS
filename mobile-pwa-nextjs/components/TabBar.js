@@ -1,5 +1,8 @@
 import { Button, TabBar } from 'antd-mobile';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig()
 
 function TabBarComponent(props) {
   const router = useRouter();
@@ -25,10 +28,10 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/`}
+        selected={router.pathname == `${publicRuntimeConfig.basePath}/`}
         badge={0}
         onPress={() => {
-          router.push(`${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/`);
+          router.push(`${publicRuntimeConfig.basePath}/`);
         }}
         data-seed="logId" />
 
@@ -49,10 +52,10 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/clubs`}
+        selected={router.pathname == `${publicRuntimeConfig.basePath}/clubs`}
         badge={0}
         onPress={() => {
-          router.push(`${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/clubs`);
+          router.push(`${publicRuntimeConfig.basePath}/clubs`);
         }}
         data-seed="logId" />
 
@@ -73,10 +76,10 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/chats`}
+        selected={router.pathname == `${publicRuntimeConfig.basePath}/chats`}
         badge={0}
         onPress={() => {
-          router.push(`${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/chats`);
+          router.push(`${publicRuntimeConfig.basePath}/chats`);
         }}
         data-seed="logId" />
 
@@ -97,10 +100,10 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/calendar`}
+        selected={router.pathname == `${publicRuntimeConfig.basePath}/calendar`}
         badge={0}
         onPress={() => {
-          router.push(`${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/calendar`);
+          router.push(`${publicRuntimeConfig.basePath}/calendar`);
         }}
         data-seed="logId" />
 
@@ -121,10 +124,10 @@ function TabBarComponent(props) {
           background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
         }}
         />}
-        selected={router.pathname == `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/settings`}
+        selected={router.pathname == `${publicRuntimeConfig.basePath}/settings`}
         badge={0}
         onPress={() => {
-          router.push(`${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/settings`);
+          router.push(`${publicRuntimeConfig.basePath}/settings`);
         }}
         data-seed="logId" />
 
