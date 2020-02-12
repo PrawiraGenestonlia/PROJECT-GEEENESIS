@@ -55,6 +55,9 @@ module.exports = withCSS(withPurgeCSS(withOffline({
     },
   },
   assetPrefix: process.env.BASE_PATH || '',
+  runtimeConfig: {
+    basePath: process.env.BASE_PATH || '',
+  },
   publicRuntimeConfig: {
     basePath: process.env.BASE_PATH || '',
   },

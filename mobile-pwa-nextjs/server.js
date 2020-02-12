@@ -8,8 +8,6 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.use(`${process.env.BASE_URL}/.next`, express.static('./.next'));
-
   // server.get('/a', (req, res) => {
   //   return app.render(req, res, '/a', req.query)
   // })
