@@ -25,8 +25,8 @@
     "build": "next build",
     "start": "next start -p 3850",
     "preserve": "echo building tailwindcss... && npm run tailwind:css",
-    "serve": "cross-env NODE_ENV=production npm run build",
-    "postserve": "cross-env NODE_ENV=production BASE_URL=/geeenesis-mobile PORT=3850 npm start",
+    "serve": "cross-env NODE_ENV=production BASE_URL=/geeenesis-mobile BASE_PATH=/geeenesis-mobile npm run build",
+    "postserve": "cross-env NODE_ENV=production BASE_URL=/geeenesis-mobile BASE_PATH=/geeenesis-mobile PORT=3850 npm start",
     "tailwind:css": "tailwind build ./css/tailwind.directives.css -o ./css/tailwind.css"
   }
 }
