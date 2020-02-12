@@ -31,9 +31,9 @@ module.exports = withCSS(withPurgeCSS(withOffline({
   // registerSwPrefix: `${process.env.BASE_PATH ? process.env.BASE_PATH + '/_next/static' : ''}`,
   scope: process.env.BASE_PATH || '',
   workboxOpts: {
-    swDest: process.env.NEXT_EXPORT
-      ? 'service-worker.js'
-      : 'static/service-worker.js',
+    // swDest: process.env.NEXT_EXPORT
+    //   ? 'service-worker.js'
+    //   : 'static/service-worker.js',
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
