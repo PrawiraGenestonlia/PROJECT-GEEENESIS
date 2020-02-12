@@ -17,7 +17,7 @@ const checkMainRoute = (href) => {
 function Layout({ router, children, title }) {
   useEffect(() => {
     if (!isAuth()) {
-      router.push('/login');
+      router.push(`${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/login`);
     }
   }, []);
   return (
