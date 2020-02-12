@@ -28,6 +28,7 @@ module.exports = withCSS(withPurgeCSS(withOffline({
     return config
   },
   registerSwPrefix: process.env.BASE_PATH || '',
+  scope: process.env.BASE_PATH || '',
   workboxOpts: {
     swDest: process.env.NEXT_EXPORT
       ? 'service-worker.js'
@@ -49,7 +50,7 @@ module.exports = withCSS(withPurgeCSS(withOffline({
     async rewrites() {
       return [
         {
-          source: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/service-worker.js`,
+          source: `/service-worker.js`,
           destination: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/_next/static/service-worker.js`,
         },
       ]
