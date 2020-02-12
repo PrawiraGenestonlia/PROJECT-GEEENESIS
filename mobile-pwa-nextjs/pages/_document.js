@@ -14,8 +14,8 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <meta charSet="utf-8" />
-          <link rel="shortcut icon" href="/favicon.ico" />
-          <link rel="manifest" href="/manifest.json" />
+          <link rel="shortcut icon" href={`${urlPrefix}/favicon.ico`} />
+          <link rel="manifest" href={`${urlPrefix}/manifest.json`} />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
           <link rel="apple-touch-icon" sizes="180x180" href={`${urlPrefix}/apple/icons/icon_180x180.png`} />
           <meta name="description" content="NTU EEE APP" />
