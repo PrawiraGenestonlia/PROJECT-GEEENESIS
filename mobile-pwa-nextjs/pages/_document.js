@@ -11,8 +11,9 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang={"en"}>
         <Head>
+          <title>NTU EEE Mobile App</title>
           <meta charSet="utf-8" />
           <link rel="shortcut icon" href={`${urlPrefix}/favicon.ico`} />
           <link rel="manifest" href={`${urlPrefix}/manifest.json`} />
@@ -23,7 +24,8 @@ class MyDocument extends Document {
           <meta name="apple-touch-fullscreen" content="yes" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <meta name="theme-color" content="#ffffff" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
           <link rel="apple-touch-startup-image"
             media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
             href={`${urlPrefix}/apple/splash/icon_1125x2436.png`} />
