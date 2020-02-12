@@ -24,6 +24,7 @@ module.exports = withCSS(withPurgeCSS(withOffline({
       });
       const prefix = process.env.BASE_PATH || '';
       config.output.publicPath = `${prefix}${config.output.publicPath}`;
+      console.log("DEBUGGGGGGGGGGGGGGG->", process.env.NEXT_EXPORT);
     }
     return config
   },
@@ -56,16 +57,16 @@ module.exports = withCSS(withPurgeCSS(withOffline({
   //     },
   //   ]
   // },
-  // experimental: {
-  //   async rewrites() {
-  //     return [
-  //       {
-  //         source: `/service-worker.js`,
-  //         destination: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/_next/static/service-worker.js`,
-  //       },
-  //     ]
-  //   },
-  // },
+  experimental: {
+    async rewrites() {
+      return [
+        {
+          source: `^/service-worker.js$`,
+          destination: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/_next/static/service-worker.js`,
+        },
+      ]
+    },
+  },
   assetPrefix: process.env.BASE_PATH || '',
   basePath: process.env.BASE_PATH || '',
   publicRuntimeConfig: {
