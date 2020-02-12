@@ -3,7 +3,9 @@ import { NavBar, WingBlank } from 'antd-mobile';
 import { withRouter } from 'next/router';
 import Head from 'next/head';
 import isAuth from '../utils/isAuth';
+import getConfig from 'next/config';
 
+const { publicRuntimeConfig } = getConfig();
 const mainRoute = ['/', '/clubs', '/chats', '/calendar', '/settings'];
 
 const checkMainRoute = (href) => {
@@ -17,7 +19,7 @@ const checkMainRoute = (href) => {
 function Layout({ router, children, title }) {
   useEffect(() => {
     if (!isAuth()) {
-      router.push(`${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/login`);
+      router.push(`${publicRuntimeConfig.getConfig}/login`);
     }
   }, []);
   return (

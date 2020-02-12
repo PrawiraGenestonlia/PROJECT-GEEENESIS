@@ -2,7 +2,7 @@ import { Button, TabBar } from 'antd-mobile';
 import { useRouter } from 'next/router';
 import getConfig from 'next/config';
 
-const { publicRuntimeConfig } = getConfig()
+const { publicRuntimeConfig } = getConfig();
 
 function TabBarComponent(props) {
   const router = useRouter();

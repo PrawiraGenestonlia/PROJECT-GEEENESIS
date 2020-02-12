@@ -2,6 +2,9 @@ import Layout from '../components/Layout'
 import { Button } from 'antd-mobile'
 import logIn from '../utils/logIn';
 import router from 'next/router';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
 
 function LoginPage() {
 
@@ -26,7 +29,7 @@ function LoginPage() {
         //     : "text-input"
         // }
         />
-        <Button onClick={() => { logIn(); router.push('/'); }}>Login</Button>
+        <Button onClick={() => { logIn(); router.push(`${publicRuntimeConfig.basePath}/`); }}>Login</Button>
       </div>
     </>
   )
