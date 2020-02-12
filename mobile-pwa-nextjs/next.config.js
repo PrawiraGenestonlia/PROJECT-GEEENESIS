@@ -1,6 +1,7 @@
 const withCSS = require('@zeit/next-css');
 const withOffline = require('next-offline');
 const withPurgeCSS = require('next-purgecss');
+const path = require('path');
 
 module.exports = withCSS(withPurgeCSS(withOffline({
   webpack: (config, { isServer }) => {
@@ -24,7 +25,6 @@ module.exports = withCSS(withPurgeCSS(withOffline({
       });
       const prefix = process.env.BASE_PATH || '';
       config.output.publicPath = `${prefix}${config.output.publicPath}`;
-      console.log("DEBUGGGGGGGGGGGGGGG->", process.env.NEXT_EXPORT);
     }
     return config
   },
@@ -32,9 +32,12 @@ module.exports = withCSS(withPurgeCSS(withOffline({
   // registerSwPrefix: `${process.env.BASE_PATH ? process.env.BASE_PATH + '/_next/static' : ''}`,
   scope: process.env.BASE_PATH || '',
   workboxOpts: {
+    // swDest: process.env.NEXT_EXPORT
+    //   ? 'service-worker.js'
+    //   : 'public/service-worker.js',
     swDest: process.env.NEXT_EXPORT
       ? 'service-worker.js'
-      : 'public/service-worker.js',
+      : path.join(__dirname, "./public/service-worker.js"),
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
@@ -57,16 +60,16 @@ module.exports = withCSS(withPurgeCSS(withOffline({
   //     },
   //   ]
   // },
-  experimental: {
-    async rewrites() {
-      return [
-        {
-          source: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/service-worker.js`,
-          destination: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/_next/static/service-worker.js`,
-        },
-      ]
-    },
-  },
+  // experimental: {
+  //   async rewrites() {
+  //     return [
+  //       {
+  //         source: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/service-worker.js`,
+  //         destination: `${process.env.BASE_PATH ? process.env.BASE_PATH : ''}/_next/static/service-worker.js`,
+  //       },
+  //     ]
+  //   },
+  // },
   assetPrefix: process.env.BASE_PATH || '',
   basePath: process.env.BASE_PATH || '',
   publicRuntimeConfig: {
