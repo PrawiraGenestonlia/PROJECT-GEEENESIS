@@ -18,6 +18,8 @@ const unregisterServiceWorker = async () => {
   });
 }
 
+
+
 export default () => (
   <div id="reloadbar" onClick={() => {
     unregisterServiceWorker().then(() => { window.location.reload(true) })

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { REDIRECT_URL } from './constants.router';
+import { APP_URL, HOME_URL } from './constants.router';
 
 const PublicRoute = ({ component: Component, ...rest }) => {
   const isAuth = () => {
@@ -11,7 +11,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
   return (
     <Route {...rest} render={props => (
       isAuth() ?
-        <Redirect to={REDIRECT_URL} />
+        <Redirect to={HOME_URL} />
         : <Component {...props} />
     )} />
   );

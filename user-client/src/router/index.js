@@ -1,20 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import PrivateRoute from './privateRoute';
 import PublicRoute from './publicRoute';
 import ForceReloadBar from '../components/forceReloadBar';
-import { SERVER_BASE_URL, LOGIN_URL, APP_URL, HOME_URL } from './constants.router';
+import { SERVER_BASE_URL, LOGIN_URL, APP_URL } from './constants.router';
 import LoginScreen from '../pages/loginScreen';
-import HomeScreen from '../pages/homeScreen';
+import MainScreens from './mainScreens';
 
-
-const MainApp = () => {
-  return (
-    <Switch>
-      <PrivateRoute exact path={HOME_URL} component={HomeScreen} />
-    </Switch>
-  )
-}
 
 export default () => {
   return (
@@ -25,7 +16,8 @@ export default () => {
         <Route exact path="/" component={() => <Redirect to={LOGIN_URL} />} />
         <PublicRoute exact path={LOGIN_URL} component={LoginScreen} />
         {/* MAIN APP */}
-        <Route path={APP_URL} component={MainApp} />
+        <Route path={APP_URL} component={MainScreens} />
+        <Route path='' component={() => <Redirect to={LOGIN_URL} />} />
       </Switch>
     </BrowserRouter>
   )
