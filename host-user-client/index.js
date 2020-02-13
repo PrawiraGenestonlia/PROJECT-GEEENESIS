@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3860;
 
 app.disable('x-powered-by');
 app.use(compression());
-app.use(express.static(path.join(__dirname, '../general-client/build')));
+app.use(express.static(path.join(__dirname, '../user-client/build')));
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../user-client/build', "/index.html"));
