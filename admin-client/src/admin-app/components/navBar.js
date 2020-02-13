@@ -7,10 +7,11 @@ import {
   ADMIN_USERMANAGEMENT_URL,
   ADMIN_EVENTMANAGEMENT_URL,
   ADMIN_MENTORING_URL,
+  ADMIN_SENIORBUDDY_URL,
   ADMIN_INFORMATION_URL,
   CALENDAR_OF_EVENTS,
   ADMIN_PROFILE_URL,
-  STUDENT_EXTENDED_URL
+  STUDENT_HOME_URL
 } from '../../constants';
 import { GetRole } from '../../api';
 import ChangePassword from '../../components/changePassword';
@@ -64,12 +65,13 @@ export default () => {
           <NavItem label="Home" to={ADMIN_DASHBOARD_URL} />
           <NavItem label="User Management" to={ADMIN_USERMANAGEMENT_URL} />
           <NavItem label="Mentoring" to={ADMIN_MENTORING_URL} />
+          <NavItem label="Senior Buddy" to={ADMIN_SENIORBUDDY_URL} />
           <NavItem label="Club Information" to={ADMIN_INFORMATION_URL} />
           <NavItem label="Event Management" to={ADMIN_EVENTMANAGEMENT_URL} />
           <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
           <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
           {/* <NavItem label="Go to user mode" to={STUDENT_EXTENDED_URL} ></NavItem> */}
-          <NavItem label="Go to user mode" a={STUDENT_EXTENDED_URL} />
+          <NavItem label="Go to user mode" a={STUDENT_HOME_URL} />
         </React.Fragment>
       )
     }
@@ -80,7 +82,7 @@ export default () => {
           <NavItem label="Club Information" to={ADMIN_INFORMATION_URL} />
           <NavItem label="Event Management" to={ADMIN_EVENTMANAGEMENT_URL} />
           <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
-          <NavItem label="Go to user mode" to={STUDENT_EXTENDED_URL} />
+          <NavItem label="Go to user mode" to={STUDENT_HOME_URL} />
         </React.Fragment>
       )
     }
@@ -91,7 +93,7 @@ export default () => {
           <NavItem label="Club Information" to={ADMIN_INFORMATION_URL} />
           <NavItem label="Calendar Of Events" to={CALENDAR_OF_EVENTS} />
           <NavItem label="Profile" to={ADMIN_PROFILE_URL} />
-          <NavItem label="Go to user mode" to={STUDENT_EXTENDED_URL} />
+          <NavItem label="Go to user mode" to={STUDENT_HOME_URL} />
         </React.Fragment>
       )
     }

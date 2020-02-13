@@ -9,6 +9,7 @@ import ProfilePage from './profile';
 import ClubInformationPage from './clubInformation';
 import EditorPage from './clubEditor';
 import EventEditorPage from './eventEditor';
+import SeniorBuddyPage from './seniorbuddy';
 
 export {
   LoginPage,
@@ -21,7 +22,8 @@ export {
   ProfilePage,
   ClubInformationPage,
   EditorPage,
-  EventEditorPage
+  EventEditorPage,
+  SeniorBuddyPage
 }
 
 export { default as ClubStandalonePage } from './clubStandalonePage';

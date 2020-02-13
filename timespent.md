@@ -45,5 +45,7 @@
 |10/02/2020|3           |mobile next js  |
 |11/02/2020|3           |backend - mentor  |
 |12/02/2020|5           |mobile next js - login  |
+|13/02/2020|5           |mobile convert to react  |
+|13/02/2020|3           |senior buddy |
 |||
-|**TOTAL** |**98.5**    |*Temporary total productive hours spent*
+|**TOTAL** |**106.5**    |*Temporary total productive hours spent*

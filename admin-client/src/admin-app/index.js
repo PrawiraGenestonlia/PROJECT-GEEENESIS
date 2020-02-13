@@ -7,6 +7,7 @@ import {
   ADMIN_USERMANAGEMENT_URL,
   ADMIN_EVENTMANAGEMENT_URL,
   ADMIN_MENTORING_URL,
+  ADMIN_SENIORBUDDY_URL,
   ADMIN_INFORMATION_URL,
   ADMIN_PROFILE_URL,
   CLUB_INFO_URL,
@@ -19,6 +20,7 @@ import {
   UserManagementPage,
   EventManagementPage,
   MentoringPage,
+  SeniorBuddyPage,
   InformationPage,
   CalendarOfEventsPage,
   ProfilePage,
@@ -98,6 +100,7 @@ const Pages = () => (
     <PrivateRoute exact path={ADMIN_USERMANAGEMENT_URL} component={UserManagementPage} />
     <PrivateRoute exact path={ADMIN_EVENTMANAGEMENT_URL} component={EventManagementPage} />
     <PrivateRoute exact path={ADMIN_MENTORING_URL} component={MentoringPage} />
+    <PrivateRoute exact path={ADMIN_SENIORBUDDY_URL} component={SeniorBuddyPage} />
     <PrivateRoute exact path={ADMIN_INFORMATION_URL} component={InformationPage} />
     <PrivateRoute exact path={ADMIN_PROFILE_URL} component={ProfilePage} />
     <PrivateRoute exact path={CALENDAR_OF_EVENTS} component={CalendarOfEventsPage} />

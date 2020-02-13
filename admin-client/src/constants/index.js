@@ -28,6 +28,7 @@ export const ADMIN_DASHBOARD_URL = "/admin/dashboard/";
 export const ADMIN_USERMANAGEMENT_URL = "/admin/user-management/";
 export const ADMIN_EVENTMANAGEMENT_URL = "/admin/event-management/";
 export const ADMIN_MENTORING_URL = "/admin/mentoring/";
+export const ADMIN_SENIORBUDDY_URL = "/admin/senior-buddy/";
 export const ADMIN_INFORMATION_URL = "/admin/information/";
 export const ADMIN_PROFILE_URL = "/admin/profile/";
 export const EDITOR_URL = "/admin/editor/";
@@ -84,3 +85,10 @@ export const GETALLMENTORS = "/mentor/get-all-mentor";  //R
 export const GETSPECIFICMENTOR = "/mentor/get-mentor";  //R
 export const GETSPECIFICSTUDENT = "/mentor/get-student";//R
 export const DELETEALLMENTORS = "/mentor/clear-mentor"; //D
+
+//SENIOR BUDDY API
+export const ADDSENIORBUDDY = "/senior-buddy/add-senior-buddy";          //C
+export const GETALLSENIORBUDDYS = "/senior-buddy/get-all-senior-buddy";  //R
+export const GETSPECIFICSENIORBUDDY = "/senior-buddy/get-senior-buddy";  //R
+export const GETSPECIFICSTUDENTSB = "/senior-buddy/get-senior-buddy";    //R
+export const DELETEALLSENIORBUDDYS = "/senior-buddy/clear-senior-buddy"; //D

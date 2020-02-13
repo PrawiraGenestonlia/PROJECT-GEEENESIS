@@ -16,6 +16,9 @@ import UploadImage from './uploadImage';
 import AddMentor from './mentorAddSingle';
 import DeleteMentor from './mentorDeleteAll';
 import GetMentors from './mentorGetAll';
+import AddSB from './sbAddSingle';
+import DeleteSB from './sbDeleteAll';
+import GetSB from './sbGetAll';
 
 export {
   LoginToServer,
@@ -35,5 +38,8 @@ export {
   UploadImage,
   AddMentor,
   DeleteMentor,
-  GetMentors
+  GetMentors,
+  AddSB,
+  DeleteSB,
+  GetSB
 }
