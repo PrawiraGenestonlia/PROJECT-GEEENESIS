@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import App from './router';
 import './index.css';
-import App from './App';
+import './css/tailwind.css'
+import 'antd/dist/antd.css';
+
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// import SessionControl from './components/sessionControl';
+// SessionControl();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+const loader = document.querySelector('.loader');
+const showLoader = () => loader.classList.remove('loader--hide');
+const hideLoader = () => loader.classList.add('loader--hide');
+const ReactApp = ({ hideLoader }) => {
+  useEffect(() => hideLoader(), [hideLoader]);
+  return <App />;
+}
+
+ReactDOM.render(
+  <ReactApp
+    hideLoader={hideLoader}
+    showLoader={showLoader}
+  />,
+  document.getElementById('root')
+);
+
 serviceWorker.unregister();

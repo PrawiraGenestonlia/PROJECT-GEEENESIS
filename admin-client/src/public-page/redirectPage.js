@@ -12,7 +12,7 @@ export default () => {
 
   const RedirectedPage = () => {
     if (role === 'superadmin' || role === 'clubadmin') return <Redirect to={ADMIN_DASHBOARD_URL} />
-    if (role === 'student' || role === 'mentor') return <Redirect to={STUDENT_HOME_URL} />
+    if (role === 'student' || role === 'mentor') return window.location = STUDENT_HOME_URL;
   }
 
   return (
