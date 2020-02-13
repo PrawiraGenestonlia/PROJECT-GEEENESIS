@@ -4,7 +4,7 @@ import PublicRoute from './publicRoute';
 import ForceReloadBar from '../components/forceReloadBar';
 import { SERVER_BASE_URL, LOGIN_URL, APP_URL } from './constants.router';
 import LoginScreen from '../pages/loginScreen';
-import MainScreens from './mainScreens';
+import App from '../Layout';
 
 
 export default () => {
@@ -16,7 +16,7 @@ export default () => {
         <Route exact path="/" component={() => <Redirect to={LOGIN_URL} />} />
         <PublicRoute exact path={LOGIN_URL} component={LoginScreen} />
         {/* MAIN APP */}
-        <Route path={APP_URL} component={MainScreens} />
+        <Route path={APP_URL} component={App} />
         <Route path='' component={() => <Redirect to={LOGIN_URL} />} />
       </Switch>
     </BrowserRouter>
