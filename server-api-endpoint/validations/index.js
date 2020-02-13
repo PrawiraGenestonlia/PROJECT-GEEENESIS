@@ -67,6 +67,14 @@ const mentorPairValidation = (data) => {
   return mentorPairSchema.validate(data);
 }
 
+const seniorBuddyValidation = (data) => {
+  const seniorBuddySchema = Joi.object({
+    "student": Joi.string().min(2).required(),
+    "senior buddy": Joi.string().min(2).required(),
+  });
+  return seniorBuddySchema.validate(data);
+}
+
 
 module.exports = {
   registerValidation,
@@ -75,5 +83,6 @@ module.exports = {
   changePasswordValidation,
   registerValidationNoPassword,
   clubInformationValidation,
-  mentorPairValidation
+  mentorPairValidation,
+  seniorBuddyValidation
 }

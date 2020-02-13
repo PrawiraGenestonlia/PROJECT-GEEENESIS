@@ -6,7 +6,7 @@
 |:--:|-------------------------------------------|:------:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |    |Create repository                          |✅||||||||||||||
 |FM  |Upload list of new students                |✅|🔵|🔵||||||||||||
-|FM  |Upload list of mentor-mentees              |⭕|🔵|🔵||||||||||||
+|FM  |Upload list of mentor-mentees              |✅|🔵|🔵||||||||||||
 |S   |Create students account upon uploaded      |✅|  |🔵||||||||||||
 |S   |User management                            |✅|  |🔵|🔵|||||||||||
 |CA  |User management                            |✅|  |🔵|🔵|||||||||||
