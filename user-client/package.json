@@ -1,5 +1,6 @@
 {
-  "name": "user-client",
+  "name": "geeenesis",
+  "homepage": "https://server.thexdream.net/geeenesis-user/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
