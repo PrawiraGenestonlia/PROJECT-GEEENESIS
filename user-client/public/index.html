@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <div class="loader"></div>
-  </body>
-  <style>
-    .loader {
-      position: absolute;
-      top: calc(50% - 4em);
-      left: calc(50% - 4em);
-      width: 6em;
-      height: 6em;
-      border: 1.1em solid rgba(0, 0, 0, 0.2);
-      border-left: 1.1em solid rgb(100, 146, 237);
-      border-radius: 50%;
-      animation: load8 1.1s infinite linear;
-      transition: opacity 0.3s;
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <div class="loader"></div>
+</body>
+<style>
+  html {
+    overflow: hidden;
+  }
+
+  body {
+    overflow: auto;
+  }
+
+  .loader {
+    position: absolute;
+    top: calc(50% - 4em);
+    left: calc(50% - 4em);
+    width: 6em;
+    height: 6em;
+    border: 1.1em solid rgba(0, 0, 0, 0.2);
+    border-left: 1.1em solid rgb(100, 146, 237);
+    border-radius: 50%;
+    animation: load8 1.1s infinite linear;
+    transition: opacity 0.3s;
+  }
+
+  .loader--hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @keyframes load8 {
+    0% {
+      transform: rotate(0deg);
     }
-  
-    .loader--hide {
-      opacity: 0;
-      pointer-events: none;
+
+    100% {
+      transform: rotate(360deg);
     }
-  
-    @keyframes load8 {
-      0% {
-        transform: rotate(0deg);
-      }
-  
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  </style>
+  }
+</style>
+
 </html>
