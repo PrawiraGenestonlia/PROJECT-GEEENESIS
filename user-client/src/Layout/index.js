@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import MainScreens from '../router/mainScreens';
 import { stack as Menu } from 'react-burger-menu';
 import BurgerMenuSVG from '../assets/svg/burgerMenu.svg';
@@ -12,7 +12,7 @@ import {
   SINGLE_CHAT_URL, CALENDAR_URL, PROFILES_URL, SINGLE_PROFILE_URL
 } from '../router/constants.router';
 import '../css/react-burger-menu.css';
-
+import '../css/large-screen-nav.css';
 
 const navigators = [
   { title: "Home", href: HOME_URL, svg: HomeSVG },
@@ -20,28 +20,36 @@ const navigators = [
   { title: "Chats", href: CHATS_URL, svg: HomeSVG },
   { title: "Calendar", href: CALENDAR_URL, svg: HomeSVG },
   { title: "Profile", href: PROFILES_URL, svg: HomeSVG },
-]
+];
+
+const navigatorReversed = [...navigators].reverse();
 
 const SmallScreenNavBar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(true);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const onClickLogOut = () => {
     localStorage.removeItem('auth-token');
     window.location.reload();
   }
+  const onNavClick = () => {
+    setIsNavOpen(false);
+  }
+  const isMenuOpen = (s) => {
+    setIsNavOpen(s.isOpen);
+  }
   return (
     <Menu customBurgerIcon={<img src={BurgerMenuSVG} alt="burger-menu" />}
-      customCrossIcon={<img src={CloseSVG} alt="close-menu" />} isOpen={isNavOpen}>
+      customCrossIcon={<img src={CloseSVG} alt="close-menu" />} isOpen={isNavOpen} onStateChange={isMenuOpen}>
       {
-        navigators.map((n) => {
+        navigators.map((n, i) => {
           return (
-            <Link id={n.title.toLowerCase()} className="menu-item" to={n.href} >
+            <NavLink key={i} id={n.title.toLowerCase()} className="menu-item" to={n.href} onClick={onNavClick} activeClassName="font-black">
               <div className="text-black mt-3 mb-3 ">
                 {n.svg ?
                   <> <img className="float-left" src={n.svg} alt={`${n.title}-icon`} width={20} /> &nbsp; {n.title} </>
                   :
                   <> {n.title} </>}
               </div>
-            </Link>
+            </NavLink>
           )
         })
       }
@@ -63,15 +71,12 @@ const LargeScreenNavBar = () => {
     window.location.reload();
   }
   return (
-    <div className="h-5">
+    <div className="large-nav">
       <ul>
-        {navigators.map((n) => {
-          return <li><Link className="" to={n.href}>{n.title}</Link></li>
+        <li><Link className="" to="" onClick={onClickLogOut}>Log out</Link></li>
+        {navigatorReversed.map((n, i) => {
+          return <li key={i}><NavLink className="" to={n.href}>{n.title}</NavLink></li>
         })}
-
-        <li><a href="#news">News</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#about">About</a></li>
       </ul>
     </div>
   )
@@ -79,19 +84,19 @@ const LargeScreenNavBar = () => {
 
 export default () => {
   return (
-    <div className="w-full">
+    <div className="flex flex-col w-full mt-0">
       <div className='md:hidden'>
         <SmallScreenNavBar />
       </div>
-      <div className="hidden md:block">
-        <LargeScreenNavBar />
+      <div className="hidden md:block" >
+        <div id="navbar">
+          <LargeScreenNavBar />
+        </div>
+
       </div>
-
-
-      <div className="w-full">
+      <div className="w-full max-w-sm bg-blue-300 p-4 mt-12 ">
         <MainScreens />
       </div>
     </div>
-
   )
 }

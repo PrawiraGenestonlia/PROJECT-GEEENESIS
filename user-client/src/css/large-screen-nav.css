@@ -1,3 +1,11 @@
+#navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: block;
+  transition: top 0.3s;
+}
+
 .large-nav ul {
   list-style-type: none;
   margin: 0;
@@ -6,11 +14,11 @@
   background-color: #333;
 }
 
-li {
-  float: left;
+.large-nav li {
+  float: right;
 }
 
-li a {
+.large-nav li a {
   display: block;
   color: white;
   text-align: center;
@@ -18,10 +26,10 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
+.large-nav li a:hover:not(.active) {
   background-color: #111;
 }
 
-.active {
-  background-color: #4CAF50;
+.large-nav .active {
+  background-color: #3d53fa;
 }
