@@ -37,6 +37,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   position: fixed;
   height: 100%;
   top: 0 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* General sidebar styles */
@@ -67,6 +68,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Styling of overlay */
 .bm-overlay {
-  background: rgba(0, 0, 0, 0.1) !important;
+  background: rgba(0, 0, 0, 0.3) !important;
   top: 0 !important;
 }

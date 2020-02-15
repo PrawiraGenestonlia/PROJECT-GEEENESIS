@@ -31,9 +31,11 @@ const checkMultipleScroll = (id1, id2, height = '0px') => {
     if (checkMultipleScroll.prevY > currentY) {
       document.getElementById(id1).style.top = "0";
       document.getElementById(id2).style.top = "0";
+      // document.body.style.backgroundColor = "rgb(45, 105, 246)";
     } else {
       document.getElementById(id1).style.top = `-${height}`;
       document.getElementById(id2).style.top = `-${height}`;
+      // document.body.style.backgroundColor = "white";
     }
     checkMultipleScroll.prevY = currentY;
   }

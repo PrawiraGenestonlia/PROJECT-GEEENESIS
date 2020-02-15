@@ -4,21 +4,31 @@
 <head>
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
   <meta name="description" content="Web site created using create-react-app" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <title>Genesis</title>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 </head>
 
 <body>
+  <div id="root-background"></div>
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <div class="loader"></div>
 </body>
 
 <style>
+  #root-background {
+    position: fixed;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+  }
+
   .loader {
     position: absolute;
     top: calc(50% - 4em);

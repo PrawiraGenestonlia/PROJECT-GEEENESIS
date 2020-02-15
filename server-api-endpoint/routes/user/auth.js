@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const speakeasy = require('speakeasy');
 const { verifyToken } = require('../../middlewares');
 const { emailToken } = require('../../middlewares');
+const EmailPassword = require('../../middlewares/emailPassword');
 const user = require('../../models/user');
 const { registerValidation, loginValidation,
   forgetPasswordValidation, changePasswordValidation } = require('../../validations');
@@ -187,13 +188,31 @@ router.post('/changepasswordwithoutemail', verifyToken, async (req, res) => {
 })
 
 
-//todo: wira
 router.post('/forgetpassword', async (req, res) => {
   //data validation
   const { error } = forgetPasswordValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  //
+  //check if user exist
+  const currentUser = await user.findOne({ email: req.user.email });
+  if (!currentUser) return res.status(400).send('Account does not exist!');
+
+  //generate random 6 digit password
+  const randomPassword = Math.floor(100000 + Math.random() * 900000).toString();
+
+  //hash passwords
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(randomPassword, salt);
+
+  //update user
+  const updatedUser = await user.findOneAndUpdate({ email: req.body.email }, { password: hashedPassword });
+
+  //send email
+  EmailPassword(updatedUser, randomPassword).then(() => {
+    res.status(200).send(`${req.body.name}, your new password has been sent to your email!`);
+  }).catch((err) => {
+    res.status(400).send(err);
+  });
 })
 
 module.exports = router;

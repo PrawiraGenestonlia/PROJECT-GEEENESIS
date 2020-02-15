@@ -61,8 +61,8 @@ const SmallScreenNavBar = () => {
         </Button>
         </div>
       </Menu>
-      <div className="flex" style={{ left: '50%', right: '50%', float: 'none' }}>
-        GEEENESIS LOGO
+      <div className="flex absolute h-full w-full justify-center items-center">
+        <div>GEEENESIS LOGO</div>
       </div>
     </>
   )
@@ -90,17 +90,17 @@ export default () => {
   return (
     <div className="flex flex-col w-full mt-0">
       <div className='md:hidden'>
-        <div id="navbar" className="bg-white h-12 shadow-xl">
+        <div id="navbar" className="h-12 shadow-xl" style={{ backgroundColor: 'white' }}>
           <SmallScreenNavBar />
         </div>
       </div>
       <div className="hidden md:block" >
-        <div id="navbarlg" >
+        <div id="navbarlg" className="shadow-xl">
           <LargeScreenNavBar />
         </div>
 
       </div>
-      <div className="w-full max-w-sm bg-blue-300 p-4 mt-12 ">
+      <div className="w-full max-w-sm p-4 mt-12 ">
         <MainScreens />
       </div>
     </div>
