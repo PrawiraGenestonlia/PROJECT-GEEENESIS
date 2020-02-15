@@ -194,7 +194,7 @@ router.post('/forgetpassword', async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   //check if user exist
-  const currentUser = await user.findOne({ email: req.user.email });
+  const currentUser = await user.findOne({ email: req.body.email });
   if (!currentUser) return res.status(400).send('Account does not exist!');
 
   //generate random 6 digit password
@@ -209,7 +209,7 @@ router.post('/forgetpassword', async (req, res) => {
 
   //send email
   EmailPassword(updatedUser, randomPassword).then(() => {
-    res.status(200).send(`${req.body.name}, your new password has been sent to your email!`);
+    res.status(200).send(`Your new password has been sent to ${req.body.email}`);
   }).catch((err) => {
     res.status(400).send(err);
   });
