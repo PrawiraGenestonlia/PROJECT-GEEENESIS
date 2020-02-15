@@ -26,16 +26,23 @@ const navigatorReversed = [...navigators].reverse();
 
 const SmallScreenNavBar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [headerText, setHeaderText] = useState('Home');
   const onClickLogOut = () => {
     localStorage.removeItem('auth-token');
     window.location.reload();
   }
-  const onNavClick = () => {
+  const onNavClick = (page) => {
     setIsNavOpen(false);
+    setHeaderText(page);
   }
   const isMenuOpen = (s) => {
     setIsNavOpen(s.isOpen);
   }
+
+  useEffect(() => {
+
+  }, [isNavOpen])
+
   return (
     <>
       <Menu customBurgerIcon={<img src={BurgerMenuSVG} alt="burger-menu" />}
@@ -43,7 +50,7 @@ const SmallScreenNavBar = () => {
         {
           navigators.map((n, i) => {
             return (
-              <NavLink key={i} id={n.title.toLowerCase()} className="menu-item" to={n.href} onClick={onNavClick} activeClassName="font-black">
+              <NavLink key={i} id={n.title.toLowerCase()} className="menu-item" to={n.href} onClick={() => { onNavClick(n.title) }} activeClassName="font-black">
                 <div className="text-black mt-3 mb-3 ">
                   {n.svg ?
                     <> <img className="float-left" src={n.svg} alt={`${n.title}-icon`} width={20} /> &nbsp; {n.title} </>
@@ -61,8 +68,8 @@ const SmallScreenNavBar = () => {
         </Button>
         </div>
       </Menu>
-      <div className="flex absolute h-full w-full justify-center items-center">
-        <div>GEEENESIS LOGO</div>
+      <div className="flex absolute h-full w-full justify-center items-center z-20">
+        <div>{headerText === 'Home' ? 'GEEENESIS LOGO' : headerText}</div>
       </div>
     </>
   )
@@ -90,12 +97,12 @@ export default () => {
   return (
     <div className="flex flex-col w-full mt-0">
       <div className='md:hidden'>
-        <div id="navbar" className="h-12 shadow-xl" style={{ backgroundColor: 'white' }}>
+        <div id="navbar" className="h-12 shadow-xl z-50" style={{ backgroundColor: 'white' }}>
           <SmallScreenNavBar />
         </div>
       </div>
       <div className="hidden md:block" >
-        <div id="navbarlg" className="shadow-xl">
+        <div id="navbarlg" className="shadow-xl z-50">
           <LargeScreenNavBar />
         </div>
 

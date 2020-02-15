@@ -47,5 +47,7 @@
 |12/02/2020|5           |mobile next js - login  |
 |13/02/2020|5           |mobile convert to react  |
 |13/02/2020|3           |senior buddy |
+|14/02/2020|6           |mobile navigation |
+|15/02/2020|6           |mobile calendar |
 |||
-|**TOTAL** |**106.5**    |*Temporary total productive hours spent*
+|**TOTAL** |**118.5**    |*Temporary total productive hours spent*

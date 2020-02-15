@@ -2,7 +2,8 @@ import axios from 'axios';
 import getToken from '../utils/getToken';
 import {
   LOGIN_URI,
-  CHANGE_PASSWORD_URI
+  CHANGE_PASSWORD_URI,
+  GETEVENT
 } from './constants.api';
 
 export const login = async (user) => {
@@ -35,6 +36,24 @@ export const changePassword = async (data) => {
       resolve(res);
     }).catch((err) => {
       reject(err.response);
+    })
+  })
+}
+
+export const getEvents = async ({ year, eventUniqueName, eventCreator }) => {
+  let url = GETEVENT;
+  if (year) url += `?year=${year}`;
+  else if (eventUniqueName) url += `?event=${eventUniqueName}`;
+  else if (eventCreator) url += `?createdBy=${eventCreator}`;
+  const token = getToken();
+  return new Promise((resolve, reject) => {
+    axios.get(url, {
+      headers: { "auth-token": token }
+    }).then((res) => {
+      if (res.status === 200) resolve(res);
+    }).catch((err) => {
+      if (err.response) reject(err.response.data);
+      else reject(err);
     })
   })
 }

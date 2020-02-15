@@ -25,3 +25,8 @@ export const SINGLE_CHAT_URL = "/app/chats";
 export const CALENDAR_URL = "/app/calendar";
 export const PROFILES_URL = "/app/profiles";
 export const SINGLE_PROFILE_URL = "/app/profiles";
+
+//STANDALONE ROUTES
+export const HOST_URL = "https://server.thexdream.net"
+export const ADMIN_BASE_URL = "/geeenesis";
+export const EVENT_STANDALONE_URL = HOST_URL + ADMIN_BASE_URL + "/event/";
