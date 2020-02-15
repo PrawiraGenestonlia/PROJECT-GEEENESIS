@@ -44,6 +44,7 @@ router.get('/get-events', async (req, res) => {
   }
   else {
     try {
+      today.setFullYear(today.getFullYear() - 1);
       let eventInfo = await event.find({ start: { $gte: today } }).sort({ start: 'ascending' });
       res.status(200).send(eventInfo);
     } catch (err) {
@@ -53,12 +54,12 @@ router.get('/get-events', async (req, res) => {
 });
 
 router.get('/get-all-events', async (req, res) => {
-    try {
-      let eventInfo = await event.find({}).sort({ start: 'ascending' });
-      res.status(200).send(eventInfo);
-    } catch (err) {
-      res.status(400).send(err);
-    }
+  try {
+    let eventInfo = await event.find({}).sort({ start: 'ascending' });
+    res.status(200).send(eventInfo);
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 
 router.post('/create-event', verifyToken, async (req, res) => {
