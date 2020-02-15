@@ -37,35 +37,38 @@ const SmallScreenNavBar = () => {
     setIsNavOpen(s.isOpen);
   }
   return (
-    <Menu customBurgerIcon={<img src={BurgerMenuSVG} alt="burger-menu" />}
-      customCrossIcon={<img src={CloseSVG} alt="close-menu" />} isOpen={isNavOpen} onStateChange={isMenuOpen}>
-      {
-        navigators.map((n, i) => {
-          return (
-            <NavLink key={i} id={n.title.toLowerCase()} className="menu-item" to={n.href} onClick={onNavClick} activeClassName="font-black">
-              <div className="text-black mt-3 mb-3 ">
-                {n.svg ?
-                  <> <img className="float-left" src={n.svg} alt={`${n.title}-icon`} width={20} /> &nbsp; {n.title} </>
-                  :
-                  <> {n.title} </>}
-              </div>
-            </NavLink>
-          )
-        })
-      }
-      <Divider type="horizontal" style={{ background: 'black' }} />
-      <div className="flex text-black mt-3 mb-3">
-        <Button type="default" shape="round" onClick={onClickLogOut}>
-          <img className="float-left" src={LogoutSVG} alt="Log out" width={20} /> &nbsp; Log out
+    <>
+      <Menu customBurgerIcon={<img src={BurgerMenuSVG} alt="burger-menu" />}
+        customCrossIcon={<img src={CloseSVG} alt="close-menu" />} isOpen={isNavOpen} onStateChange={isMenuOpen}>
+        {
+          navigators.map((n, i) => {
+            return (
+              <NavLink key={i} id={n.title.toLowerCase()} className="menu-item" to={n.href} onClick={onNavClick} activeClassName="font-black">
+                <div className="text-black mt-3 mb-3 ">
+                  {n.svg ?
+                    <> <img className="float-left" src={n.svg} alt={`${n.title}-icon`} width={20} /> &nbsp; {n.title} </>
+                    :
+                    <> {n.title} </>}
+                </div>
+              </NavLink>
+            )
+          })
+        }
+        <Divider type="horizontal" style={{ background: 'black' }} />
+        <div className="flex text-black mt-3 mb-3">
+          <Button type="default" shape="round" onClick={onClickLogOut}>
+            <img className="float-left" src={LogoutSVG} alt="Log out" width={20} /> &nbsp; Log out
         </Button>
+        </div>
+      </Menu>
+      <div className="flex" style={{ left: '50%', right: '50%', float: 'none' }}>
+        GEEENESIS LOGO
       </div>
-    </Menu>
-
+    </>
   )
 }
 
 const LargeScreenNavBar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(true);
   const onClickLogOut = () => {
     localStorage.removeItem('auth-token');
     window.location.reload();
@@ -73,9 +76,10 @@ const LargeScreenNavBar = () => {
   return (
     <div className="large-nav">
       <ul>
+        <li className="large-nav-logo"><Link className="" to="/">Geeenesis Logo</Link></li>
         <li><Link className="" to="" onClick={onClickLogOut}>Log out</Link></li>
         {navigatorReversed.map((n, i) => {
-          return <li key={i}><NavLink className="" to={n.href}>{n.title}</NavLink></li>
+          return <li key={i}><NavLink className="" to={n.href}><img className="float-left" src={n.svg} alt={`${n.title}-icon`} width={20} /> &nbsp; {n.title}</NavLink></li>
         })}
       </ul>
     </div>
@@ -86,10 +90,12 @@ export default () => {
   return (
     <div className="flex flex-col w-full mt-0">
       <div className='md:hidden'>
-        <SmallScreenNavBar />
+        <div id="navbar" className="bg-white h-12 shadow-xl">
+          <SmallScreenNavBar />
+        </div>
       </div>
       <div className="hidden md:block" >
-        <div id="navbar">
+        <div id="navbarlg" >
           <LargeScreenNavBar />
         </div>
 

@@ -15,11 +15,14 @@ const loader = document.querySelector('.loader');
 const showLoader = () => loader.classList.remove('loader--hide');
 const hideLoader = () => loader.classList.add('loader--hide');
 
+// const navbarSmall = new checkScroll("navbar", "50px");
+// const navbarLarge = new checkScroll("navbarlg", "50px");
+
 const ReactApp = ({ hideLoader }) => {
   useEffect(() => hideLoader(), [hideLoader]);
 
   const handleScroll = () => {
-    checkScroll("navbar", "50px");
+    checkScroll("navbar", "navbarlg", '50px')
   }
 
   useEffect(() => {

@@ -6,6 +6,14 @@
   transition: top 0.3s;
 }
 
+#navbarlg {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: block;
+  transition: top 0.3s;
+}
+
 .large-nav ul {
   list-style-type: none;
   margin: 0;
@@ -32,4 +40,8 @@
 
 .large-nav .active {
   background-color: #3d53fa;
+}
+
+.large-nav-logo {
+  float: left !important;
 }
