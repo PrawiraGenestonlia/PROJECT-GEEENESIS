@@ -37,17 +37,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
   position: fixed;
   height: 100%;
   top: 0 !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* General sidebar styles */
 .bm-menu {
-  background-color: #8EC5FC !important;
-  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%) !important;
+  background-color: #8ec5fc !important;
+  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%) !important;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
   overflow: hidden !important;
-
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -70,4 +70,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3) !important;
   top: 0 !important;
+}
+
+.test {
+  background: white;
+  text-emphasis-style: bold;
+  top: 0;
 }

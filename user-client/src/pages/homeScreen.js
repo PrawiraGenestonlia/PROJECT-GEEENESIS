@@ -2,7 +2,7 @@ import React from 'react';
 
 export default () => {
   return (
-    <div>
+    <div className="">
       Home Screen
       <p><b>This example demonstrates how to hide a navbar when the user starts to scroll the page.</b></p>
       <p>Scroll down this frame to see the effect!</p>
