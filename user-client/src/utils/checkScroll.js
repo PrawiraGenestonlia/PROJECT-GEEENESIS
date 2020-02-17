@@ -27,7 +27,7 @@ const checkMultipleScroll = (id1, id2, height = '0px') => {
   }
   let currentY = window.pageYOffset;
   // console.log(currentY, checkMultipleScroll.prevY);
-  if (currentY > 100) {
+  if (currentY > 120) {
     if (checkMultipleScroll.prevY > currentY) {
       document.getElementById(id1).style.top = "0";
       document.getElementById(id2).style.top = "0";
