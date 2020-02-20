@@ -30,11 +30,7 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
         ...await profile.findOne({ email: req.user.email })
       },
     };
-
-
-
     res.status(200).json(response);
-
   } catch (err) {
     res.status(200).json(err);
   }
