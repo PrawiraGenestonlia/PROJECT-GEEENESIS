@@ -16,8 +16,9 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
   //
   try {
     let response = {
-      myInfo: {
-        ...await user.findOne({ email: req.user.email })
+      myInfo: () => {
+        const temp = await user.findOne({ email: req.user.email });
+        return { matric: temp._doc.matric, role: temp._doc.role, name: temp._doc.name, email: temp._doc.email, networkname: temp._doc.networkname }
       },
       myMentor: {
         ...await mentor.find({ mentor: myNetworkName })
