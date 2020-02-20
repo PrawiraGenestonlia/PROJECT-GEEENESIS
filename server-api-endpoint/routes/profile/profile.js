@@ -84,7 +84,7 @@ router.post('/delete-fav-event', verifyToken, async (req, res) => {
     const myProfile = await profile.findOne({ email: req.user.email });
 
     await profile.findOne({ email: req.user.email }, (err, myProfile) => {
-      myProfile.favouriteEvents.uniqueName(req.body.uniqueName).remove();
+      myProfile.favouriteEvents.splice(myProfile.favouriteEvents.findIndex(event => event.uniqueName == req.body.uniqueName), 1);
       myProfile.save();
     });
 
