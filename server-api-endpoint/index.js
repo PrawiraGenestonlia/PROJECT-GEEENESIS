@@ -1,5 +1,9 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
+const rfs = require("rotating-file-stream");
 const mongoose = require('mongoose');
 const cors = require('cors');
 const compression = require('compression');
@@ -21,11 +25,21 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTop
   console.log("Connected to MongoDB...");
 }).catch(err => console.error("Could not connect to MongoDB...", err));
 
+// create a write stream (in append mode)
+const logDirectory = path.join(__dirname, 'log');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+const accessLogStream = rfs.createStream(process.env.DEV ? 'dev.log' : 'access.log', {
+  size: "10M", // rotate every 10 MegaBytes written
+  interval: "1M", // rotate daily
+  compress: "gzip", // compress rotated files
+  path: logDirectory
+});
+
 //middleware
 app.use(compression());
 app.use(cors());
 app.use(express.json());
-
+app.use(morgan('short', { stream: accessLogStream }));
 
 app.get('/', async (req, res) => { res.send('geeenesis API server is up') });
 app.use('/user', authRoute);
