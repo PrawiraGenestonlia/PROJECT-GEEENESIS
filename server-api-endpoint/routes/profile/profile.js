@@ -5,6 +5,11 @@ const user = require('../../models/user');
 const mentor = require('../../models/mentor');
 const profile = require('../../models/profile');
 
+router.get('/', verifyToken, async (req, res) => {
+  if (req.user.role) return res.status(401).send('Unauthorized Access!');
+  res.status(200).json(req.user);
+});
+
 router.get('/get-my-profile', verifyToken, async (req, res) => {
   if (req.user.role) return res.status(401).send('Unauthorized Access!');
   const myNetworkName = req.user.email.substring(0, req.user.email.lastIndexOf("@"));
