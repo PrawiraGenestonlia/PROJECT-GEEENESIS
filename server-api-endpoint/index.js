@@ -34,6 +34,9 @@ const accessLogStream = rfs.createStream(process.env.DEV ? 'dev.log' : 'access.l
   compress: "gzip", // compress rotated files
   path: logDirectory
 });
+morgan.token('remote-addr', function (req) {
+  return req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+});
 
 //middleware
 app.use(compression());
