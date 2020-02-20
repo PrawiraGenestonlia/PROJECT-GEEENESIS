@@ -37,9 +37,9 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
       myJuniorBuddy: [
         ...await seniorBuddy.find({ student: myNetworkName })
       ],
-      myProfile: {
-        ...foundProfile._doc
-      },
+      // myProfile: {
+      //   ...foundProfile._doc
+      // },
     };
     res.status(200).json(response);
   } catch (err) {
