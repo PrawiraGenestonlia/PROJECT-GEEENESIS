@@ -15,7 +15,7 @@
     "install:user": "cd user-client && npm i",
     "install:server": "cd server-api-endpoint && npm i",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server-log": "tail -f ./server-api-endpoint/log/access.log",
+    "log:server": "tail -f ./server-api-endpoint/log/access.log",
     "git-fast-sync": "git add . && git commit -m \"Fast Sync\" && git push origin master"
   },
   "repository": {
