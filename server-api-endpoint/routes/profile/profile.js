@@ -14,9 +14,18 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
   if (!req.user.role) return res.status(401).send('Unauthorized Access!');
   const myNetworkName = req.user.email.substring(0, req.user.email.lastIndexOf("@"));
   //
+  //check profile
+  const foundProfile = await profile.findOne({ email: req.user.email });
+  if (!foundProfile) {
+    const newProfile = new profile({
+      email: req.user.email
+    });
+    await newProfile.save();
+  }
+
   try {
     const foundUser = await user.findOne({ email: req.user.email });
-    const foundProfile = await profile.findOne({ email: req.user.email });
+
     let response = {
       myInfo: {
         matric: foundUser._doc.matric,
@@ -39,7 +48,7 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
       ],
       myProfile: foundProfile ? {
         ...foundProfile._doc
-      } : {},
+      } : { ...newProfile },
     };
     res.status(200).json(response);
   } catch (err) {
