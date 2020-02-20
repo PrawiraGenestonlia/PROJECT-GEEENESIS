@@ -62,8 +62,8 @@ router.post('/add-fav-event', verifyToken, async (req, res) => {
 
   try {
 
-    //check if club exist
-    const isFavourite = await profile.findOne({ email: req.user.email, favouriteEvents: { uniqueName: req.body.uniqueName } });
+    //check if favourite exist
+    const isFavourite = await profile.findOne({ email: req.user.email, "favouriteEvents.uniqueName": req.body.uniqueName });
     if (isFavourite) return res.status(200).send('Event is already fav');
 
     await profile.findOneAndUpdate(
