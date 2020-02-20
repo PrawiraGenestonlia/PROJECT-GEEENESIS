@@ -3,6 +3,7 @@ const { verifyToken } = require('../../middlewares');
 const seniorBuddy = require('../../models/seniorBuddy');
 const user = require('../../models/user');
 const mentor = require('../../models/mentor');
+const event = require('../../models/event');
 const profile = require('../../models/profile');
 
 router.get('/', verifyToken, async (req, res) => {
@@ -56,5 +57,24 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
   }
 });
 
+router.post('/add-fav-event', verifyToken, async (req, res) => {
+  if (!req.user.role) return res.status(401).send('Unauthorized Access!');
+
+  try {
+
+    //check if club exist
+    const isFavourite = await profile.findOne({ email: req.user.email, favouriteEvents: { uniqueName: req.body.uniqueName } });
+    if (isFavourite) return res.status(200).send('Event is already fav');
+
+    await profile.findOneAndUpdate(
+      { email: req.user.email },
+      { $push: { favouriteEvents: req.body } },
+    );
+
+    res.status(200).json('Event is added as favourite');
+  } catch (err) {
+    res.status(200).json(err);
+  }
+});
 
 module.exports = router;
