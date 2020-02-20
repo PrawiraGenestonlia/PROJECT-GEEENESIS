@@ -35,20 +35,20 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
         networkname: foundUser._doc.networkname
       },
       myMentor: [
-        ...await mentor.find({ mentor: myNetworkName })
-      ],
-      myStudent: [
         ...await mentor.find({ student: myNetworkName })
       ],
+      myStudent: [
+        ...await mentor.find({ mentor: myNetworkName })
+      ],
       mySeniorBuddy: [
-        ...await seniorBuddy.find({ "senior buddy": myNetworkName })
+        ...await seniorBuddy.find({ "student": myNetworkName })
       ],
       myJuniorBuddy: [
-        ...await seniorBuddy.find({ student: myNetworkName })
+        ...await seniorBuddy.find({ "senior buddy": myNetworkName })
       ],
       myProfile: foundProfile ? {
         ...foundProfile._doc
-      } : { ...newProfile },
+      } : { email: req.user.email },
     };
     res.status(200).json(response);
   } catch (err) {
