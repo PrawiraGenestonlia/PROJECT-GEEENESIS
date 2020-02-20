@@ -53,7 +53,7 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
     };
     res.status(200).json(response);
   } catch (err) {
-    res.status(200).json(err);
+    res.status(400).json(err);
   }
 });
 
@@ -73,7 +73,7 @@ router.post('/add-fav-event', verifyToken, async (req, res) => {
 
     res.status(200).json('Event is added as favourite');
   } catch (err) {
-    res.status(200).json(err);
+    res.status(400).json(err);
   }
 });
 
@@ -89,7 +89,7 @@ router.post('/delete-fav-event', verifyToken, async (req, res) => {
     });
     res.status(200).json('Event is deleted from favourite');
   } catch (err) {
-    res.status(200).json(err);
+    res.status(400).json(err);
   }
 });
 
