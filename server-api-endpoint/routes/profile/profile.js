@@ -83,7 +83,9 @@ router.post('/delete-fav-event', verifyToken, async (req, res) => {
   try {
     await profile.findByIdAndUpdate({
       email: req.user.email,
-      $pull: { "favouriteEvents.uniqueName": req.body.uniqueName }
+      favouriteEvents: {
+        $pull: { "uniqueName": req.body.uniqueName }
+      }
     });
     res.status(200).json('Event is deleted from favourite');
   } catch (err) {
