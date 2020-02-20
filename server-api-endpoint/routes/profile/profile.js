@@ -59,19 +59,12 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
 
 router.post('/add-fav-event', verifyToken, async (req, res) => {
   if (!req.user.role) return res.status(401).send('Unauthorized Access!');
-
   try {
-
-    //check if favourite exist
-    const isFavourite = await profile.findOne({ email: req.user.email, "favouriteEvents.uniqueName": req.body.uniqueName });
-    if (isFavourite) return res.status(200).send('Event is already fav');
-
     await profile.findOneAndUpdate(
-      { email: req.user.email },
+      { email: req.user.email, "favouriteEvents.uniqueName": { $ne: req.body.uniqueName } },
       { $push: { favouriteEvents: req.body } },
     );
-
-    res.status(200).json('Event is added as favourite');
+    res.status(200).json('Event is added as interested');
   } catch (err) {
     res.status(400).json(err);
   }
@@ -93,7 +86,6 @@ router.post('/delete-fav-event', verifyToken, async (req, res) => {
 
 router.post('/add-interested-event', verifyToken, async (req, res) => {
   if (!req.user.role) return res.status(401).send('Unauthorized Access!');
-
   try {
     await profile.findOneAndUpdate(
       { email: req.user.email, "interestedEvents.uniqueName": { $ne: req.body.uniqueName } },
@@ -108,12 +100,12 @@ router.post('/add-interested-event', verifyToken, async (req, res) => {
 router.post('/delete-interested-event', verifyToken, async (req, res) => {
   if (!req.user.role) return res.status(401).send('Unauthorized Access!');
   try {
-    await profile.findOneAndUpdate({ email: req.user.email }, {
+    const result = await profile.findOneAndUpdate({ email: req.user.email }, {
       '$pull': {
-        'favouriteEvents': { 'uniqueName': req.body.uniqueName }
+        'interestedEvents': { 'uniqueName': req.body.uniqueName }
       }
     });
-    res.status(200).json('Event is deleted from favourite');
+    res.status(200).json(result);
   } catch (err) {
     res.status(400).json(err);
   }
