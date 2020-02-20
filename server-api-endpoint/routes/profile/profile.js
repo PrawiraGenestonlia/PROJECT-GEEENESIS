@@ -7,7 +7,7 @@ const profile = require('../../models/profile');
 
 router.get('/', verifyToken, async (req, res) => {
   if (req.user.role) return res.status(401).send('Unauthorized Access!');
-  res.status(200).json(req.user);
+  res.status(200).json("profile route is up!");
 });
 
 router.get('/get-my-profile', verifyToken, async (req, res) => {
