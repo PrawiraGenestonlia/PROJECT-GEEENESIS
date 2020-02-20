@@ -77,4 +77,15 @@ router.post('/add-fav-event', verifyToken, async (req, res) => {
   }
 });
 
+router.post('/delete-fav-event', verifyToken, async (req, res) => {
+  if (!req.user.role) return res.status(401).send('Unauthorized Access!');
+
+  try {
+    await profile.findOneAndDelete({ email: req.user.email, "favouriteEvents.uniqueName": req.body.uniqueName });
+    res.status(200).json('Event is deleted from favourite');
+  } catch (err) {
+    res.status(200).json(err);
+  }
+});
+
 module.exports = router;
