@@ -15,25 +15,30 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
   const myNetworkName = req.user.email.substring(0, req.user.email.lastIndexOf("@"));
   //
   try {
+    const foundUser = await user.findOne({ email: req.user.email });
+    const foundProfile = await profile.findOne({ email: req.user.email });
     let response = {
-      myInfo: async () => {
-        const temp = await user.findOne({ email: req.user.email });
-        return { matric: temp._doc.matric, role: temp._doc.role, name: temp._doc.name, email: temp._doc.email, networkname: temp._doc.networkname }
+      myInfo: {
+        matric: foundUser._doc.matric,
+        role: foundUser._doc.role,
+        name: foundUser._doc.name,
+        email: foundUser._doc.email,
+        networkname: foundUser._doc.networkname
       },
-      myMentor: {
+      myMentor: [
         ...await mentor.find({ mentor: myNetworkName })
-      },
-      myStudent: {
+      ],
+      myStudent: [
         ...await mentor.find({ student: myNetworkName })
-      },
-      mySeniorBuddy: {
+      ],
+      mySeniorBuddy: [
         ...await seniorBuddy.find({ "senior buddy": myNetworkName })
-      },
-      myJuniorBuddy: {
+      ],
+      myJuniorBuddy: [
         ...await seniorBuddy.find({ student: myNetworkName })
-      },
+      ],
       myProfile: {
-        ...await profile.findOne({ email: req.user.email })
+        ...foundProfile._doc
       },
     };
     res.status(200).json(response);
