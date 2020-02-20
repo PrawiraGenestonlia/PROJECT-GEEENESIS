@@ -105,7 +105,34 @@ router.post('/delete-interested-event', verifyToken, async (req, res) => {
         'interestedEvents': { 'uniqueName': req.body.uniqueName }
       }
     });
-    res.status(200).json(result);
+    res.status(200).json('Event is deleted from interested');
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.post('/add-participated-event', verifyToken, async (req, res) => {
+  if (!req.user.role) return res.status(401).send('Unauthorized Access!');
+  try {
+    await profile.findOneAndUpdate(
+      { email: req.user.email, "participatedEvents.uniqueName": { $ne: req.body.uniqueName } },
+      { $push: { participatedEvents: req.body } },
+    );
+    res.status(200).json('Event is added as participated');
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.post('/delete-participated-event', verifyToken, async (req, res) => {
+  if (!req.user.role) return res.status(401).send('Unauthorized Access!');
+  try {
+    const result = await profile.findOneAndUpdate({ email: req.user.email }, {
+      '$pull': {
+        'participatedEvents': { 'uniqueName': req.body.uniqueName }
+      }
+    });
+    res.status(200).json('Event is deleted from participated');
   } catch (err) {
     res.status(400).json(err);
   }
