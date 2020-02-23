@@ -200,9 +200,12 @@ router.get('/get-my-chat-list', verifyToken, async (req, res) => {
     let response = [];
 
     for (let i = 0; i < chatList.size; i++) {
-      let name = await findName(chatList[i]);
-      response.push({ networkname: chatList[i], name: name });
+      let doc = await user.findOne({ networkname: chatList[i] });
+      console.log(doc);
+      response.push({ networkname: chatList[i], name: doc['name'] });
     }
+
+    console.log(response)
 
 
     res.status(200).json(response);
