@@ -16,19 +16,6 @@ const createProfile = async (email) => {
   }
 }
 
-const findName = async (networkname) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      let doc = await user.findOne({ networkname: networkname });
-      resolve(doc['name']);
-    } catch (err) {
-      reject(err);
-    }
-  })
-
-}
-
-
 router.get('/', verifyToken, async (req, res) => {
   if (!req.user.role) return res.status(401).send('Unauthorized Access!');
   res.status(200).json("Profile route is running...");
@@ -199,7 +186,7 @@ router.get('/get-my-chat-list', verifyToken, async (req, res) => {
 
     for (const v of chatList) {
       let doc = await user.findOne({ networkname: v });
-      response.push({ name: doc._doc['name'], email: doc._doc['email'], role: doc._doc['role'] });
+      response.push({ name: doc._doc['name'], email: doc._doc['email'], role: doc._doc['role'], networkname: v });
     }
 
     res.status(200).json(response);
