@@ -19,7 +19,7 @@ const createProfile = async (email) => {
 const findName = async (networkname) => {
   return new Promise((resolve, reject) => {
     try {
-      resolve(await user.findOne({ networkname: networkname }));
+      resolve(user.findOne({ networkname: networkname }));
     } catch (err) {
       reject(err);
     }
