@@ -195,24 +195,12 @@ router.get('/get-my-chat-list', verifyToken, async (req, res) => {
 
     chatList.delete(myNetworkName);
 
-    console.log(chatList);
-
     let response = [];
-
-    // for (let i = 0; i < chatList.size; i++) {
-    //   let doc = await user.findOne({ networkname: chatList[i] });
-    //   console.log(chatList[i]);
-    //   response.push({ networkname: chatList[i], name: doc._doc['name'] });
-    // }
 
     for (const v of chatList) {
       let doc = await user.findOne({ networkname: v });
-      console.log(v);
-      response.push({ networkname: v, name: doc._doc['name'] });
+      response.push({ name: doc._doc['name'], email: doc._doc['email'], role: doc._doc['role'] });
     }
-
-    console.log(response)
-
 
     res.status(200).json(response);
   } catch (err) {
