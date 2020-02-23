@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { LOGIN_URL } from './constants.router';
 
+
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const isAuth = () => {
     let authToken = localStorage.getItem('auth-token');
@@ -11,7 +12,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route {...rest} render={props => (
       isAuth() ?
-        <Component {...props} />
+        <div className="screen">
+          <Component {...props} />
+        </div>
         : <Redirect to={LOGIN_URL} />
     )} />
   );

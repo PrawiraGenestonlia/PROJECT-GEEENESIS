@@ -8,8 +8,8 @@ import CloseSVG from '../assets/svg/Close-2.svg';
 import LogoutSVG from '../assets/svg/logout.svg';
 import { Button, Divider } from 'antd';
 import {
-  HOME_URL, CLUBS_URL, SINGLE_CLUB_URL, CHATS_URL,
-  SINGLE_CHAT_URL, CALENDAR_URL, PROFILES_URL, SINGLE_PROFILE_URL
+  HOME_URL, CLUBS_URL, CHATS_URL, CALENDAR_URL, PROFILES_URL,
+  // SINGLE_CHAT_URL, SINGLE_CLUB_URL, SINGLE_PROFILE_URL
 } from '../router/constants.router';
 import '../css/react-burger-menu.css';
 import '../css/large-screen-nav.css';
@@ -107,7 +107,7 @@ export default () => {
         </div>
 
       </div>
-      <div className="w-full max-w-sm p-4 mt-12 ">
+      <div className="w-full max-w-sm p-4 mt-12 relative">
         <MainScreens />
       </div>
     </div>

@@ -18,6 +18,16 @@ code {
   text-align: center;
 }
 
+#root {
+  height: 100vh;
+}
+
+.screen {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+}
+
 #reloadbar {
   visibility: hidden;
   width: 80%;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { APP_URL, HOME_URL } from './constants.router';
+import { HOME_URL } from './constants.router';
 
 const PublicRoute = ({ component: Component, ...rest }) => {
   const isAuth = () => {
