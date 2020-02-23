@@ -199,11 +199,17 @@ router.get('/get-my-chat-list', verifyToken, async (req, res) => {
 
     let response = [];
 
-    for (let i = 0; i < chatList.size; i++) {
-      let doc = await user.findOne({ networkname: chatList[i] });
-      console.log(chatList[i]);
-      response.push({ networkname: chatList[i], name: doc._doc['name'] });
-    }
+    // for (let i = 0; i < chatList.size; i++) {
+    //   let doc = await user.findOne({ networkname: chatList[i] });
+    //   console.log(chatList[i]);
+    //   response.push({ networkname: chatList[i], name: doc._doc['name'] });
+    // }
+
+    chatList.forEach((v) => {
+      let doc = await user.findOne({ networkname: v });
+      console.log(v);
+      response.push({ networkname: v, name: doc._doc['name'] });
+    })
 
     console.log(response)
 
