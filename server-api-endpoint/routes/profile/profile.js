@@ -210,6 +210,7 @@ router.get('/get-my-chat-list', verifyToken, async (req, res) => {
 
     res.status(200).json(response);
   } catch (err) {
+    console.log(err)
     res.status(400).json(err);
   }
 });
