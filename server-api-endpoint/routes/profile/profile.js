@@ -196,10 +196,13 @@ router.get('/get-my-chat-list', verifyToken, async (req, res) => {
     //   let name = await findName(chatList[i]);
     //   response.push({ networkname: chatList[i], name: name });
     // }
-    chatList.forEach(v => {
-      response.push({ networkname: v, name: findName(v) });
-      console.log(response);
-    })
+    const findAllName = async () => {
+      chatList.forEach(async v => {
+        response.push({ networkname: v, name: await findName(v) });
+        console.log(response);
+      })
+    }
+    await findAllName();
 
 
     console.log(response);
