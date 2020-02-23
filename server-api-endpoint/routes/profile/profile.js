@@ -20,7 +20,7 @@ const findName = async (networkname) => {
   return new Promise(async (resolve, reject) => {
     try {
       let doc = await user.findOne({ networkname: networkname });
-      resolve(doc._doc[name]);
+      resolve(doc['name']);
     } catch (err) {
       reject(err);
     }
