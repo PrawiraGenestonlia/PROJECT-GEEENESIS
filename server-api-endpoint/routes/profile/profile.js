@@ -193,8 +193,9 @@ router.get('/get-my-chat-list', verifyToken, async (req, res) => {
     let response = [];
 
     chatList.forEach(async (v) => {
-      let temp = await findName(v);
-      response.push({ networkname: v, name: temp });
+      let name = await findName(v);
+      console.log(v, name);
+      response.push({ networkname: v, name: name });
     });
 
     console.log(response);
