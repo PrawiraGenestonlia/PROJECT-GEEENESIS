@@ -15,6 +15,13 @@ const createProfile = async (email) => {
     await newProfile.save();
   }
 }
+
+const findName = async (networkname) => {
+  const foundProfile = await user.findOne({ networkname: networkname });
+  return foundProfile._doc.name;
+}
+
+
 router.get('/', verifyToken, async (req, res) => {
   if (!req.user.role) return res.status(401).send('Unauthorized Access!');
   res.status(200).json("Profile route is running...");
@@ -183,7 +190,16 @@ router.get('/get-my-chat-list', verifyToken, async (req, res) => {
 
     console.log(chatList);
 
-    let response = chatList;
+    let response = [];
+
+    chatList.forEach(async (v) => {
+      let temp = await findName(v);
+      response.push({ networkname: v, name: temp });
+    });
+
+    console.log(response);
+
+
     res.status(200).json(response);
   } catch (err) {
     res.status(400).json(err);
