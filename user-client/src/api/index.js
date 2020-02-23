@@ -3,7 +3,7 @@ import getToken from '../utils/getToken';
 import {
   LOGIN_URI,
   CHANGE_PASSWORD_URI,
-  GETEVENT
+  GETEVENT,
 } from './constants.api';
 
 export const login = async (user) => {
@@ -57,3 +57,5 @@ export const getEvents = async ({ year, eventUniqueName, eventCreator }) => {
     })
   })
 }
+
+export { getMyProfile } from './profile.api';

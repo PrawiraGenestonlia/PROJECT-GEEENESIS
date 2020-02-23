@@ -6,6 +6,15 @@ const mentor = require('../../models/mentor');
 const event = require('../../models/event');
 const profile = require('../../models/profile');
 
+const createProfile = async (email) => {
+  const foundProfile = await profile.findOne({ email: email });
+  if (!foundProfile) {
+    const newProfile = new profile({
+      email: req.user.email
+    });
+    await newProfile.save();
+  }
+}
 router.get('/', verifyToken, async (req, res) => {
   if (!req.user.role) return res.status(401).send('Unauthorized Access!');
   res.status(200).json("Profile route is running...");
@@ -133,6 +142,49 @@ router.post('/delete-participated-event', verifyToken, async (req, res) => {
       }
     });
     res.status(200).json('Event is deleted from participated');
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.get('/get-my-chat-list', verifyToken, async (req, res) => {
+  if (!req.user.role) return res.status(401).send('Unauthorized Access!');
+  const myNetworkName = req.user.email.substring(0, req.user.email.lastIndexOf("@"));
+  createProfile(req.user.email);
+  try {
+    const listOfMyMentors = await mentor.find({ student: myNetworkName });
+    const listOfMyStudents = await mentor.find({ mentor: myNetworkName });
+    const listOfMySeniorBuddy = await seniorBuddy.find({ "student": myNetworkName });
+    const listOfMyJuniorBuddy = await seniorBuddy.find({ "senior buddy": myNetworkName });
+
+    let chatList = new Set();
+
+    listOfMyMentors.forEach(v => {
+      chatList.add(v['student']);
+      chatList.add(v['mentor']);
+    });
+
+    listOfMyStudents.forEach(v => {
+      chatList.add(v['student']);
+      chatList.add(v['mentor']);
+    });
+
+    listOfMySeniorBuddy.forEach(v => {
+      chatList.add(v['student']);
+      chatList.add(v['senior buddy']);
+    });
+
+    listOfMyJuniorBuddy.forEach(v => {
+      chatList.add(v['student']);
+      chatList.add(v['senior buddy']);
+    });
+
+    chatList.delete(myNetworkName);
+
+
+
+    let response = chatList;
+    res.status(200).json(response);
   } catch (err) {
     res.status(400).json(err);
   }
