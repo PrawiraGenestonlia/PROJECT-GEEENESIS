@@ -204,15 +204,20 @@ router.get('/get-my-chat-list', verifyToken, async (req, res) => {
     //   response.push({ networkname: chatList[i], name: name });
     // }
 
-    await Promise.all(
-      chatList.forEach(async v => {
-        response.push({ networkname: v, name: await findName(v) });
-      })
-    )
+    const findNames = async () => {
+      await Promise.all(
+        chatList.forEach(async v => {
+          response.push({ networkname: v, name: await findName(v) });
+        })
+      )
+    }
 
-    console.log(response);
+    findNames.then(() => {
+      console.log(response);
 
-    res.status(200).json(response);
+      res.status(200).json(response);
+    })
+
   } catch (err) {
     res.status(400).json(err);
   }
