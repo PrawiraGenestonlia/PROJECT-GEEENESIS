@@ -19,10 +19,12 @@
     "react": "^16.12.0",
     "react-add-to-calendar": "^0.1.5",
     "react-burger-menu": "^2.6.13",
+    "react-chat-ui": "^0.3.2",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.1",
     "react-transition-group": "^4.3.0",
+    "rmc-pull-updown-to-refresh": "^1.0.13",
     "styled-components": "^5.0.1",
     "tailwindcss": "^1.2.0"
   },

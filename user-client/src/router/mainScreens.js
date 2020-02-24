@@ -34,7 +34,7 @@ export default () => {
           <PrivateRoute exact path={CLUBS_URL} component={ClubsScreen} />
           <PrivateRoute exact path={SINGLE_CLUB_URL + "/:club_id"} component={SingleClubScreen} />
           <PrivateRoute exact path={CHATS_URL} component={ChatsScreen} />
-          <PrivateRoute exact path={SINGLE_CHAT_URL + "/:target_id"} component={SingleChatScreen} />
+          <PrivateRoute exact path={SINGLE_CHAT_URL + "/:target_id/:name"} component={SingleChatScreen} />
           <PrivateRoute exact path={CALENDAR_URL} component={CalendarScreen} />
           <PrivateRoute exact path={PROFILES_URL} component={ProfilesScreen} />
           <PrivateRoute exact path={SINGLE_PROFILE_URL + "/:student_id"} component={SingleProfileScreen} />

@@ -58,4 +58,4 @@ export const getEvents = async ({ year, eventUniqueName, eventCreator }) => {
   })
 }
 
-export { getMyProfile } from './profile.api';
+export { getMyProfile, getMyChatList } from './profile.api';

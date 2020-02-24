@@ -18,3 +18,4 @@ export const GETEVENT = API_SERVER + "/event/get-events";
 
 //profile api
 export const GETMYPROFILE = API_SERVER + "/profile/get-my-profile";
+export const GETMYCHATLIST = API_SERVER + "/profile/get-my-chat-list";
