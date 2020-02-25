@@ -59,3 +59,4 @@ export const getEvents = async ({ year, eventUniqueName, eventCreator }) => {
 }
 
 export { getMyProfile, getMyChatList } from './profile.api';
+export { getClubInfo } from './clubs.api';

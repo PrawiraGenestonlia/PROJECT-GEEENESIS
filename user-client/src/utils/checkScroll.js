@@ -27,18 +27,23 @@ const checkMultipleScroll = (id1, id2, height = '0px') => {
   }
   let currentY = window.pageYOffset;
   // console.log(currentY, checkMultipleScroll.prevY);
-  if (currentY > 120) {
-    if (checkMultipleScroll.prevY > currentY) {
+  if (currentY > 150) {
+    if (checkMultipleScroll.prevY - currentY > 120) {
+      console.log("show");
       document.getElementById(id1).style.top = "0";
       document.getElementById(id2).style.top = "0";
       // document.body.style.backgroundColor = "rgb(45, 105, 246)";
-    } else {
+      checkMultipleScroll.prevY = currentY;
+    }
+    else if (currentY - checkMultipleScroll.prevY > 120) {
+      console.log("hide");
       document.getElementById(id1).style.top = `-${height}`;
       document.getElementById(id2).style.top = `-${height}`;
       // document.body.style.backgroundColor = "white";
+      checkMultipleScroll.prevY = currentY;
     }
-    checkMultipleScroll.prevY = currentY;
   }
+  console.log(currentY, checkMultipleScroll.prevY);
 }
 
 export default checkMultipleScroll;

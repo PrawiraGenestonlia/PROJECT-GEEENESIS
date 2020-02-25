@@ -53,6 +53,17 @@ router.get('/get-events', async (req, res) => {
   }
 });
 
+router.get('/get-events-from-today', async (req, res) => {
+  try {
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let eventInfo = await event.find({ start: { $gte: today } }).sort({ start: 'ascending' });
+    res.status(200).send(eventInfo);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 router.get('/get-all-events', async (req, res) => {
   try {
     let eventInfo = await event.find({}).sort({ start: 'ascending' });

@@ -37,12 +37,14 @@ export default (props) => {
   const sendMessage = () => {
     let message = { id: 0, message: chatInput, senderName: "me", time: new Date() }
     setSendingMessage(true);
-    setMessages((oldMessage) => [...oldMessage, message]);
-    setChatInput('');
-    scrollToBottom();
+
+
     setTimeout(() => {
       setSendingMessage(false);
-    }, 2000);
+      setMessages((oldMessage) => [...oldMessage, message]);
+      setChatInput('');
+      scrollToBottom();
+    }, 500);
   }
 
   const getMessage = () => {
@@ -52,8 +54,6 @@ export default (props) => {
   const scrollToBottom = () => {
     bottomRef.current.scrollIntoView({ behavior: 'smooth' });
   }
-
-
 
   return (
     <div className="chat-screen">
@@ -73,7 +73,7 @@ export default (props) => {
           onChange={(e) => { setChatInput(e.target.value) }}
           onPressEnter={sendMessage}
           onSearch={sendMessage}
-          placeholder="message"
+          placeholder={"You are chatting with " + chatTargetName}
           loading={sendingMessage ? true : false} />
       </div>
     </div>
