@@ -49,5 +49,8 @@
 |13/02/2020|3           |senior buddy |
 |14/02/2020|6           |mobile navigation |
 |15/02/2020|6           |mobile calendar |
+|19/02/2020|3           |profile api |
+|21/02/2020|3           |integrate profile api|
+|24/02/2020|5           |individual chat page |
 |||
-|**TOTAL** |**118.5**    |*Temporary total productive hours spent*
+|**TOTAL** |**129.5**    |*Temporary total productive hours spent*
