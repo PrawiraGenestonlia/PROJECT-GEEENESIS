@@ -18,6 +18,7 @@ export const GETCLUBS = API_SERVER + "/club-admin/get-clubs";
 
 //event api
 export const GETEVENT = API_SERVER + "/event/get-events";
+export const GETEVENTFROMTODAY = API_SERVER + "/event/get-events-from-today";
 
 //profile api
 export const GETMYPROFILE = API_SERVER + "/profile/get-my-profile";
