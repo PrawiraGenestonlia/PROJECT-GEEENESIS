@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const speakeasy = require('speakeasy');
 const { verifyToken } = require('../../middlewares');
-const { emailToken } = require('../../middlewares');
+const { emailToken, testEmail } = require('../../middlewares');
 const EmailPassword = require('../../middlewares/emailPassword');
 const user = require('../../models/user');
 const { registerValidation, loginValidation,
@@ -210,6 +210,17 @@ router.post('/forgetpassword', async (req, res) => {
   //send email
   EmailPassword(updatedUser, randomPassword).then(() => {
     res.status(200).send(`Your new password has been sent to ${req.body.email}`);
+  }).catch((err) => {
+    res.status(400).send(err);
+  });
+})
+
+router.get('/test-email', async (req, res) => {
+  const user = { name: req.body.name || "No Name", email: req.body.email || "prawira.96@gmail.com" };
+  const message = req.body.message || "test geeenesis email";
+  //send email
+  testEmail(user, message).then(() => {
+    res.status(200).send(`Email has been sent to ${req.body.email}`);
   }).catch((err) => {
     res.status(400).send(err);
   });
