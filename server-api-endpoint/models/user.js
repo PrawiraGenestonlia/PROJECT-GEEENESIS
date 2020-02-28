@@ -30,6 +30,12 @@ const userSchema = new mongoose.Schema({
     max: 1024,
     min: 6
   },
+  avatarUrl: {
+    type: String,
+    default: '',
+    max: 1024,
+    min: 6
+  },
   date: {
     type: Date,
     default: Date.now

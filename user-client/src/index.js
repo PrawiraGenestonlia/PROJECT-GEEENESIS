@@ -21,17 +21,17 @@ const hideLoader = () => loader.classList.add('loader--hide');
 const ReactApp = ({ hideLoader }) => {
   useEffect(() => hideLoader(), [hideLoader]);
 
-  const handleScroll = () => {
-    checkScroll("navbar", "navbarlg", '50px')
-  }
+  // const handleScroll = () => {
+  //   checkScroll("navbar", "navbarlg", '50px')
+  // }
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, true);
-    return function cleanup() {
-      window.removeEventListener('scroll', handleScroll);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll, true);
+  //   return function cleanup() {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return <App />;
 }
