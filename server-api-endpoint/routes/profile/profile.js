@@ -43,7 +43,8 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
         role: foundUser._doc.role,
         name: foundUser._doc.name,
         email: foundUser._doc.email,
-        networkname: foundUser._doc.networkname
+        networkname: foundUser._doc.networkname,
+        avatarUrl: foundUser._doc.avatarUrl
       },
       myMentor: [
         ...await mentor.find({ student: myNetworkName })
@@ -59,7 +60,7 @@ router.get('/get-my-profile', verifyToken, async (req, res) => {
       ],
       myProfile: foundProfile ? {
         ...foundProfile._doc
-      } : { email: req.user.email },
+      } : { email: req.user.email, favouriteEvents: [], interestedEvents: [], participatedEvents: [] },
     };
     res.status(200).json(response);
   } catch (err) {
