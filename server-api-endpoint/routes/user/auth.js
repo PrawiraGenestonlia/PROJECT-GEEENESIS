@@ -187,7 +187,7 @@ router.post('/changepasswordwithoutemail', verifyToken, async (req, res) => {
   res.header('auth-token', token).send(token);
 })
 
-
+//
 router.post('/forgetpassword', async (req, res) => {
   //data validation
   const { error } = forgetPasswordValidation(req.body);

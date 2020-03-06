@@ -45,7 +45,7 @@ const SmallScreenNavBar = () => {
 
   return (
     <>
-      <Menu customBurgerIcon={<img src={BurgerMenuSVG} alt="burger-menu" />}
+      <Menu right customBurgerIcon={<img src={BurgerMenuSVG} alt="burger-menu" />}
         customCrossIcon={<img src={CloseSVG} alt="close-menu" />} isOpen={isNavOpen} onStateChange={isMenuOpen}>
         {
           navigators.map((n, i) => {
