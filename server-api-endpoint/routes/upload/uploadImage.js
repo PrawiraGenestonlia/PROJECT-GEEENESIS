@@ -37,7 +37,7 @@ router.post('/image', verifyToken, (req, res) => {
   }
 });
 
-router.post('/avatar-image', verifyToken, (req, res) => {
+router.post('/avatar-image', verifyToken, async (req, res) => {
   if (!req.user.role) return res.status(401).send('Unauthorized Access!');
   try {
     upload(req, res, function (err) {
