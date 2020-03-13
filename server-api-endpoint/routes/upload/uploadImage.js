@@ -45,8 +45,11 @@ router.post('/avatar-image', verifyToken, async (req, res) => {
         return res.status(400).json(err.message);
       }
       var imageUrl = 'https' + '://' + req.get('host') + "/geeenesis-api/uploads/images/" + req.file.filename;
-      await user.findOneAndUpdate({ email: req.user.email }, { avatarUrl: imageUrl });
-      return res.status(200).json("Image is updated successfully!");
+      user.findOneAndUpdate({ email: req.user.email }, { avatarUrl: imageUrl }).then(() => {
+        res.status(200).json("Image is updated successfully!");
+      }).catch((err) => {
+        res.status(400).send(err);
+      });
     });
 
   } catch (err) {
