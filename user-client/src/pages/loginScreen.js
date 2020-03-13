@@ -117,7 +117,7 @@ export default () => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex justify-center items-center mt-20">
-        <img alt="logo" src={LogoSVG} />
+        <img className="h-48 w-48" alt="logo" src={LogoSVG} />
       </div>
       <div className="flex justify-center items-center mt-20">
         <WrappedNormalLoginForm />

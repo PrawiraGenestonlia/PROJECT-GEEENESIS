@@ -58,5 +58,6 @@
 |03/03/2020|1           |development |
 |04/03/2020|1           |development |
 |05/03/2020|1           |development |
+|14/03/2020|5           |mobile ui |
 |||
-|**TOTAL** |**136.5**    |*Temporary total productive hours spent*
+|**TOTAL** |**141.5**    |*Temporary total productive hours spent*

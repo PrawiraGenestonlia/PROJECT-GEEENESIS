@@ -24,3 +24,6 @@ export const GETEVENTFROMTODAY = API_SERVER + "/event/get-events-from-today";
 //profile api
 export const GETMYPROFILE = API_SERVER + "/profile/get-my-profile";
 export const GETMYCHATLIST = API_SERVER + "/profile/get-my-chat-list";
+
+//upload api 
+export const CHANGEAVATAR = API_SERVER + "/upload-image/avatar-image";

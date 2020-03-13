@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getMyProfile } from '../api';
+import { getMyProfile, changeAvatar } from '../api';
 import DefaultAvatar from '../assets/svg/User.svg';
+import Avatar from '../components/avatar';
+import { message, Divider } from 'antd';
 
 const getGreetings = () => {
   var today = new Date()
@@ -20,7 +22,7 @@ export default () => {
   const [myProfile, setMyProfile] = useState({});
 
   useEffect(() => {
-    getProfileInfo()
+    getProfileInfo();
   }, []);
 
   const getProfileInfo = () => {
@@ -29,17 +31,45 @@ export default () => {
     }).catch(e => { })
   }
 
+
+  const uploadAvatar = (file) => {
+    changeAvatar(file).then(async (msg) => {
+      if (msg.status === 200) {
+        let messages = msg ? (msg.data ? msg.data : JSON.stringify(msg)) : JSON.stringify(msg);
+        message.success(messages, 5);
+        getProfileInfo();
+      }
+    }).catch(async (err) => {
+      let messages = err ? (err.data ? err.data : JSON.stringify(err)) : JSON.stringify(err);
+      message.error(messages, 5);
+    });
+  }
+
   return (
     <div className="max-w-full">
       {
         Object.keys(myProfile).length !== 0 ?
           <div className="flex flex-col items-center">
-            <img className="h-24 w-24" alt="avatar" src={myProfile['myInfo']['avatarUrl'] ? myProfile['myInfo']['avatarUrl'] : DefaultAvatar} />
-            <div><text>{getGreetings()}, {myProfile['myInfo']['name']}!</text></div>
+            <label htmlFor="avatar-image-file">
+              <Avatar src={myProfile['myInfo']['avatarUrl']} />
+              <input className="hidden"
+                id="avatar-image-file" capture="camera" type="file" accept="image/*" placeholder="image" value={''} onChange={(e) => {
+                  if (e.target.files) {
+                    const file = e.target.files[0];
+                    if (file.size < 1024 * 512) uploadAvatar(file);
+                    else message.error("File size must be less than 500 KB. You may compress your image at https://tinyjpg.com.", 5);
+                  }
+                }} />
+            </label>
+            <div className="mt-2"><text>{getGreetings()}, {myProfile['myInfo']['name']}!</text></div>
+            <Divider dashed />
+            <div className="w-full">
+              <p className="break-words">{JSON.stringify(myProfile)}</p>
+            </div>
           </div>
           : null
       }
-      <p className="break-words">{JSON.stringify(myProfile)}</p>
+
     </div>
   )
 }
