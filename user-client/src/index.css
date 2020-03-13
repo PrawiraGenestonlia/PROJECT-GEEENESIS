@@ -16,6 +16,9 @@ code {
 html {
   /* overflow: hidden; */
   -ms-overflow-style: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 
 html::-webkit-scrollbar {

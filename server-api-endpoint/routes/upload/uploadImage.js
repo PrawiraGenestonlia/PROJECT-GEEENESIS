@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const multer = require('multer');
+const user = require('../../models/user');
 const { verifyToken } = require('../../middlewares');
 
 const storage = multer.diskStorage({
@@ -27,7 +28,25 @@ router.post('/image', verifyToken, (req, res) => {
         return res.status(400).json(err.message);
       }
       var imageUrl = 'https' + '://' + req.get('host') + "/geeenesis-api/uploads/images/" + req.file.filename;
+
       return res.status(200).json(imageUrl);
+    });
+
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+router.post('/avatar-image', verifyToken, (req, res) => {
+  if (!req.user.role) return res.status(401).send('Unauthorized Access!');
+  try {
+    upload(req, res, function (err) {
+      if (err) {
+        return res.status(400).json(err.message);
+      }
+      var imageUrl = 'https' + '://' + req.get('host') + "/geeenesis-api/uploads/images/" + req.file.filename;
+      await user.findOneAndUpdate({ email: req.user.email }, { avatarUrl: imageUrl });
+      return res.status(200).json("Image is updated successfully!");
     });
 
   } catch (err) {

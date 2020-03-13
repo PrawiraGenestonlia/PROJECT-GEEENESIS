@@ -3,6 +3,7 @@ import getToken from '../utils/getToken';
 import {
   LOGIN_URI,
   CHANGE_PASSWORD_URI,
+  FORGET_PASSWORD_URI
 } from './constants.api';
 
 export const login = async (user) => {
@@ -37,4 +38,20 @@ export const changePassword = async (data) => {
       reject(err.response);
     })
   })
+}
+
+export const forgetPassword = async (email) => {
+  return new Promise((resolve, reject) => {
+    try {
+      axios.post(FORGET_PASSWORD_URI, {
+        "email": email,
+      }).then((res) => {
+        resolve(res.data);
+      }).catch((e) => {
+        reject(e.response);
+      })
+    } catch (err) {
+      reject(err);
+    }
+  });
 }

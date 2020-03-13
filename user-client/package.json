@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/compatible": "^1.0.1",
+    "@ant-design/icons": "^4.0.2",
     "@fullcalendar/core": "^4.4.0",
     "@fullcalendar/daygrid": "^4.4.0",
     "@fullcalendar/interaction": "^4.4.0",
@@ -13,7 +15,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
-    "antd": "^3.26.13",
+    "antd": "^4.0.2",
     "autoprefixer": "^9.7.4",
     "axios": "^0.19.2",
     "react": "^16.12.0",

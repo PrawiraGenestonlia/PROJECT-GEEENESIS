@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import App from './router';
-import checkScroll from './utils/checkScroll';
+// import checkScroll from './utils/checkScroll';
 import './index.css';
 import './css/tailwind.css';
 import 'antd/dist/antd.css';

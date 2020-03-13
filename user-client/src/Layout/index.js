@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import MainScreens from '../router/mainScreens';
-import { stack as Menu } from 'react-burger-menu';
+import { push as Menu } from 'react-burger-menu';
 import BurgerMenuSVG from '../assets/svg/burgerMenu.svg';
 import HomeSVG from '../assets/svg/Home.svg';
+import GroupSVG from '../assets/svg/Group-2.svg';
+import ChatSVG from '../assets/svg/Chat.svg';
+import Calendar from '../assets/svg/calendar.svg';
 import CloseSVG from '../assets/svg/Close-2.svg';
 import LogoutSVG from '../assets/svg/logout.svg';
 import { Button, Divider } from 'antd';
@@ -13,16 +16,28 @@ import {
 } from '../router/constants.router';
 import '../css/react-burger-menu.css';
 import '../css/large-screen-nav.css';
+import '../css/menu-table.css';
 
 const navigators = [
   { title: "Home", href: HOME_URL, svg: HomeSVG },
-  { title: "Clubs", href: CLUBS_URL, svg: HomeSVG },
-  { title: "Chats", href: CHATS_URL, svg: HomeSVG },
-  { title: "Calendar", href: CALENDAR_URL, svg: HomeSVG },
+  { title: "Clubs", href: CLUBS_URL, svg: GroupSVG },
+  { title: "Chats", href: CHATS_URL, svg: ChatSVG },
+  { title: "Calendar", href: CALENDAR_URL, svg: Calendar },
   { title: "Profile", href: PROFILES_URL, svg: HomeSVG },
 ];
 
 const navigatorReversed = [...navigators].reverse();
+
+const MenuItem = ({ svg = HomeSVG, title = "N/A" }) => (
+  <div className="w-24 h-24 m-4">
+    <div className="flex flex-col w-24 h-24 justify-center items-center">
+      {/* filter generator: https://codepen.io/sosuke/pen/Pjoqqp?__cf_chl_jschl_tk__=a3daf962d32c9077f30de11d9081ba85e525be17-1584092724-0-AQQYPMLlxSVWr9GUmkUjYk2Qm9aTBb8Lkk5timAm2V0j8B5ME81ufiUF3JBiBvF7Vw2WSu4dyzns1h0WZGzRqwg6qp-oBlD9qBZDhoRHZc5RRXQqJT9thMkcC7dqsr4jCvCo0JibIAgwjTCHvDhba9G7qXwWC5XipGWiPhzQH9QkHzd1IZHY3BpVkv_QnjHjt2j-pb4mG52B-Zd1Vxw9Nb3utQf3ca_DOqfthsoLrUQUa6t0HnztTcLn_9zgOy8UozJZPGB_RAJ4ebvwGRwBulMiWBFK1ohlyVshR67SioNr0I2mGvSkvtqq2pkVqkSP-lvHWMfL99Fgm3tFg9F14LO_L6yCY1EtZofssWIDSxjg */}
+      <img className="w-16 h-16 menu-svg" alt={title + "-img"} src={svg} style={{ filter: "invert(31%) sepia(39%) saturate(5883%) hue-rotate(213deg) brightness(104%) contrast(91%)" }} />
+      <font className="text-black">{title}</font>
+    </div>
+  </div>
+
+);
 
 const SmallScreenNavBar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -43,33 +58,59 @@ const SmallScreenNavBar = () => {
 
   }, [isNavOpen])
 
+  const createTable = () => {
+    let table = []
+    for (let i = 0; i < navigators.length; i += 2) {
+      let j = i + 1;
+      let children = [];
+      children.push(
+        <td key={i}>
+          <NavLink key={i} id={navigators[i].title.toLowerCase()} className="menu-item" to={navigators[i].href} onClick={() => { onNavClick(navigators[i].title) }} activeClassName="font-black">
+            <MenuItem title={navigators[i].title} svg={navigators[i].svg} />
+          </NavLink>
+        </td>
+      );
+      if (navigators[j]) {
+        children.push(
+          <td key={j}>
+            <NavLink key={j} id={navigators[j].title.toLowerCase()} className="menu-item" to={navigators[j].href} onClick={() => { onNavClick(navigators[j].title) }} activeClassName="font-black">
+              <MenuItem title={navigators[j].title} svg={navigators[j].svg} />
+            </NavLink>
+          </td>
+        )
+      }
+      table.push(<tr key={i * 10}>{children}</tr>)
+    }
+    return table
+  }
+
   return (
     <>
-      <Menu left customBurgerIcon={<img src={BurgerMenuSVG} alt="burger-menu" />}
+      <Menu left width={'100%'} customBurgerIcon={<img src={BurgerMenuSVG} alt="burger-menu" />}
         customCrossIcon={<img src={CloseSVG} alt="close-menu" />} isOpen={isNavOpen} onStateChange={isMenuOpen}>
-        {
-          navigators.map((n, i) => {
-            return (
-              <NavLink key={i} id={n.title.toLowerCase()} className="menu-item" to={n.href} onClick={() => { onNavClick(n.title) }} activeClassName="font-black">
-                <div className="text-black mt-3 mb-3 ">
-                  {n.svg ?
-                    <> <img className="float-left" src={n.svg} alt={`${n.title}-icon`} width={20} /> &nbsp; {n.title} </>
-                    :
-                    <> {n.title} </>}
-                </div>
-              </NavLink>
-            )
-          })
-        }
-        <Divider type="horizontal" style={{ background: 'black' }} />
-        <div className="flex text-black mt-3 mb-3">
-          <Button type="default" shape="round" onClick={onClickLogOut}>
-            <img className="float-left" src={LogoutSVG} alt="Log out" width={20} /> &nbsp; Log out
-        </Button>
+        <div className="flex flex-col justify-center items-center" style={{ outline: 0, display: 'flex !important' }}>
+          <div>
+            <div className="menu-table">
+              <table>
+                {createTable()}
+              </table>
+            </div>
+          </div>
+          <Divider type="horizontal" style={{ background: 'black' }} />
+          <div>
+            <div className="flex text-black mt-3 mb-3">
+              <Button type="default" shape="round" onClick={onClickLogOut}>
+                <img className="float-left" src={LogoutSVG} alt="Log out" width={20} /> &nbsp; Log out
+            </Button>
+            </div>
+          </div>
+
         </div>
+
+
       </Menu>
       <div className="flex absolute h-full w-full justify-center items-center z-20">
-        <div>{headerText === 'Home' ? 'GEEENESIS LOGO' : headerText}</div>
+        <div className="text-xl">{headerText === 'Home' ? 'GEEENESIS LOGO' : headerText}</div>
       </div>
     </>
   )
@@ -97,7 +138,7 @@ export default () => {
   return (
     <div className="flex flex-col w-full mt-0">
       <div className='md:hidden'>
-        <div id="navbar" className="h-12 shadow-xl z-50" style={{ backgroundColor: 'white' }}>
+        <div id="navbar" className="h-16 shadow-xl z-50" style={{ backgroundColor: 'white' }}>
           <SmallScreenNavBar />
         </div>
       </div>
@@ -107,7 +148,7 @@ export default () => {
         </div>
 
       </div>
-      <div className="w-full max-w-sm p-4 mt-12 relative">
+      <div className="w-full max-w-sm p-4 mt-16 relative">
         <MainScreens />
       </div>
     </div>

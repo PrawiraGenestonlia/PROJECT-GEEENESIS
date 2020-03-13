@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChatFeed } from 'react-chat-ui';
-import { Input, Icon } from 'antd';
+import { MessageOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
 
 const { Search } = Input;
 
@@ -67,7 +68,7 @@ export default (props) => {
       <div className="m-2 text-white" ref={bottomRef}>.</div>
       <div className="fixed w-full z-20 " style={{ left: '0px', bottom: '0' }}>
         <Search
-          enterButton={<Icon type="message" />}
+          enterButton={<MessageOutlined />}
           size="large"
           value={chatInput}
           onChange={(e) => { setChatInput(e.target.value) }}
@@ -77,5 +78,5 @@ export default (props) => {
           loading={sendingMessage ? true : false} />
       </div>
     </div>
-  )
+  );
 }
