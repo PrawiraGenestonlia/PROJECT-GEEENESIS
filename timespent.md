@@ -53,5 +53,10 @@
 |21/02/2020|3           |integrate profile api|
 |24/02/2020|5           |individual chat page |
 |25/02/2020|2           |api clean up |
+|01/03/2020|1           |development |
+|02/03/2020|1           |development |
+|03/03/2020|1           |development |
+|04/03/2020|1           |development |
+|05/03/2020|1           |development |
 |||
-|**TOTAL** |**131.5**    |*Temporary total productive hours spent*
+|**TOTAL** |**136.5**    |*Temporary total productive hours spent*

@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import LogoSVG from '../assets/logo/Logo.svg';
 import { login } from '../api';
 import { message, Form, Icon, Input, Button, Checkbox } from 'antd';
 
@@ -23,7 +24,8 @@ const LoginForm = (props) => {
   }
 
   return (
-    <div style={{ width: '60%', maxWidth: '400px' }}>
+    <div style={{ width: '80%', maxWidth: '400px' }}>
+
       <Form className="login-form">
         <Form.Item>
           {getFieldDecorator('email', {
@@ -47,12 +49,8 @@ const LoginForm = (props) => {
           )}
         </Form.Item>
         <Form.Item>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(<Checkbox>Remember me</Checkbox>)}
           <a className="float-right" href="">
-            Forgot password
+            Forgot password?
           </a>
           <Button type="primary" htmlType="submit" className="w-full" onClick={(e) => { handleSubmit(e) }} >
             Log in
@@ -70,8 +68,10 @@ export default () => {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="flex justify-center items-center mt-20">GEEENESIS LOGO</div>
-      <div className="flex justify-center items-center mt-32">
+      <div className="flex justify-center items-center mt-20">
+        <img src={LogoSVG} />
+      </div>
+      <div className="flex justify-center items-center mt-20">
         <WrappedNormalLoginForm />
       </div>
 
