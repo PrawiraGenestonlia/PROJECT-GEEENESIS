@@ -95,6 +95,7 @@ const LoginForm = (props) => {
       </Form>
       <Modal
         title="Forget Password"
+        wrapClassName="text-center"
         visible={showModal}
         onOk={handleForgotPassword}
         confirmLoading={showLoading}

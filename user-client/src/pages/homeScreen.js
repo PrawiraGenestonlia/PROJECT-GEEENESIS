@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getMyProfile, changeAvatar } from '../api';
-import DefaultAvatar from '../assets/svg/User.svg';
 import Avatar from '../components/avatar';
-import { message, Divider } from 'antd';
+import { message, Divider, Spin } from 'antd';
 
 const getGreetings = () => {
   var today = new Date()
@@ -67,7 +66,10 @@ export default () => {
               <p className="break-words">{JSON.stringify(myProfile)}</p>
             </div>
           </div>
-          : null
+          :
+          <div className="flex w-full mt-48 justify-center">
+            <Spin size="large" />
+          </div>
       }
 
     </div>

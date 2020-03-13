@@ -110,7 +110,6 @@ export default () => {
               </a>
             </div>
           </div>
-
         </Modal>
       </div>
 

@@ -75,6 +75,7 @@ export default (props) => {
           onPressEnter={sendMessage}
           onSearch={sendMessage}
           placeholder={"You are chatting with " + chatTargetName}
+          style={{ outline: 'none' }}
           loading={sendingMessage ? true : false} />
       </div>
     </div>
