@@ -45,7 +45,7 @@ const MenuItem = ({ svg = HomeSVG, title = "N/A" }) => (
 );
 
 const SmallScreenNavBar = () => {
-  const [isNavOpen, setIsNavOpen] = useState(true);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [headerText, setHeaderText] = useState('Home');
   const onClickLogOut = () => {
     localStorage.removeItem('auth-token');

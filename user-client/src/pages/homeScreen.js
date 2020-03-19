@@ -52,7 +52,7 @@ export default () => {
             <label htmlFor="avatar-image-file">
               <Avatar src={myProfile['myInfo']['avatarUrl']} />
               <input className="hidden"
-                id="avatar-image-file" capture="camera" type="file" accept="image/*" placeholder="image" value={''} onChange={(e) => {
+                id="avatar-image-file" type="file" accept="image/*" placeholder="image" value={''} onChange={(e) => {
                   if (e.target.files) {
                     const file = e.target.files[0];
                     if (file.size < 1024 * 512) uploadAvatar(file);
