@@ -21,7 +21,6 @@ router.post('/get-chats', verifyToken, async (req, res) => {
         let chatLists = [];
         for (let i = 0; i < foundChats.length; i++) {
             let cChat = { ...foundChats[i]._doc };
-            cChat.time = Date(cChat.time).toLocaleString('en-US', { timeZone: 'SG' });
             if (foundChats[i].senderName == myNetworkName) {
                 cChat.id = 0;
             } else {
@@ -44,7 +43,7 @@ router.post('/post-chats', verifyToken, async (req, res) => {
         senderName: myNetworkName,
         receiverName: req.body.receiverName,
         message: req.body.message,
-        time: req.body.time ? Date(req.body.time) : new Date(),
+        time: req.body.time ? Date(req.body.time).toISOString() : new Date().toISOString(),
     });
     try {
         //
@@ -54,7 +53,6 @@ router.post('/post-chats', verifyToken, async (req, res) => {
         let chatLists = [];
         for (let i = 0; i < foundChats.length; i++) {
             let cChat = { ...foundChats[i]._doc };
-            cChat.time = Date(cChat.time).toLocaleString('en-US', { timeZone: 'SG' });
             if (foundChats[i].senderName == myNetworkName) {
                 cChat.id = 0;
             } else {
