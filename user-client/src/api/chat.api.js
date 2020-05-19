@@ -27,7 +27,7 @@ export const postChats = async (receiverName, message, time) => {
         axios.post(url, {
             "receiverName": receiverName,
             "message": message,
-            "time": date
+            "time": time
         }, {
             headers: { "auth-token": token }
         }).then((res) => {
