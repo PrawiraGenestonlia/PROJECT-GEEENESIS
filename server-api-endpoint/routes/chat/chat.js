@@ -50,7 +50,12 @@ router.post('/post-chats', verifyToken, async (req, res) => {
         //
         await newChat.save();
         //
-        const foundChats = await chat.find({ "senderName": myNetworkName, "receiverName": req.body.receiverName }).sort({ time: 'ascending' });
+        const foundChats = await chat.find({
+            $or: [
+                { "senderName": myNetworkName, "receiverName": req.body.receiverName },
+                { "senderName": req.body.receiverName, "receiverName": myNetworkName }
+            ]
+        }).sort({ time: 'ascending' });
         let chatLists = [];
         for (let i = 0; i < foundChats.length; i++) {
             let cChat = { ...foundChats[i]._doc };
