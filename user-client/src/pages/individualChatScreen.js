@@ -16,26 +16,20 @@ export default (props) => {
 
   useEffect(() => {
     scrollToBottom();
-    getMessage();
+    const interval = setInterval(() => {
+      getMessage();;
+    }, 500);
+    return () => clearInterval(interval);
   }, []);
 
   const sendMessage = () => {
-    // let message = { id: 0, message: chatInput, senderName: "me", time: new Date() }
     setSendingMessage(true);
-
     postChats(chatTargetId, chatInput, new Date().toISOString()).then((res) => {
       setSendingMessage(false);
       setMessages([...res]);
-      // setMessages((oldMessage) => [...oldMessage, message]);
       setChatInput('');
       scrollToBottom();
     });
-    // setTimeout(() => {
-    //   setSendingMessage(false);
-    //   setMessages((oldMessage) => [...oldMessage, message]);
-    //   setChatInput('');
-    //   scrollToBottom();
-    // }, 500);
   }
 
   const getMessage = async () => {
