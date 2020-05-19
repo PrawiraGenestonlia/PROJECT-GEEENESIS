@@ -69,4 +69,29 @@ router.post('/post-chats', verifyToken, async (req, res) => {
     }
 });
 
+router.post('/clear-chats', verifyToken, async (req, res) => {
+    if (!req.user.role) return res.status(401).send('Unauthorized Access!');
+
+    const myNetworkName = req.user.email.substring(0, req.user.email.lastIndexOf("@"));
+    try {
+        await chat.deleteMany({ "senderName": myNetworkName, "receiverName": req.body.receiverName });
+        const foundChats = await chat.find({ "senderName": myNetworkName, "receiverName": req.body.receiverName }).sort({ time: 'ascending' });
+        let chatLists = [];
+        for (let i = 0; i < foundChats.length; i++) {
+            let cChat = { ...foundChats[i]._doc };
+            cChat.time = new Date(cChat.time);
+            if (foundChats[i].senderName == myNetworkName) {
+                cChat.id = 0;
+            } else {
+                cChat.id = 1;
+            }
+            chatLists.push(cChat);
+        }
+        res.status(200).send(chatLists);
+    } catch (err) {
+        console.log(err)
+        res.status(400).json(err);
+    }
+});
+
 module.exports = router;
