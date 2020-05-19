@@ -23,7 +23,7 @@ export default (props) => {
     // let message = { id: 0, message: chatInput, senderName: "me", time: new Date() }
     setSendingMessage(true);
 
-    postChats(chatTargetId, chatInput, new Date().toLocaleString()).then((res) => {
+    postChats(chatTargetId, chatInput, new Date().toISOString()).then((res) => {
       setSendingMessage(false);
       setMessages([...res]);
       // setMessages((oldMessage) => [...oldMessage, message]);
