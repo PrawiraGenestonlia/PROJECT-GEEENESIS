@@ -43,7 +43,7 @@ router.post('/post-chats', verifyToken, async (req, res) => {
         senderName: myNetworkName,
         receiverName: req.body.receiverName,
         message: req.body.message,
-        time: req.body.time ? Date(req.body.time).toISOString() : new Date().toISOString(),
+        time: req.body.time ? new Date(req.body.time).toUTCString() : new Date().toUTCString(),
     });
     try {
         //
