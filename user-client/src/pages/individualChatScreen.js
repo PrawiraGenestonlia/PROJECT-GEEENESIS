@@ -2,33 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChatFeed } from 'react-chat-ui';
 import { MessageOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
-import { getChats } from '../api';
+import { getChats, postChats } from '../api';
 
 const { Search } = Input;
-
-const sampleMessages = [
-  { id: 1, message: "first message", senderName: "test sender", time: new Date() },
-  { id: 0, message: "i reply to first message", senderName: "wira", time: new Date() },
-  { id: 1, message: "thanks ya", senderName: "test sender", time: new Date() },
-  { id: 1, message: "first message", senderName: "test sender", time: new Date() },
-  { id: 0, message: "i reply to first message", senderName: "wira", time: new Date() },
-  { id: 1, message: "thanks ya", senderName: "test sender", time: new Date() },
-  { id: 1, message: "first message", senderName: "test sender", time: new Date() },
-  { id: 0, message: "i reply to first message", senderName: "wira", time: new Date() },
-  { id: 1, message: "thanks ya", senderName: "test sender", time: new Date() },
-  { id: 1, message: "first message", senderName: "test sender", time: new Date() },
-  { id: 0, message: "i reply to first message", senderName: "wira", time: new Date() },
-  { id: 1, message: "thanks ya", senderName: "test sender", time: new Date() },
-  { id: 1, message: "first message", senderName: "test sender", time: new Date() },
-  { id: 0, message: "i reply to first message", senderName: "wira", time: new Date() },
-  { id: 1, message: "thanks ya", senderName: "test sender", time: new Date() },
-]
 
 export default (props) => {
   const chatTargetId = props.match.params.target_id || '';
   const chatTargetName = props.match.params.name || '';
   const bottomRef = useRef(null);
-  const [messages, setMessages] = useState(sampleMessages);
+  const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState('');
   const [sendingMessage, setSendingMessage] = useState(false);
 
@@ -38,21 +20,27 @@ export default (props) => {
   }, []);
 
   const sendMessage = () => {
-    let message = { id: 0, message: chatInput, senderName: "me", time: new Date() }
+    // let message = { id: 0, message: chatInput, senderName: "me", time: new Date() }
     setSendingMessage(true);
 
-
-    setTimeout(() => {
+    postChats(chatTargetId, chatInput, new Date().toLocaleString()).then((res) => {
       setSendingMessage(false);
-      setMessages((oldMessage) => [...oldMessage, message]);
+      setMessages([...res]);
+      // setMessages((oldMessage) => [...oldMessage, message]);
       setChatInput('');
       scrollToBottom();
-    }, 500);
+    });
+    // setTimeout(() => {
+    //   setSendingMessage(false);
+    //   setMessages((oldMessage) => [...oldMessage, message]);
+    //   setChatInput('');
+    //   scrollToBottom();
+    // }, 500);
   }
 
   const getMessage = async () => {
     const chatHistory = await getChats(chatTargetId);
-    console.log(chatHistory);
+    setMessages([...chatHistory]);
   }
 
   const scrollToBottom = () => {
