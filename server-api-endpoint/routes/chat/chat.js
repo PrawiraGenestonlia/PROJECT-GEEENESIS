@@ -61,7 +61,6 @@ router.post('/post-chats', verifyToken, async (req, res) => {
             chatLists.push(cChat);
         }
         res.status(200).send(chatLists);
-        res.status(200).send(foundChats);
     } catch (err) {
         console.log(err)
         res.status(400).json(err);
