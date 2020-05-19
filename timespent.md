@@ -61,4 +61,4 @@
 |14/03/2020|5           |mobile ui |
 |19/05/2020|5           |chat api |
 |||
-|**TOTAL** |**141.5**    |*Temporary total productive hours spent*
+|**TOTAL** |**141.5**    |*Temporary total productive hours spent*|

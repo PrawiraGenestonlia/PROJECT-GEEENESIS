@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChatFeed } from 'react-chat-ui';
 import { MessageOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
+import { getChats } from '../api';
 
 const { Search } = Input;
 
@@ -33,6 +34,7 @@ export default (props) => {
 
   useEffect(() => {
     scrollToBottom();
+    getMessage();
   }, []);
 
   const sendMessage = () => {
@@ -48,8 +50,9 @@ export default (props) => {
     }, 500);
   }
 
-  const getMessage = () => {
-    console.log("refresh");
+  const getMessage = async () => {
+    const chatHistory = await getChats(chatTargetId);
+    console.log(chatHistory);
   }
 
   const scrollToBottom = () => {

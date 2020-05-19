@@ -27,3 +27,7 @@ export const GETMYCHATLIST = API_SERVER + "/profile/get-my-chat-list";
 
 //upload api 
 export const CHANGEAVATAR = API_SERVER + "/upload-image/avatar-image";
+
+//chat api 
+export const GETCHATS = API_SERVER + "/chat/get-chats";
+export const POSTCHATS = API_SERVER + "/chat/post-chats";

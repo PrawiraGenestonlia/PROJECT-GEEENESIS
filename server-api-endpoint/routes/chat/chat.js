@@ -12,7 +12,7 @@ router.get('/', verifyToken, async (req, res) => {
     }
 });
 
-router.get('/get-chats', verifyToken, async (req, res) => {
+router.post('/get-chats', verifyToken, async (req, res) => {
     if (!req.user.role) return res.status(401).send('Unauthorized Access!');
 
     const myNetworkName = req.user.email.substring(0, req.user.email.lastIndexOf("@"));
