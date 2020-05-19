@@ -17,7 +17,12 @@ router.post('/get-chats', verifyToken, async (req, res) => {
 
     const myNetworkName = req.user.email.substring(0, req.user.email.lastIndexOf("@"));
     try {
-        const foundChats = await chat.find({ "senderName": myNetworkName, "receiverName": req.body.receiverName }).sort({ time: 'ascending' });
+        const foundChats = await chat.find({
+            $or: [
+                { "senderName": myNetworkName, "receiverName": req.body.receiverName },
+                { "senderName": req.body.receiverName, "receiverName": myNetworkName }
+            ]
+        }).sort({ time: 'ascending' });
         let chatLists = [];
         for (let i = 0; i < foundChats.length; i++) {
             let cChat = { ...foundChats[i]._doc };
