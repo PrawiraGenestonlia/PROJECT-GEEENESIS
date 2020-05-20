@@ -31,3 +31,6 @@ export const CHANGEAVATAR = API_SERVER + "/upload-image/avatar-image";
 //chat api 
 export const GETCHATS = API_SERVER + "/chat/get-chats";
 export const POSTCHATS = API_SERVER + "/chat/post-chats";
+
+//mentor api
+export const SEACH_MENTOR_PROFILE = API_SERVER + "/mentor/mentor-profile";

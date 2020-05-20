@@ -9,7 +9,7 @@ import '../transition/transition.css';
 import {
   HOME_URL, CLUBS_URL, SINGLE_CLUB_URL, CHATS_URL,
   SINGLE_CHAT_URL, CALENDAR_URL, PROFILES_URL, SINGLE_PROFILE_URL,
-  MYEVENTS_URL
+  MYEVENTS_URL, MYMENTOR_URL, MYBUDDIES_URL, SEARCH_URL
 } from './constants.router';
 
 import HomeScreen from '../pages/homeScreen';
@@ -21,6 +21,9 @@ import CalendarScreen from '../pages/calendarScreen';
 import ProfilesScreen from '../pages/profileScreen';
 import SingleProfileScreen from '../pages/individualProfileScreen';
 import MyEventsScreen from '../pages/myEventsScreen';
+import MyMentorScreen from '../pages/myMentorScreen';
+import MyBuddiesScreen from '../pages/myBuddiesScreen';
+import SearchScreen from '../pages/searchScreen';
 
 export default () => {
   const location = useLocation();
@@ -41,6 +44,9 @@ export default () => {
           <PrivateRoute exact path={PROFILES_URL} component={ProfilesScreen} />
           <PrivateRoute exact path={SINGLE_PROFILE_URL + "/:student_id"} component={SingleProfileScreen} />
           <PrivateRoute exact path={MYEVENTS_URL} component={MyEventsScreen} />
+          <PrivateRoute exact path={MYMENTOR_URL} component={MyMentorScreen} />
+          <PrivateRoute exact path={MYBUDDIES_URL} component={MyBuddiesScreen} />
+          <PrivateRoute exact path={SEARCH_URL} component={SearchScreen} />
           <PrivateRoute path component={() => <Redirect to={HOME_URL} />} />
         </Switch>
       </CSSTransition>

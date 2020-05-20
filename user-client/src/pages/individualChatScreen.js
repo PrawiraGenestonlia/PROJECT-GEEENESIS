@@ -5,6 +5,7 @@ import { Input } from 'antd';
 import { getChats, postChats } from '../api';
 
 const { Search } = Input;
+const MESSAGE_REFRESH_INTERVAL_MS = 600;
 
 export default (props) => {
   const chatTargetId = props.match.params.target_id || '';
@@ -18,7 +19,7 @@ export default (props) => {
     scrollToBottom();
     const interval = setInterval(() => {
       getMessage();;
-    }, 500);
+    }, MESSAGE_REFRESH_INTERVAL_MS);
     return () => clearInterval(interval);
   }, []);
 

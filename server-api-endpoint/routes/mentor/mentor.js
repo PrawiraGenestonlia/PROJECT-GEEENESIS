@@ -67,7 +67,7 @@ router.get('/get-mentor', verifyToken, async (req, res) => {
   }
 });
 
-router.get('/mentor-profile', verifyToken, async (req, res) => {
+router.post('/mentor-profile', verifyToken, async (req, res) => {
   try {
     tabletojson.convertUrl(
       `http://research.ntu.edu.sg/expertise/academicprofile/Pages/StaffProfile.aspx?ST_EMAILID=${req.body.mentor}`,

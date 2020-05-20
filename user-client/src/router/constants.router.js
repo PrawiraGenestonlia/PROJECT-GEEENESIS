@@ -25,6 +25,9 @@ export const SINGLE_CHAT_URL = "/app/chats";
 export const CALENDAR_URL = "/app/calendar";
 export const PROFILES_URL = "/app/profiles";
 export const MYEVENTS_URL = "/app/myevents";
+export const MYMENTOR_URL = "/app/mymentor";
+export const MYBUDDIES_URL = "/app/mybuddies";
+export const SEARCH_URL = "/app/search";
 export const SINGLE_PROFILE_URL = "/app/profiles";
 
 //STANDALONE ROUTES

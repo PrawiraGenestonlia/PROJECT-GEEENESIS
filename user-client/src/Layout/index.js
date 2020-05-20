@@ -13,7 +13,7 @@ import EventsSVG from '../assets/svg/event-available.svg';
 import LogoutSVG from '../assets/svg/logout.svg';
 import {
   HOME_URL, CLUBS_URL, CHATS_URL, CALENDAR_URL, PROFILES_URL,
-  MYEVENTS_URL,
+  MYEVENTS_URL, MYMENTOR_URL, MYBUDDIES_URL, SEARCH_URL
   // SINGLE_CHAT_URL, SINGLE_CLUB_URL, SINGLE_PROFILE_URL
 } from '../router/constants.router';
 import '../css/react-burger-menu.css';
@@ -23,12 +23,12 @@ import '../css/menu-table.css';
 const navigators = [
   { title: "Home", href: HOME_URL, svg: HomeSVG },
   { title: "Student Bodies", href: CLUBS_URL, svg: GroupSVG },
-  { title: "My Mentor", href: PROFILES_URL, svg: HomeSVG },
-  { title: "My Buddies", href: PROFILES_URL, svg: HomeSVG },
+  { title: "My Mentor", href: MYMENTOR_URL, svg: HomeSVG },
+  { title: "My Buddies", href: MYBUDDIES_URL, svg: HomeSVG },
   { title: "E3 Calendar", href: CALENDAR_URL, svg: Calendar },
   { title: "My Events", href: MYEVENTS_URL, svg: EventsSVG },
   { title: "Chats", href: CHATS_URL, svg: ChatSVG },
-  { title: "Search", href: PROFILES_URL, svg: HomeSVG },
+  { title: "Search", href: SEARCH_URL, svg: HomeSVG },
 ];
 
 const navigatorReversed = [...navigators].reverse();
