@@ -18,7 +18,7 @@ export default (props) => {
   useEffect(() => {
     scrollToBottom();
     const interval = setInterval(() => {
-      getMessage();;
+      getMessage();
     }, MESSAGE_REFRESH_INTERVAL_MS);
     return () => clearInterval(interval);
   }, []);
@@ -36,6 +36,7 @@ export default (props) => {
   const getMessage = async () => {
     const chatHistory = await getChats(chatTargetId);
     setMessages([...chatHistory]);
+    scrollToBottom();
   }
 
   const scrollToBottom = () => {

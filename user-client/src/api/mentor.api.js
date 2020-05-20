@@ -12,6 +12,7 @@ export const getMentorProfile = async (mentorName) => {
             headers: { "auth-token": token }
         }).then((res) => {
             if (res.status === 200) resolve(res.data);
+            if (res.status === 206) reject(res.data);
         }).catch((err) => {
             if (err.response) reject(err.response.data);
             else reject(err);
