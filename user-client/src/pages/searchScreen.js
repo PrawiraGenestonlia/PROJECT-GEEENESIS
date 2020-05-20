@@ -5,6 +5,11 @@ const { Search } = Input;
 
 export default () => {
     const [data, setData] = useState({});
+
+    const onSearch = (value) => {
+
+    }
+
     return (
         <div>
             <div className="flex items-center justify-center">
