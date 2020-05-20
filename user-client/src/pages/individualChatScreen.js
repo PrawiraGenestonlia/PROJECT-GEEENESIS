@@ -19,7 +19,7 @@ export default (props) => {
     const interval = setInterval(() => {
       getMessage();;
     }, 500);
-    // return () => clearInterval(interval);
+    return () => clearInterval(interval);
   }, []);
 
   const sendMessage = () => {
