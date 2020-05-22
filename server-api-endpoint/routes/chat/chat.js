@@ -83,9 +83,18 @@ router.post('/clear-chats', verifyToken, async (req, res) => {
     if (!req.user.role) return res.status(401).send('Unauthorized Access!');
 
     const myNetworkName = req.user.email.substring(0, req.user.email.lastIndexOf("@"));
+
+    const newChat = new chat({
+        senderName: myNetworkName,
+        receiverName: req.body.receiverName,
+        message: `I have cleared the chat on ${new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' })}`,
+        time: req.body.time ? new Date(req.body.time).toISOString() : new Date().toISOString(),
+    });
+
     try {
         await chat.deleteMany({ "senderName": myNetworkName, "receiverName": req.body.receiverName });
         await chat.deleteMany({ "senderName": req.body.receiverName, "receiverName": myNetworkName });
+        await newChat.save();
         const foundChats = await chat.find({ "senderName": myNetworkName, "receiverName": req.body.receiverName }).sort({ time: 'ascending' });
         let chatLists = [];
         for (let i = 0; i < foundChats.length; i++) {
