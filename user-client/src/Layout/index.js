@@ -4,6 +4,9 @@ import MainScreens from '../router/mainScreens';
 import { push as Menu } from 'react-burger-menu';
 import BurgerMenuSVG from '../assets/svg/burgerMenu.svg';
 import HomeSVG from '../assets/svg/Home.svg';
+import CommunitySVG from '../assets/svg/community.svg';
+import SearchSVG from '../assets/svg/search.svg';
+import InformationSVG from '../assets/svg/information.svg';
 import GroupSVG from '../assets/svg/Group-2.svg';
 import ChatSVG from '../assets/svg/Chat.svg';
 import Calendar from '../assets/svg/calendar.svg';
@@ -12,23 +15,24 @@ import PasswordSVG from '../assets/svg/Password.svg';
 import EventsSVG from '../assets/svg/event-available.svg';
 import LogoutSVG from '../assets/svg/logout.svg';
 import {
-  HOME_URL, CLUBS_URL, CHATS_URL, CALENDAR_URL, PROFILES_URL,
-  MYEVENTS_URL, MYMENTOR_URL, MYBUDDIES_URL, SEARCH_URL, ABOUT_URL
+  HOME_URL, CLUBS_URL, CHATS_URL, CALENDAR_URL,
+  MYEVENTS_URL, MYCIRCLE_URL, SEARCH_URL, ABOUT_URL
   // SINGLE_CHAT_URL, SINGLE_CLUB_URL, SINGLE_PROFILE_URL
 } from '../router/constants.router';
 import '../css/react-burger-menu.css';
 import '../css/large-screen-nav.css';
 import '../css/menu-table.css';
+// import GeeenesisLogoRandom from '../assets/logo/geeenesis-random.png';
 
 const navigators = [
   { title: "Home", href: HOME_URL, svg: HomeSVG },
   { title: "Student Bodies", href: CLUBS_URL, svg: GroupSVG },
-  { title: "My Circle", href: MYMENTOR_URL, svg: HomeSVG },
+  { title: "My Circle", href: MYCIRCLE_URL, svg: CommunitySVG },
   { title: "Chats", href: CHATS_URL, svg: ChatSVG },
   { title: "E3 Calendar", href: CALENDAR_URL, svg: Calendar },
   { title: "My Events", href: MYEVENTS_URL, svg: EventsSVG },
-  { title: "Search", href: SEARCH_URL, svg: HomeSVG },
-  { title: "About", href: ABOUT_URL, svg: HomeSVG },
+  { title: "Search", href: SEARCH_URL, svg: SearchSVG },
+  { title: "About", href: ABOUT_URL, svg: InformationSVG },
 ];
 
 const navigatorReversed = [...navigators].reverse();
@@ -37,7 +41,7 @@ const MenuItem = ({ svg = HomeSVG, title = "N/A" }) => (
   <div className="m-4">
     <div className="flex flex-col w-32 h-24 justify-center items-center">
       {/* filter generator: https://codepen.io/sosuke/pen/Pjoqqp?__cf_chl_jschl_tk__=a3daf962d32c9077f30de11d9081ba85e525be17-1584092724-0-AQQYPMLlxSVWr9GUmkUjYk2Qm9aTBb8Lkk5timAm2V0j8B5ME81ufiUF3JBiBvF7Vw2WSu4dyzns1h0WZGzRqwg6qp-oBlD9qBZDhoRHZc5RRXQqJT9thMkcC7dqsr4jCvCo0JibIAgwjTCHvDhba9G7qXwWC5XipGWiPhzQH9QkHzd1IZHY3BpVkv_QnjHjt2j-pb4mG52B-Zd1Vxw9Nb3utQf3ca_DOqfthsoLrUQUa6t0HnztTcLn_9zgOy8UozJZPGB_RAJ4ebvwGRwBulMiWBFK1ohlyVshR67SioNr0I2mGvSkvtqq2pkVqkSP-lvHWMfL99Fgm3tFg9F14LO_L6yCY1EtZofssWIDSxjg */}
-      <img className="w-16 h-16 menu-svg" alt={title + "-img"} src={svg} style={{ filter: "invert(31%) sepia(39%) saturate(5883%) hue-rotate(213deg) brightness(104%) contrast(91%)" }} />
+      <img className="w-16 h-16 menu-svg" alt={title + "-img"} src={svg} style={{ filter: "invert(50%) sepia(78%) saturate(6773%) hue-rotate(199deg) brightness(110%) contrast(101%)" }} />
       <font className="text-black">{title}</font>
     </div>
   </div>
@@ -93,17 +97,19 @@ const SmallScreenNavBar = () => {
     <>
       <Menu left width={'100%'} customBurgerIcon={<img src={BurgerMenuSVG} alt="burger-menu" />}
         customCrossIcon={<img src={CloseSVG} alt="close-menu" />} isOpen={isNavOpen} onStateChange={isMenuOpen}>
-        <div className="flex flex-col justify-center items-center" style={{ outline: 0, display: 'flex !important' }}>
+        <div className="flex flex-col items-center" style={{ outline: 0, display: 'flex !important', marginTop: '1%' }}>
           <div>
             <div className="menu-table">
               <table>
-                {createTable()}
+                <tbody>
+                  {createTable()}
+                </tbody>
               </table>
             </div>
           </div>
           <div className="flex text-black mt-3 mb-3">
-            <button class="w-32 bg-gray-100 text-gray-800 rounded border-b-2 border-yellow-500 hover:border-yellow-600 hover:bg-yellow-500 hover:text-white shadow-md py-2 px-2 inline-flex items-center justify-center">
-              <span class="mr-1">Change Password</span>
+            <button className="w-32 bg-gray-100 text-gray-800 rounded border-b-2 border-yellow-500 hover:border-yellow-600 hover:bg-yellow-500 hover:text-white shadow-md py-2 px-2 inline-flex items-center justify-center">
+              <span className="mr-1">Change Password</span>
               <img className="float-left" src={PasswordSVG} alt="password" width={22} />
             </button>
             <button className="ml-6 w-32 bg-gray-100 text-gray-800 rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-2 inline-flex items-center justify-center" onClick={onClickLogOut}>
@@ -113,8 +119,14 @@ const SmallScreenNavBar = () => {
           </div>
         </div>
       </Menu>
-      <div className="flex absolute h-full w-full justify-center items-center z-20">
-        <div className="text-xl">{headerText === 'Home' ? 'GEEENESIS LOGO' : headerText}</div>
+      <div className="flex absolute h-full w-full justify-center items-center z-20" style={{ backgroundColor: '#0084ff ' }}>
+        <div className="text-xl text-white">{headerText === 'Home' ?
+          <>
+            Geeenesis
+            {/* <img src={GeeenesisLogoRandom}></img> */}
+          </> :
+          <>{headerText}</>
+        }</div>
       </div>
     </>
   )

@@ -85,6 +85,7 @@ router.post('/clear-chats', verifyToken, async (req, res) => {
     const myNetworkName = req.user.email.substring(0, req.user.email.lastIndexOf("@"));
     try {
         await chat.deleteMany({ "senderName": myNetworkName, "receiverName": req.body.receiverName });
+        await chat.deleteMany({ "senderName": req.body.receiverName, "receiverName": myNetworkName });
         const foundChats = await chat.find({ "senderName": myNetworkName, "receiverName": req.body.receiverName }).sort({ time: 'ascending' });
         let chatLists = [];
         for (let i = 0; i < foundChats.length; i++) {

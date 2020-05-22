@@ -60,5 +60,7 @@
 |05/03/2020|1           |development |
 |14/03/2020|5           |mobile ui |
 |19/05/2020|5           |chat api |
+|20/05/2020|5           |user front end |
+|22/05/2020|7           |user front end |
 |||
-|**TOTAL** |**141.5**    |*Temporary total productive hours spent*|
+|**TOTAL** |**158.5**    |*Temporary total productive hours spent*|

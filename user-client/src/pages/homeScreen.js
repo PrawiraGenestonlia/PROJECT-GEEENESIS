@@ -45,7 +45,7 @@ export default () => {
   }
 
   return (
-    <div className="max-w-full">
+    <div className="max-w-full w-full">
       {
         Object.keys(myProfile).length !== 0 ?
           <div className="flex flex-col items-center">
@@ -60,10 +60,23 @@ export default () => {
                   }
                 }} />
             </label>
-            <div className="mt-2"><text>{getGreetings()}, {myProfile['myInfo']['name']}!</text></div>
-            <Divider dashed />
+            <div className="mt-2"><span>{getGreetings()}, <strong>{myProfile['myInfo']['name']}</strong>!</span></div>
+            <Divider />
+            <div className="flex flex-col items-start w-full">
+              <div>
+                <h2>Upcoming Events</h2>
+                <p>{`<Events Carousel/> //TODO`}</p>
+              </div>
+              <Divider />
+              <div>
+                <h2>Statistics</h2>
+                <p>{`<Number of Events Participated/> //TODO`}</p>
+              </div>
+            </div>
+
+            <Divider />
             <div className="w-full">
-              <p className="break-words">{JSON.stringify(myProfile)}</p>
+              {/* <p className="break-words">{JSON.stringify(myProfile)}</p> */}
             </div>
           </div>
           :
@@ -72,6 +85,6 @@ export default () => {
           </div>
       }
 
-    </div>
+    </div >
   )
 }

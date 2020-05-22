@@ -13,35 +13,46 @@ export default (props) => {
   const bottomRef = useRef(null);
   const [messages, setMessages] = useState([]);
   const [chatInput, setChatInput] = useState('');
+  const [prevTime, setPrevTime] = useState('');
   const [sendingMessage, setSendingMessage] = useState(false);
 
-  useEffect(() => {
-    scrollToBottom();
-    const interval = setInterval(() => {
-      getMessage();
-    }, MESSAGE_REFRESH_INTERVAL_MS);
-    return () => clearInterval(interval);
-  }, []);
+
 
   const sendMessage = () => {
+    let currentTime = new Date().toISOString();
     setSendingMessage(true);
-    postChats(chatTargetId, chatInput, new Date().toISOString()).then((res) => {
+    postChats(chatTargetId, chatInput, currentTime).then((res) => {
       setSendingMessage(false);
       setMessages([...res]);
+      setPrevTime(currentTime);
       setChatInput('');
       scrollToBottom();
     });
   }
 
-  const getMessage = async () => {
-    const chatHistory = await getChats(chatTargetId);
-    setMessages([...chatHistory]);
-    scrollToBottom();
+
+
+  const scrollToBottom = (prevTime) => {
+    bottomRef.current && bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    console.log("scrolling...");
   }
 
-  const scrollToBottom = () => {
-    bottomRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
+  useEffect(() => {
+    const getMessage = async () => {
+      const chatHistory = await getChats(chatTargetId);
+      setMessages([...chatHistory]);
+      scrollToBottom();
+      // console.log("L:", prevMessageTime, "F:", chatHistory[chatHistory.length - 1]['time']);
+      // if (prevMessageTime !== chatHistory[chatHistory.length - 1]['time']) {
+      //   // setPrevTime(chatHistory[chatHistory.length - 1]['time']);
+      // scrollToBottom();
+      // }
+    }
+    const interval = setInterval(() => {
+      getMessage();
+    }, MESSAGE_REFRESH_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [chatTargetId]);
 
   return (
     <div className="chat-screen">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getClubInfo } from '../api';
+import ClubCard from '../components/clubCard';
 import { Spin } from 'antd';
 
 export default () => {
@@ -11,7 +12,6 @@ export default () => {
 
   const getClubList = () => {
     getClubInfo().then(res => {
-      console.log(res.data)
       if (res.status === 200) setClubList(res.data)
     }).catch(e => { })
   }
@@ -20,8 +20,21 @@ export default () => {
       {
         clubList.length > 0 ?
           <div>
-            <h1>Clubs Screen</h1>
-            <p className="break-words">{JSON.stringify(clubList)}</p>
+            {clubList.map((club, index) => {
+              return (
+                <div className="mb-8" key={index}>
+                  <ClubCard
+                    title={club.title}
+                    bannerImgLink={club.bannerImgLink}
+                    server_unique_name={club.server_unique_name}
+                    summary={club.summary}
+                    rawEditor={club.rawEditor}
+                    contactLink={club.contactLink}
+                  />
+                </div>
+              )
+            })
+            }
           </div>
           :
           <div className="flex w-full mt-48 justify-center">
