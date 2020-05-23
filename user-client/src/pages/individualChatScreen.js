@@ -15,7 +15,7 @@ export default (props) => {
   const [chatInput, setChatInput] = useState('');
   const [prevTime, setPrevTime] = useState('');
   const [sendingMessage, setSendingMessage] = useState(false);
-
+  const [isMounted, setIsMounted] = useState(false);
 
 
   const sendMessage = () => {
@@ -34,12 +34,13 @@ export default (props) => {
 
 
   const scrollToBottom = (prevTime, chatTime) => {
-    if (prevTime != chatTime) {
-      setPrevTime(chatTime);
+    if (prevTime !== chatTime) {
       bottomRef.current && bottomRef.current.scrollIntoView({ behavior: 'smooth' });
       console.log("scrolling...");
+      setPrevTime(chatTime);
     }
   }
+
 
   useEffect(() => {
     const getMessage = async () => {
@@ -63,7 +64,7 @@ export default (props) => {
         showSenderName // show the name of the user who sent the message
         bubblesCentered={false} />
       <div className="m-2 text-white" ref={bottomRef}>.</div>
-      <div className="fixed w-full z-20 " style={{ left: '0px', bottom: '0' }}>
+      <div className="fixed w-full z-20 msg-box" style={{ left: '0px', bottom: '0' }}>
         <Search
           enterButton={<MessageOutlined />}
           size="large"
@@ -72,7 +73,7 @@ export default (props) => {
           onPressEnter={sendMessage}
           onSearch={sendMessage}
           placeholder={"You are chatting with " + chatTargetName}
-          style={{ outline: 'none' }}
+          style={{ outline: 'none', height: '3rem' }}
           loading={sendingMessage ? true : false} />
       </div>
     </div>

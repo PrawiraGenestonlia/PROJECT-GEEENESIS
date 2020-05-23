@@ -88,9 +88,9 @@ export default () => {
             {
               myChatList.map((v, i) => {
                 return (
-                  <>
+                  <div key={i}>
                     <Link to={SINGLE_CHAT_URL + "/" + v.networkname + "/" + v.name}>
-                      <div className="flex flex-row items-center mt-0">
+                      <div className="flex flex-row items-center mt-0" >
                         <div>
                           <Avatar className="h-16 w-16" src={v['avatarUrl']} />
                         </div>
@@ -108,7 +108,7 @@ export default () => {
                       </div>
                     </Link>
                     <Divider className="chat-divider" />
-                  </>
+                  </div>
                 )
               })
             }

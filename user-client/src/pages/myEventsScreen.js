@@ -21,9 +21,9 @@ export default () => {
         Object.keys(myProfile).length !== 0 ?
           <div className="flex flex-col items-center">
             <div className="w-full">
-              <p>
-                <h2>Favourite Events</h2>
-              </p>
+
+              <h2>Favourite Events</h2>
+
               {
                 myProfile['myProfile']['favouriteEvents'].length > 0 ?
                   <>
@@ -34,9 +34,9 @@ export default () => {
                   : <><span>There is no favourite event</span></>
               }
               <Divider />
-              <p>
-                <h2>Interested Events</h2>
-              </p>
+
+              <h2>Interested Events</h2>
+
               {
                 myProfile['myProfile']['interestedEvents'].length > 0 ?
                   <>
@@ -47,9 +47,9 @@ export default () => {
                   : <><span>There is no interested event</span></>
               }
               <Divider />
-              <p>
-                <h2>Participated Events</h2>
-              </p>
+
+              <h2>Participated Events</h2>
+
               {
                 myProfile['myProfile']['participatedEvents'].length > 0 ?
                   <>
