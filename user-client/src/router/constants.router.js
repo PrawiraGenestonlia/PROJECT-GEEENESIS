@@ -24,6 +24,7 @@ export const SINGLE_CLUB_URL = "/app/home/clubs";
 export const SINGLE_EVENT_URL = "/app/home/events";
 //tab2
 export const MYCIRCLE_URL = "/app/mycircle";
+export const SEARCH_PROFILE_URL = "/app/p";
 //tab3
 export const CALENDAR_URL = "/app/calendar";
 //tab4
@@ -35,7 +36,6 @@ export const ABOUT_URL = "/app/me/about";
 
 //others
 export const CLUBS_URL = "/app/clubs";
-export const SEARCH_PROFILE_URL = "/app/p";
 export const PROFILES_URL = "/app/profiles";
 export const MYEVENTS_URL = "/app/myevents";
 export const SEARCH_URL = "/app/search";

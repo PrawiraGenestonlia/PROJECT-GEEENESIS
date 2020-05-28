@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TopNavBar from '../components/topNavBar';
 import { getSpecificEvent } from '../api';
 import { Spin } from 'antd';
+import BottomDiv from '../components/bottomDiv';
 
 export default (props) => {
   const eventName = props.match.params.event_name || '';
@@ -26,6 +27,7 @@ export default (props) => {
           <>
             <p>{"//TODO PROPER CLUB PAGE"}</p>
             <p className="break-words">{JSON.stringify(eventInfo)}</p>
+            <BottomDiv />
           </>
           :
           <div className="flex w-full mt-48 justify-center">

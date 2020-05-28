@@ -6,6 +6,7 @@ import { Divider, Spin, Popover, Button, Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import Avatar from '../components/avatar';
 import OptionsSVG from '../assets/svg/options.svg';
+import BottomDiv from '../components/bottomDiv';
 import '../css/chat.css';
 
 
@@ -84,11 +85,12 @@ export default () => {
     <div className="max-w-full">
       {
         myChatList.length > 0 ?
-          <div>
+          <div className="bg-white p-1 rounded-lg">
+            <div className="mt-3 mb-3" style={{ height: '1px', backgroundColor: '#e8e8e8' }} />
             {
               myChatList.map((v, i) => {
                 return (
-                  <div className="bg-white p-1 mb-2 rounded-lg" key={i}>
+                  <div className="" key={i}>
                     <Link to={SINGLE_CHAT_URL + "/" + v.networkname + "/" + v.name}>
                       <div className="flex flex-row items-center mt-0" >
                         <div>
@@ -107,20 +109,19 @@ export default () => {
                         </div>
                       </div>
                     </Link>
-                    {/* <Divider className="chat-divider" /> */}
+                    <div className="mt-3 mb-3" style={{ height: '1px', backgroundColor: '#e8e8e8' }} />
                   </div>
                 )
               })
             }
-            {/* <div className="bg-black w-64 h-64" style={{ position: 'absolute', top: '-50px' }}>
-              zz
-            </div> */}
+
           </div>
           :
           <div className="flex w-full mt-48 justify-center">
             <Spin size="large" />
           </div>
       }
+      <BottomDiv />
     </div >
   )
 }

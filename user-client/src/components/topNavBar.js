@@ -3,10 +3,11 @@ import BackArrowSVG from '../assets/svg/back-arrow.svg';
 import { useHistory } from 'react-router-dom';
 
 
-export default ({ className = "", title = "insert title properties", back = "back" }) => {
+export default ({ className = "", title = "insert title properties", back = "back", action }) => {
   let history = useHistory();
 
   const onClickBack = () => {
+    action && action();
     history.goBack();
   }
 

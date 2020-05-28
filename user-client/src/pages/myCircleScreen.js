@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { getMyProfile, getMentorProfile } from '../api';
 import { Divider, Spin, Tabs, Input, message } from 'antd';
 import BottomDiv from '../components/bottomDiv';
+import { useHistory } from "react-router-dom";
+import { SEARCH_PROFILE_URL } from '../router/constants.router';
 
 const { TabPane } = Tabs;
 const { Search } = Input;
@@ -13,11 +15,13 @@ const ROLE = {
   JB: 4
 }
 
+
+
 export default () => {
   const [myProfile, setMyProfile] = useState({});
-  const [searchData, setSearchData] = useState({});
   const [loadingState, setLoadingState] = useState(false);
   const [isTabLayout, setIsTabLayout] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     getProfileInfo();
@@ -33,9 +37,9 @@ export default () => {
     setLoadingState(true);
     const networkName = value.lastIndexOf("@") >= 0 ? value.substring(0, value.lastIndexOf("@")) : value;
     getMentorProfile(networkName).then((msg) => {
-      let messages = msg ? (msg.data ? msg.data : JSON.stringify(msg)) : JSON.stringify(msg);
-      Object.keys(msg).length > 2 ? setSearchData(msg) : setSearchData(messages);
       setLoadingState(false);
+      const redirect_url = SEARCH_PROFILE_URL + "/" + networkName + "/" + msg.name;
+      history.push(redirect_url);
     }).catch(async (err) => {
       let messages = err ? (err.data ? err.data : JSON.stringify(err)) : JSON.stringify(err);
       message.error(messages, 5);
@@ -57,7 +61,7 @@ export default () => {
       <div className="flex items-center justify-center w-full">
         <Search
           className="rounded-lg"
-          placeholder="network name / email"
+          placeholder="mentor network name / email"
           onSearch={value => value ? onSearch(value) : null}
           style={{ width: '100%' }}
           loading={loadingState}

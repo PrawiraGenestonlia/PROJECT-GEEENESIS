@@ -34,7 +34,7 @@ export default () => {
       <CSSTransition
         key={location.key}
         classNames="fade"
-        timeout={800} >
+        timeout={1000} >
         <Switch location={location}>
           <PrivateRoute exact path="/" component={() => <Redirect to={HOME_URL} />} />
           <PrivateRoute exact path={HOME_URL} component={HomeScreen} />
@@ -42,7 +42,7 @@ export default () => {
           <PrivateRoute exact path={SINGLE_CLUB_URL + "/:club_id/:club_name"} component={SingleClubScreen} />
           <PrivateRoute exact path={CHATS_URL} component={ChatsScreen} />
           <PrivateRoute exact path={SINGLE_CHAT_URL + "/:target_id/:name"} component={SingleChatScreen} />
-          <PrivateRoute exact path={SEARCH_PROFILE_URL + "/:target_id"} component={SingleProfileScreen} />
+          <PrivateRoute exact path={SEARCH_PROFILE_URL + "/:target_id/:name"} component={SingleProfileScreen} />
           <PrivateRoute exact path={SINGLE_EVENT_URL + "/:event_id/:event_name"} component={SingleEventScreen} />
           <PrivateRoute exact path={CALENDAR_URL} component={CalendarScreen} />
           <PrivateRoute exact path={PROFILES_URL} component={ProfilesScreen} />
