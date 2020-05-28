@@ -56,14 +56,15 @@ export default (props) => {
       duration: 100,
       iterations: 1
     });
-    element.style.transform = 'translate(0,3.7rem)';
+    element && (element.style.transform = 'translate(0,3.7rem)');
     return () => {
-      element.style.transform = 'translate(0rem)';
+      element && (element.style.transform = 'translate(0rem)');
     };
   }, []);
 
   const showTab = () => {
-    document.getElementById('tabbar').style.transform = 'translate(0rem)';
+    let element = document.getElementById('tabbar');
+    element && (element.style.transform = 'translate(0rem)');
   }
 
   useEffect(() => {

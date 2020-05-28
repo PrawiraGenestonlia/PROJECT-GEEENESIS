@@ -94,7 +94,7 @@ export default () => {
                     <Link to={SINGLE_CHAT_URL + "/" + v.networkname + "/" + v.name}>
                       <div className="flex flex-row items-center mt-0" >
                         <div>
-                          <Avatar className="h-16 w-16" src={v['avatarUrl']} />
+                          <Avatar className="h-20 w-20" src={v['avatarUrl']} />
                         </div>
                         <div className="ml-5 float-left">
                           <span className="text-base text-black">{v.name}</span>

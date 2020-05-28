@@ -1,0 +1,4 @@
+export const TYPE_OF_LAYOUT = {
+  "SIDE_BURGER": "SIDE_BURGER",
+  "BOTTOM_TAB": "BOTTOM_TAB"
+}

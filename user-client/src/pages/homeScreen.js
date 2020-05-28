@@ -72,7 +72,7 @@ export default () => {
                         <div className="absolute inset-0 w-full h-full bg-black" style={{ opacity: '0.20' }}></div>
                       </div>
                       <div className="inset-0 w-full h-full flex fill-current text-black font-bold items-center text-center mt-2">
-                        <span className="w-full">{event.title}</span>
+                        <span className="truncate w-full">{event.title}</span>
                       </div>
                     </Link>
                   </div>

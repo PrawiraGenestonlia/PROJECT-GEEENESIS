@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { getMyProfile, changeAvatar } from '../api';
 import Avatar from '../components/avatar';
-import { message, Divider, Spin } from 'antd';
+import { message, Divider, Spin, Button, Tabs } from 'antd';
 import { Link } from 'react-router-dom';
 import { ABOUT_URL } from '../router/constants.router';
+import BannerImg from '../assets/img/banner.jpg';
+import LogOut from '../utils/logOut';
+import BottomDiv from '../components/bottomDiv';
+
+const { TabPane } = Tabs;
 
 const getGreetings = () => {
   var today = new Date()
@@ -29,7 +34,8 @@ export default () => {
   const getProfileInfo = () => {
     getMyProfile().then(res => {
       if (res.status === 200) setMyProfile(res.data)
-    }).catch(e => { })
+    }).catch(e => { });
+
   }
 
 
@@ -48,21 +54,42 @@ export default () => {
 
   return (
     <div className="max-w-full w-full ">
+      {console.log(myProfile)}
+      <img className="object-cover z-10 h-40 w-full" alt="banner" src={BannerImg} style={{ marginBottom: '-3rem', }} />
       {
         Object.keys(myProfile).length !== 0 ?
-          <div className="flex flex-col items-center">
-            <label htmlFor="avatar-image-file">
-              <Avatar src={myProfile['myInfo']['avatarUrl']} />
-              <input className="hidden"
-                id="avatar-image-file" type="file" accept="image/*" placeholder="image" value={''} onChange={(e) => {
-                  if (e.target.files) {
-                    const file = e.target.files[0];
-                    if (file.size < 1024 * 512) uploadAvatar(file);
-                    else message.error("File size must be less than 500 KB. You may compress your image at https://tinyjpg.com.", 5);
-                  }
-                }} />
-            </label>
-            <div className="mt-2"><span>{getGreetings()}, <strong>{myProfile['myInfo']['name']}</strong>!</span></div>
+          <div className="flex flex-col  bg-white rounded-md p-2 z-20">
+            <div className="flex flex-row ml-6">
+              <label htmlFor="avatar-image-file">
+                <Avatar src={myProfile['myInfo']['avatarUrl']} bEdit={true} />
+              </label>
+              <div className="flex ml-2 text-xl " style={{ marginTop: '3rem' }}>
+                <strong className="break-words">{myProfile['myInfo']['name']}</strong>
+              </div>
+
+            </div>
+
+            <div className="w-full mt-3">
+              <Tabs onChange={() => { }}
+                renderTabBar={(props, DefaultTabBar) => {
+                  console.log('props - ', props, props.activeKey)
+                  return (
+                    <DefaultTabBar {...props} defaultActiveKey='0' />
+                  );
+                }}
+                type="card">
+                <TabPane tab="Tab 111111" key="1">
+                  Content of Tab Pane 1
+              </TabPane>
+                <TabPane tab="Tab 2" key="2">
+                  Content of Tab Pane 2
+              </TabPane>
+                <TabPane tab="Tab 3" key="3">
+                  Content of Tab Pane 3
+              </TabPane>
+              </Tabs>
+            </div>
+
             <Divider />
             <div className="flex flex-col items-start w-full">
               <div>
@@ -84,6 +111,7 @@ export default () => {
             </div>
 
             <Divider />
+            <Button block onClick={LogOut}>Log Out</Button>
             <div className="w-full">
               {/* <p className="break-words">{JSON.stringify(myProfile)}</p> */}
             </div>
@@ -93,7 +121,15 @@ export default () => {
             <Spin size="large" />
           </div>
       }
-
+      <input className="hidden"
+        id="avatar-image-file" type="file" accept="image/*" placeholder="image" value={''} onChange={(e) => {
+          if (e.target.files) {
+            const file = e.target.files[0];
+            if (file.size < 1024 * 512) uploadAvatar(file);
+            else message.error("File size must be less than 500 KB. You may compress your image at https://tinyjpg.com.", 5);
+          }
+        }} />
+      <BottomDiv />
     </div >
   )
 }

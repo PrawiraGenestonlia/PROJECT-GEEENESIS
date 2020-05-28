@@ -20,15 +20,13 @@ import {
   // MYEVENTS_URL, SEARCH_URL, ABOUT_URL, CLUBS_URL
   // SINGLE_CHAT_URL, SINGLE_CLUB_URL, SINGLE_PROFILE_URL
 } from '../router/constants.router';
+import { TYPE_OF_LAYOUT } from '../enum';
 import '../css/react-burger-menu.css';
 import '../css/large-screen-nav.css';
 import '../css/menu-table.css';
 // import GeeenesisLogoRandom from '../assets/logo/geeenesis-random.png';
 
-const TYPE_OF_LAYOUT = {
-  "SIDE_BURGER": "SIDE_BURGER",
-  "BOTTOM_TAB": "BOTTOM_TAB"
-}
+
 
 const navigators = [
   { title: "Home", href: HOME_URL, svg: HomeSVG },
@@ -37,17 +35,6 @@ const navigators = [
   { title: "Chats", href: CHATS_URL, svg: ChatSVG },
   { title: "Me", href: ME_URL, svg: PersonSVG },
 ];
-
-// const navigators = [
-//   { title: "Home", href: HOME_URL, svg: HomeSVG },
-//   { title: "Student Bodies", href: CLUBS_URL, svg: GroupSVG },
-//   { title: "My Circle", href: MYCIRCLE_URL, svg: CommunitySVG },
-//   { title: "Chats", href: CHATS_URL, svg: ChatSVG },
-//   { title: "E3 Calendar", href: CALENDAR_URL, svg: Calendar },
-//   { title: "My Events", href: MYEVENTS_URL, svg: EventsSVG },
-//   { title: "Search", href: SEARCH_URL, svg: SearchSVG },
-//   { title: "About", href: ABOUT_URL, svg: InformationSVG },
-// ];
 
 const navigatorReversed = [...navigators].reverse();
 
@@ -66,10 +53,7 @@ const SmallScreenNavBar = (props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [headerText, setHeaderText] = useState('Home');
   const [typeOfLayout,] = useState(props.typeOfLayout);
-  const onClickLogOut = () => {
-    localStorage.removeItem('auth-token');
-    window.location.reload();
-  }
+
   const onNavClick = (page) => {
     setIsNavOpen(false);
     setHeaderText(page);
@@ -125,7 +109,7 @@ const SmallScreenNavBar = (props) => {
                   </table>
                 </div>
               </div>
-              <div className="flex text-black mt-3 mb-3">
+              {/* <div className="flex text-black mt-3 mb-3">
                 <button className="w-32 bg-gray-100 text-gray-800 rounded border-b-2 border-yellow-500 hover:border-yellow-600 hover:bg-yellow-500 hover:text-white shadow-md py-2 px-2 inline-flex items-center justify-center">
                   <span className="mr-1">Change Password</span>
                   <img className="float-left" src={PasswordSVG} alt="password" width={22} />
@@ -134,7 +118,7 @@ const SmallScreenNavBar = (props) => {
                   <span className="mr-1">Log Out</span>
                   <img className="float-left" src={LogoutSVG} alt="Log out" width={22} />
                 </button>
-              </div>
+              </div> */}
             </div>
           </Menu>
           <div className="flex absolute h-full w-full justify-center items-center z-20" style={{ backgroundColor: '#0084ff ' }}>
@@ -211,7 +195,7 @@ const SmallScreenTabBar = () => {
 }
 
 export default () => {
-  const [typeOfLayout,] = useState(TYPE_OF_LAYOUT.BOTTOM_TAB);
+  const [typeOfLayout,] = useState(localStorage.getItem('TYPE_OF_LAYOUT') || TYPE_OF_LAYOUT.BOTTOM_TAB);
   return (
     <div className="flex flex-col w-full mt-0">
       {
