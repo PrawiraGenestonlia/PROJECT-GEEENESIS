@@ -7,7 +7,7 @@ import {
 } from "react-transition-group";
 import '../transition/transition.css';
 import {
-  HOME_URL, CLUBS_URL, SINGLE_CLUB_URL, CHATS_URL, ME_URL,
+  HOME_URL, CLUBS_URL, SINGLE_CLUB_URL, CHATS_URL, ME_URL, SINGLE_EVENT_C_URL,
   SINGLE_CHAT_URL, CALENDAR_URL, PROFILES_URL, SINGLE_EVENT_URL,
   MYEVENTS_URL, MYCIRCLE_URL, SEARCH_URL, ABOUT_URL, SEARCH_PROFILE_URL
 } from './constants.router';
@@ -34,7 +34,7 @@ export default () => {
       <CSSTransition
         key={location.key}
         classNames="fade"
-        timeout={1000} >
+        timeout={300} >
         <Switch location={location}>
           <PrivateRoute exact path="/" component={() => <Redirect to={HOME_URL} />} />
           <PrivateRoute exact path={HOME_URL} component={HomeScreen} />
@@ -43,7 +43,8 @@ export default () => {
           <PrivateRoute exact path={CHATS_URL} component={ChatsScreen} />
           <PrivateRoute exact path={SINGLE_CHAT_URL + "/:target_id/:name"} component={SingleChatScreen} />
           <PrivateRoute exact path={SEARCH_PROFILE_URL + "/:target_id/:name"} component={SingleProfileScreen} />
-          <PrivateRoute exact path={SINGLE_EVENT_URL + "/:event_id/:event_name"} component={SingleEventScreen} />
+          <PrivateRoute exact path={SINGLE_EVENT_URL + "/:from_page/:event_id/:event_name"} component={SingleEventScreen} />
+          <PrivateRoute exact path={SINGLE_EVENT_C_URL + "/:from_page/:event_id/:event_name"} component={SingleEventScreen} />
           <PrivateRoute exact path={CALENDAR_URL} component={CalendarScreen} />
           <PrivateRoute exact path={PROFILES_URL} component={ProfilesScreen} />
           <PrivateRoute exact path={MYEVENTS_URL} component={MyEventsScreen} />

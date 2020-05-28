@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getMyProfile, getEventsFromToday, getClubInfo } from '../api';
-import { message, Divider, Spin } from 'antd';
+import { Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import { SINGLE_CLUB_URL, SINGLE_EVENT_URL } from '../router/constants.router';
 import HorizontalCardScroll from '../components/horizontalCardScroll';
@@ -66,9 +66,9 @@ export default () => {
               {listOfEvents.map((event, index) => {
                 return (
                   <div className="item w-64" key={index}>
-                    <Link to={SINGLE_EVENT_URL + "/" + event.uniqueName + "/" + event.title}>
+                    <Link to={SINGLE_EVENT_URL + "/Home/" + event.uniqueName + "/" + event.title}>
                       <div className="relative w-full h-full overflow-hidden rounded-lg md:rounded-t-none md:rounded-l-lg" style={{ minHeight: '10rem' }}>
-                        <img className="absolute inset-0 w-full h-full object-cover object-center" src={event.imageUrl} alt="" />
+                        <img className="absolute inset-0 w-full h-full object-cover object-center" src={event.imageUrl || `https://picsum.photos/seed/${event._id}/400/400`} alt={event.title} />
                         <div className="absolute inset-0 w-full h-full bg-black" style={{ opacity: '0.20' }}></div>
                       </div>
                       <div className="inset-0 w-full h-full flex fill-current text-black font-bold items-center text-center mt-2">

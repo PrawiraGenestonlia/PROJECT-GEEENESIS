@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getMyChatList, clearChat } from '../api';
 import { Link } from 'react-router-dom';
 import { SINGLE_CHAT_URL } from '../router/constants.router';
-import { Divider, Spin, Popover, Button, Modal, message } from 'antd';
+import { Spin, Popover, Button, Modal, message } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import Avatar from '../components/avatar';
 import OptionsSVG from '../assets/svg/options.svg';

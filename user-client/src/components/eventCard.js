@@ -5,11 +5,11 @@ const whichMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep
 
 export default ({ className = "", event }) => {
   const eventDate = new Date(event.start);
-  console.log(eventDate);
+
   return (
     <div className={`bg-white p-2 rounded-lg mb-2 ${className}`}>
       <div className="flex flex-row">
-        <img className="h-24 w-24 object-cover" src={event.imageUrl || `https://picsum.photos/seed/${event._id}/400/400`} />
+        <img className="h-24 w-24 object-cover" alt={event.title} src={event.imageUrl || `https://picsum.photos/seed/${event._id}/400/400`} />
         <div className="w-4" />
         <div>
           <div style={{ color: '#0084ff' }}>

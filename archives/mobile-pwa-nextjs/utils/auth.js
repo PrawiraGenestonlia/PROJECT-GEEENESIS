@@ -27,7 +27,7 @@ export const auth = ctx => {
 export const logout = () => {
   cookie.remove('token')
   // to support logging out from all windows
-  window.localStorage.setItem('logout', Date.now())
+  localStorage.setItem('logout', Date.now())
   Router.push('/login')
 }
 
@@ -45,7 +45,7 @@ export const withAuthSync = WrappedComponent => {
 
       return () => {
         window.removeEventListener('storage', syncLogout)
-        window.localStorage.removeItem('logout')
+        localStorage.removeItem('logout')
       }
     }, [])
 

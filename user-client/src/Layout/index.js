@@ -62,10 +62,10 @@ const MenuItem = ({ svg = HomeSVG, title = "N/A" }) => (
 
 );
 
-const SmallScreenNavBar = () => {
+const SmallScreenNavBar = (props) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [headerText, setHeaderText] = useState('Home');
-  const [typeOfLayout, setTypeOfLayout] = useState(TYPE_OF_LAYOUT.BOTTOM_TAB);
+  const [typeOfLayout,] = useState(props.typeOfLayout);
   const onClickLogOut = () => {
     localStorage.removeItem('auth-token');
     window.location.reload();
@@ -211,7 +211,7 @@ const SmallScreenTabBar = () => {
 }
 
 export default () => {
-  const [typeOfLayout, setTypeOfLayout] = useState(TYPE_OF_LAYOUT.BOTTOM_TAB);
+  const [typeOfLayout,] = useState(TYPE_OF_LAYOUT.BOTTOM_TAB);
   return (
     <div className="flex flex-col w-full mt-0">
       {
@@ -219,7 +219,7 @@ export default () => {
         <React.Fragment>
           <div className='md:hidden'>
             <div id="navbar" className="h-16 shadow-xl z-50" style={{ backgroundColor: 'white' }}>
-              <SmallScreenNavBar />
+              <SmallScreenNavBar typeOfLayout={typeOfLayout} />
             </div>
           </div>
           <div className="hidden md:block" >

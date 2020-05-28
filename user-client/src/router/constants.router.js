@@ -27,6 +27,7 @@ export const MYCIRCLE_URL = "/app/mycircle";
 export const SEARCH_PROFILE_URL = "/app/p";
 //tab3
 export const CALENDAR_URL = "/app/calendar";
+export const SINGLE_EVENT_C_URL = "/app/calendar/events";
 //tab4
 export const CHATS_URL = "/app/chats";
 export const SINGLE_CHAT_URL = "/app/chats";

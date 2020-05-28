@@ -9,6 +9,8 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
+import { Link } from 'react-router-dom';
+import { SINGLE_EVENT_C_URL } from '../router/constants.router';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
@@ -63,7 +65,27 @@ export default () => {
       });
     };
     loadData();
+
   }, []);
+
+  useEffect(() => {
+    const loadTodayEvents = () => {
+      const clickedDate = new Date();
+      const listOfEvents = events.filter((event) => {
+        let startDate = new Date(event.start);
+        let endDate = new Date(event.end);
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(0, 0, 0, 0);
+        clickedDate.setHours(0, 0, 0, 0);
+        if (clickedDate.getTime() >= startDate.getTime() && clickedDate.getTime() <= endDate.getTime()) {
+          return event;
+        }
+        return null
+      });
+      setSelectedEvents([...listOfEvents]);
+    }
+    loadTodayEvents();
+  }, [events]);
 
   const handleEventClick = async (e) => {
     const clickedEvent = {
@@ -83,11 +105,14 @@ export default () => {
       endDate.setHours(0, 0, 0, 0);
       clickedDate.setHours(0, 0, 0, 0);
       if (clickedDate.getTime() >= startDate.getTime() && clickedDate.getTime() <= endDate.getTime()) {
-        return event
+        return event;
       }
+      return null;
     });
     setSelectedEvents([...listOfEvents]);
   }
+
+
 
   const handleModalOk = e => {
     console.log(e);
@@ -110,7 +135,9 @@ export default () => {
         selectedDateEvents.map((event, index) => {
           return (
             <div className="truncate" key={index}>
-              <EventCard event={event} />
+              <Link to={SINGLE_EVENT_C_URL + "/Calendar/" + event.uniqueName + "/" + event.title}>
+                <EventCard event={event} />
+              </Link>
             </div>
           )
         })

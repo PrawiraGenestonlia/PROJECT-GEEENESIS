@@ -7,6 +7,7 @@ import BottomDiv from '../components/bottomDiv';
 export default (props) => {
   const eventName = props.match.params.event_name || '';
   const eventId = props.match.params.event_id || '';
+  const fromPage = props.match.params.from_page || '';
   const [eventInfo, setEventInfo] = useState({});
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export default (props) => {
 
   return (
     <div>
-      <TopNavBar title={eventName} back="Home" />
+      <TopNavBar title={eventName} back={fromPage} />
       {
         Object.keys(eventInfo).length ?
           <>
