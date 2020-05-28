@@ -15,8 +15,6 @@ export default (props) => {
   const [chatInput, setChatInput] = useState('');
   const [prevTime, setPrevTime] = useState('');
   const [sendingMessage, setSendingMessage] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
 
   const sendMessage = () => {
     if (chatInput === '') return null;

@@ -1,0 +1,13 @@
+div.horizontal-card-scroll{
+  overflow: auto;
+  /* overflow-x: hidden; */
+  overflow-x: scroll;
+  white-space: nowrap;
+  
+}
+
+.horizontal-card-scroll div.item{
+  display: inline-block;
+  padding: 0.5rem;
+
+}

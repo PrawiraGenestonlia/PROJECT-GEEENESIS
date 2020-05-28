@@ -1,28 +1,13 @@
 import React from 'react';
 import { Button, Divider } from 'antd';
-
-const unregisterServiceWorker = async () => {
-  navigator.serviceWorker.getRegistrations().then(async registrations => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const result = [];
-        for (let i = 0; i < registrations.length; i++) {
-          const j = await registrations[i].unregister();
-          console.log(j);
-          result.push(j);
-        }
-        resolve(result);
-      } catch (err) {
-        reject(err);
-      }
-    });
-  });
-}
+import unregisterServiceWorker from '../utils/unregisterServiceWorker';
+import TopNavBar from '../components/topNavBar';
 
 export default () => {
 
   return (
     <div>
+      <TopNavBar title="About" back="Me" />
       <div>
         <h2>About the App</h2>
         <p>Description and Summary</p>

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getMyProfile } from '../api';
-import { Divider, Spin, Tabs } from 'antd';
+import { getMyProfile, getMentorProfile } from '../api';
+import { Divider, Spin, Tabs, Input, message } from 'antd';
+import BottomDiv from '../components/bottomDiv';
 
 const { TabPane } = Tabs;
+const { Search } = Input;
+
 const ROLE = {
   MENTOR: 1,
   STUDENT: 2,
@@ -12,6 +15,8 @@ const ROLE = {
 
 export default () => {
   const [myProfile, setMyProfile] = useState({});
+  const [searchData, setSearchData] = useState({});
+  const [loadingState, setLoadingState] = useState(false);
   const [isTabLayout, setIsTabLayout] = useState(true);
 
   useEffect(() => {
@@ -24,6 +29,20 @@ export default () => {
     }).catch(e => { })
   }
 
+  const onSearch = (value) => {
+    setLoadingState(true);
+    const networkName = value.lastIndexOf("@") >= 0 ? value.substring(0, value.lastIndexOf("@")) : value;
+    getMentorProfile(networkName).then((msg) => {
+      let messages = msg ? (msg.data ? msg.data : JSON.stringify(msg)) : JSON.stringify(msg);
+      Object.keys(msg).length > 2 ? setSearchData(msg) : setSearchData(messages);
+      setLoadingState(false);
+    }).catch(async (err) => {
+      let messages = err ? (err.data ? err.data : JSON.stringify(err)) : JSON.stringify(err);
+      message.error(messages, 5);
+      setLoadingState(false);
+    });
+  }
+
   const profileList = (profiles, role) => { //array
     return (
       <>
@@ -34,11 +53,21 @@ export default () => {
   }
 
   return (
-    <div className="max-w-full">
+    <div>
+      <div className="flex items-center justify-center w-full">
+        <Search
+          className="rounded-lg"
+          placeholder="network name / email"
+          onSearch={value => value ? onSearch(value) : null}
+          style={{ width: '100%' }}
+          loading={loadingState}
+        />
+      </div>
+      <div className="mt-3 mb-3" style={{ height: '1px', backgroundColor: '#bdc0c7' }} />
       {
         Object.keys(myProfile).length !== 0 ?
           <div className="flex flex-col items-center">
-            <div className="w-full">
+            <div className="w-full bg-white p-2 rounded-md">
               {
                 isTabLayout ?
                   <Tabs onChange={() => { }}>
@@ -126,7 +155,7 @@ export default () => {
 
               {/* <p className="break-words">{JSON.stringify(myProfile)}</p> */}
             </div>
-
+            <BottomDiv />
           </div>
           :
           <div className="flex w-full mt-48 justify-center">

@@ -23,6 +23,21 @@ export const getEvents = async ({ year, eventUniqueName, eventCreator }) => {
   })
 }
 
+export const getSpecificEvent = async (event_id) => {
+  let url = GETEVENT + "?event=" + event_id;
+  const token = getToken();
+  return new Promise((resolve, reject) => {
+    axios.get(url, {
+      headers: { "auth-token": token }
+    }).then((res) => {
+      if (res.status === 200) resolve(res);
+    }).catch((err) => {
+      if (err.response) reject(err.response.data);
+      else reject(err);
+    })
+  })
+}
+
 export const getEventsFromToday = async () => {
   let url = GETEVENTFROMTODAY;
   const token = getToken();

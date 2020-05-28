@@ -14,7 +14,7 @@ import 'react-add-to-calendar/dist/react-add-to-calendar.css';
 
 const Calendar = (props) => {
   return (
-    <div>
+    <div className="bg-white p-2 rounded-lg" style={{ boxShadow: '0 0px 25px 10px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}>
       <FullCalendar
         className={`${props.className} ${props.class} `}
         defaultView="dayGridMonth"

@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { getMyProfile, changeAvatar } from '../api';
-import Avatar from '../components/avatar';
+import { getMyProfile, getEventsFromToday, getClubInfo } from '../api';
 import { message, Divider, Spin } from 'antd';
-
-const getGreetings = () => {
-  var today = new Date()
-  var curHr = today.getHours()
-  if (curHr < 6) {
-    return "Time to sleep";
-  } else if (curHr < 12) {
-    return "Good morning";
-  } else if (curHr < 18) {
-    return "Good afternoon";
-  } else {
-    return "Good evening";
-  }
-}
+import { Link } from 'react-router-dom';
+import { SINGLE_CLUB_URL, SINGLE_EVENT_URL } from '../router/constants.router';
+import HorizontalCardScroll from '../components/horizontalCardScroll';
+import BottomDiv from '../components/bottomDiv';
 
 export default () => {
   const [myProfile, setMyProfile] = useState({});
+  const [listOfEvents, setListOfEvents] = useState([]);
+  const [clubList, setClubList] = useState([]);
 
   useEffect(() => {
+    getEvents();
+    getClubList();
     getProfileInfo();
   }, []);
 
@@ -31,53 +24,63 @@ export default () => {
   }
 
 
-  const uploadAvatar = (file) => {
-    changeAvatar(file).then(async (msg) => {
-      if (msg.status === 200) {
-        let messages = msg ? (msg.data ? msg.data : JSON.stringify(msg)) : JSON.stringify(msg);
-        message.success(messages, 5);
-        getProfileInfo();
-      }
-    }).catch(async (err) => {
-      let messages = err ? (err.data ? err.data : JSON.stringify(err)) : JSON.stringify(err);
-      message.error(messages, 5);
-    });
+  const getEvents = () => {
+    getEventsFromToday().then(res => {
+      if (res.status === 200) setListOfEvents(res.data)
+    }).catch(e => { })
+  }
+
+  const getClubList = () => {
+    getClubInfo().then(res => {
+      if (res.status === 200) setClubList(res.data)
+    }).catch(e => { })
   }
 
   return (
-    <div className="max-w-full w-full">
+    <div className="max-w-full w-full ">
       {
         Object.keys(myProfile).length !== 0 ?
           <div className="flex flex-col items-center">
-            <label htmlFor="avatar-image-file">
-              <Avatar src={myProfile['myInfo']['avatarUrl']} />
-              <input className="hidden"
-                id="avatar-image-file" type="file" accept="image/*" placeholder="image" value={''} onChange={(e) => {
-                  if (e.target.files) {
-                    const file = e.target.files[0];
-                    if (file.size < 1024 * 512) uploadAvatar(file);
-                    else message.error("File size must be less than 500 KB. You may compress your image at https://tinyjpg.com.", 5);
-                  }
-                }} />
-            </label>
-            <div className="mt-2"><span>{getGreetings()}, <strong>{myProfile['myInfo']['name']}</strong>!</span></div>
-            <Divider />
-            <div className="flex flex-col items-start w-full">
-              <div>
-                <h2>Upcoming Events</h2>
-                <p>{`<Events Carousel/> //TODO`}</p>
-              </div>
-              <Divider />
-              <div>
-                <h2>Statistics</h2>
-                <p>{`<Number of Events Participated/> //TODO`}</p>
-              </div>
-            </div>
+            <div>Home Header with LOGO</div>
+            <div className="mt-2"><span>Welcome back, <strong>{myProfile['myInfo']['name']}</strong>!</span></div>
+            <HorizontalCardScroll className="mt-4" title="Student Bodies">
+              {clubList.map((club, index) => {
+                return (
+                  <div className="item w-64" key={index}>
+                    <Link to={SINGLE_CLUB_URL + "/" + club.server_unique_name + "/" + club.title}>
+                      <div className="relative w-full h-full overflow-hidden rounded-lg md:rounded-t-none md:rounded-l-lg" style={{ minHeight: '10rem' }}>
+                        <img className="absolute inset-0 w-full h-full object-cover object-center" src={club.bannerImgLink} alt="" />
+                        <div className="absolute inset-0 w-full h-full bg-black" style={{ opacity: '0.20' }}></div>
+                      </div>
+                      <div className="inset-0 w-full h-full flex fill-current text-black font-bold items-center text-center mt-2">
+                        <span className="w-full">{club.title}</span>
+                      </div>
+                    </Link>
+                  </div>
+                )
+              })
+              }
 
-            <Divider />
-            <div className="w-full">
-              {/* <p className="break-words">{JSON.stringify(myProfile)}</p> */}
-            </div>
+            </HorizontalCardScroll>
+            <HorizontalCardScroll className="mt-4" title="Upcoming Events">
+              {listOfEvents.map((event, index) => {
+                return (
+                  <div className="item w-64" key={index}>
+                    <Link to={SINGLE_EVENT_URL + "/" + event.uniqueName + "/" + event.title}>
+                      <div className="relative w-full h-full overflow-hidden rounded-lg md:rounded-t-none md:rounded-l-lg" style={{ minHeight: '10rem' }}>
+                        <img className="absolute inset-0 w-full h-full object-cover object-center" src={event.imageUrl} alt="" />
+                        <div className="absolute inset-0 w-full h-full bg-black" style={{ opacity: '0.20' }}></div>
+                      </div>
+                      <div className="inset-0 w-full h-full flex fill-current text-black font-bold items-center text-center mt-2">
+                        <span className="w-full">{event.title}</span>
+                      </div>
+                    </Link>
+                  </div>
+                )
+              })
+              }
+            </HorizontalCardScroll>
+            <BottomDiv />
           </div>
           :
           <div className="flex w-full mt-48 justify-center">

@@ -18,17 +18,27 @@ export const REDIRECT_URL = "/load-role";
 
 //APP ROUTE
 export const APP_URL = "/app";
+//tab1
 export const HOME_URL = "/app/home";
-export const CLUBS_URL = "/app/clubs";
-export const SINGLE_CLUB_URL = "/app/clubs";
+export const SINGLE_CLUB_URL = "/app/home/clubs";
+export const SINGLE_EVENT_URL = "/app/home/events";
+//tab2
+export const MYCIRCLE_URL = "/app/mycircle";
+//tab3
+export const CALENDAR_URL = "/app/calendar";
+//tab4
 export const CHATS_URL = "/app/chats";
 export const SINGLE_CHAT_URL = "/app/chats";
-export const CALENDAR_URL = "/app/calendar";
+//tab5
+export const ME_URL = "/app/me";
+export const ABOUT_URL = "/app/me/about";
+
+//others
+export const CLUBS_URL = "/app/clubs";
+export const SEARCH_PROFILE_URL = "/app/p";
 export const PROFILES_URL = "/app/profiles";
 export const MYEVENTS_URL = "/app/myevents";
-export const MYCIRCLE_URL = "/app/mycircle";
 export const SEARCH_URL = "/app/search";
-export const ABOUT_URL = "/app/about";
 export const SINGLE_PROFILE_URL = "/app/profiles";
 
 //STANDALONE ROUTES

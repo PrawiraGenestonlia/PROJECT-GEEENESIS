@@ -14,6 +14,26 @@
   transition: top 0.3s;
 }
 
+#tabbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: block;
+  transition: top 0.3s;
+}
+
+.tab-bar a {
+  color: black;
+}
+
+.tab-bar a.active  {
+  color: #0084ff;
+}
+
+.tab-bar .active .icon {
+  filter: invert(51%) sepia(61%) saturate(6378%) hue-rotate(193deg) brightness(98%) contrast(113%);
+}
+
 .large-nav ul {
   list-style-type: none;
   margin: 0;
@@ -39,7 +59,7 @@
 }
 
 .large-nav .active {
-  background-color: #3d53fa;
+  background-color: #0084ff;
 }
 
 .large-nav-logo {
