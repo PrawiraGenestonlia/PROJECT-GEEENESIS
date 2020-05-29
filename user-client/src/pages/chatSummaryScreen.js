@@ -52,7 +52,6 @@ export default () => {
       <div className="pointer-events-auto">
         <Button onClick={() => {
           let a = []; a[index] = false; setPopoverIsVisible(a);
-          hidePopover();
           showDeleteConfirm(receiverNetworkName, receiverName);
         }}>clear chat</Button>
       </div>
@@ -68,15 +67,6 @@ export default () => {
       let d = document.getElementsByClassName('ant-popover');
       for (let i = 0; i < d.length; i++) {
         d[i].onclick = stopEvent
-      }
-    }, 50);
-  }
-
-  const hidePopover = () => {
-    setTimeout(() => {
-      let d = document.getElementsByClassName('ant-popover');
-      for (let i = 0; i < d.length; i++) {
-        // d[i].className = "ant-popover-hidden";
       }
     }, 50);
   }

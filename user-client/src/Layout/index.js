@@ -8,25 +8,16 @@ import CommunitySVG from '../assets/svg/community.svg';
 import ChatSVG from '../assets/svg/Chat.svg';
 import Calendar from '../assets/svg/calendar.svg';
 import CloseSVG from '../assets/svg/Close-2.svg';
-import PasswordSVG from '../assets/svg/Password.svg';
-import LogoutSVG from '../assets/svg/logout.svg';
 import PersonSVG from '../assets/svg/person.svg';
-// import EventsSVG from '../assets/svg/event-available.svg';
-// import SearchSVG from '../assets/svg/search.svg';
-// import InformationSVG from '../assets/svg/information.svg';
-// import GroupSVG from '../assets/svg/Group-2.svg';
 import {
   HOME_URL, CHATS_URL, CALENDAR_URL, ME_URL, MYCIRCLE_URL,
   // MYEVENTS_URL, SEARCH_URL, ABOUT_URL, CLUBS_URL
   // SINGLE_CHAT_URL, SINGLE_CLUB_URL, SINGLE_PROFILE_URL
 } from '../router/constants.router';
-import { TYPE_OF_LAYOUT } from '../enum';
+import { TYPE_OF_LAYOUT, GLOBAL_COLOR, TYPE_OF_THEME } from '../enum';
 import '../css/react-burger-menu.css';
 import '../css/large-screen-nav.css';
 import '../css/menu-table.css';
-// import GeeenesisLogoRandom from '../assets/logo/geeenesis-random.png';
-
-
 
 const navigators = [
   { title: "Home", href: HOME_URL, svg: HomeSVG },
@@ -41,12 +32,13 @@ const navigatorReversed = [...navigators].reverse();
 const MenuItem = ({ svg = HomeSVG, title = "N/A" }) => (
   <div className="m-4">
     <div className="flex flex-col w-32 h-24 justify-center items-center">
-      {/* filter generator: https://codepen.io/sosuke/pen/Pjoqqp?__cf_chl_jschl_tk__=a3daf962d32c9077f30de11d9081ba85e525be17-1584092724-0-AQQYPMLlxSVWr9GUmkUjYk2Qm9aTBb8Lkk5timAm2V0j8B5ME81ufiUF3JBiBvF7Vw2WSu4dyzns1h0WZGzRqwg6qp-oBlD9qBZDhoRHZc5RRXQqJT9thMkcC7dqsr4jCvCo0JibIAgwjTCHvDhba9G7qXwWC5XipGWiPhzQH9QkHzd1IZHY3BpVkv_QnjHjt2j-pb4mG52B-Zd1Vxw9Nb3utQf3ca_DOqfthsoLrUQUa6t0HnztTcLn_9zgOy8UozJZPGB_RAJ4ebvwGRwBulMiWBFK1ohlyVshR67SioNr0I2mGvSkvtqq2pkVqkSP-lvHWMfL99Fgm3tFg9F14LO_L6yCY1EtZofssWIDSxjg */}
+      {/* filter generator: 
+      https://codepen.io/sosuke/pen/Pjoqqp?__cf_chl_jschl_tk__=a3daf962d32c9077f30de11d9081ba85e525be17-1584092724-0-AQQYPMLlxSVWr9GUmkUjYk2Qm9aTBb8Lkk5timAm2V0j8B5ME81ufiUF3JBiBvF7Vw2WSu4dyzns1h0WZGzRqwg6qp-oBlD9qBZDhoRHZc5RRXQqJT9thMkcC7dqsr4jCvCo0JibIAgwjTCHvDhba9G7qXwWC5XipGWiPhzQH9QkHzd1IZHY3BpVkv_QnjHjt2j-pb4mG52B-Zd1Vxw9Nb3utQf3ca_DOqfthsoLrUQUa6t0HnztTcLn_9zgOy8UozJZPGB_RAJ4ebvwGRwBulMiWBFK1ohlyVshR67SioNr0I2mGvSkvtqq2pkVqkSP-lvHWMfL99Fgm3tFg9F14LO_L6yCY1EtZofssWIDSxjg 
+      */}
       <img className="w-16 h-16 menu-svg" alt={title + "-img"} src={svg} style={{ filter: "invert(50%) sepia(78%) saturate(6773%) hue-rotate(199deg) brightness(110%) contrast(101%)" }} />
       <font className="text-black">{title}</font>
     </div>
   </div>
-
 );
 
 const SmallScreenNavBar = (props) => {
@@ -109,23 +101,12 @@ const SmallScreenNavBar = (props) => {
                   </table>
                 </div>
               </div>
-              {/* <div className="flex text-black mt-3 mb-3">
-                <button className="w-32 bg-gray-100 text-gray-800 rounded border-b-2 border-yellow-500 hover:border-yellow-600 hover:bg-yellow-500 hover:text-white shadow-md py-2 px-2 inline-flex items-center justify-center">
-                  <span className="mr-1">Change Password</span>
-                  <img className="float-left" src={PasswordSVG} alt="password" width={22} />
-                </button>
-                <button className="ml-6 w-32 bg-gray-100 text-gray-800 rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-2 inline-flex items-center justify-center" onClick={onClickLogOut}>
-                  <span className="mr-1">Log Out</span>
-                  <img className="float-left" src={LogoutSVG} alt="Log out" width={22} />
-                </button>
-              </div> */}
             </div>
           </Menu>
           <div className="flex absolute h-full w-full justify-center items-center z-20" style={{ backgroundColor: '#0084ff ' }}>
             <div className="text-xl text-white">{headerText === 'Home' ?
               <>
                 Geeenesis
-            {/* <img src={GeeenesisLogoRandom}></img> */}
               </> :
               <>{headerText}</>
             }
@@ -196,6 +177,13 @@ const SmallScreenTabBar = () => {
 
 export default () => {
   const [typeOfLayout,] = useState(localStorage.getItem('TYPE_OF_LAYOUT') || TYPE_OF_LAYOUT.BOTTOM_TAB);
+  const [typeOfTheme,] = useState(localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.LIGHT_MODE);
+
+  useEffect(() => {
+    let element = document.getElementById('root-background');
+    element.style.backgroundColor = GLOBAL_COLOR[typeOfTheme]['BACKGROUND_C'];
+  }, [typeOfTheme]);
+
   return (
     <div className="flex flex-col w-full mt-0">
       {
@@ -236,7 +224,6 @@ export default () => {
           </div>
         </React.Fragment>
       }
-
     </div>
   )
 }

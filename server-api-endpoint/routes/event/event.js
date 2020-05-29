@@ -73,6 +73,28 @@ router.get('/get-all-events', async (req, res) => {
   }
 });
 
+router.get('/get-events-between', async (req, res) => {
+  try {
+    let start = new Date();
+    let end = new Date();
+    if (req.query.start) {
+      start = new Date(req.query.start);
+    }
+    if (req.query.end) {
+      end = new Date(req.query.end);
+    }
+    const eventInfo = await event.find({
+      $and: [
+        { start: { $gte: start } },
+        { start: { $lte: end } }
+      ]
+    }).sort({ start: 'ascending' });
+    res.status(200).send(eventInfo);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 router.post('/create-event', verifyToken, async (req, res) => {
   //check authorization
   if (!(req.user.role === "superadmin" || req.user.role === "clubadmin")) return res.status(401).send('Unauthorized Access!');

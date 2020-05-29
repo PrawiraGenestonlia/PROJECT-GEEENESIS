@@ -20,7 +20,6 @@ const hideLoader = () => loader.classList.add('loader--hide');
 
 const ReactApp = ({ hideLoader }) => {
   useEffect(() => hideLoader(), [hideLoader]);
-
   // const handleScroll = () => {
   //   checkScroll("navbar", "navbarlg", '50px')
   // }

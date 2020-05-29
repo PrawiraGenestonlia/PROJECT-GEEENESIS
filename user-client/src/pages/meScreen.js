@@ -1,30 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { getMyProfile, changeAvatar } from '../api';
 import Avatar from '../components/avatar';
-import { message, Divider, Spin, Button, Tabs } from 'antd';
-import { Link } from 'react-router-dom';
+import { message, Divider, Spin, Button, Tabs, Progress } from 'antd';
 import { ABOUT_URL } from '../router/constants.router';
 import BannerImg from '../assets/img/banner.jpg';
 import LogOut from '../utils/logOut';
 import BottomDiv from '../components/bottomDiv';
+import { Link, useHistory } from "react-router-dom";
+import '../css/tabs.css';
 
 const { TabPane } = Tabs;
 
-const getGreetings = () => {
-  var today = new Date()
-  var curHr = today.getHours()
-  if (curHr < 6) {
-    return "Time to sleep";
-  } else if (curHr < 12) {
-    return "Good morning";
-  } else if (curHr < 18) {
-    return "Good afternoon";
-  } else {
-    return "Good evening";
-  }
-}
-
 export default () => {
+  const history = useHistory();
   const [myProfile, setMyProfile] = useState({});
 
   useEffect(() => {
@@ -37,7 +25,6 @@ export default () => {
     }).catch(e => { });
 
   }
-
 
   const uploadAvatar = (file) => {
     changeAvatar(file).then(async (msg) => {
@@ -52,69 +39,93 @@ export default () => {
     });
   }
 
+  const onClickAbout = () => {
+    history.push(ABOUT_URL);
+  }
+
   return (
     <div className="max-w-full w-full ">
-      {console.log(myProfile)}
       <img className="object-cover z-10 h-40 w-full rounded-t-md" alt="banner" src={BannerImg} style={{ marginBottom: '-3rem', }} />
       {
         Object.keys(myProfile).length !== 0 ?
-          <div className="flex flex-col  bg-white rounded-md p-2 z-20">
+          <div className="flex flex-col w-full bg-white rounded-md p-2 z-20">
             <div className="flex flex-row ml-6">
               <label htmlFor="avatar-image-file">
                 <Avatar className="h-32 w-32" src={myProfile['myInfo']['avatarUrl']} bEdit={true} />
               </label>
               <div className="flex ml-2 text-xl " style={{ marginTop: '3rem' }}>
-                <strong className="break-words">{myProfile['myInfo']['name']}</strong>
+                <strong className="break-words capitalize">{myProfile['myInfo']['name']}</strong>
               </div>
-
             </div>
+            <div className="flex flex-row mt-5">
+              <Button block onClick={LogOut}>⚙ Settings</Button>
+              <div className='mx-1'></div>
+              <Button block onClick={onClickAbout}>ℹ About</Button>
+            </div>
+            <div className="me-screen w-full mt-3">
+              <Tabs onChange={() => { }}>
+                <TabPane tab="Statistics" key="1">
+                  {'//TODO :: Still in Ideation'}
+                  <BottomDiv />
+                </TabPane>
+                <TabPane tab="Event Manager" key="2">
+                  {
+                    Object.keys(myProfile).length !== 0 ?
+                      <div className="flex flex-col items-center">
+                        <div className="w-full">
 
-            <div className="w-full mt-3">
-              <Tabs onChange={() => { }}
-                renderTabBar={(props, DefaultTabBar) => {
-                  console.log('props - ', props, props.activeKey)
-                  return (
-                    <DefaultTabBar {...props} defaultActiveKey='0' />
-                  );
-                }}
-                type="card">
-                <TabPane tab="Tab 111111" key="1">
-                  Content of Tab Pane 1
-              </TabPane>
-                <TabPane tab="Tab 2" key="2">
-                  Content of Tab Pane 2
-              </TabPane>
-                <TabPane tab="Tab 3" key="3">
-                  Content of Tab Pane 3
-              </TabPane>
+                          <h2>Favourite Events</h2>
+
+                          {
+                            myProfile['myProfile']['favouriteEvents'].length > 0 ?
+                              <>
+
+                                <p className="break-words">{JSON.stringify(myProfile['myProfile']['favouriteEvents'])}</p>
+
+                              </>
+                              : <><span>There is no favourite event</span></>
+                          }
+                          <Divider />
+
+                          <h2>Interested Events</h2>
+
+                          {
+                            myProfile['myProfile']['interestedEvents'].length > 0 ?
+                              <>
+
+                                <p className="break-words">{JSON.stringify(myProfile['myProfile']['interestedEvents'])}</p>
+
+                              </>
+                              : <><span>There is no interested event</span></>
+                          }
+                          <Divider />
+
+                          <h2>Participated Events</h2>
+
+                          {
+                            myProfile['myProfile']['participatedEvents'].length > 0 ?
+                              <>
+
+                                <p className="break-words">{JSON.stringify(myProfile['myProfile']['participatedEvents'])}</p>
+
+                              </>
+                              : <><span>There is no participated event</span></>
+                          }
+                          <Divider />
+                        </div>
+
+                      </div>
+                      :
+                      <div className="flex w-full mt-48 justify-center">
+                        <Spin size="large" />
+                      </div>
+                  }
+                </TabPane>
               </Tabs>
             </div>
 
-            <Divider />
-            <div className="flex flex-col items-start w-full">
-              <div>
-                <h2>Upcoming Events</h2>
-                <p>{`<Events Carousel/> //TODO`}</p>
-              </div>
-              <Divider />
-              <div>
-                <h2>Statistics</h2>
-                <p>{`<Number of Events Participated/> //TODO`}</p>
-              </div>
-              <Divider />
-              <div>
-                <Link to={ABOUT_URL}>
-                  <h2>About</h2>
-                  <p style={{ color: 'black' }}>{`Click here to learn more about this app`}</p>
-                </Link>
-              </div>
-            </div>
-
-            <Divider />
+            {/* <Divider /> */}
             <Button block onClick={LogOut}>Log Out</Button>
-            <div className="w-full">
-              {/* <p className="break-words">{JSON.stringify(myProfile)}</p> */}
-            </div>
           </div>
           :
           <div className="flex w-full mt-48 justify-center">

@@ -6,7 +6,7 @@ import TopNavBar from '../components/topNavBar';
 export default () => {
 
   return (
-    <div>
+    <div className="bg-white rounded-md p-2">
       <TopNavBar title="About" back="Me" />
       <div>
         <h2>About the App</h2>
@@ -28,10 +28,10 @@ export default () => {
         <p>
           Version: 0.5.4
           <br />
-          <span className="text-gray-500">(Last updated: {new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' })})</span>
+          <span className="text-gray-500">(Last updated: 29 May 2020)</span>
         </p>
         <p>
-          <Button type="dashed" danger onClick={() => {
+          <Button block type="dashed" danger onClick={() => {
             unregisterServiceWorker().then(() => { window.location.reload(true) })
           }}>
             Update to latest version

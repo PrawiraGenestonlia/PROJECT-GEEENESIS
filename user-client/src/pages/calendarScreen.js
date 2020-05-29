@@ -15,6 +15,7 @@ import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
 import 'react-add-to-calendar/dist/react-add-to-calendar.css';
+import { ConsoleSqlOutlined } from '@ant-design/icons';
 
 
 const Calendar = (props) => {
@@ -23,6 +24,7 @@ const Calendar = (props) => {
       <FullCalendar
         className={`${props.className} ${props.class} `}
         defaultView="dayGridMonth"
+        defaultDate={localStorage.getItem('LAST_ACCESS_DATE') ? new Date(localStorage.getItem('LAST_ACCESS_DATE')) : new Date()}
         header={{
           left: 'prev,next',
           center: 'title',
@@ -37,6 +39,8 @@ const Calendar = (props) => {
         droppable={true}
         themeSystem={'Litera'}
         height='auto'
+        dayRender={props.dayRender}
+        datesRender={props.datesRender}
       />
     </div>
   )
@@ -53,6 +57,8 @@ export default () => {
   const [selectedEvent, setSelectedEvent] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedDateEvents, setSelectedEvents] = useState([]);
+  const [calendarActiveStart, setCalendarActiveStart] = useState('');
+  const [calendarActiveEnd, setCalendarActiveEnd] = useState(null);
 
   useEffect(() => {
     const loadData = () => {
@@ -65,8 +71,12 @@ export default () => {
       });
     };
     loadData();
-
   }, []);
+
+  useEffect(() => {
+    console.log(calendarActiveStart);
+    console.log(calendarActiveEnd);
+  }, [calendarActiveStart, calendarActiveEnd]);
 
   useEffect(() => {
     const loadTodayEvents = () => {
@@ -112,8 +122,6 @@ export default () => {
     setSelectedEvents([...listOfEvents]);
   }
 
-
-
   const handleModalOk = e => {
     console.log(e);
     setModalOpen(false);
@@ -124,19 +132,29 @@ export default () => {
     setModalOpen(false);
   };
 
+
+
   return (
     <div className="h-full max-h-full z-0">
       <Calendar events={events}
         eventClick={handleDateClick}
         eventClick2={handleEventClick}
-        dateClick={handleDateClick} />
+        dateClick={handleDateClick}
+        datesRender={(e) => {
+          console.log(e);
+          localStorage.setItem('LAST_ACCESS_DATE', e.view.currentStart);
+          setCalendarActiveStart(e.view.activeStart.toISOString());
+          setCalendarActiveEnd(e.view.activeEnd.toISOString());
+
+        }}
+      />
       <div className="mt-3 mb-3" style={{ height: '1px', backgroundColor: '#bdc0c7' }} />
       {
         selectedDateEvents.map((event, index) => {
           return (
             <div className="truncate" key={index}>
               <Link to={SINGLE_EVENT_C_URL + "/Calendar/" + event.uniqueName + "/" + event.title}>
-                <EventCard event={event} />
+                <EventCard event={event} options={true} />
               </Link>
             </div>
           )
