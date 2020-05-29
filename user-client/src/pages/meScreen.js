@@ -55,13 +55,13 @@ export default () => {
   return (
     <div className="max-w-full w-full ">
       {console.log(myProfile)}
-      <img className="object-cover z-10 h-40 w-full" alt="banner" src={BannerImg} style={{ marginBottom: '-3rem', }} />
+      <img className="object-cover z-10 h-40 w-full rounded-t-md" alt="banner" src={BannerImg} style={{ marginBottom: '-3rem', }} />
       {
         Object.keys(myProfile).length !== 0 ?
           <div className="flex flex-col  bg-white rounded-md p-2 z-20">
             <div className="flex flex-row ml-6">
               <label htmlFor="avatar-image-file">
-                <Avatar src={myProfile['myInfo']['avatarUrl']} bEdit={true} />
+                <Avatar className="h-32 w-32" src={myProfile['myInfo']['avatarUrl']} bEdit={true} />
               </label>
               <div className="flex ml-2 text-xl " style={{ marginTop: '3rem' }}>
                 <strong className="break-words">{myProfile['myInfo']['name']}</strong>

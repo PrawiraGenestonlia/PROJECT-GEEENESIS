@@ -73,7 +73,7 @@ export default () => {
           <div className="flex flex-col items-center">
             <div className="w-full bg-white p-2 rounded-md">
               {
-                isTabLayout ?
+                isTabLayout && (myProfile['myMentor'].length || myProfile['myStudent'].length || myProfile['mySeniorBuddy'].length || myProfile['myJuniorBuddy'].length) ?
                   <Tabs onChange={() => { }}>
                     {
                       myProfile['myMentor'].length > 0 ?

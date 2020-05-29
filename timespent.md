@@ -63,7 +63,8 @@
 |20/05/2020|5           |user front end |
 |22/05/2020|7           |user front end |
 |25/05/2020|7           |user front end - tab bar |
+|26/05/2020|5           |user front end - tab bar |
 |27/05/2020|7           |user front end - tab bar |
 |28/05/2020|10           |user front end - tab bar |
 |||
-|**TOTAL** |**182.5**    |*Temporary total productive hours spent*|
+|**TOTAL** |**187.5**    |*Temporary total productive hours spent*|
