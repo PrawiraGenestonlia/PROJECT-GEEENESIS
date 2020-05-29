@@ -33,6 +33,7 @@ export const CHATS_URL = "/app/chats";
 export const SINGLE_CHAT_URL = "/app/chats";
 //tab5
 export const ME_URL = "/app/me";
+export const SETTINGS_URL = "/app/me/settings";
 export const ABOUT_URL = "/app/me/about";
 
 //others

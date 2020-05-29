@@ -1,22 +1,37 @@
 import React, { useState } from 'react';
-import { Popover, Button } from 'antd';
+import { Popover, Button, message } from 'antd';
 import OptionsSVG from '../assets/svg/options.svg';
+import { EVENT_BUTTON_OPTIONS } from '../enum';
+import { addFavEvent, addInterestedEvent, delInterestedEvent, delFavEvent, addParticipatedEvent, delParticipatedEvent } from '../api';
 
 const whichDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const whichMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-export default ({ className = "", event, options = false, optionsContent, optionsOnClick = () => { } }) => {
+export default ({ className = "", event, options = false, action = {}, refresh }) => {
   const eventDate = new Date(event.start);
   const [popoverIsVisible, setPopoverIsVisible] = useState(false);
 
-  const eventOptions = (receiverNetworkName, receiverName, index) => {
+  const eventOptions = () => {
     return (
       <div className="pointer-events-auto flex flex-col">
-        <Button className="my-1" onClick={() => {
-          // let a = []; a[index] = false; setPopoverIsVisible(a);
-          // showDeleteConfirm(receiverNetworkName, receiverName);
-        }}>Interested</Button>
-        <Button className="my-1">Favorite</Button>
+        {action[EVENT_BUTTON_OPTIONS.ADD_FAV] && <Button className="my-1" onClick={() => {
+          addFavEvent(event).then(() => { message.success(`${event.title} added to favourite!`, 5); refresh(); }).catch(e => { });
+        }}>Favourite</Button>}
+        {action[EVENT_BUTTON_OPTIONS.DEL_FAV] && <Button danger className="my-1" onClick={() => {
+          delFavEvent(event).then(() => { message.success(`${event.title} removed from favourite!`, 5); refresh(); }).catch(e => { });
+        }}>Unfavourite</Button>}
+        {action[EVENT_BUTTON_OPTIONS.ADD_INT] && <Button className="my-1" onClick={() => {
+          addInterestedEvent(event).then(() => { message.success(`${event.title} added to interested!`, 5); refresh(); }).catch(e => { });
+        }}>Interested</Button>}
+        {action[EVENT_BUTTON_OPTIONS.DEL_INT] && <Button danger className="my-1" onClick={() => {
+          delInterestedEvent(event).then(() => { message.success(`${event.title} removed from interested!`, 5); refresh(); }).catch(e => { });
+        }}>Uninterested</Button>}
+        {action[EVENT_BUTTON_OPTIONS.ADD_PART] && <Button className="my-1" onClick={() => {
+          addParticipatedEvent(event).then(() => { message.success(`${event.title} added to participated!`, 5); refresh(); }).catch(e => { });
+        }}>Participated</Button>}
+        {action[EVENT_BUTTON_OPTIONS.DEL_PART] && <Button danger className="my-1" onClick={() => {
+          delParticipatedEvent(event).then(() => { message.success(`${event.title} removed from participated!`, 5); refresh(); }).catch(e => { });
+        }}>Unparticipated</Button>}
       </div>
     )
   }

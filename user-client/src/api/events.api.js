@@ -1,8 +1,7 @@
 import axios from 'axios';
 import getToken from '../utils/getToken';
 import {
-  GETEVENT,
-  GETEVENTFROMTODAY
+  GETEVENT, GETEVENTFROMTODAY, GETEVENTBETWEENDATE,
 } from './constants.api';
 
 export const getEvents = async ({ year, eventUniqueName, eventCreator }) => {
@@ -40,6 +39,21 @@ export const getSpecificEvent = async (event_id) => {
 
 export const getEventsFromToday = async () => {
   let url = GETEVENTFROMTODAY;
+  const token = getToken();
+  return new Promise((resolve, reject) => {
+    axios.get(url, {
+      headers: { "auth-token": token }
+    }).then((res) => {
+      if (res.status === 200) resolve(res);
+    }).catch((err) => {
+      if (err.response) reject(err.response.data);
+      else reject(err);
+    })
+  })
+}
+
+export const getEventsBetweenDate = async (start, end) => {
+  let url = GETEVENTBETWEENDATE + "?start=" + start + "&end=" + end;
   const token = getToken();
   return new Promise((resolve, reject) => {
     axios.get(url, {

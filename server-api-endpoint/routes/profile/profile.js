@@ -75,7 +75,7 @@ router.post('/add-fav-event', verifyToken, async (req, res) => {
       { email: req.user.email, "favouriteEvents.uniqueName": { $ne: req.body.uniqueName } },
       { $push: { favouriteEvents: req.body } },
     );
-    res.status(200).json('Event is added as interested');
+    res.status(200).json('Event is added as favourite');
   } catch (err) {
     res.status(400).json(err);
   }

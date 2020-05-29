@@ -1,23 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { getMyProfile, changeAvatar } from '../api';
 import Avatar from '../components/avatar';
-import { message, Divider, Spin, Button, Tabs, Progress } from 'antd';
-import { ABOUT_URL } from '../router/constants.router';
+import { message, Divider, Spin, Button, Tabs, } from 'antd';
+import { ABOUT_URL, SINGLE_EVENT_C_URL, SETTINGS_URL } from '../router/constants.router';
 import BannerImg from '../assets/img/banner.jpg';
 import LogOut from '../utils/logOut';
 import BottomDiv from '../components/bottomDiv';
 import { Link, useHistory } from "react-router-dom";
+import EventCard from '../components/eventCard';
+import { EVENT_BUTTON_OPTIONS } from '../enum';
 import '../css/tabs.css';
 
 const { TabPane } = Tabs;
+let eventActionFav = {};
+eventActionFav[EVENT_BUTTON_OPTIONS.DEL_FAV] = true;
+eventActionFav[EVENT_BUTTON_OPTIONS.ADD_INT] = true;
+eventActionFav[EVENT_BUTTON_OPTIONS.ADD_PART] = true;
+
+let eventActionInterested = {};
+eventActionInterested[EVENT_BUTTON_OPTIONS.ADD_FAV] = true;
+eventActionInterested[EVENT_BUTTON_OPTIONS.DEL_INT] = true;
+eventActionInterested[EVENT_BUTTON_OPTIONS.ADD_PART] = true;
+
+let eventActionParticipated = {};
+eventActionParticipated[EVENT_BUTTON_OPTIONS.ADD_FAV] = true;
+eventActionParticipated[EVENT_BUTTON_OPTIONS.ADD_INT] = true;
+eventActionParticipated[EVENT_BUTTON_OPTIONS.DEL_PART] = true;
 
 export default () => {
   const history = useHistory();
   const [myProfile, setMyProfile] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     getProfileInfo();
-  }, []);
+  }, [refresh]);
 
   const getProfileInfo = () => {
     getMyProfile().then(res => {
@@ -43,6 +60,10 @@ export default () => {
     history.push(ABOUT_URL);
   }
 
+  const onClickSettings = () => {
+    history.push(SETTINGS_URL);
+  }
+
   return (
     <div className="max-w-full w-full ">
       <img className="object-cover z-10 h-40 w-full rounded-t-md" alt="banner" src={BannerImg} style={{ marginBottom: '-3rem', }} />
@@ -58,17 +79,13 @@ export default () => {
               </div>
             </div>
             <div className="flex flex-row mt-5">
-              <Button block onClick={LogOut}>⚙ Settings</Button>
+              <Button block onClick={onClickSettings}>⚙ Settings</Button>
               <div className='mx-1'></div>
               <Button block onClick={onClickAbout}>ℹ About</Button>
             </div>
             <div className="me-screen w-full mt-3">
               <Tabs onChange={() => { }}>
-                <TabPane tab="Statistics" key="1">
-                  {'//TODO :: Still in Ideation'}
-                  <BottomDiv />
-                </TabPane>
-                <TabPane tab="Event Manager" key="2">
+                <TabPane tab="Event Manager" key="1">
                   {
                     Object.keys(myProfile).length !== 0 ?
                       <div className="flex flex-col items-center">
@@ -79,9 +96,17 @@ export default () => {
                           {
                             myProfile['myProfile']['favouriteEvents'].length > 0 ?
                               <>
-
-                                <p className="break-words">{JSON.stringify(myProfile['myProfile']['favouriteEvents'])}</p>
-
+                                {
+                                  myProfile['myProfile']['favouriteEvents'].map((event, index) => {
+                                    return (
+                                      <div className="truncate" key={index}>
+                                        <Link to={SINGLE_EVENT_C_URL + "/Calendar/" + event.uniqueName + "/" + event.title}>
+                                          <EventCard event={event} options={true} action={eventActionFav} refresh={() => { setRefresh(!refresh) }} />
+                                        </Link>
+                                      </div>
+                                    )
+                                  })
+                                }
                               </>
                               : <><span>There is no favourite event</span></>
                           }
@@ -92,9 +117,17 @@ export default () => {
                           {
                             myProfile['myProfile']['interestedEvents'].length > 0 ?
                               <>
-
-                                <p className="break-words">{JSON.stringify(myProfile['myProfile']['interestedEvents'])}</p>
-
+                                {
+                                  myProfile['myProfile']['interestedEvents'].map((event, index) => {
+                                    return (
+                                      <div className="truncate" key={index}>
+                                        <Link to={SINGLE_EVENT_C_URL + "/Calendar/" + event.uniqueName + "/" + event.title}>
+                                          <EventCard event={event} options={true} action={eventActionInterested} refresh={() => { setRefresh(!refresh) }} />
+                                        </Link>
+                                      </div>
+                                    )
+                                  })
+                                }
                               </>
                               : <><span>There is no interested event</span></>
                           }
@@ -105,9 +138,17 @@ export default () => {
                           {
                             myProfile['myProfile']['participatedEvents'].length > 0 ?
                               <>
-
-                                <p className="break-words">{JSON.stringify(myProfile['myProfile']['participatedEvents'])}</p>
-
+                                {
+                                  myProfile['myProfile']['participatedEvents'].map((event, index) => {
+                                    return (
+                                      <div className="truncate" key={index}>
+                                        <Link to={SINGLE_EVENT_C_URL + "/Calendar/" + event.uniqueName + "/" + event.title}>
+                                          <EventCard event={event} options={true} action={eventActionParticipated} refresh={() => { setRefresh(!refresh) }} />
+                                        </Link>
+                                      </div>
+                                    )
+                                  })
+                                }
                               </>
                               : <><span>There is no participated event</span></>
                           }
@@ -120,6 +161,10 @@ export default () => {
                         <Spin size="large" />
                       </div>
                   }
+                </TabPane>
+                <TabPane tab="Statistics" key="2">
+                  {'//TODO :: Still in Ideation'}
+                  <BottomDiv />
                 </TabPane>
               </Tabs>
             </div>

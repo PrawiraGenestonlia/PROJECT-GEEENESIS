@@ -47,13 +47,16 @@ export default () => {
     });
   }
 
-  const chatOptions = (receiverNetworkName, receiverName, index) => {
+  const chatOptions = (receiverNetworkName, receiverName, email, index) => {
     return (
-      <div className="pointer-events-auto">
-        <Button onClick={() => {
+      <div className="pointer-events-auto flex flex-col">
+        <Button className="my-1" onClick={() => { window.location.href = `mailto:${email}?subject=From GEEENESIS App` }}>
+          Email
+        </Button>
+        <Button className="my-1" onClick={() => {
           let a = []; a[index] = false; setPopoverIsVisible(a);
           showDeleteConfirm(receiverNetworkName, receiverName);
-        }}>clear chat</Button>
+        }}>Clear chat</Button>
       </div>
     )
   }
@@ -90,7 +93,7 @@ export default () => {
                           <span className="text-base text-black">{v.name}</span>
                         </div>
                         <div className="float-right items-end justify-end right-0 mr-0 ml-auto">
-                          <Popover placement="left" content={chatOptions(v.networkname, v.name, i)} trigger="click"
+                          <Popover placement="left" content={chatOptions(v.networkname, v.name, v.email, i)} trigger="click"
                             visible={popoverIsVisible[i]}
                             onVisibleChange={(state) => { let a = []; a[i] = state; setPopoverIsVisible(a) }}
                             onClick={() => { controlEvent() }}>

@@ -213,7 +213,7 @@ export default () => {
               <LargeScreenNavBar />
             </div>
           </div>
-          <div className="w-full max-w-sm p-4 relative">
+          <div id="main-screen-react" className=" w-full max-w-sm p-4 relative">
             <div className="hidden md:block mt-16 "></div>
             <MainScreens />
           </div>

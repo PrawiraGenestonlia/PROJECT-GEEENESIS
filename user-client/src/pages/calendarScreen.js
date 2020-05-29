@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getEvents } from '../api';
+import { getEventsBetweenDate } from '../api';
 import { message, Modal, Button } from 'antd';
 import { EVENT_STANDALONE_URL } from '../router/constants.router';
 import BottomDiv from '../components/bottomDiv';
@@ -10,13 +10,17 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import { Link } from 'react-router-dom';
+import { EVENT_BUTTON_OPTIONS } from '../enum';
 import { SINGLE_EVENT_C_URL } from '../router/constants.router';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
 import 'react-add-to-calendar/dist/react-add-to-calendar.css';
-import { ConsoleSqlOutlined } from '@ant-design/icons';
 
+let eventAction = {};
+eventAction[EVENT_BUTTON_OPTIONS.ADD_FAV] = true;
+eventAction[EVENT_BUTTON_OPTIONS.ADD_INT] = true;
+eventAction[EVENT_BUTTON_OPTIONS.ADD_PART] = true;
 
 const Calendar = (props) => {
   return (
@@ -24,7 +28,7 @@ const Calendar = (props) => {
       <FullCalendar
         className={`${props.className} ${props.class} `}
         defaultView="dayGridMonth"
-        defaultDate={localStorage.getItem('LAST_ACCESS_DATE') ? new Date(localStorage.getItem('LAST_ACCESS_DATE')) : new Date()}
+        defaultDate={sessionStorage.getItem('LAST_ACCESS_DATE') ? new Date(sessionStorage.getItem('LAST_ACCESS_DATE')) : new Date()}
         header={{
           left: 'prev,next',
           center: 'title',
@@ -58,11 +62,24 @@ export default () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedDateEvents, setSelectedEvents] = useState([]);
   const [calendarActiveStart, setCalendarActiveStart] = useState('');
-  const [calendarActiveEnd, setCalendarActiveEnd] = useState(null);
+  const [calendarActiveEnd, setCalendarActiveEnd] = useState('');
+
+  // useEffect(() => {
+  //   const loadData = () => {
+  //     getEvents({}).then(async res => {
+  //       setEvents([...res.data]);
+  //     }).catch(async err => {
+  //       console.log(err);
+  //       let messages = err.data ? err.data : JSON.stringify(err);
+  //       message.error(messages, 5);
+  //     });
+  //   };
+  //   loadData();
+  // }, []);
 
   useEffect(() => {
     const loadData = () => {
-      getEvents({}).then(async res => {
+      getEventsBetweenDate(calendarActiveStart, calendarActiveEnd).then(async res => {
         setEvents([...res.data]);
       }).catch(async err => {
         console.log(err);
@@ -70,12 +87,7 @@ export default () => {
         message.error(messages, 5);
       });
     };
-    loadData();
-  }, []);
-
-  useEffect(() => {
-    console.log(calendarActiveStart);
-    console.log(calendarActiveEnd);
+    calendarActiveStart && calendarActiveEnd && loadData();
   }, [calendarActiveStart, calendarActiveEnd]);
 
   useEffect(() => {
@@ -134,6 +146,8 @@ export default () => {
 
 
 
+
+
   return (
     <div className="h-full max-h-full z-0">
       <Calendar events={events}
@@ -141,8 +155,7 @@ export default () => {
         eventClick2={handleEventClick}
         dateClick={handleDateClick}
         datesRender={(e) => {
-          console.log(e);
-          localStorage.setItem('LAST_ACCESS_DATE', e.view.currentStart);
+          sessionStorage.setItem('LAST_ACCESS_DATE', e.view.currentStart);
           setCalendarActiveStart(e.view.activeStart.toISOString());
           setCalendarActiveEnd(e.view.activeEnd.toISOString());
 
@@ -154,7 +167,7 @@ export default () => {
           return (
             <div className="truncate" key={index}>
               <Link to={SINGLE_EVENT_C_URL + "/Calendar/" + event.uniqueName + "/" + event.title}>
-                <EventCard event={event} options={true} />
+                <EventCard event={event} options={true} action={eventAction} />
               </Link>
             </div>
           )
