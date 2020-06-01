@@ -78,7 +78,7 @@ export default () => {
 
   return (
     <div className="max-w-full">
-      <TopDiv style={{ background: THEME_COLOR.CHAT_TAB_COVER?.BACKGROUND_GRADIENT }} />
+      {/* <TopDiv style={{ background: THEME_COLOR.CHAT_TAB_COVER?.BACKGROUND_GRADIENT }} /> */}
       {
         myChatList.length > 0 ?
           <div className="bg-white p-1 rounded-lg z-20">
