@@ -63,7 +63,7 @@ export default ({ className = "", event, options = false, action = {}, refresh }
 
           </div>
 
-          <div className="w-48 truncate text-xl text-black mt-1 mb-5">{event.title}</div>
+          <div className="w-40 truncate text-xl text-black mt-1 mb-3">{event.title}</div>
           <div className="text-gray-500">{event.createdBy}</div>
         </div>
         <div className="flex float-right items-start justify-start right-0 mr-0 ml-auto">
