@@ -194,11 +194,10 @@ export default () => {
               <SmallScreenNavBar typeOfLayout={typeOfLayout} />
             </div>
           </div>
-          <div className="hidden md:block" >
+          <div className="hidden md:block w-full" >
             <div id="navbarlg" className="shadow-xl z-50">
               <LargeScreenNavBar />
             </div>
-
           </div>
           <div className="w-full max-w-sm p-4 mt-16 relative">
             <MainScreens />
@@ -208,12 +207,12 @@ export default () => {
       {
         typeOfLayout === TYPE_OF_LAYOUT.BOTTOM_TAB &&
         <React.Fragment>
-          <div className="hidden md:block" >
+          <div className="hidden md:block w-full" >
             <div id="navbarlg" className="shadow-xl z-50">
               <LargeScreenNavBar />
             </div>
           </div>
-          <div id="main-screen-react" className=" w-full max-w-sm p-4 relative">
+          <div id="main-screen-react" className=" w-full max-w-sm p-4 static">
             <div className="hidden md:block mt-16 "></div>
             <MainScreens />
           </div>

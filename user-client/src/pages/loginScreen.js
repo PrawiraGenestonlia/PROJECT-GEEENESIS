@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import LogoSVG from '../assets/logo/Logo.svg';
+// import LogoSVG from '../assets/logo/Logo.svg';
+import NTUEEE from '../assets/logo/NTUEEE_GEEENESIS.png';
 import { login, forgetPassword } from '../api';
 import { Form } from '@ant-design/compatible';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -22,6 +23,20 @@ import { message, Button, Input, Modal } from 'antd';
 //     <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="password" placeholder="password" aria-label="password" />
 //   </div>
 // );
+
+const layout = {
+  // labelCol: {
+  //   span: 8,
+  // },
+  wrapperCol: {
+    span: 48,
+  },
+};
+const tailLayout = {
+  wrapperCol: {
+    span: 48,
+  },
+};
 
 const LoginForm = (props) => {
   const { getFieldDecorator, validateFields } = props.form;
@@ -61,9 +76,9 @@ const LoginForm = (props) => {
   }
 
   return (
-    <div style={{ width: '80%', maxWidth: '400px' }}>
-      <Form className="login-form">
-        <Form.Item>
+    <div>
+      <Form name="login-form" size="large" {...layout}>
+        <Form.Item {...tailLayout}>
           {getFieldDecorator('email', {
             rules: [{ required: true, message: 'Please input your ntu email!' }],
           })(
@@ -73,7 +88,7 @@ const LoginForm = (props) => {
             />,
           )}
         </Form.Item>
-        <Form.Item>
+        <Form.Item {...tailLayout}>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
@@ -84,8 +99,8 @@ const LoginForm = (props) => {
             />,
           )}
         </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" className="w-full mt-10" onClick={(e) => { handleSubmit(e) }} >
+        <Form.Item {...tailLayout}>
+          <Button className="w-full" block type="primary" htmlType="submit" onClick={(e) => { handleSubmit(e) }} >
             Log in
           </Button>
           <a className="float-right" onClick={() => { setShowModal(true) }}>
@@ -113,15 +128,18 @@ const LoginForm = (props) => {
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(LoginForm);
 
 export default () => {
-
+  const w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  const h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-screen h-screen" style={{ maxWidth: '2000px', backgroundImage: `url("https://picsum.photos/seed/${new Date().getTime()}/${w}/${h}")`, backgroundSize: 'cover' }}>
       <div className="flex justify-center items-center mt-20">
-        <img className="h-48 w-48" alt="logo" src={LogoSVG} />
+        <img className="h-48 w-48" alt="logo" src={NTUEEE} />
       </div>
-      <div className="flex justify-center items-center mt-20">
-        <WrappedNormalLoginForm />
+      <div className="flex justify-center items-center" style={{ marginTop: '9rem' }}>
+        <div className="flex justify-center p-3 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.5)', width: '80%' }}>
+          <WrappedNormalLoginForm />
+        </div>
       </div>
 
 

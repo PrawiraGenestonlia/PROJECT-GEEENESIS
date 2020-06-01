@@ -3,8 +3,12 @@ import { getMyProfile, getEventsFromToday, getClubInfo } from '../api';
 import { Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import { SINGLE_CLUB_URL, SINGLE_EVENT_URL } from '../router/constants.router';
+import NTUEEE from '../assets/logo/NTUEEE_GEEENESIS.png';
 import HorizontalCardScroll from '../components/horizontalCardScroll';
 import BottomDiv from '../components/bottomDiv';
+import TopDiv from '../components/topCover';
+import { THEME_COLOR } from '../enum';
+
 
 export default () => {
   const [myProfile, setMyProfile] = useState({});
@@ -38,11 +42,18 @@ export default () => {
 
   return (
     <div className="max-w-full w-full ">
+      <TopDiv style={{ background: THEME_COLOR.HOME_TAB_COVER.BACKGROUND_GRADIENT }} />
       {
         Object.keys(myProfile).length !== 0 ?
-          <div className="flex flex-col items-center">
-            <div>Home Header with LOGO</div>
-            <div className="mt-2"><span>Welcome back, <strong>{myProfile['myInfo']['name']}</strong>!</span></div>
+          <div className="flex flex-col z-20">
+            {/* <div>Home Header with LOGO</div> */}
+            <div className="flex flex-row items-center justify-start">
+              <img className="h-32 w-32 border-2 border-solid rounded-full z-20" src={NTUEEE} alt="ntueee" />
+              <div className="ml-4 flex flex-col items-start justify-start z-20">
+                <div className="z-20">Welcome back, </div>
+                <div className="text-bold text-2xl capitalize z-20">{myProfile['myInfo']['name']}!</div>
+              </div>
+            </div>
             <HorizontalCardScroll className="mt-4" title="Student Bodies">
               {clubList.map((club, index) => {
                 return (

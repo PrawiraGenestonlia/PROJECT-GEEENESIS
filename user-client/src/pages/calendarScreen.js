@@ -9,9 +9,12 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
+import bootstrapPlugin from '@fullcalendar/bootstrap';
 import { Link } from 'react-router-dom';
 import { EVENT_BUTTON_OPTIONS } from '../enum';
 import { SINGLE_EVENT_C_URL } from '../router/constants.router';
+// import TopDiv from '../components/topCover';
+// import { THEME_COLOR } from '../enum';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
@@ -24,9 +27,9 @@ eventAction[EVENT_BUTTON_OPTIONS.ADD_PART] = true;
 
 const Calendar = (props) => {
   return (
-    <div className="bg-white p-2 rounded-lg" style={{ boxShadow: '0 0px 25px 10px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}>
+    <div className="bg-white p-2 rounded-lg" style={{ zIndex: 'inherit', boxShadow: '0 0px 25px 10px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}>
       <FullCalendar
-        className={`${props.className} ${props.class} `}
+        className={`${props.className} ${props.class}`}
         defaultView="dayGridMonth"
         defaultDate={sessionStorage.getItem('LAST_ACCESS_DATE') ? new Date(sessionStorage.getItem('LAST_ACCESS_DATE')) : new Date()}
         header={{
@@ -34,14 +37,14 @@ const Calendar = (props) => {
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,'
         }}
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin, bootstrapPlugin]}
         weekends={true}
         events={props.events}
         dateClick={props.dateClick}
         eventClick={props.eventClick}
         eventMouseEnter={props.eventMouseEnter}
         droppable={true}
-        themeSystem={'Litera'}
+        themeSystem={'bootstrap'}
         height='auto'
         dayRender={props.dayRender}
         datesRender={props.datesRender}
@@ -149,19 +152,22 @@ export default () => {
 
 
   return (
-    <div className="h-full max-h-full z-0">
-      <Calendar events={events}
-        eventClick={handleDateClick}
-        eventClick2={handleEventClick}
-        dateClick={handleDateClick}
-        datesRender={(e) => {
-          sessionStorage.setItem('LAST_ACCESS_DATE', e.view.currentStart);
-          setCalendarActiveStart(e.view.activeStart.toISOString());
-          setCalendarActiveEnd(e.view.activeEnd.toISOString());
+    <div className="h-full max-h-full z-20">
+      {/* <TopDiv style={{ background: THEME_COLOR.CIRCLE_TAB_COVER.BACKGROUND, background: THEME_COLOR.CIRCLE_TAB_COVER.BACKGROUND_GRADIENT }} /> */}
+      <div className="z-20">
+        <Calendar events={events}
+          eventClick={handleDateClick}
+          eventClick2={handleEventClick}
+          dateClick={handleDateClick}
+          datesRender={(e) => {
+            sessionStorage.setItem('LAST_ACCESS_DATE', e.view.currentStart);
+            setCalendarActiveStart(e.view.activeStart.toISOString());
+            setCalendarActiveEnd(e.view.activeEnd.toISOString());
 
-        }}
-      />
-      <div className="mt-3 mb-3" style={{ height: '1px', backgroundColor: '#bdc0c7' }} />
+          }}
+        />
+      </div>
+      <div className="mt-3 mb-3 z-20" style={{ height: '1px', backgroundColor: '#bdc0c7' }} />
       {
         selectedDateEvents.map((event, index) => {
           return (

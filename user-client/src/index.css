@@ -35,9 +35,17 @@ html::-webkit-scrollbar {
 }
 
 .screen {
-  position: absolute;
+  position: static;
   left: 15px;
   right: 15px;
+}
+
+.ant-legacy-form-item {
+  margin-bottom: 0rem !important;
+}
+
+.login-form {
+  max-width: 400px;
 }
 
 #reloadbar {

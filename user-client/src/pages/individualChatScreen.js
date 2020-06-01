@@ -84,7 +84,7 @@ export default (props) => {
 
   return (
     <div className="chat-screen">
-      <TopNavBar title={chatTargetName} back="Chats" action={showTab} />
+      <TopNavBar className="sticky" title={chatTargetName} back="Chats" action={showTab} style={{ top: '2rem' }} />
 
       {
         messagesLoaded ?

@@ -9,7 +9,10 @@ md: above phone landscape
 
 ## color scheme
 
+font: 
 blue shade from #2DCBF6 to #2170F4
+
+
 
 ## what's so special (for fyp report)
 

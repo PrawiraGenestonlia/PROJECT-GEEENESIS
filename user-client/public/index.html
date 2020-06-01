@@ -12,16 +12,28 @@
   <title>Genesis</title>
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap" rel="stylesheet">
+
+  <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet' />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
   <div id="root-background"></div>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+  <div id="root-wrapper">
+    <div id="root"></div>
+  </div>
   <div class="loader"></div>
 </body>
 
 <style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+
   #root-background {
     position: fixed;
     z-index: -1;
@@ -30,7 +42,7 @@
     /* background-color: #f1f1f1; */
   }
 
-  #main-screen-react {
+  #root-wrapper {
     max-width: 2000px;
     margin-left: auto;
     margin-right: auto;

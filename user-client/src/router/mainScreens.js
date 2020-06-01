@@ -35,7 +35,7 @@ export default () => {
       <CSSTransition
         key={location.key}
         classNames="fade"
-        timeout={300} >
+        timeout={500} >
         <Switch location={location}>
           <PrivateRoute exact path="/" component={() => <Redirect to={HOME_URL} />} />
           <PrivateRoute exact path={HOME_URL} component={HomeScreen} />
