@@ -1,4 +1,3 @@
-import THEME from '../utils/getTheme';
 
 export const TYPE_OF_LAYOUT = {
   "SIDE_BURGER": "SIDE_BURGER",
@@ -36,8 +35,8 @@ export const GLOBAL_COLOR = {
       BACKGROUND_GRADIENT: ''
     },
     CHAT_TAB_COVER: {
-      BACKGROUND: '',
-      BACKGROUND_GRADIENT: ''
+      BACKGROUND: 'rgb(255,226,89)',
+      BACKGROUND_GRADIENT: 'linear-gradient(135deg, rgba(56,239,125,1) 0%, rgba(17,153,142,1) 100%)'
     },
     ME_TAB_COVER: {
       BACKGROUND: '',
@@ -70,4 +69,4 @@ export const GLOBAL_COLOR = {
   }
 }
 
-export const THEME_COLOR = GLOBAL_COLOR[THEME];
+export const THEME_COLOR = GLOBAL_COLOR[localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.LIGHT_MODE];

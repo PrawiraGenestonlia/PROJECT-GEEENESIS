@@ -7,6 +7,8 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import Avatar from '../components/avatar';
 import OptionsSVG from '../assets/svg/options.svg';
 import BottomDiv from '../components/bottomDiv';
+import TopDiv from '../components/topCover';
+import { THEME_COLOR } from '../enum';
 import '../css/chat.css';
 
 
@@ -76,14 +78,15 @@ export default () => {
 
   return (
     <div className="max-w-full">
+      <TopDiv style={{ background: THEME_COLOR.CHAT_TAB_COVER?.BACKGROUND_GRADIENT }} />
       {
         myChatList.length > 0 ?
-          <div className="bg-white p-1 rounded-lg">
-            <div className="mt-3 mb-3" style={{ height: '1px', backgroundColor: '#e8e8e8' }} />
+          <div className="bg-white p-1 rounded-lg z-20">
+            <div className="mt-3 mb-3 z-20" style={{ height: '1px', backgroundColor: '#e8e8e8' }} />
             {
               myChatList.map((v, i) => {
                 return (
-                  <div className="" key={i}>
+                  <div className="z-20" key={i}>
                     <Link to={SINGLE_CHAT_URL + "/" + v.networkname + "/" + v.name}>
                       <div className="flex flex-row items-center mt-0" >
                         <div>
