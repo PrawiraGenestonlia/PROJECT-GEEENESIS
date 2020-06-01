@@ -23,7 +23,7 @@ const hideLoader = () => loader.classList.add('loader--hide');
 const ReactApp = ({ hideLoader }) => {
   useEffect(() => hideLoader(), [hideLoader]);
   useEffect(() => {
-    const CHOSEN_THEME = localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.LIGHT_MODE;
+    const CHOSEN_THEME = localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.DEFAULT;
     if (CHOSEN_THEME === TYPE_OF_THEME.LIGHT_MODE) {
       require('antd/dist/antd.css');
     } else {
