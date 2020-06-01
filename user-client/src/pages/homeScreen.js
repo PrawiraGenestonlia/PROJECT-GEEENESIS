@@ -8,18 +8,23 @@ import HorizontalCardScroll from '../components/horizontalCardScroll';
 import BottomDiv from '../components/bottomDiv';
 import TopDiv from '../components/topCover';
 import { THEME_COLOR } from '../enum';
-
+import { useLocation } from "react-router-dom";
 
 export default () => {
   const [myProfile, setMyProfile] = useState({});
   const [listOfEvents, setListOfEvents] = useState([]);
   const [clubList, setClubList] = useState([]);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     getEvents();
     getClubList();
     getProfileInfo();
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const getProfileInfo = () => {
     getMyProfile().then(res => {
@@ -42,7 +47,7 @@ export default () => {
 
   return (
     <div className="max-w-full w-full ">
-      <TopDiv style={{ background: THEME_COLOR.HOME_TAB_COVER.BACKGROUND_GRADIENT }} />
+      <TopDiv style={{ backgroundColor: THEME_COLOR.HOME_TAB_COVER.BACKGROUND, backgroundImage: THEME_COLOR.HOME_TAB_COVER.BACKGROUND_GRADIENT }} />
       {
         Object.keys(myProfile).length !== 0 ?
           <div className="flex flex-col z-20">
@@ -61,10 +66,10 @@ export default () => {
                     <Link to={SINGLE_CLUB_URL + "/" + club.server_unique_name + "/" + club.title}>
                       <div className="relative w-full h-full overflow-hidden rounded-lg md:rounded-t-none md:rounded-l-lg" style={{ minHeight: '10rem' }}>
                         <img className="absolute inset-0 w-full h-full object-cover object-center" src={club.bannerImgLink} alt="" />
-                        <div className="absolute inset-0 w-full h-full bg-black" style={{ opacity: '0.20' }}></div>
+                        <div className="absolute inset-0 w-full h-full bg-black" style={{ opacity: '0.10' }}></div>
                       </div>
-                      <div className="inset-0 w-full h-full flex fill-current text-black font-bold items-center text-center mt-2">
-                        <span className="w-full">{club.title}</span>
+                      <div className="inset-0 w-full h-full flex fill-current font-bold items-center text-center mt-2">
+                        <span className="w-full" style={{ color: THEME_COLOR['FONT'] }}>{club.title}</span>
                       </div>
                     </Link>
                   </div>
@@ -82,8 +87,8 @@ export default () => {
                         <img className="absolute inset-0 w-full h-full object-cover object-center" src={event.imageUrl || `https://picsum.photos/seed/${event._id}/400/400`} alt={event.title} />
                         <div className="absolute inset-0 w-full h-full bg-black" style={{ opacity: '0.20' }}></div>
                       </div>
-                      <div className="inset-0 w-full h-full flex fill-current text-black font-bold items-center text-center mt-2">
-                        <span className="truncate w-full">{event.title}</span>
+                      <div className="inset-0 w-full h-full flex fill-current font-bold items-center text-center mt-2">
+                        <span className="truncate w-full" style={{ color: THEME_COLOR['FONT'] }}>{event.title}</span>
                       </div>
                     </Link>
                   </div>

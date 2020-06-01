@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getMyProfile, getMentorProfile } from '../api';
 import { Divider, Spin, Tabs, Input, message } from 'antd';
 import BottomDiv from '../components/bottomDiv';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { SEARCH_PROFILE_URL } from '../router/constants.router';
 import TopDiv from '../components/topCover';
 import { THEME_COLOR } from '../enum';
@@ -22,6 +22,11 @@ export default () => {
   const [loadingState, setLoadingState] = useState(false);
   const [isTabLayout, setIsTabLayout] = useState(true);
   const history = useHistory();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     getProfileInfo();
@@ -58,21 +63,21 @@ export default () => {
 
   return (
     <div>
-      <TopDiv style={{ background: THEME_COLOR.CIRCLE_TAB_COVER.BACKGROUND_GRADIENT }} />
-      <div className="flex items-center justify-center w-full z-20">
+      <TopDiv style={{ backgroundColor: THEME_COLOR.CIRCLE_TAB_COVER.BACKGROUND, backgroundImage: THEME_COLOR.CIRCLE_TAB_COVER.BACKGROUND_GRADIENT }} />
+      <div className="relative flex items-center justify-center w-full z-20" style={{ backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
         <Search
           className="rounded-lg z-20"
           placeholder="mentor network name / email"
           onSearch={value => value ? onSearch(value) : null}
-          style={{ width: '100%' }}
+          style={{ width: '100%', }}
           loading={loadingState}
         />
       </div>
-      <div className="mt-3 mb-3" style={{ height: '1px', backgroundColor: '#bdc0c7' }} />
+      <div className="mt-3 mb-3 z-20" style={{ height: '1px', backgroundColor: '#bdc0c7' }} />
       {
         Object.keys(myProfile).length !== 0 ?
           <div className="flex flex-col items-center z-20">
-            <div className="w-full bg-white p-2 rounded-md z-20">
+            <div className="w-full p-2 rounded-md z-20" style={{ backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
               {
                 isTabLayout && (myProfile['myMentor'].length || myProfile['myStudent'].length || myProfile['mySeniorBuddy'].length || myProfile['myJuniorBuddy'].length) ?
                   <Tabs className="z-20" onChange={() => { }}>

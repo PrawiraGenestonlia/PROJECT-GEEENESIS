@@ -7,6 +7,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import Avatar from '../components/avatar';
 import OptionsSVG from '../assets/svg/options.svg';
 import BottomDiv from '../components/bottomDiv';
+import { useLocation } from 'react-router-dom';
 import TopDiv from '../components/topCover';
 import { THEME_COLOR } from '../enum';
 import '../css/chat.css';
@@ -17,10 +18,18 @@ const { confirm } = Modal;
 export default () => {
   const [myChatList, setMyChatList] = useState([]);
   const [popoverIsVisible, setPopoverIsVisible] = useState([]);
+  const { pathname } = useLocation();
+
 
   useEffect(() => {
     getChatList()
   }, []);
+
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const getChatList = () => {
     getMyChatList().then(res => {
@@ -78,10 +87,10 @@ export default () => {
 
   return (
     <div className="max-w-full">
-      {/* <TopDiv style={{ background: THEME_COLOR.CHAT_TAB_COVER?.BACKGROUND_GRADIENT }} /> */}
+      <TopDiv style={{ backgroundColor: THEME_COLOR.CHAT_TAB_COVER.BACKGROUND, backgroundImage: THEME_COLOR.CHAT_TAB_COVER.BACKGROUND_GRADIENT }} />
       {
         myChatList.length > 0 ?
-          <div className="bg-white p-1 rounded-lg z-20">
+          <div className="relative p-1 rounded-lg z-20" style={{ backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
             <div className="mt-3 mb-3 z-20" style={{ height: '1px', backgroundColor: '#e8e8e8' }} />
             {
               myChatList.map((v, i) => {
@@ -89,18 +98,18 @@ export default () => {
                   <div className="z-20" key={i}>
                     <Link to={SINGLE_CHAT_URL + "/" + v.networkname + "/" + v.name}>
                       <div className="flex flex-row items-center mt-0" >
-                        <div>
+                        <div className="ml-2">
                           <Avatar className="h-20 w-20" src={v['avatarUrl']} />
                         </div>
-                        <div className="ml-5 float-left">
-                          <span className="text-base text-black">{v.name}</span>
+                        <div className="ml-3 float-left">
+                          <span className="text-base" style={{ color: THEME_COLOR['FONT'] }}>{v.name}</span>
                         </div>
                         <div className="float-right items-end justify-end right-0 mr-0 ml-auto">
                           <Popover placement="left" content={chatOptions(v.networkname, v.name, v.email, i)} trigger="click"
                             visible={popoverIsVisible[i]}
                             onVisibleChange={(state) => { let a = []; a[i] = state; setPopoverIsVisible(a) }}
                             onClick={() => { controlEvent() }}>
-                            <span className="text-base text-black"><img alt="options" src={OptionsSVG} style={{ height: '3rem' }} /></span>
+                            <span className="text-base" style={{ color: THEME_COLOR['FONT'] }}><img alt="options" src={OptionsSVG} style={{ height: '3rem', filter: THEME_COLOR['ICON_FILTER'] }} /></span>
                           </Popover>
                         </div>
                       </div>

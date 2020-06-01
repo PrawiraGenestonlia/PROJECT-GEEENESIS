@@ -3,11 +3,17 @@ import TopNavBar from '../components/topNavBar';
 import { getSpecificClubInfo } from '../api';
 import { Spin } from 'antd';
 import BottomDiv from '../components/bottomDiv';
+import { useLocation } from 'react-router-dom';
 
 export default (props) => {
   const clubName = props.match.params.club_name || '';
   const clubId = props.match.params.club_id || '';
   const [clubInfo, setClubInfo] = useState({});
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     getClubInfo(clubId)

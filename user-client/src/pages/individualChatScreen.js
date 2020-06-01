@@ -4,6 +4,7 @@ import { ChatFeed } from 'react-chat-ui';
 import { MessageOutlined } from '@ant-design/icons';
 import { Input, Spin } from 'antd';
 import { getChats, postChats } from '../api';
+import { THEME_COLOR } from '../enum';
 
 const { Search } = Input;
 const MESSAGE_REFRESH_INTERVAL_MS = 600;
@@ -84,6 +85,7 @@ export default (props) => {
 
   return (
     <div className="chat-screen">
+      <div className="fixed h-8 w-full z-30" style={{ top: 0, right: 0, backgroundColor: THEME_COLOR['BACKGROUND_C'] }}></div>
       <TopNavBar className="sticky" title={chatTargetName} back="Chats" action={showTab} style={{ top: '2rem' }} />
 
       {
@@ -94,8 +96,9 @@ export default (props) => {
               isTyping={false} // Boolean: is the recipient typing
               hasInputField={false} // Boolean: use our input, or use your own
               showSenderName // show the name of the user who sent the message
+              // bubbleStyles={{ backgroundColor: 'black' }}
               bubblesCentered={false} />
-            <div className="m-4 text-white" ref={bottomRef}>.</div>
+            <div className="m-4 text-white" ref={bottomRef}>‌‌ </div>
           </>
           :
           <div className="flex w-full mt-48 justify-center">
@@ -103,7 +106,7 @@ export default (props) => {
           </div>
       }
 
-      <div className="fixed w-full z-20 msg-box" style={{ left: '0px', bottom: '0' }}>
+      <div className="fixed w-full z-20 msg-box" style={{ left: '0px', bottom: '0', backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
         <Search
           enterButton={<MessageOutlined />}
           size="large"

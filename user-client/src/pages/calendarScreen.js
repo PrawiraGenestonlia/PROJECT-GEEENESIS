@@ -13,8 +13,9 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 import { Link } from 'react-router-dom';
 import { EVENT_BUTTON_OPTIONS } from '../enum';
 import { SINGLE_EVENT_C_URL } from '../router/constants.router';
-// import TopDiv from '../components/topCover';
-// import { THEME_COLOR } from '../enum';
+import { useLocation } from "react-router-dom";
+import TopDiv from '../components/topCover';
+import { THEME_COLOR } from '../enum';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
@@ -27,7 +28,7 @@ eventAction[EVENT_BUTTON_OPTIONS.ADD_PART] = true;
 
 const Calendar = (props) => {
   return (
-    <div className="bg-white p-2 rounded-lg" style={{ zIndex: 'inherit', boxShadow: '0 0px 25px 10px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}>
+    <div className="p-2 rounded-lg" style={{ zIndex: 'inherit', boxShadow: '0 0px 25px 10px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
       <FullCalendar
         className={`${props.className} ${props.class}`}
         defaultView="dayGridMonth"
@@ -66,7 +67,7 @@ export default () => {
   const [selectedDateEvents, setSelectedEvents] = useState([]);
   const [calendarActiveStart, setCalendarActiveStart] = useState('');
   const [calendarActiveEnd, setCalendarActiveEnd] = useState('');
-
+  const { pathname } = useLocation();
   // useEffect(() => {
   //   const loadData = () => {
   //     getEvents({}).then(async res => {
@@ -79,6 +80,10 @@ export default () => {
   //   };
   //   loadData();
   // }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     const loadData = () => {
@@ -153,8 +158,8 @@ export default () => {
 
   return (
     <div className="h-full max-h-full z-20">
-      {/* <TopDiv style={{ background: THEME_COLOR.CIRCLE_TAB_COVER.BACKGROUND, background: THEME_COLOR.CIRCLE_TAB_COVER.BACKGROUND_GRADIENT }} /> */}
-      <div className="z-20">
+      <TopDiv style={{ backgroundColor: THEME_COLOR.CALENDAR_TAB_COVER.BACKGROUND, backgroundImage: THEME_COLOR.CALENDAR_TAB_COVER.BACKGROUND_GRADIENT }} />
+      <div className="relative z-20">
         <Calendar events={events}
           eventClick={handleDateClick}
           eventClick2={handleEventClick}

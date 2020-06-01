@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Popover, Button, message } from 'antd';
 import OptionsSVG from '../assets/svg/options.svg';
-import { EVENT_BUTTON_OPTIONS } from '../enum';
+import { EVENT_BUTTON_OPTIONS, THEME_COLOR } from '../enum';
 import { addFavEvent, addInterestedEvent, delInterestedEvent, delFavEvent, addParticipatedEvent, delParticipatedEvent } from '../api';
 
 const whichDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -10,6 +10,7 @@ const whichMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep
 export default ({ className = "", event, options = false, action = {}, refresh }) => {
   const eventDate = new Date(event.start);
   const [popoverIsVisible, setPopoverIsVisible] = useState(false);
+  const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
   const eventOptions = () => {
     return (
@@ -50,27 +51,27 @@ export default ({ className = "", event, options = false, action = {}, refresh }
   }
 
   return (
-    <div className={`bg-white p-2 rounded-lg mb-2 ${className}`}>
+    <div className={`relative p-2 rounded-lg mb-2 ${className}`} style={{ backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
       <div className="flex flex-row">
         <img className="h-24 w-24 object-cover" alt={event.title} src={event.imageUrl || `https://picsum.photos/seed/${event._id}/400/400`} />
         <div className="w-4" />
         <div>
           <div className="flex flex-row">
-            <div style={{ color: '#0084ff' }}>
+            <div className={screenWidth < 361 ? "text-xs" : ''} style={{ color: '#0084ff' }}>
               {whichDay[eventDate.getDay()]},&nbsp;<strong>{eventDate.getDate()}</strong>&nbsp;{whichMonth[eventDate.getMonth()]}
             &nbsp;&nbsp;●&nbsp;&nbsp;{eventDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </div>
 
           </div>
 
-          <div className="w-40 truncate text-xl text-black mt-1 mb-3">{event.title}</div>
+          <div className="w-40 truncate text-xl mt-1 mb-3" style={{ color: THEME_COLOR['FONT'] }}>{event.title}</div>
           <div className="text-gray-500">{event.createdBy}</div>
         </div>
         <div className="flex float-right items-start justify-start right-0 mr-0 ml-auto">
 
         </div>
         {options && (
-          <div className="absolute right-0">
+          <div className="absolute" style={{ right: '0' }}>
             <Popover placement="left"
               trigger="click"
               content={eventOptions}
@@ -78,7 +79,7 @@ export default ({ className = "", event, options = false, action = {}, refresh }
               onVisibleChange={(state) => { setPopoverIsVisible(state) }}
               onClick={controlEvent}
             >
-              <span className="text-base text-black"><img alt="options" src={OptionsSVG} style={{ height: '2rem' }} /></span>
+              <span className="text-base text-black"><img alt="options" src={OptionsSVG} style={{ height: '2rem', filter: THEME_COLOR['ICON_FILTER'] }} /></span>
             </Popover>
           </div>)}
       </div>

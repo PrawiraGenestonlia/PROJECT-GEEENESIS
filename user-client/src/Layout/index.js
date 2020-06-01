@@ -14,7 +14,7 @@ import {
   // MYEVENTS_URL, SEARCH_URL, ABOUT_URL, CLUBS_URL
   // SINGLE_CHAT_URL, SINGLE_CLUB_URL, SINGLE_PROFILE_URL
 } from '../router/constants.router';
-import { TYPE_OF_LAYOUT, GLOBAL_COLOR, TYPE_OF_THEME } from '../enum';
+import { TYPE_OF_LAYOUT, THEME_COLOR } from '../enum';
 import '../css/react-burger-menu.css';
 import '../css/large-screen-nav.css';
 import '../css/menu-table.css';
@@ -161,10 +161,10 @@ const SmallScreenTabBar = () => {
             <NavLink className="" to={n.href}>
               <div className="flex flex-col items-center justify-center h-16">
                 <div>
-                  <img className="icon" src={n.svg} alt={`${n.title}-icon`} style={{ width: "1.75rem" }} />
+                  <img className="icon" src={n.svg} alt={`${n.title}-icon`} style={{ width: "1.75rem", filter: THEME_COLOR['ICON_FILTER'] }} />
                 </div>
                 <div>
-                  <span>{n.title}</span>
+                  <span style={{ color: THEME_COLOR['FONT'] }}>{n.title}</span>
                 </div>
               </div>
             </NavLink>
@@ -176,13 +176,14 @@ const SmallScreenTabBar = () => {
 }
 
 export default () => {
-  const [typeOfLayout,] = useState(localStorage.getItem('TYPE_OF_LAYOUT') || TYPE_OF_LAYOUT.BOTTOM_TAB);
-  const [typeOfTheme,] = useState(localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.LIGHT_MODE);
+  const [typeOfLayout,] = useState(localStorage.getItem('TYPE_OF_LAYOUT') || TYPE_OF_LAYOUT.DEFAULT);
 
   useEffect(() => {
     let element = document.getElementById('root-background');
-    element.style.backgroundColor = GLOBAL_COLOR[typeOfTheme]['BACKGROUND_C'];
-  }, [typeOfTheme]);
+    element.style.backgroundColor = THEME_COLOR['BACKGROUND_C'];
+    let element2 = document.getElementById('root-wrapper');
+    element2.style.color = THEME_COLOR['FONT'];
+  }, []);
 
   return (
     <div className="flex flex-col w-full mt-0">
@@ -217,7 +218,7 @@ export default () => {
             <MainScreens />
           </div>
           <div className='md:hidden'>
-            <div id="tabbar" className="absolute z-50 bg-white" style={{ height: '3.7rem', boxShadow: '0 -20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}>
+            <div id="tabbar" className="absolute z-50" style={{ height: '3.7rem', boxShadow: '0 -20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
               <SmallScreenTabBar />
             </div>
           </div>

@@ -3,11 +3,18 @@ import TopNavBar from '../components/topNavBar';
 import { Spin, message } from 'antd';
 import { getMentorProfile } from '../api';
 import BottomDiv from '../components/bottomDiv';
+import { useLocation } from 'react-router-dom';
+import { THEME_COLOR } from '../enum';
 
 export default (props) => {
   const searchTargetId = props.match.params.target_id || '';
   // const searchName = props.match.params.name || '';
   const [data, setData] = useState({});
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     searchProfile(searchTargetId);
@@ -28,8 +35,8 @@ export default (props) => {
       <TopNavBar title={`@${searchTargetId}`} back="Circle" />
       {
         Object.keys(data).length ?
-          <div className="text-justify bg-white rounded-md p-2">
-            <strong>{data["name"]}</strong>
+          <div className="text-justify rounded-md p-2" style={{ backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
+            <span className="font-bold">{data["name"]}</span>
             <p>{data["position"]}</p>
             <p>
               Email: <a href={`mailto:${data["email"]}`} >{data["email"]}</a>
@@ -37,7 +44,7 @@ export default (props) => {
             {
               data["Biography"] ?
                 <p>
-                  <h3>Biography</h3>
+                  <h3 className="font-bold">Biography</h3>
                   <p>{data["Biography"].length ? data["Biography"][0] : null}</p>
                 </p>
                 : null
@@ -45,7 +52,7 @@ export default (props) => {
             {
               data["Current Projects"] ?
                 <p>
-                  <h3>Current Projects</h3>
+                  <h3 className="font-bold">Current Projects</h3>
                   <p>
                     {data["Current Projects"].length ?
                       <ul className="list-disc ml-4">
@@ -63,7 +70,7 @@ export default (props) => {
             {
               data["Selected Publications"] ?
                 <p>
-                  <h3>Selected Publications</h3>
+                  <h3 className="font-bold">Selected Publications</h3>
                   <p>
                     {data["Selected Publications"].length ?
                       <ul className="list-disc ml-4">
