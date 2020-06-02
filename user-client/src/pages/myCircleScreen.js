@@ -73,7 +73,7 @@ export default () => {
           loading={loadingState}
         />
       </div>
-      <div className="mt-3 mb-3 z-20" style={{ height: '1px', backgroundColor: '#bdc0c7' }} />
+      <div className="relative mt-3 mb-3 z-20" style={{ height: '1px', backgroundColor: THEME_COLOR['DIVIDER'] }} />
       {
         Object.keys(myProfile).length !== 0 ?
           <div className="flex flex-col items-center z-20">

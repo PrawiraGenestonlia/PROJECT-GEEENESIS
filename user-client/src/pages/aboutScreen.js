@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import { Button, Divider } from 'antd';
 import unregisterServiceWorker from '../utils/unregisterServiceWorker';
 import TopNavBar from '../components/topNavBar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { THEME_COLOR } from '../enum';
 import preval from 'preval.macro';
+import { HOST_URL, SERVER_BASE_URL, HOME_URL } from '../router/constants.router';
 
 export default () => {
   const { pathname } = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,9 +47,8 @@ export default () => {
           <p>
             <Button block type="dashed" danger onClick={() => {
               unregisterServiceWorker().then(() => {
-                console.log(window.location.href);
-                window.location.href = window.location.href + "?message=true";
-                // window.location.reload(true);
+                history.push(HOME_URL);
+                window.location.reload(true);
               })
             }}>
               Update to latest version

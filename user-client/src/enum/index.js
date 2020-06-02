@@ -28,6 +28,7 @@ export const GLOBAL_COLOR = {
     BACKGROUND_C: '#f1f1f1',
     BACKGROUND_SECONDARY: '#ffffff',
     FONT: '#000000',
+    DIVIDER: '#bdc0c7',
     ICON_FILTER: 'invert(0%) sepia(0%) saturate(7489%) hue-rotate(69deg) brightness(116%) contrast(100%)',
     HOME_TAB_COVER: {
       BACKGROUND: 'rgb(164,141,255)',
@@ -54,6 +55,7 @@ export const GLOBAL_COLOR = {
     BACKGROUND_C: '#000000',
     BACKGROUND_SECONDARY: '#202020',
     FONT: '#ffffff',
+    DIVIDER: '#202020',
     ICON_FILTER: 'invert(100%) sepia(0%) saturate(30%) hue-rotate(102deg) brightness(106%) contrast(106%)',
     HOME_TAB_COVER: {
       BACKGROUND: 'rgb(30,26,47)',
