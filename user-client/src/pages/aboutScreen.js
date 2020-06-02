@@ -6,6 +6,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { THEME_COLOR } from '../enum';
 import preval from 'preval.macro';
 import { HOME_URL } from '../router/constants.router';
+import qrSVG from '../assets/svg/qr_web.svg';
 
 export default () => {
   const { pathname } = useLocation();
@@ -21,7 +22,14 @@ export default () => {
     <div>
       <TopNavBar title="About" back="Me" />
       <div className="rounded-md p-2" style={{ backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
+        <div>
+          <h5 className="font-bold">Share the App</h5>
+          <div className="flex items-center justify-center">
+            <img className="h-40 w-40 m-2 shadow-lg" src={qrSVG} alt="sharing qr" />
+          </div>
 
+        </div>
+        <Divider />
         <div>
           <h5 className="font-bold">About the App</h5>
           <p>Description and Summary</p>

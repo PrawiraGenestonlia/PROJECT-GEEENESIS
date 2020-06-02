@@ -110,7 +110,7 @@ export default () => {
                         : null
                     }
                     {
-                      (myProfile['myMentor'].length && myProfile['myStudent'].length && myProfile['mySeniorBuddy'].length && myProfile['myJuniorBuddy'].length) === 0 ?
+                      (myProfile['myMentor'].length || myProfile['myStudent'].length || myProfile['mySeniorBuddy'].length || myProfile['myJuniorBuddy'].length) === 0 ?
                         <TabPane tab={<h2>No Circle</h2>} key="5">
                           <p className="break-words">No circle is found. Please contact SLDU staff to verify your mentorship status.</p>
                         </TabPane>

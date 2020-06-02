@@ -87,7 +87,7 @@ export default () => {
 
   useEffect(() => {
     const loadData = () => {
-      getEventsBetweenDate(calendarActiveStart, calendarActiveEnd).then(async res => {
+      getEventsBetweenDate(calendarActiveStart, calendarActiveEnd).then(res => {
         setEvents([...res.data]);
       }).catch(async err => {
         console.log(err);
@@ -139,7 +139,7 @@ export default () => {
       }
       return null;
     });
-    setSelectedEvents([...listOfEvents]);
+    listOfEvents.length && setSelectedEvents([...listOfEvents]);
   }
 
   const handleModalOk = e => {
