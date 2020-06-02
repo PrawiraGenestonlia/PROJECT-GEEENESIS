@@ -66,7 +66,9 @@
 |26/05/2020|5           |user front end - tab bar |
 |27/05/2020|7           |user front end - tab bar |
 |28/05/2020|10           |user front end - tab bar |
-|28/05/2020|12.5           |user front end - all primary screens |
-|28/05/2020|10           |user front end - dark mode |
+|29/05/2020|12.5           |user front end - all primary screens |
+|31/05/2020|10           |user front end - dark mode |
+|1/05/2020|10           |user front end - dark mode |
+|2/05/2020|10           |user front end - dark mode |
 |||
-|**TOTAL** |**210**    |*Temporary total productive hours spent*|
+|**TOTAL** |**220**    |*Temporary total productive hours spent*|
