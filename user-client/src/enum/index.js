@@ -80,4 +80,4 @@ export const GLOBAL_COLOR = {
   }
 }
 
-export const THEME_COLOR = GLOBAL_COLOR[localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.LIGHT_MODE];
+export const THEME_COLOR = GLOBAL_COLOR[localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.DEFAULT];

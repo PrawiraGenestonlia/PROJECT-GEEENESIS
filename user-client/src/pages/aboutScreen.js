@@ -5,7 +5,7 @@ import TopNavBar from '../components/topNavBar';
 import { useLocation, useHistory } from 'react-router-dom';
 import { THEME_COLOR } from '../enum';
 import preval from 'preval.macro';
-import { HOST_URL, SERVER_BASE_URL, HOME_URL } from '../router/constants.router';
+import { HOME_URL } from '../router/constants.router';
 
 export default () => {
   const { pathname } = useLocation();

@@ -87,7 +87,7 @@ export default () => {
             <img className="w-6 h-6" src={ThemeSVG} alt="theme-icon" style={{ filter: THEME_COLOR['ICON_FILTER'] }} />
             <div className="ml-2">Themes</div>
             <div className="absolute" style={{ right: '0.3rem' }}>
-              <Select defaultValue={localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.LIGHT_MODE} onChange={onChangeTypeOfTheme}>
+              <Select defaultValue={localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.DEFAULT} onChange={onChangeTypeOfTheme}>
                 <Option value={TYPE_OF_THEME.LIGHT_MODE}>Light mode</Option>
                 <Option value={TYPE_OF_THEME.DARK_MODE}>Dark mode</Option>
               </Select>
