@@ -174,6 +174,9 @@ export default () => {
       </div>
       <div className="mt-3 mb-3 z-20" style={{ height: '1px', backgroundColor: '#bdc0c7' }} />
       {
+        !selectedDateEvents.length && <div>Click on a date to load events on that particular date.</div>
+      }
+      {
         selectedDateEvents.map((event, index) => {
           return (
             <div className="truncate" key={index}>

@@ -64,7 +64,7 @@ export default () => {
   return (
     <div>
       <TopDiv style={{ backgroundColor: THEME_COLOR.CIRCLE_TAB_COVER.BACKGROUND, backgroundImage: THEME_COLOR.CIRCLE_TAB_COVER.BACKGROUND_GRADIENT }} />
-      <div className="relative flex items-center justify-center w-full z-20 rounded-md" style={{ backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
+      <div className="relative flex items-center justify-center w-full z-20 rounded-lg" style={{ backgroundColor: THEME_COLOR['BACKGROUND_SECONDARY'] }}>
         <Search
           className="rounded-lg z-20"
           placeholder="mentor network name / email"
