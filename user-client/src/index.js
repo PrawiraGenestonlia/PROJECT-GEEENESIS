@@ -19,17 +19,25 @@ const hideLoader = () => loader.classList.add('loader--hide');
 
 // const navbarSmall = new checkScroll("navbar", "50px");
 // const navbarLarge = new checkScroll("navbarlg", "50px");
+const LightTheme = React.lazy(() => import('./themes/lightTheme'));
+const DarkTheme = React.lazy(() => import('./themes/darkTheme'));
+
+const ThemeSelector = ({ children }) => {
+  const CHOSEN_THEME = localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.DEFAULT;
+  return (
+    <>
+      <React.Suspense fallback={() => null}>
+        {(CHOSEN_THEME === TYPE_OF_THEME.LIGHT_MODE) && <LightTheme />}
+        {(CHOSEN_THEME === TYPE_OF_THEME.DARK_MODE) && <DarkTheme />}
+      </React.Suspense>
+      {children}
+    </>
+  )
+}
 
 const ReactApp = ({ hideLoader }) => {
   useEffect(() => hideLoader(), [hideLoader]);
-  useEffect(() => {
-    const CHOSEN_THEME = localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.DEFAULT;
-    if (CHOSEN_THEME === TYPE_OF_THEME.LIGHT_MODE) {
-      require('antd/dist/antd.css');
-    } else {
-      require('antd/dist/antd.dark.css');
-    }
-  }, []);
+
   // const handleScroll = () => {
   //   checkScroll("navbar", "navbarlg", '50px')
   // }
@@ -42,7 +50,7 @@ const ReactApp = ({ hideLoader }) => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
-  return <App />;
+  return <ThemeSelector><App /></ThemeSelector>;
 }
 
 ReactDOM.render(
