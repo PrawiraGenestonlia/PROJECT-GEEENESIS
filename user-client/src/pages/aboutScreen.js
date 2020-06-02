@@ -4,6 +4,7 @@ import unregisterServiceWorker from '../utils/unregisterServiceWorker';
 import TopNavBar from '../components/topNavBar';
 import { useLocation } from 'react-router-dom';
 import { THEME_COLOR } from '../enum';
+import preval from 'preval.macro';
 
 export default () => {
   const { pathname } = useLocation();
@@ -11,6 +12,8 @@ export default () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  const dateTimeStamp = preval`module.exports = new Date().toLocaleString('en-US', { timeZone: 'Asia/Singapore' });`
 
   return (
     <div>
@@ -37,11 +40,15 @@ export default () => {
           <p>
             Version: 0.5.4
           <br />
-            <span className="text-gray-500">Last bundled time: {require('../utils/bundleTime').default} GMT+8</span>
+            <span className="text-gray-500">Last bundled time: {dateTimeStamp} GMT+8</span>
           </p>
           <p>
             <Button block type="dashed" danger onClick={() => {
-              unregisterServiceWorker().then(() => { window.location.reload(true) })
+              unregisterServiceWorker().then(() => {
+                console.log(window.location.href);
+                window.location.href = window.location.href + "?message=true";
+                // window.location.reload(true);
+              })
             }}>
               Update to latest version
                 </Button>

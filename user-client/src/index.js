@@ -26,9 +26,9 @@ const ThemeSelector = ({ children }) => {
   const CHOSEN_THEME = localStorage.getItem('TYPE_OF_THEME') || TYPE_OF_THEME.DEFAULT;
   return (
     <>
-      <React.Suspense fallback={() => null}>
-        {(CHOSEN_THEME === TYPE_OF_THEME.LIGHT_MODE) && <LightTheme />}
-        {(CHOSEN_THEME === TYPE_OF_THEME.DARK_MODE) && <DarkTheme />}
+      <React.Suspense fallback={<></>}>
+        {(CHOSEN_THEME === TYPE_OF_THEME.LIGHT_MODE) ? <LightTheme /> : null}
+        {(CHOSEN_THEME === TYPE_OF_THEME.DARK_MODE) ? <DarkTheme /> : null}
       </React.Suspense>
       {children}
     </>
@@ -50,7 +50,11 @@ const ReactApp = ({ hideLoader }) => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
-  return <ThemeSelector><App /></ThemeSelector>;
+  return (
+    <ThemeSelector>
+      <App />
+    </ThemeSelector>
+  )
 }
 
 ReactDOM.render(
