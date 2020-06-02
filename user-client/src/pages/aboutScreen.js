@@ -37,7 +37,7 @@ export default () => {
           <p>
             Version: 0.5.4
           <br />
-            <span className="text-gray-500">(Last updated: 01 June 2020)</span>
+            <span className="text-gray-500">Last bundled time: {require('../utils/bundleTime').default} GMT+8</span>
           </p>
           <p>
             <Button block type="dashed" danger onClick={() => {
