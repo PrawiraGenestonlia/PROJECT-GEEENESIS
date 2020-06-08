@@ -9,7 +9,7 @@
 
 //SERVER EXTENDED URL
 
-export const SERVER_BASE_URL = "/geeenesis-user";
+export const SERVER_BASE_URL = "/genesis-main";
 
 
 //PUBLIC ROUTE
@@ -44,7 +44,7 @@ export const SEARCH_URL = "/app/search";
 export const SINGLE_PROFILE_URL = "/app/profiles";
 
 //STANDALONE ROUTES
-export const HOST_URL = "https://server.thexdream.net"
+export const HOST_URL = "https://www.x-dream.tech"
 export const ADMIN_BASE_URL = "/geeenesis";
 export const CLUB_STANDALONE_URL = "/club/";
 export const FULL_CLUB_URL = HOST_URL + ADMIN_BASE_URL + CLUB_STANDALONE_URL;

@@ -8,8 +8,8 @@
 */
 
 //SERVER EXTENDED URL
-export const SERVER_BASE_URL = "/geeenesis/";
-export const SERVER_BASE_URL_SHORT = "/geeenesis";
+export const SERVER_BASE_URL = "/genesis-admin/";
+export const SERVER_BASE_URL_SHORT = "/genesis-admin";
 
 //PUBLIC ROUTE
 export const LOGIN_URL = "/login/";
@@ -37,8 +37,8 @@ export const CLUB_INFO_URL = "/admin/club-information/";
 export const CALENDAR_OF_EVENTS = "/admin/calendar-of-events/";
 
 //STUDENT PWA ROUTE
-export const STUDENT_EXTENDED_URL = "https://server.thexdream.net/geeenesis-mobile/";
-export const STUDENT_HOME_URL = "https://server.thexdream.net/geeenesis-user/";
+export const STUDENT_EXTENDED_URL = "https://www.x-dream.tech/genesis-main/";
+export const STUDENT_HOME_URL = "https://www.x-dream.tech/genesis-main/";
 
 /*
 * ==========================================================
@@ -50,7 +50,7 @@ export const STUDENT_HOME_URL = "https://server.thexdream.net/geeenesis-user/";
 */
 
 //SERVER URL
-export const SERVERURL = "https://server.thexdream.net/geeenesis-api";
+export const SERVERURL = "https://www.x-dream.tech/genesis-api";
 
 //PUBLIC API - NON TOKEN
 export const LOGIN = "/user/login";

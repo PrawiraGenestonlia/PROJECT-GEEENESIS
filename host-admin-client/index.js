@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const compression = require('compression');
 const path = require('path');
+const PORT = process.env.PORT || 3101;
 
 app.disable('x-powered-by');
 app.use(compression());
@@ -12,7 +13,7 @@ app.get('*', function (req, res) {
 });
 
 app.listen(
-  3840,
+  PORT,
   function () {
     console.log(`geeenesis-admin-webapp start on http://localhost:3840`)
   }
