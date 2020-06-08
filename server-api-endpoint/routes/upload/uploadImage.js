@@ -27,7 +27,7 @@ router.post('/image', verifyToken, (req, res) => {
       if (err) {
         return res.status(400).json(err.message);
       }
-      var imageUrl = 'https' + '://' + req.get('host') + "/geeenesis-api/uploads/images/" + req.file.filename;
+      var imageUrl = 'https' + '://' + req.get('host') + "/genesis-api/uploads/images/" + req.file.filename;
 
       return res.status(200).json(imageUrl);
     });
@@ -44,7 +44,7 @@ router.post('/avatar-image', verifyToken, async (req, res) => {
       if (err) {
         return res.status(400).json(err.message);
       }
-      var imageUrl = 'https' + '://' + req.get('host') + "/geeenesis-api/uploads/images/" + req.file.filename;
+      var imageUrl = 'https' + '://' + req.get('host') + "/genesis-api/uploads/images/" + req.file.filename;
       user.findOneAndUpdate({ email: req.user.email }, { avatarUrl: imageUrl }).then(() => {
         res.status(200).json("Image is updated successfully!");
       }).catch((err) => {
