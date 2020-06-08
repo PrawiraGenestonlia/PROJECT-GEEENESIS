@@ -8,13 +8,13 @@ app.disable('x-powered-by');
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../admin-client/build')));
 
-app.get('*', function (req, res) {
+app.get('/genesis-admin/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../admin-client/build', "/index.html"));
 });
 
 app.listen(
   PORT,
   function () {
-    console.log(`geeenesis-admin-webapp start on http://localhost:3840`)
+    console.log(`geeenesis-admin-webapp start on http://localhost:${PORT}`)
   }
 );

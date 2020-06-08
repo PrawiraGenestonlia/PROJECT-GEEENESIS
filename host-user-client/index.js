@@ -8,7 +8,7 @@ app.disable('x-powered-by');
 app.use(compression());
 app.use(express.static(path.join(__dirname, '../user-client/build')));
 
-app.get('*', function (req, res) {
+app.get('/genesis-main/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../user-client/build', "/index.html"));
 });
 
