@@ -49,7 +49,7 @@ app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(morgan('short', { stream: accessLogStream }));
-app.get('/', async (req, res) => {
+app.get('/genesis-api/', async (req, res) => {
   //
   let response = {
     "server": "geeenesis-api running at " + req['headers']['host'],
