@@ -6,9 +6,9 @@ const PORT = process.env.PORT || 3100;
 
 app.disable('x-powered-by');
 app.use(compression());
-app.use(express.static(path.join(__dirname, '../user-client/build')));
+app.use("/genesis-main", express.static(path.join(__dirname, '../user-client/build')));
 
-app.get('/genesis-main/*', function (req, res) {
+app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../user-client/build', "/index.html"));
 });
 

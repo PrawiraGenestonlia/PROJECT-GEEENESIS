@@ -49,7 +49,6 @@ app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(morgan('short', { stream: accessLogStream }));
-app.use('/genesis-api', app);
 app.get('/', async (req, res) => {
   //
   let response = {
@@ -63,18 +62,18 @@ app.get('/', async (req, res) => {
   console.table(response["available routes"]); //print table
   res.send(response);
 });
-app.use('/user', authRoute);
-app.use('/get-user', getInfoRoute);
-app.use('/post', postRoute);
-app.use('/admin-user', adminUserRoute);
-app.use('/club-admin', clubAdminRoute);
-app.use('/mentor', mentorRoute);
-app.use('/senior-buddy', seniorBuddyRoute);
-app.use('/profile', profileRoute);
-app.use('/event', eventRoute);
-app.use('/chat', chatRoute);
-app.use('/upload-image', uploadImageRoute);
-app.use('/uploads', express.static('uploads'));
+app.use('/genesis-api/user', authRoute);
+app.use('/genesis-api/get-user', getInfoRoute);
+app.use('/genesis-api/post', postRoute);
+app.use('/genesis-api/admin-user', adminUserRoute);
+app.use('/genesis-api/club-admin', clubAdminRoute);
+app.use('/genesis-api/mentor', mentorRoute);
+app.use('/genesis-api/senior-buddy', seniorBuddyRoute);
+app.use('/genesis-api/profile', profileRoute);
+app.use('/genesis-api/event', eventRoute);
+app.use('/genesis-api/chat', chatRoute);
+app.use('/genesis-api/upload-image', uploadImageRoute);
+app.use('/genesis-api/uploads', express.static('uploads'));
 
 
 app.listen(process.env.PORT || 5002, () => {
